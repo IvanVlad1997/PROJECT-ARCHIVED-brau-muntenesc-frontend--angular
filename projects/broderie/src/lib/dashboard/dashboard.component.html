@@ -1,0 +1,56 @@
+<div fxLayout="row wrap" fxLayoutAlign="center start">
+  <lib-carousel [images] = "carouselPhotos" *ngIf="carouselPhotos[0]" fxFlex="100"></lib-carousel>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center" >
+  <mat-spinner *ngIf="loadingNew"></mat-spinner>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center">
+  <h1  class="title-dashboard-shop">Cele mai noi produse</h1>
+</div>
+
+<lib-product-list *ngIf="bestSellers.length > 0" [products]="latestProducts"></lib-product-list>
+
+<mat-paginator [length]="productsCount"
+               [pageSize]="3"
+               [pageIndex]="pageNewProducts - 1"
+               (page)="changeNewProductPage($event)"
+>
+</mat-paginator>
+
+<div fxLayout="row" fxLayoutAlign="center center" >
+  <mat-spinner *ngIf="loadingBest"></mat-spinner>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center" >
+  <h1  class="title-dashboard-shop">Cele mai vândute produse</h1>
+</div>
+
+<lib-product-list *ngIf="bestSellers.length > 0" [products]="bestSellers"></lib-product-list>
+<mat-paginator [length]="productsCount"
+               [pageSize]="3"
+               [pageIndex]="pageBestSeller - 1"
+               (page)="changeBestSellerPage($event)"
+               >
+</mat-paginator>
+
+<div fxLayout="row" fxLayoutAlign="center center" >
+  <h1  class="title-dashboard-shop">Categorii</h1>
+</div>
+<div fxLayoutAlign="center center">
+  <mat-chip-list fxLayoutAlign="center center" >
+    <mat-chip color="accent" *ngFor="let category of categories" [routerLink]="['/broderie/categorie', category.slug]">{{category.name}}</mat-chip>
+  </mat-chip-list>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center" >
+  <h1  class="title-dashboard-shop">Subcategorii</h1>
+</div>
+<div fxLayoutAlign="center center">
+  <mat-chip-list fxLayoutAlign="center center">
+    <mat-chip color="accent" *ngFor="let subCategory of subCategories" [routerLink]="['/broderie/subcategorie', subCategory.slug]">{{subCategory.name}}</mat-chip>
+  </mat-chip-list>
+</div>
+
+
+

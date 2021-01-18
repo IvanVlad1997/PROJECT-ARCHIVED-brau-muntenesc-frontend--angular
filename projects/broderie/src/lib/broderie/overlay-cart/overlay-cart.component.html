@@ -1,0 +1,13 @@
+<div class="overlay" fxLayout="column" fxLayoutAlign="start stretch" >
+  <button mat-raised-button color="warn" (click)="changeOverlayStatus()" >Închide overlay-ul</button>
+  <button mat-raised-button color="accent" (click)="closeOverlay()" [routerLink]="['/broderie/cart']">Finalizează comanda</button>
+  <div *ngFor="let cartProduct of cart" fxLayout="column" fxLayoutAlign="center center" class="margin-top-1">
+    <div fxLayout="row" fxLayoutAlign="space-around end">
+      <p>{{cartProduct.product.title}}</p>
+      <a mat-icon-button color="warn" (click)="removeFromCart(cartProduct)">
+        <mat-icon svgIcon="delete"></mat-icon>
+      </a>
+    </div>
+    <img [src] = "cartProduct.product.images[0].url">
+  </div>
+</div>

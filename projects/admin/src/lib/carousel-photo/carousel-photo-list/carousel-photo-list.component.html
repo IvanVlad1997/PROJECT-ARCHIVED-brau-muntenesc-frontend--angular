@@ -1,0 +1,14 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center" >
+  <div fxFlex="100" fxLayoutAlign="center center" class="margin-top-1">
+    <button  mat-raised-button color="accent" (click)="addPhoto()" >Adaugă fotografie în carusel</button>
+  </div>
+
+  <div class="carousel-photo" *ngFor="let photo of carouselPhotos; let i = index" fxLayout="row wrap" fxFlex="100" fxLayoutAlign="center center">
+    <hr fxFlex="100" *ngIf="i !== 0" />
+    <p fxFlex="100" fxLayoutAlign="center center">{{photo.name}}</p>
+    <img [src]="photo.imageUrl" fxFlex="90" class="image">
+    <div class="margin-top-1">
+      <button mat-raised-button  color="warn" (click)="handleImageRemove(photo)">Șterge din carusel</button>
+    </div>
+  </div>
+</div>

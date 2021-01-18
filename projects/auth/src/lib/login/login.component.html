@@ -1,0 +1,44 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="full-height">
+  <h1>Intră în cont</h1>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="login(form)" #form="ngForm" fxLayout="row wrap" fxLayoutAlign="space-around center" *ngIf="!isLoading" >
+    <mat-form-field fxFlex="70%" color="accent" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input name="email" type="email" minlength="2" matInput  required [(ngModel)]="email" #EmailModel="ngModel" />
+      <mat-error *ngIf="EmailModel.errors">
+        <ng-container *ngFor="let item of EmailModel.errors | keyvalue">
+          <p *ngIf="item.key === 'required'">Name is required</p>
+          <p *ngIf="item.key === 'minlength'">Should have more than 1 char</p>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="70%" color="accent" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input name="password" type="password" matInput required [(ngModel)]="password" #PasswordModel="ngModel"/>
+      <mat-error *ngIf="PasswordModel.errors">
+        <ng-container *ngFor="let item of PasswordModel.errors | keyvalue">
+          <p *ngIf="item.key === 'required'">Complete Registration</p>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+     <div fxLayout="row wrap" fxLayoutAlign="center center" >
+       <div fxFlex="50" fxFlex.gt-sm="25" fxLayoutAlign="center center">
+         <button mat-raised-button color="accent" type="submit">Login</button>
+       </div>
+       <div fxFlex="50" fxFlex.gt-sm="25" fxLayoutAlign="center center">
+         <button mat-raised-button color="warn" type="button" routerLink="/auth/signup">Nu am cont</button>
+       </div>
+       <div fxFlex="50"fxFlex.gt-sm="25" fxLayoutAlign="center center">
+         <button mat-raised-button color="accent" type="button" (click)="loginWithGoogle()">Google Login</button>
+       </div>
+       <div fxFlex="50" fxFlex.gt-sm="25" fxLayoutAlign="center center">
+         <button mat-raised-button color="warn" type="button" routerLink="/auth/forgot-password">Mi-am uitat parola</button>
+       </div>
+    </div>
+</form>
+</div>
+
+
+<ng-template #header>
+  Logare
+</ng-template>

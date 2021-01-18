@@ -1,0 +1,17 @@
+<div class="full-height" >
+  <div *ngIf="!loading" >
+    <div *ngIf="orders.length>0" class="order-title margin-top-1">
+      {{orders.length}} comenzi
+      <div *ngFor="let order of orders" class="border-user-history">
+        <lib-dashboard-order-item *ngFor="let order of orders" [order] = "order" [token] = "token"></lib-dashboard-order-item>
+      </div>
+    </div>
+    <div *ngIf="!loading && !(orders.length>0)">
+      Nu exista comenzi în istoric
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" *ngIf="loading" >
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+
+</div>

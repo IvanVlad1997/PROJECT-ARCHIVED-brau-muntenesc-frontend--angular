@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>
+  <ng-container *ngIf="data && data.isName">Schimbă numele</ng-container>
+  <ng-container *ngIf="data && data.isTelNum" >Schimba numărul de telefon</ng-container>
+  <ng-container *ngIf="data && data.isEmail" >Schimba email</ng-container>
+</h1>
+
+<form #form (submit)="edit()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field *ngIf="data.isName">
+      <mat-label >Nume</mat-label>
+      <input matInput name="name" type="text" [(ngModel)]="data.name" required/>
+    </mat-form-field>
+    <mat-form-field *ngIf="data.isTelNum">
+      <mat-label >Număr de telefon</mat-label>
+      <input matInput name="telNum" type="text" [(ngModel)]="data.telNum" required/>
+    </mat-form-field>
+    <mat-form-field *ngIf="data.isEmail">
+      <mat-label >Email</mat-label>
+      <input matInput name="email" type="text" [(ngModel)]="data.email" required/>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="data.isEmail" class="email-warning">După ce veți schimba emailul veți fi delogat!</div>
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()"  >Salvează</button>
+  </div>
+</form>
+
+

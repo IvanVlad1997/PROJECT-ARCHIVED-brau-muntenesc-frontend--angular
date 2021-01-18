@@ -1,0 +1,37 @@
+<div class="full-height">
+  <router-outlet ></router-outlet>
+</div>
+<ng-template #options>
+  <hr/>
+  <a mat-list-item routerLink="shop">
+    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <span>Toate produsele</span>
+  </a>
+<!--  <a mat-list-item routerLink="dashboard">-->
+<!--    <mat-icon mat-list-icon svgIcon="car"></mat-icon>-->
+<!--    <span>Dashboard</span>-->
+<!--  </a>-->
+  <a mat-list-item routerLink="cart">
+    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <span>Coș
+    <span *ngIf="cartLength && cartLength > 0 ">({{cartLength}})</span>
+    </span>
+  </a>
+</ng-template>
+
+<ng-template #search >
+  <lib-search fxHide.lt-lg="true"></lib-search>
+</ng-template>
+
+<ng-template #header>
+  <p>Magazin</p>
+</ng-template>
+
+<!--OVERLAY-->
+<button  type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="changeOverlayStatus()" fxHide="true"></button>
+<ng-template cdkConnectedOverlay
+             [cdkConnectedOverlayOrigin]="trigger"
+             [cdkConnectedOverlayOpen]="overlayIsOpen"
+>
+  <lib-overlay-cart fxFlex="100"></lib-overlay-cart>
+</ng-template>

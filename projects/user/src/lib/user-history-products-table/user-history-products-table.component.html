@@ -1,0 +1,10 @@
+<div  fxLayout="row wrap" fxLayoutAlign="center center" >
+  <div *ngFor="let product of order.products" fxFlex="100" fxLayoutAlign="center center">
+    {{product.product.title}} x {{product.count}}
+  </div>
+  <hr fxFlex="90"/>
+  <div fxFlex="100" fxLayoutAlign="center center">Status livrare: {{order.orderStatus}}</div>
+  <div fxFlex="100" fxLayoutAlign="center center">Comandă plasată în: {{order.createdAt | date}}</div>
+  <div fxFlex="100" fxLayoutAlign="center center">Sumă: {{order.paymentIntent.amount}}</div>
+  <button fxFlex="70" mat-raised-button color="primary" (click)="generatePDF()">Generate PDF</button>
+</div>

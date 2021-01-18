@@ -1,0 +1,79 @@
+<div fxHide.gt-sm>
+  <mat-icon mat-icon-button (click)="toggleFiltersAction()" fxFlex.gt-md="true" svgIcon="arrow-left-bold"></mat-icon>
+</div>
+<button mat-raised-button (click)="resetFilters()"> Resetează filtrele </button>
+<div fxHide.gt-md="" fxLayout="row" fxLayoutAlign="space-around center" >
+  <span>Căutare: </span>
+  <lib-search ></lib-search>
+</div>
+<div mat-icon-button color="warn" (click)="togglePrice()" fxLayout="row" fxLayoutAlign="space-around center">
+  <h4>Preț</h4>
+  <mat-icon *ngIf="priceShow" svgIcon="chevron-down"></mat-icon>
+  <mat-icon *ngIf="!priceShow" svgIcon="chevron-right"></mat-icon>
+</div>
+<div class="custom-slider" *ngIf="priceShow">
+  <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="priceRangeChange()"></ng5-slider>
+</div>
+
+<div mat-icon-button color="warn" (click)="toggleCategory()" fxLayout="row" fxLayoutAlign="space-around center">
+  <h4>Categorie</h4>
+  <mat-icon *ngIf="showCategory" svgIcon="chevron-down"></mat-icon>
+  <mat-icon *ngIf="!showCategory" svgIcon="chevron-right"></mat-icon>
+</div>
+<div *ngIf="showCategory" fxLayout="column">
+  <mat-checkbox *ngFor="let category of categories; let i = index" (input)="changeCategory($event, i)"  [checked]="checkCat(category)">{{category.name}} </mat-checkbox>
+</div>
+
+<div mat-icon-button color="warn" (click)="toggleSubCategories()" fxLayout="row" fxLayoutAlign="space-around center">
+  <h4>Subcategorie</h4>
+  <mat-icon *ngIf="subCategoryShow" svgIcon="chevron-down"></mat-icon>
+  <mat-icon *ngIf="!subCategoryShow" svgIcon="chevron-right"></mat-icon>
+</div>
+<div *ngIf="subCategoryShow" fxLayout="column">
+  <mat-checkbox *ngFor="let subCategory of subCategories; let i = index" (input)="changeSubCategory($event, i)" [checked]="checkSub(subCategory)">{{subCategory.name}}</mat-checkbox>
+</div>
+
+<div mat-icon-button color="warn" (click)="toggleRatings()" fxLayout="row" fxLayoutAlign="space-around center">
+  <h4>Rating</h4>
+  <mat-icon *ngIf="ratingsShow" svgIcon="chevron-down"></mat-icon>
+  <mat-icon *ngIf="!ratingsShow" svgIcon="chevron-right"></mat-icon>
+</div>
+<div *ngIf="ratingsShow" fxLayout="column">
+      <bar-rating class="bar-rating" (rateChange)="changeRating($event)" [rate]="rate" [max]="5"  [theme]="'stars'"></bar-rating>
+</div>
+
+<div mat-icon-button color="warn" (click)="toggleShipping()" fxLayout="row" fxLayoutAlign="space-around center">
+  <h4>Transport</h4>
+  <mat-icon *ngIf="showShipping" svgIcon="chevron-down"></mat-icon>
+  <mat-icon *ngIf="!showShipping" svgIcon="chevron-right"></mat-icon>
+</div>
+<div *ngIf="showShipping" fxLayout="column">
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    [(ngModel)]="selectedShipping"
+    (change)="changeShipping()">
+    <mat-radio-button class="example-radio-button" [value]="'Yes'">Da</mat-radio-button>
+    <mat-radio-button class="example-radio-button" [value]="'No'">Nu</mat-radio-button>
+  </mat-radio-group>
+</div>
+
+<div mat-icon-button color="warn" (click)="toggleColor()" fxLayout="row" fxLayoutAlign="space-around center">
+  <h4>Culoare</h4>
+  <mat-icon *ngIf="showColor" svgIcon="chevron-down"></mat-icon>
+  <mat-icon *ngIf="!showColor" svgIcon="chevron-right"></mat-icon>
+</div>
+<div *ngIf="showColor" fxLayout="column">
+  <mat-checkbox *ngFor="let color of colors; let i = index" (input)="changeColor($event, i)" [checked]="checkColor(color)">{{color}}</mat-checkbox>
+</div>
+
+<div mat-icon-button color="warn" (click)="toggleBrand()" fxLayout="row" fxLayoutAlign="space-around center">
+  <h4>Brand</h4>
+  <mat-icon *ngIf="showBrand" svgIcon="chevron-down"></mat-icon>
+  <mat-icon *ngIf="!showBrand" svgIcon="chevron-right"></mat-icon>
+</div>
+<div *ngIf="showBrand" fxLayout="column">
+  <mat-checkbox *ngFor="let brand of brands; let i = index" (input)="changeBrand($event, i)" [checked]="checkBrand(brand)">{{brand}}</mat-checkbox>
+</div>
+
+

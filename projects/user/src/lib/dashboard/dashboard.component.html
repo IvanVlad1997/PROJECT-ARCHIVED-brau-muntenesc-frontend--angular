@@ -1,0 +1,40 @@
+<div *ngIf="user" class="full-height" fxLayout="row wrap" fxLayoutAlign="start start" >
+  <div fxFlex.gt-sm="50" fxFlex="100"  fxLayout="column" fxLayoutAlign="center center"  class="first-row-left first-row">
+    <p>Email: {{user.email}}</p>
+    <p>Nume cont: {{user.name}}</p>
+    <p>Rol: <span *ngIf="user.role==='subscriber'">Abonat</span> <span *ngIf="user.role==='admin'">Admin</span></p>
+    <p>Cont creat în {{user.createdAt | date}}</p>
+    <p *ngIf="user.telNum">Număr de telefon: {{user.telNum}}</p>
+    <p *ngIf="user.address !== '\n' && user.address !== '' && user.address.length !==0" fxLayout="row wrap" fxLayoutAlign="center center">
+      <span fxFlex="100" fxLayoutAlign="center center">Adresa:</span>
+      <span [innerHTML]="user.address[0]" fxFlex="100" fxLayoutAlign="center center"></span>
+    </p>
+    <!--    <button mat-raised-button color="accent" (click)="changeEmail()" *ngIf="user.email">Schimba email-ul </button>-->
+  </div>
+  <div fxFlex="50" class="first-row-right first-row mat-headline"  fxLayout="row wrap" fxLayoutAlign="center center" fxHide.lt-md="true">
+    <div fxFlex="100" fxLayoutAlign="center center">Informații despre</div>
+    <div fxFlex="100" fxLayoutAlign="center center">contul tău</div>
+  </div>
+  <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
+    <div *ngIf="user.cart.length > 0">
+      <button mat-raised-button color="accent" [routerLink]="['/broderie/cart']">Finalizează comanda din coșul de cumpărături </button>
+    </div>
+    <button mat-raised-button color="accent" (click)="changeName()">Schimbă numele de utilizator </button>
+    <div *ngIf="user.wishlist.length > 0">
+      <button mat-raised-button color="accent" [routerLink]="['/user/wishlist']">Du-te la favorite </button>
+    </div>
+    <div>
+      <button mat-raised-button color="accent" [routerLink]="['/user/history']">Du-te la istoric cumpărături </button>
+    </div>
+    <div>
+      <button mat-raised-button color="accent" (click)="changeTelNum()" *ngIf="user.telNum">Schimba numărul de telefon </button>
+      <button mat-raised-button color="accent" (click)="changeTelNum()" *ngIf="!user.telNum">Adaugă numărul de telefon </button>
+    </div>
+      <button mat-raised-button color="accent" (click)="toggleChangeAddress()" >Schimbă adresa </button>
+    <div  *ngIf="changeAddressOn">
+      <quill-editor (onContentChanged)="contentChanged($event)" [(ngModel)]="address" [modules]="modules"  #editor></quill-editor>
+      <button mat-raised-button color="accent" (click)="saveAddressToDb()">Salvează adresa</button>
+    </div>
+  </div>
+
+</div>

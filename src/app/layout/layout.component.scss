@@ -1,0 +1,33 @@
+.padding-container {
+  padding: 30px;
+}
+
+
+.sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.main-sidenav {
+  @media screen and (max-width: 960px) {
+    width:100vw;
+  }
+}
+
+
+.min-height {
+  height: 65vh;
+}
+
+.account-image {
+  border: 1px solid black;
+  color: black;
+}
+
+.inregistrare-margin {
+  margin-left: 5px;
+}
+

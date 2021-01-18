@@ -1,0 +1,58 @@
+<div fxLayout="row wrap" fxLayoutAlign="center start" *ngIf="product" class="full-height">
+  <lib-carousel [images] = "product.images" *ngIf="product && product.images && product.images[0]" fxFlex.gt-sm="50" fxFlex="100"></lib-carousel>
+  <div fxFlex="100" fxFlex.gt-sm="50" fxLayout="column" fxLayoutAlign="center center" class="height-more">
+    <h1 *ngIf="product" >
+      {{product.title}}
+    </h1>
+    <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="center center">
+      <bar-rating [(rate)]="rateAndLength.result" [max]="5" [readOnly]="true" [theme]="'stars'"></bar-rating>
+      <p>( {{rateAndLength.length}} )</p>
+    </div>
+    <div>
+      <p class="price">
+        {{product.price}} lei
+      </p>
+      <p class="categorie">
+        Categorie: <a class="categorie color-primary" [routerLink]="['/broderie/categorie/', product.category.slug]">{{product.category.name}}</a>
+      </p>
+      <p class="categorie">
+        Subcategorii:  <a class="categorie color-primary" *ngFor="let subcategory of product.subCategory" [routerLink]="['/broderie/subcategorie/', subcategory.slug]" >{{subcategory.name}}</a>
+      </p>
+
+      <p *ngIf="product.color" class="align-center">
+        Culoare: {{product.color}}
+      </p>
+      <p *ngIf="product.brand" class="align-center">
+        Brand: {{product.brand}}
+      </p>
+    </div>
+    <div class="margin-top-1" fxLayout="column">
+      <button mat-raised-button color="primary"  *ngIf="user.email" (click)="addToWishlist(product._id)">Adaugă la favorite</button>
+      <button mat-raised-button color="accent" *ngIf="user.email" (click)="leaveARating()" i>Lasă un rating</button>
+      <button mat-raised-button color="warn" *ngIf="!user.email" routerLink="/auth/login">Loghează-te pentru a lăsa un rating</button>
+      <button mat-raised-button color='warn' (click)="handleCartAdd(product)" >Adaugă in coșul de cumpărături</button>
+    </div>
+  </div>
+
+  <mat-tab-group class="padding">
+    <mat-tab label="Descriere" >
+      <p fxLayoutAlign="center center">Descriere {{product.description}}</p>
+    </mat-tab>
+    <mat-tab label="Mai multe" >
+      <p fxLayoutAlign="center center">
+        Transport {{product.shipping}}
+     </p>
+      <p fxLayoutAlign="center center" *ngIf="product.quantity > 0">
+        În stoc {{product.quantity}}
+      </p>
+      <p fxLayoutAlign="center center">
+        Vândute {{product.sold}}
+      </p>
+    </mat-tab>
+  </mat-tab-group>
+
+
+
+<div *ngIf="relatedProducts.length > 0" fxFlex="100" class="title-dashboard-shop">Produse asemănătoare</div>
+  <lib-product-list  [products]="relatedProducts"></lib-product-list>
+</div>

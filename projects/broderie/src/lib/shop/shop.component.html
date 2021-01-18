@@ -1,0 +1,24 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-around start" class="full-height">
+  <div fxFlex="30" [fxHide.lt-md]="filtersHide" fxFlex.lt-md="100" fxLayoutAlign="space-around center">
+    <lib-filters fxFlex="70"  (toggleFilters)="filterToggle()"></lib-filters>
+  </div>
+  <div  fxFlex="15" [fxHide.lt-md]="!filtersHide" fxHide.gt-sm="true" *ngIf="!loading">
+    <button mat-icon-button (click)="filterToggle()">
+      <mat-icon mat-list-icon svgIcon="filter-variant"></mat-icon>
+      <span>Filtrează</span>
+    </button>
+  </div>
+  <div  fxFlex="70" *ngIf="loading" fxLayout="row" fxLayoutAlign="start center" class="margin-top-1">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+  </div>
+  <div fxFlex="70" fxLayout="column" fxLayoutAlign="center center"  *ngIf="!loading" [fxHide.lt-md]="!filtersHide">
+    <h1 >Produse</h1>
+
+    <div *ngIf="products && products.length<1" >Nu au fost găsite produse</div>
+    <lib-product-list *ngIf="products && products.length > 0" [products]="products"></lib-product-list>
+  </div>
+  <div fxFlex="15" fxHide.gt-sm="true" >
+  </div>
+
+</div>
+

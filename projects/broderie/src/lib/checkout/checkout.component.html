@@ -1,0 +1,35 @@
+<div fxLayout="row wrap" fxLayoutAlign="start start" class="full-height margin-top-1" >
+  <div fxFlex="50" fxFlex.lt-lg="100"  fxLayout="row wrap" fxLayoutAlign="center center">
+    <h4 fxFlex="100" fxLayoutAlign="center center">Adresa de livrare</h4>
+    <quill-editor fxFlex="90" (onContentChanged)="contentChanged($event)" [(ngModel)]="address" [modules]="modules"  #editor></quill-editor>
+    <div fxFlex="100"  fxLayoutAlign="center center">
+      <button mat-raised-button color="accent" (click)="saveAddressToDb()">Salvează adresa</button>
+    </div>
+    <hr fxFlex="90" />
+    <h4 fxFlex="100" fxLayoutAlign="center center">Ai cupon?</h4>
+    <form #form (submit)="applyCupon()" fxFlex="100" fxLayoutAlign="center center">
+      <mat-form-field>
+        <mat-label >Cupon</mat-label>
+        <input matInput name="cupon" type="text" [(ngModel)]="cuponInput" required/>
+      </mat-form-field>
+      <button type="submit" mat-button [disabled]="!form.checkValidity()">Aplica cupon</button>
+    </form>
+    <hr fxFlex="90" fxHide.gt-md/>
+  </div>
+
+  <div fxFlex="50" fxFlex.lt-lg="100"  fxLayout="row wrap" fxLayoutAlign="center center">
+    <h4 fxFlex="100" fxLayoutAlign="center center">Rezumatul comenzii:</h4>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <p fxFlex="100" fxLayoutAlign="center center" *ngFor="let product of products">{{product.product.title}} x {{product.count}}</p>
+    <p fxFlex="100" fxLayoutAlign="center center">Total Comandă {{total}}</p>
+    <p *ngIf="totalAfterDiscount" fxFlex="100" fxLayoutAlign="center center">Total dupa discount {{totalAfterDiscount}}</p>
+    <p fxFlex="100" fxLayoutAlign="center center">Adresa salvata: {{savedAddress}}</p>
+    <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center" >
+      <button class="button" color="accent" mat-raised-button [disabled]="savedAddress === '\n'" (click)="goToPayment()">Finalizează comanda - plată online</button>
+      <button class="button" color="accent" mat-raised-button [disabled]="savedAddress === '\n'" (click)="cashOrder()">Finalizează comanda - plată cash la livrare</button>
+      <button class="button" color="warn" mat-raised-button (click)="emptyUserCart()">Golește coșul de cumpărături</button>
+    </div>
+  </div>
+</div>
+
+

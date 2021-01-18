@@ -1,0 +1,38 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" class="full-height" >
+<!--  <div *ngIf="isLoading">-->
+<!--    <app-loading-spinner></app-loading-spinner>-->
+<!--  </div>-->
+<!--  <div *ngIf = "error">-->
+<!--    <p>{{error}}</p>-->
+<!--  </div>-->
+  <form class="margin-top-1" (submit)="register(form)" #form="ngForm" fxLayout="row wrap" fxLayoutAlign="space-around center" *ngIf="!isLoading">
+    <mat-form-field fxFlex="70%" color="accent">
+      <mat-label>Email</mat-label>
+      <input name="email" type="email" minlength="2" matInput autocomplete="off" required [(ngModel)]="email" #EmailModel="ngModel"/>
+      <mat-error *ngIf="EmailModel.errors">
+        <ng-container *ngFor="let item of EmailModel.errors | keyvalue">
+          <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
+          <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină mai mult de două caractere</p>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="70%" color="accent">
+      <mat-label>Password</mat-label>
+      <input name="password" type="password" matInput required minlength="7" [(ngModel)]="password" #PasswordModel="ngModel"/>
+      <mat-error *ngIf="PasswordModel.errors">
+        <ng-container *ngFor="let item of PasswordModel.errors | keyvalue">
+          <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
+          <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină mai mult de șase caractere</p>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="end center">
+      <button type="submit" matSuffix mat-button color="primary" [disabled]="!form.valid">Înregistrează-mă</button>
+    </div>
+  </form>
+</div>
+
+
+<ng-template #header>
+  Înregistrează-te
+</ng-template>

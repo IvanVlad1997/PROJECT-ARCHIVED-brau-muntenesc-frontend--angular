@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>
+  <ng-container *ngIf="subCategory && subCategory.name">{{ subCategory.name }}</ng-container>
+  <ng-container *ngIf="!subCategory || !subCategory.name" >Sub Categorie nouă</ng-container>
+</h1>
+<form #form (submit)="edit()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field>
+      <mat-label >Nume</mat-label>
+      <input matInput name="name" type="text" [(ngModel)]="subCategory.name" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label *ngIf="subCategory.parent">{{subCategory.parent.name}}</mat-label>
+      <mat-label *ngIf="!subCategory.parent">Selectează categoria</mat-label>
+      <mat-select [(value)]="subCategory.parent">
+        <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()"  >Salvează</button>
+  </div>
+</form>
+

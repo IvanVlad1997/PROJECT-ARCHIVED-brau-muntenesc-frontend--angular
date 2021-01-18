@@ -1,0 +1,6 @@
+<form #form (submit)="search()">
+    <mat-form-field class="margin-top-1">
+      <mat-label >Caută produs</mat-label>
+      <input matInput name="search" type="text" [(ngModel)]="searchText" (input)="search()"/>
+    </mat-form-field>
+</form>

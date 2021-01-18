@@ -1,0 +1,35 @@
+<div class="full-height">
+  <router-outlet ></router-outlet>
+</div>
+<ng-template #options>
+<!--  <a mat-list-item routerLink="">-->
+<!--    <mat-icon mat-list-icon svgIcon="car"></mat-icon>-->
+<!--    <span>Dashboard</span>-->
+<!--  </a>-->
+  <hr/>
+  <a mat-list-item routerLink="product">
+    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <span>Produse</span>
+  </a>
+  <a mat-list-item routerLink="category">
+    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <span>Categorii</span>
+  </a>
+  <a mat-list-item routerLink="sub-category">
+    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <span>Subcategorii</span>
+  </a>
+  <a mat-list-item routerLink="cupon">
+    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <span>Cupoane</span>
+  </a>
+  <a mat-list-item routerLink="carousel-photo">
+    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <span>Poze carusel</span>
+  </a>
+
+</ng-template>
+
+<ng-template #header>
+  <p>Admin</p>
+</ng-template>

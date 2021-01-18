@@ -1,0 +1,36 @@
+<div class="screen">
+  <div *ngIf="!loading" fxLayout="row wrap" fxLayoutAlign="space-around center" class="margin-top-1">
+    <h1 fxFlex="100" fxFlex.gt-md="70" fxLayout="row wrap" class="margin-top-1"  fxLayoutAlign="center center">
+      Plătește cu cardul
+    </h1>
+    <h3 fxFlex="100" fxFlex.gt-md="70" fxLayout="row wrap" class="total" fxLayoutAlign="center center">
+      <p fxFlex="100" fxLayoutAlign="center center" *ngIf="totalAfterDiscount">Total înainte de dicount: {{total}}</p> <br/>
+      <p  fxFlex="100" fxLayoutAlign="center center" *ngIf="totalAfterDiscount">Total după discount: {{totalAfterDiscount}}</p> <br/>
+      <p fxFlex="100" fxLayoutAlign="center center">Total de plată: {{payable}}</p>
+
+    </h3>
+    <button *ngIf="success" mat-raised-button [routerLink]="['/user/history']">Plata efectuata cu succes. Apasă aici pentru a fi redirecționat către pagina ta.</button>
+    <form fxFlex="100" fxFlex.gt-md="70" class="card-stripe" fxLayout="row wrap" fxLayoutAlign="center center" novalidate (ngSubmit)="pay()">
+      <mat-form-field  fxFlex="100">
+        <mat-label >Nume</mat-label>
+        <input matInput name="name" type="text" [(ngModel)]="name" required/>
+      </mat-form-field>
+      <ngx-stripe-card fxFlex="100"
+                       (change)="handleChange($event)"
+                       [options]="cardOptions"
+                       [elementsOptions]="elementsOptions"
+      ></ngx-stripe-card>
+      <button mat-raised-button fxFlex="100" color="primary" type="submit" [disabled]="processing || disabled || success">Plătește</button>
+      <span>
+        <mat-spinner *ngIf="processing"></mat-spinner>
+      </span>
+    </form>
+    <mat-error *ngIf="error">{{error}}</mat-error>
+  </div>
+  <div *ngIf="loading" fxLayout="row wrap" fxLayoutAlign="center center" class="margin-top-1" >
+    <mat-spinner></mat-spinner>
+  </div>
+
+</div>
+
+

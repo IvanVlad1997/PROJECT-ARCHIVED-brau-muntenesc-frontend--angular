@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>
+  <ng-container>Cupon nou</ng-container>
+</h1>
+<form #form (submit)="edit()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field>
+      <mat-label >Nume</mat-label>
+      <input matInput name="name" type="text" [(ngModel)]="cupon.name" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Discount</mat-label>
+      <input matInput name="discount" type="number" [(ngModel)]="cupon.discount" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Alege data de expirare</mat-label>
+      <input matInput [matDatepicker]="picker" required
+              (dateChange)="addEvent($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()"  >Salvează</button>
+  </div>
+</form>
+

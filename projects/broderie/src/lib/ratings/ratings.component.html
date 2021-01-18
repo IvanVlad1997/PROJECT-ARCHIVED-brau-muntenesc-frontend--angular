@@ -1,0 +1,8 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center" >
+  <h1 mat-dialog-title>
+    Lasă un rating
+  </h1>
+  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="center center">
+    <bar-rating [(rate)]="rate" [max]="5" (rateChange)="rateChange($event)" [theme]="'stars'"></bar-rating>
+  </div>
+</div>
