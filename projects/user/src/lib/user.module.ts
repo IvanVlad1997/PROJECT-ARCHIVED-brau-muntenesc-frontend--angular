@@ -20,6 +20,7 @@ import { ChangeUserPropDialogComponent } from './dashboard/change-user-prop-dial
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {QuillModule} from 'ngx-quill';
+import {QRCodeModule} from 'angularx-qrcode';
 
 @NgModule({
   declarations: [UserHistoryComponent, UserComponent, PasswordComponent, WishlistComponent, UserHistoryProductsTableComponent, DashboardComponent, ChangeUserPropDialogComponent],
@@ -38,6 +39,7 @@ import {QuillModule} from 'ngx-quill';
         ExtendedModule,
         MatCardModule,
         QuillModule.forRoot(),
+        QRCodeModule
     ],
   exports: []
 })

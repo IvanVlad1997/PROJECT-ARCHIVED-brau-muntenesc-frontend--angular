@@ -34,7 +34,7 @@ export const routes = [
       {
         path: 'cupon',
         component: CuponListComponent
-      }
+      },
     ]
   },
   ];

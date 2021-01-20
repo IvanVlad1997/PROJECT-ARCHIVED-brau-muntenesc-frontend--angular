@@ -1,7 +1,35 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center">
   <h1 fxFlex="100" class="title">Cursuri de dansuri populare în Ploiești</h1>
   <h1 fxFlex="100" class="subtitle">Hai la Brâu!</h1>
-  <video fxFlex="100"  class="img" controls >
-    <source src="https://youtu.be/shoVsQhou-8"  />
-  </video>
+  <div fxFlex="80" plyr [plyrOptions]="options" class="margins"
+       plyrTitle="Video 1"
+       [plyrPlaysInline]="true"
+       [plyrPlaysInline]="true"
+       [plyrSources]="videoSources" ></div>
+  <h1 fxFlex="100" class="sub-title">Dansul este...</h1>
+  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around center">
+    <mat-card *ngFor="let text of texts" fxFlex="40" fxFlex.lt-md="90" class="mat-card">
+        <mat-card-title>{{text.title}}</mat-card-title>
+        <mat-card-content>{{text.text}}</mat-card-content>
+    </mat-card>
+  </div>
+  <h1 fxFlex="100" class="sub-title">Galerie</h1>
+  <div fxFlex="90">
+    <lib-carousel-photo-galerie [images] = "images" *ngIf="images[0]" fxFlex="100"></lib-carousel-photo-galerie>
+  </div>
+  <h1 fxFlex="100" class="sub-title">Întâlnește instructorii</h1>
+  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around center">
+    <mat-card fxFlex="40" fxFlex.lt-md="90" class="mat-card">
+      <mat-card-title>Vlad</mat-card-title>
+      <img mat-card-image src="https://i.imgur.com/o5CucA9.jpg" alt="Vlad">
+      <mat-card-actions>
+        <button mat-raised-button color="warn">Cunoaște-l mai bine</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card fxFlex="40" fxFlex.lt-md="90" class="mat-card">
+      <mat-card-title>Andreea</mat-card-title>
+      <img mat-card-image src="https://i.imgur.com/NPTKj5Q.jpg" alt="Andreea">
+      <button mat-raised-button color="warn">Cunoaște-o mai bine</button>
+    </mat-card>
+  </div>
 </div>

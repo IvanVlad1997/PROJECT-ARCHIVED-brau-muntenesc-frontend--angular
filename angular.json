@@ -33,7 +33,8 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/plyr/dist/plyr.css"
             ],
             "scripts": []
           },
@@ -321,6 +322,166 @@
             "tsConfig": [
               "projects/cursuri/tsconfig.lib.json",
               "projects/cursuri/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "admin-users": {
+      "projectType": "library",
+      "root": "projects/admin-users",
+      "sourceRoot": "projects/admin-users/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/admin-users/tsconfig.lib.json",
+            "project": "projects/admin-users/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/admin-users/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/admin-users/src/test.ts",
+            "tsConfig": "projects/admin-users/tsconfig.spec.json",
+            "karmaConfig": "projects/admin-users/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/admin-users/tsconfig.lib.json",
+              "projects/admin-users/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "platforma-cursuri": {
+      "projectType": "library",
+      "root": "projects/platforma-cursuri",
+      "sourceRoot": "projects/platforma-cursuri/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/platforma-cursuri/tsconfig.lib.json",
+            "project": "projects/platforma-cursuri/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/platforma-cursuri/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/platforma-cursuri/src/test.ts",
+            "tsConfig": "projects/platforma-cursuri/tsconfig.spec.json",
+            "karmaConfig": "projects/platforma-cursuri/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/platforma-cursuri/tsconfig.lib.json",
+              "projects/platforma-cursuri/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "evenimente": {
+      "projectType": "library",
+      "root": "projects/evenimente",
+      "sourceRoot": "projects/evenimente/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/evenimente/tsconfig.lib.json",
+            "project": "projects/evenimente/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/evenimente/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/evenimente/src/test.ts",
+            "tsConfig": "projects/evenimente/tsconfig.spec.json",
+            "karmaConfig": "projects/evenimente/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/evenimente/tsconfig.lib.json",
+              "projects/evenimente/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "admin-platforma-cursuri": {
+      "projectType": "library",
+      "root": "projects/admin-platforma-cursuri",
+      "sourceRoot": "projects/admin-platforma-cursuri/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/admin-platforma-cursuri/tsconfig.lib.json",
+            "project": "projects/admin-platforma-cursuri/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/admin-platforma-cursuri/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/admin-platforma-cursuri/src/test.ts",
+            "tsConfig": "projects/admin-platforma-cursuri/tsconfig.spec.json",
+            "karmaConfig": "projects/admin-platforma-cursuri/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/admin-platforma-cursuri/tsconfig.lib.json",
+              "projects/admin-platforma-cursuri/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

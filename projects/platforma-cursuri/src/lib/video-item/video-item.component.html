@@ -1,0 +1,8 @@
+<div fxLayoutAlign="center center" class="margin-top-1" fxLayout="row wrap" >
+  <h1 *ngIf="video && video.name" fxLayoutAlign="center center" fxFlex="100">{{video.name}}</h1>
+  <div fxFlex="80" plyr [plyrOptions]="options" class="margins"
+       plyrTitle="Video 1"
+       [plyrPlaysInline]="true"
+       [plyrPlaysInline]="true"
+       [plyrSources]="videoSources" ></div>
+</div>

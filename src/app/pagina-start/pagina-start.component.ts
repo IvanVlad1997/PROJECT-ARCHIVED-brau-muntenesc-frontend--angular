@@ -19,6 +19,12 @@ export class PaginaStartComponent implements OnInit {
       svg: 'store',
       photo: 'https://i.imgur.com/cah3F6t.jpg',
       route: '/broderie'
+    },
+    {
+      title: 'Evenimente',
+      svg: 'dance-ballroom',
+      photo: 'https://i.imgur.com/B1HA1qs.jpg',
+      route: '/evenimente'
     }
   ];
 

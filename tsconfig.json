@@ -35,6 +35,22 @@
       "cursuri": [
         "dist/cursuri/cursuri",
         "dist/cursuri"
+      ],
+      "admin-users": [
+        "dist/admin-users/admin-users",
+        "dist/admin-users"
+      ],
+      "platforma-cursuri": [
+        "dist/platforma-cursuri/platforma-cursuri",
+        "dist/platforma-cursuri"
+      ],
+      "evenimente": [
+        "dist/evenimente/evenimente",
+        "dist/evenimente"
+      ],
+      "admin-platforma-cursuri": [
+        "dist/admin-platforma-cursuri/admin-platforma-cursuri",
+        "dist/admin-platforma-cursuri"
       ]
     }
   }

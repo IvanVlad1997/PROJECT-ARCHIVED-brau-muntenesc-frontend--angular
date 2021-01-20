@@ -38,6 +38,23 @@ export const routes: Routes = [
         loadChildren: () => import('../../../projects/cursuri/src/lib/cursuri.module').then(module => module.CursuriModule),
       },
       {
+        path: 'users',
+        loadChildren: () => import('../../../projects/admin-users/src/lib/admin-users.module').then(module => module.AdminUsersModule),
+        canActivate: [AdminGuard]
+      },
+      {
+        path: 'platforma-cursuri',
+        loadChildren: () => import('../../../projects/platforma-cursuri/src/lib/platforma-cursuri.module').then(module => module.PlatformaCursuriModule),
+      },
+      {
+        path: 'admin-platforma-cursuri',
+        loadChildren: () => import('../../../projects/admin-platforma-cursuri/src/lib/admin-platforma-cursuri.module').then(module => module.AdminPlatformaCursuriModule),
+      },
+      {
+        path: 'evenimente',
+        loadChildren: () => import('../../../projects/evenimente/src/lib/evenimente.module').then(module => module.EvenimenteModule),
+      },
+      {
         path: 'not-found',
         component: PageNotFoundComponent
       },

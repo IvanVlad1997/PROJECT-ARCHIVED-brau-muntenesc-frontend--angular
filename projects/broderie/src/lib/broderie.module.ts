@@ -100,7 +100,7 @@ import {MatChipsModule} from '@angular/material/chips';
   ],
   exports: [
     ProductListByCategoryComponent,
-    BroderieComponent
+    BroderieComponent,
   ]
 })
 export class BroderieModule {

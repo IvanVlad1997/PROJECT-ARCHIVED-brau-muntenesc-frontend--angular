@@ -2,7 +2,7 @@
   <div *ngIf="!loading" >
     <div *ngIf="orders.length>0" class="order-title margin-top-1">
       {{orders.length}} comenzi
-      <div *ngFor="let order of orders" class="border-user-history">
+      <div >
         <lib-dashboard-order-item *ngFor="let order of orders" [order] = "order" [token] = "token"></lib-dashboard-order-item>
       </div>
     </div>
