@@ -7,6 +7,7 @@ import {ShopComponent} from '../shop/shop.component';
 import {CartComponent} from '../cart/cart.component';
 import {CheckoutComponent} from '../checkout/checkout.component';
 import {PaymentComponent} from '../payment/payment.component';
+import {CumCumparComponent} from '../cum-cumpar/cum-cumpar.component';
 
 export const routes = [
   {
@@ -44,6 +45,10 @@ export const routes = [
       {
         path: 'payment',
         component: PaymentComponent
+      },
+      {
+        path: 'cum-cumpar',
+        component: CumCumparComponent
       }
     ]
   }

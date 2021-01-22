@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>
+  Plata {{user.name}}
+</h1>
+
+<form #form (submit)="edit()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field>
+      <mat-label >Sumă</mat-label>
+      <input matInput name="name" type="number" [(ngModel)]="suma" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(value)]="tipAbonament">
+        <mat-option value="abonament">Abonament</mat-option>
+        <mat-option value="ședință">O ședință</mat-option>
+      </mat-select>
+    </mat-form-field>
+<!--    <mat-checkbox fxFlex="70"  (change)="changeDate()">Folosește data de astăzi</mat-checkbox>-->
+
+  </div>
+
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()"  >Salvează</button>
+  </div>
+</form>

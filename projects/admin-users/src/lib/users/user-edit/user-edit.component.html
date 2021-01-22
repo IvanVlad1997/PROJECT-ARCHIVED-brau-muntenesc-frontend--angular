@@ -7,6 +7,7 @@
       <mat-label >Rol</mat-label>
       <input matInput name="rol" type="text" [(ngModel)]="user.role" required/>
     </mat-form-field>
+    <mat-checkbox fxFlex="70" [checked]="user.dance"  (change)="changeDanceStatus()">Dansator?</mat-checkbox>
   </div>
   <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
     <a mat-button color="warn" mat-dialog-close >Anulează</a>

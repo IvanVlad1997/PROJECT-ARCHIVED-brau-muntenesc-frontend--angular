@@ -1,14 +1,49 @@
 <div class="div-footer"  fxLayout="row wrap " fxLayoutAlign="space-around center" >
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex.gt-sm="50" fxFlex="100">
-    <a class="mat-h2" [routerLink]="['/broderie']">Magazin</a>
-    <a class="mat-h2" [routerLink]="['/user']">Cont</a>
-    <a class="mat-h2" [routerLink]="['/broderie']">Locație</a>
-    <a class="mat-h2" [routerLink]="['/broderie']">Politică de confidențialitate</a>
+    <a class="mat-h2" [routerLink]="['/broderie']" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="store"></mat-icon>
+      <span>Magazin</span>
+    </a>
+    <a class="mat-h2" [routerLink]="['/user']" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="account"></mat-icon>
+      <span>Cont</span>
+    </a>
+    <a class="mat-h2" [routerLink]="['/contact']" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="card-account-phone"></mat-icon>
+      <span>Contact</span>
+    </a>
+    <a class="mat-h2" [routerLink]="['/politica-de-confidentialitate']" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="account-tie-outline"></mat-icon>
+      <span>Politică de confidențialitate</span>
+    </a>
   </div>
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex.gt-md="50" fxFlex="100">
-    <a class="mat-h2" href="mailto:webmaster@example.com">Email</a>
-    <a class="mat-h2" href="https://www.facebook.com/BrauMuntenesc">Facebook</a>
-    <a class="mat-h2" href="https://www.instagram.com/brau.muntenesc/?hl=ro">Instagram</a>
-    <a class="mat-h2" href="https://www.youtube.com/channel/UCO5KJ1114BUb99cub0mqWqQ/videos">Youtube</a>
+    <a class="mat-h2" href="mailto:braumuntenesc@gmail.com" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="email"></mat-icon>
+      <span>Email</span>
+    </a>
+    <a class="mat-h2" href="https://www.facebook.com/BrauMuntenesc" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="facebook"></mat-icon>
+      <span>Facebook</span>
+    </a>
+    <a class="mat-h2" href="https://www.instagram.com/brau.muntenesc/?hl=ro" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="instagram"></mat-icon>
+      <span>Instagram</span>
+    </a>
+    <a class="mat-h2" href="https://www.youtube.com/channel/UCO5KJ1114BUb99cub0mqWqQ/videos" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="youtube"></mat-icon>
+      <span>Youtube</span>
+    </a>
+  </div>
+  <div fxLayoutAlign="center center"  fxFlex="100">
+    <h2 class="mat-h2" [routerLink]="['/']" fxLayoutAlign="center center">
+      <mat-icon mat-list-icon svgIcon="copyright"></mat-icon>
+      <span> Brâu Muntenesc, 2021</span>
+    </h2>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center"  fxFlex="100">
+    <h2 class="mat-h2" [routerLink]="['/']" fxLayoutAlign="center center" fxLayout="row" class="align">
+      <span fxLayoutAlign="center center"> Brau Muntenesc este marcă înregistrată &#174; nr. 166609</span>
+    </h2>
   </div>
 </div>

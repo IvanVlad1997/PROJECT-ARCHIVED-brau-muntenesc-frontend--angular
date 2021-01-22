@@ -13,9 +13,13 @@ import {NguCarouselModule} from '@ngu/carousel';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
+import { GalerieFotoComponent } from './galerie-foto/galerie-foto.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { GalerieVideoComponent } from './galerie-video/galerie-video.component';
+import { InformatiiComponent } from './informatii/informatii.component';
 
 @NgModule({
-  declarations: [CursuriComponent, PrimaPaginaComponent, CarouselPhotoGalerieComponent],
+  declarations: [CursuriComponent, PrimaPaginaComponent, CarouselPhotoGalerieComponent, GalerieFotoComponent, GalerieVideoComponent, InformatiiComponent],
   imports: [
     RouterModule.forChild(routes),
     FlexModule,
@@ -27,6 +31,7 @@ import {MatListModule} from '@angular/material/list';
     MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatProgressSpinnerModule,
   ],
   exports: []
 })

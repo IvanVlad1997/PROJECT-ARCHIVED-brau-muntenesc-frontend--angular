@@ -24,6 +24,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ContactComponent } from './contact/contact.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -38,6 +40,8 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     PaginaStartCardItemComponent,
     FooterComponent,
     PageNotFoundComponent,
+    ContactComponent,
+    PrivacyComponent,
 
   ],
   imports: [

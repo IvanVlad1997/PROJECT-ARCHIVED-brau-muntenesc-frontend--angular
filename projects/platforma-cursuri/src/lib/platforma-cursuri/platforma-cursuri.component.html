@@ -1,3 +1,15 @@
 <div class="full-height">
   <router-outlet></router-outlet>
 </div>
+
+<!--OVERLAY-->
+<button  type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="changeOverlayStatus()" fxHide="true"></button>
+<ng-template cdkConnectedOverlay
+             [cdkConnectedOverlayOrigin]="trigger"
+             [cdkConnectedOverlayOpen]="overlayIsOpen"
+>
+  <div >
+    <lib-overlay></lib-overlay>
+  </div>
+
+</ng-template>

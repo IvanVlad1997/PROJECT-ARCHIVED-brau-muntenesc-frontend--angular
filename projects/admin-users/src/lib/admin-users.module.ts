@@ -21,25 +21,27 @@ import { AppInfoDialogComponent } from './qr-scan/app-info-dialog/app-info-dialo
 import { FormatsDialogComponent } from './qr-scan/formats-dialog/formats-dialog.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
   declarations: [UserListComponent, UserEditComponent, UserListActionsComponent, AdminUsersComponent, QrScanComponent, AppInfoComponent, AppInfoDialogComponent, FormatsDialogComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    MatDialogModule,
-    AgGridModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    FlexModule,
-    CommonModule,
-    ZXingScannerModule,
-    MatMenuModule,
-    MatListModule,
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        MatDialogModule,
+        AgGridModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        FlexModule,
+        CommonModule,
+        ZXingScannerModule,
+        MatMenuModule,
+        MatListModule,
+        MatCheckboxModule,
+    ],
   exports: [],
   entryComponents: [FormatsDialogComponent, AppInfoDialogComponent]
 })

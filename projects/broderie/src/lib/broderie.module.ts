@@ -46,6 +46,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import {environment} from '../../../../src/environments/environment';
 import {MatChipsModule} from '@angular/material/chips';
+import { CumCumparComponent } from './cum-cumpar/cum-cumpar.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {MatChipsModule} from '@angular/material/chips';
     CartProductImageDialogComponent,
     OverlayCartComponent,
     CheckoutComponent,
-    PaymentComponent
+    PaymentComponent,
+    CumCumparComponent
   ],
   imports: [
     RouterModule.forChild(routes),

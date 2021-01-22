@@ -9,22 +9,28 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { VideoItemComponent } from './video-item/video-item.component';
 import {CommonModule} from '@angular/common';
-import {FlexModule} from '@angular/flex-layout';
+import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {PlyrModule} from 'ngx-plyr';
+import {OverlayModule} from '@angular/cdk/overlay';
+import { OverlayComponent } from './platforma-cursuri/overlay/overlay.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
 @NgModule({
-  declarations: [PlatformaCursuriComponent, PaginaPrincipalaComponent, VideoListActionsComponent, VideoItemComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    AgGridModule,
-    MatButtonModule,
-    MatIconModule,
-    CommonModule,
-    FlexModule,
-    PlyrModule,
-  ],
+  declarations: [PlatformaCursuriComponent, PaginaPrincipalaComponent, VideoListActionsComponent, VideoItemComponent, OverlayComponent],
+    imports: [
+        RouterModule.forChild(routes),
+        AgGridModule,
+        MatButtonModule,
+        MatIconModule,
+        CommonModule,
+        FlexModule,
+        PlyrModule,
+        OverlayModule,
+        ExtendedModule,
+        MatProgressSpinnerModule,
+    ],
   exports: []
 })
 export class PlatformaCursuriModule { }

@@ -9,8 +9,8 @@ import {ToastService} from 'angular-toastify';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import auth = firebase.auth;
-import {Auth} from '../../../../common/auth';
 import {BehaviorSubject} from 'rxjs';
+import {UserService} from "../../../../user/src/lib/services/user";
 
 
 @Injectable({providedIn: 'root'})
@@ -31,13 +31,18 @@ export class AuthService {
     wishlist: [],
     telNum: '',
     address: [],
+    presenceHistory: [],
+    group: '',
+    picture: '',
+    dance: undefined
   });
 
   constructor(private http: HttpClient,
               private router: Router,
               private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+           ) {}
 
   async logout(): Promise<void> {
     await this.angularFirebaseAuth.signOut();
@@ -55,13 +60,17 @@ export class AuthService {
       wishlist: [],
       telNum: '',
       address: [],
+      presenceHistory: [],
+      group: '',
+      picture: '',
+      dance: undefined
     });
     this.isAuthenticated.next('');
     this.isAdmin.next(false);
     this.tokenAdmin.next('');
   }
 
-  async login(email: string, password: string): Promise<void> {
+  async login(email: string, password: string, other?: any): Promise<void> {
     await this.angularFirebaseAuth.signInWithEmailAndPassword(email, password)
       .then((data: UserCredential) => {
         if (data.user) {
@@ -80,9 +89,12 @@ export class AuthService {
             }
           }
         )
-          .subscribe((data: User) => {
-            this.getCurrentUser(token)
-            this.roleBaseRedirect(data.role)
+          .subscribe(async (data: User) => {
+            if (other) {
+             await this.updateMany(other.email, other.telNum, other.address, other.isDancer, other.name);
+            }
+            await this.getCurrentUser(token)
+            await this.roleBaseRedirect(data.role)
           });
       })
       .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
@@ -131,11 +143,39 @@ export class AuthService {
     );
   }
 
+  updateMany(email: string, telNum: number, address: string, isDancer: boolean, name: string ): void {
+    let token = this.isAuthenticated.getValue();
+    this.http.post(`${environment.appApi}/user/update-many`,
+      {
+        email: email,
+        name: name,
+        telNum: telNum,
+        isDancer: isDancer,
+        address: address
+      },
+      {
+        headers: {
+          authtoken: token
+        }
+      })
+      .subscribe(
+        (c) => console.log('date adaugate', c)
+      )
+  }
 
-  async signUp(email: string, password: string): Promise<void> {
+
+  async signUp(email: string, password: string, telNum: number, address: string, isDancer: boolean, name: string): Promise<void> {
+    let other = {
+      email: email,
+      telNum: telNum,
+      address: address,
+      isDancer: isDancer,
+      name: name
+    }
     const result = await this.angularFirebaseAuth.createUserWithEmailAndPassword(email, password)
-      .then((data) => {
-        this.login(email, password);
+      .then(async (data) => {
+        await this.login(email, password, other)
+        // await this.updateMany(email, telNum, address, isDancer, name);
       })
       .catch((error) => console.log(error));
   }

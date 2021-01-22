@@ -1,3 +1,35 @@
 <div class="full-height">
   <router-outlet ></router-outlet>
 </div>
+
+<ng-template #header>
+  <p>Admin Cursuri</p>
+</ng-template>
+
+<ng-template #options>
+  <hr />
+  <a mat-list-item routerLink="/admin-platforma-cursuri/panou-cursanti">
+    <mat-icon mat-list-icon svgIcon="table-large"></mat-icon>
+    <span>Panou cursanți</span>
+  </a>
+  <a mat-list-item routerLink="/admin-platforma-cursuri/galerie-foto">
+    <mat-icon mat-list-icon svgIcon="camera"></mat-icon>
+    <span>Galerie foto</span>
+  </a>
+  <a mat-list-item routerLink="/admin-platforma-cursuri/cursuri-online">
+    <mat-icon mat-list-icon svgIcon="video-outline"></mat-icon>
+    <span>Lecții video</span>
+  </a>
+  <a mat-list-item routerLink="/admin-platforma-cursuri/galerie-video">
+    <mat-icon mat-list-icon svgIcon="video"></mat-icon>
+    <span>Galerie video</span>
+  </a>
+  <a mat-list-item routerLink="/admin-platforma-cursuri/preturi">
+    <mat-icon mat-list-icon svgIcon="cash"></mat-icon>
+    <span>Prețuri</span>
+  </a>
+  <a mat-list-item routerLink="/admin-platforma-cursuri/program">
+    <mat-icon mat-list-icon svgIcon="calendar-clock"></mat-icon>
+    <span>Program</span>
+  </a>
+</ng-template>

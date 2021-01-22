@@ -4,7 +4,7 @@
 <ng-template #options>
   <hr/>
   <a mat-list-item routerLink="shop">
-    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <mat-icon mat-list-icon svgIcon="layers-triple"></mat-icon>
     <span>Toate produsele</span>
   </a>
 <!--  <a mat-list-item routerLink="dashboard">-->
@@ -12,10 +12,14 @@
 <!--    <span>Dashboard</span>-->
 <!--  </a>-->
   <a mat-list-item routerLink="cart">
-    <mat-icon mat-list-icon svgIcon="car"></mat-icon>
+    <mat-icon mat-list-icon svgIcon="cart-outline"></mat-icon>
     <span>Coș
     <span *ngIf="cartLength && cartLength > 0 ">({{cartLength}})</span>
     </span>
+  </a>
+  <a mat-list-item routerLink="cum-cumpar">
+    <mat-icon mat-list-icon svgIcon="information"></mat-icon>
+    <span>Cum cumpăr</span>
   </a>
 </ng-template>
 

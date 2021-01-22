@@ -10,4 +10,8 @@ export interface User {
   _id: string;
   telNum: string;
   address: string[];
+  presenceHistory: any[];
+  group: string;
+  picture: string;
+  dance: boolean
 }

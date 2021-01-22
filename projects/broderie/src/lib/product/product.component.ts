@@ -53,7 +53,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.isAuthenticated.subscribe(token => {
       this.token = token;
     });
-    this.navigationSubscription =this.route.params
+    this.navigationSubscription = this.route.params
       .subscribe(
         (p) => {
           this.loadProduct()

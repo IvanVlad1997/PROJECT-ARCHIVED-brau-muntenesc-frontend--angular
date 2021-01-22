@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>
+  <ng-container *ngIf="price && price.category">{{ price.category }}</ng-container>
+  <ng-container *ngIf="!price || !price.category" >Pret nou</ng-container>
+</h1>
+<form #form (submit)="edit()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field>
+      <mat-label >Nume categorie</mat-label>
+      <input matInput name="name" type="text" [(ngModel)]="price.category" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Price</mat-label>
+      <input matInput name="price" type="number" [(ngModel)]="price.price" required/>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()"  >Salvează</button>
+  </div>
+</form>
+

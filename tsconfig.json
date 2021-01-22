@@ -51,6 +51,14 @@
       "admin-platforma-cursuri": [
         "dist/admin-platforma-cursuri/admin-platforma-cursuri",
         "dist/admin-platforma-cursuri"
+      ],
+      "admin-evenimente": [
+        "dist/admin-evenimente/admin-evenimente",
+        "dist/admin-evenimente"
+      ],
+      "cv": [
+        "dist/cv/cv",
+        "dist/cv"
       ]
     }
   }

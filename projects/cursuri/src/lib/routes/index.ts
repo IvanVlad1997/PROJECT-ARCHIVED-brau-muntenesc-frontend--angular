@@ -1,5 +1,8 @@
 import {CursuriComponent} from '../cursuri/cursuri.component';
 import {PrimaPaginaComponent} from '../prima-pagina/prima-pagina.component';
+import {GalerieFotoComponent} from '../galerie-foto/galerie-foto.component';
+import {GalerieVideoComponent} from '../galerie-video/galerie-video.component';
+import {InformatiiComponent} from "../informatii/informatii.component";
 
 export const routes = [
   {
@@ -10,6 +13,18 @@ export const routes = [
         path: '',
         component: PrimaPaginaComponent
       },
+      {
+        path: 'galerie-foto',
+        component: GalerieFotoComponent
+      },
+      {
+        path: 'galerie-video',
+        component: GalerieVideoComponent
+      },
+      {
+        path: 'informatii',
+        component: InformatiiComponent
+      }
     ]
   }
 ];

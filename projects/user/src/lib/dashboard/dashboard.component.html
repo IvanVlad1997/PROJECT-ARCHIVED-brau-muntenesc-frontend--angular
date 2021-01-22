@@ -29,6 +29,9 @@
     <div>
       <button mat-raised-button color="accent" [routerLink]="['/user/history']">Du-te la istoric cumpărături </button>
     </div>
+    <div *ngIf="user.presenceHistory.length > 0">
+      <button mat-raised-button color="accent" [routerLink]="['/user/calendar']">Prezențe curs</button>
+    </div>
     <div>
       <button mat-raised-button color="accent" (click)="changeTelNum()" *ngIf="user.telNum">Schimba numărul de telefon </button>
       <button mat-raised-button color="accent" (click)="changeTelNum()" *ngIf="!user.telNum">Adaugă numărul de telefon </button>

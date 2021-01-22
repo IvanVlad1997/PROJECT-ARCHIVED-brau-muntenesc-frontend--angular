@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'lib-admin-platforma-cursuri',
@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class AdminPlatformaCursuriComponent implements OnInit {
 
   constructor() { }
+  @ViewChild('options' , {static : true})
+  public options: TemplateRef<any>;
+
+  @ViewChild('header', {static: true})
+  public header: TemplateRef<any>;
 
   ngOnInit(): void {
-    console.log('aici')
   }
-
 }

@@ -7,14 +7,14 @@ import {AuthService} from '../../../projects/auth/src/lib/services/auth';
 @Injectable({providedIn: 'root'})
 export class CompressImageService {
 
-  token: string = this.authService.tokenAdmin.getValue();
+
 
   constructor(private imageCompress: NgxImageCompressService,
               private http: HttpClient,
               private authService: AuthService) {
   }
 
-  async compressFile(image, fileName, ratio: number): Promise<any> {
+  async compressFile(image, fileName, ratio: number, token: string): Promise<any> {
     console.log(image)
     const orientation = -1;
     const result = await this.imageCompress.compressFile(image, orientation, ratio, 90);
@@ -26,21 +26,21 @@ export class CompressImageService {
           },
           {
             headers: {
-              authtoken: this.token
+              authtoken: token
             }
           })
       .toPromise().then(c => compressedImage = c);
     return compressedImage;
   }
 
-  async removeImage(id): Promise<void> {
+  async removeImage(id, token: string): Promise<void> {
     await this.http.post(`${environment.appApi}/removeImage`,
       {
         public_id: id
       },
       {
         headers: {
-          authtoken: this.token
+          authtoken: token
         }
       }).toPromise().then(c => console.log(c));
   }

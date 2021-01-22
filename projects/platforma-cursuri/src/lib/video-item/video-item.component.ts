@@ -1,24 +1,29 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VideoPlatformService} from '../../../../admin-platforma-cursuri/src/lib/services/video-platform';
 import {ActivatedRoute} from '@angular/router';
 import {VideoPlatform} from '../../../../common/video-platform';
 import {PlyrComponent} from 'ngx-plyr';
 import {Provider} from 'plyr';
+import {OverlayService} from '../services/overlay';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'lib-video-item',
   templateUrl: './video-item.component.html',
   styleUrls: ['./video-item.component.scss']
 })
-export class VideoItemComponent implements OnInit {
+export class VideoItemComponent implements OnInit, OnDestroy {
 
   constructor(private videoPlatformService: VideoPlatformService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private overlayService: OverlayService) { }
 
   video: VideoPlatform;
   @ViewChild(PlyrComponent)
   plyr: PlyrComponent;
   videoSources: Plyr.Source[] = []
+
+  navigationSubscription: Subscription;
 
 
   options = {
@@ -26,7 +31,11 @@ export class VideoItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadVideos()
+    this.navigationSubscription = this.route.params
+      .subscribe(
+        (p) => {
+          this.loadVideos()
+        })
 
   }
 
@@ -45,4 +54,13 @@ export class VideoItemComponent implements OnInit {
       )
   }
 
+  openOverlay(): void {
+    this.overlayService.changeOverlayStatus(true);
+  }
+
+  ngOnDestroy(): void {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
+  }
 }

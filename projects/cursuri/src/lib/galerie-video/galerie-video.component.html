@@ -1,0 +1,11 @@
+<div  fxLayout="row wrap" fxLayoutAlign="center stretch" >
+  <div *ngFor="let vid of video; let i = index" class="margin-top-1 margin" fxFlex="45" fxFlex.lt-md="100" >
+    <div *ngIf="videoSources && videoSources.length>0">
+      <div  plyr [plyrOptions]="options" class="margins"
+           [plyrTitle]="vid.name"
+           [plyrPlaysInline]="true"
+           [plyrPlaysInline]="true"
+           [plyrSources]="videoSources[i]" ></div>
+    </div>
+  </div>
+</div>

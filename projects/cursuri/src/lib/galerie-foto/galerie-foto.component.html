@@ -1,0 +1,9 @@
+<div >
+  <div *ngFor="let image of images">
+    <img [src]="image.imageUrl">
+  </div>
+</div>
+
+<div>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+</div>

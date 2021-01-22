@@ -5,14 +5,16 @@ import {routes} from './routes';
 import {EvenimenteComponent} from './evenimente/evenimente.component';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
-import {FlexModule} from '@angular/flex-layout';
+import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {PlyrModule} from 'ngx-plyr';
 import {MatButtonModule} from '@angular/material/button';
+import { GalerieVideoComponent } from './galerie-video/galerie-video.component';
+import {CommonModule} from "@angular/common";
 
 
 
 @NgModule({
-  declarations: [EvenimenteComponent, PaginaPrincipalaComponent],
+  declarations: [EvenimenteComponent, PaginaPrincipalaComponent, GalerieVideoComponent],
   imports: [
     RouterModule.forChild(routes),
     MatListModule,
@@ -20,6 +22,8 @@ import {MatButtonModule} from '@angular/material/button';
     FlexModule,
     PlyrModule,
     MatButtonModule,
+    ExtendedModule,
+    CommonModule,
   ],
   exports: [EvenimenteComponent]
 })

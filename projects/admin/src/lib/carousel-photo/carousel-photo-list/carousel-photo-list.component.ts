@@ -72,7 +72,7 @@ export class CarouselPhotoListComponent implements OnInit, OnDestroy {
 
   async handleImageRemove(photo: CarouselPhoto): Promise<void> {
     if (window.confirm('Esti sigur, ba?')) {
-      await this.compressImageService.removeImage(photo.imageId);
+      await this.compressImageService.removeImage(photo.imageId, this.token);
       this.carouselPhotoService.removeCarouselPhoto(photo.slug);
     }
   }

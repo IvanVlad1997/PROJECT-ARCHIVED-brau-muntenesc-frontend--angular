@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>
+  <ng-container *ngIf="program && program.category">{{ program.category }}</ng-container>
+  <ng-container *ngIf="!program || !program.category" >Program nou</ng-container>
+</h1>
+<form #form (submit)="edit()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field>
+      <mat-label >Nume categorie</mat-label>
+      <input matInput name="name" type="text" [(ngModel)]="program.category" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Interval</mat-label>
+      <input matInput name="interval" type="text" [(ngModel)]="program.interval" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Status</mat-label>
+      <mat-select [(value)]="program.status" >
+        <mat-option value="true">Activ</mat-option>
+        <mat-option value="false">Inactiv</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()"  >Salvează</button>
+  </div>
+</form>
+

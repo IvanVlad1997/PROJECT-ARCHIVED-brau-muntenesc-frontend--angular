@@ -17,9 +17,19 @@ export class PrimaPaginaComponent implements OnInit {
     },
   ];
 
+  videoSources1: Plyr.Source[] = [
+    {
+      src: '8snx63yPpBs',
+      provider: 'youtube',
+    },
+  ];
+
   options = {
     autoplay: true,
     volume: 0.5,
+    quality: 720
+  }
+  options1 = {
     quality: 720
   }
 

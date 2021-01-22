@@ -11,6 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -19,17 +20,18 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     SignupComponent,
     ForgotPasswordComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    FlexModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    MatProgressSpinnerModule
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        FlexModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        MatCheckboxModule
 
-  ],
+    ],
   exports: [
     LoginComponent,
     SignupComponent,

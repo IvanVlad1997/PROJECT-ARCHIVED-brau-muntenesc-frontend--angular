@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
   public async canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     const isAuth = await this.angularFirebaseAuth.authState.pipe(first()).toPromise();
     if (!isAuth) {
-      this.router.navigate(['admin/login']);
+      this.router.navigate(['/auth/login']);
     }
     return true;
   }

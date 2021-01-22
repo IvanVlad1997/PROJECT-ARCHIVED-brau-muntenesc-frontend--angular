@@ -43,4 +43,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
       this.authSubscription.unsubscribe()
     }
   }
+
+  changeDanceStatus(): void {
+    this.user.dance = !this.user.dance
+  }
 }

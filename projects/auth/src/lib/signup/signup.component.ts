@@ -15,10 +15,16 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
   isLoading: boolean = false;
   email: string;
   password: string;
+  address: string;
+  telNum: number;
+  isDancer: boolean = false;
+  isOkPrivacy: boolean = false
+
   user: any;
   userAuthServiceSubscription: Subscription;
   @ViewChild('header' , {static : true})
   public header: TemplateRef<any>;
+  name: string;
 
   constructor(private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
@@ -34,7 +40,7 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
   }
 
   async register(form: any): Promise<void> {
-    await this.authService.signUp(this.email, this.password);
+    await this.authService.signUp(this.email, this.password, this.telNum, this.address, this.isDancer, this.name);
     this.toastService.success(`Înregistrarea cu emailul: ${this.email} s-a realizat cu succes!`);
     form.resetForm();
 
@@ -42,5 +48,13 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
 
   ngOnDestroy(): void {
     this.userAuthServiceSubscription.unsubscribe();
+  }
+
+  changeDanceStatus(): void {
+    this.isDancer = !this.isDancer
+  }
+
+  changePrivacyAgree(): void  {
+    this.isOkPrivacy = !this.isOkPrivacy
   }
 }

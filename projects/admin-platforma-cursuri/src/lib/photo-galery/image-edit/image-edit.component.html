@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>
+  Adaugă o fotografie
+</h1>
+
+<form #form (submit)="addPhoto()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field>
+      <mat-label >Nume imagine</mat-label>
+      <input name="name" type="text" minlength="2" matInput  required [(ngModel)]="image.name" #NameModel="ngModel" />
+    </mat-form-field>
+    <mat-error *ngIf="NameModel.errors && NameModel.touched">
+      <ng-container *ngFor="let item of NameModel.errors | keyvalue">
+        <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
+        <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină mai mult de două caractere</p>
+      </ng-container>
+    </mat-error>
+
+    <button mat-stroked-button type="button" (click)="filePicker.click()">Alege imagine</button>
+    <input type="file" #filePicker (change)="onImagePicked($event)" name="image"  accept="images/*" fxHide="true">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-spinner *ngIf="imageIsUploading"></mat-spinner>
+    </div>
+
+    <div *ngIf="image.imageUrl">
+      <h1>Imaginea care urmează să fie adăugată</h1>
+      <img  [src]="image.imageUrl" class="icons">
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()" >Salvează</button>
+  </div>
+</form>

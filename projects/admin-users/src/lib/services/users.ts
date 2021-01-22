@@ -19,6 +19,15 @@ export class UsersService {
     return this.usersUpdated.asObservable();
   }
 
+  getUser(token: string, email: string): void {
+    this.http.get(`${environment.appApi}/users/${email}`,
+      {
+        headers: {
+          authtoken: token
+        }
+      })
+  }
+
   getUsers(token: string): void {
     this.http.get<User[]>(`${environment.appApi}/users`,
       {
@@ -51,4 +60,8 @@ export class UsersService {
           this.toastService.error(`Nu s-a putut edita userul.`);
         });
   }
+
+
 }
+
+

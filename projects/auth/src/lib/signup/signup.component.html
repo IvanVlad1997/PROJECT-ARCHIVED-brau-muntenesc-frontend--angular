@@ -17,7 +17,17 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field fxFlex="70%" color="accent">
-      <mat-label>Password</mat-label>
+      <mat-label>Nume</mat-label>
+      <input name="name" type="text" minlength="9" maxlength="11" matInput autocomplete="off" required [(ngModel)]="name" #NameModel="ngModel"/>
+      <mat-error *ngIf="NameModel.errors">
+        <ng-container *ngFor="let item of NameModel.errors | keyvalue">
+          <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
+          <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină 10 cifre</p>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="70%" color="accent">
+      <mat-label>Parolă</mat-label>
       <input name="password" type="password" matInput required minlength="7" [(ngModel)]="password" #PasswordModel="ngModel"/>
       <mat-error *ngIf="PasswordModel.errors">
         <ng-container *ngFor="let item of PasswordModel.errors | keyvalue">
@@ -26,8 +36,24 @@
         </ng-container>
       </mat-error>
     </mat-form-field>
+    <mat-form-field fxFlex="70%" color="accent">
+      <mat-label>Număr de telefon</mat-label>
+      <input name="telNum" type="number" matInput required minlength="9"  [(ngModel)]="telNum" #TelNumModel="ngModel"/>
+      <mat-error *ngIf="TelNumModel.errors">
+        <ng-container *ngFor="let item of TelNumModel.errors | keyvalue">
+          <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
+          <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină numărul de telefon</p>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="70%" color="accent">
+      <mat-label>Adresă</mat-label>
+      <input name="address" type="text" matInput  [(ngModel)]="address" #AddressModel="ngModel"/>
+    </mat-form-field>
+    <mat-checkbox fxFlex="70"  (change)="changeDanceStatus()">Sunt dansator/cursant la Brâu Muntenesc</mat-checkbox>
+    <mat-checkbox fxFlex="70" (change)="changePrivacyAgree()">Sunt de acord cu <a [routerLink]="['/politica-de-confidentialitate']">politica de confidențialitate</a></mat-checkbox>
     <div fxFlex="100" fxLayout="row" fxLayoutAlign="end center">
-      <button type="submit" matSuffix mat-button color="primary" [disabled]="!form.valid">Înregistrează-mă</button>
+      <button type="submit" matSuffix mat-button color="primary" [disabled]="!form.valid || !isOkPrivacy">Înregistrează-mă</button>
     </div>
   </form>
 </div>

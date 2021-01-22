@@ -21,14 +21,18 @@ export class VideoPlatformService {
   }
 
   getVideosPlatform(token: string): void {
-    this.http.get<VideoPlatform[]>(`${environment.appApi}/videos-platform`,
-      {
-        headers: {
-          authtoken: token
-        }
-      })
+    console.log('aici')
+    this.http.get<VideoPlatform[]>(`${environment.appApi}/videos-platform`)
       .subscribe((videos: VideoPlatform[]) => {
         this.videosUpdated.next(videos);
+      })
+  }
+
+
+  getVideosPlatformWithLimit(token: string, windowInnerHeight: number): Observable<VideoPlatform[]> {
+    return this.http.post<VideoPlatform[]>(`${environment.appApi}/video-platform-limit`,
+      {
+        windowInnerHeight: windowInnerHeight
       })
   }
 

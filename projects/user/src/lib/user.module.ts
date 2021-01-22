@@ -21,9 +21,23 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {QuillModule} from 'ngx-quill';
 import {QRCodeModule} from 'angularx-qrcode';
+import { CalendarComponent } from './calendar/calendar.component';
+import {FullCalendarModule} from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import { registerLocaleData } from '@angular/common';
+import localesRO from "@angular/common/locales/ro";
+import { PresenceHistoryComponent } from './presence-history/presence-history.component';
+registerLocaleData(localesRO, "ro");
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 
 @NgModule({
-  declarations: [UserHistoryComponent, UserComponent, PasswordComponent, WishlistComponent, UserHistoryProductsTableComponent, DashboardComponent, ChangeUserPropDialogComponent],
+  declarations: [UserHistoryComponent, UserComponent, PasswordComponent, WishlistComponent, UserHistoryProductsTableComponent, DashboardComponent, ChangeUserPropDialogComponent, CalendarComponent, PresenceHistoryComponent],
     imports: [
         RouterModule.forChild(routes),
         MatListModule,
@@ -39,8 +53,9 @@ import {QRCodeModule} from 'angularx-qrcode';
         ExtendedModule,
         MatCardModule,
         QuillModule.forRoot(),
-        QRCodeModule
+        QRCodeModule,
+        FullCalendarModule
     ],
-  exports: []
+  exports: [CalendarComponent]
 })
-export class UserModule { }
+export class UserModule {}

@@ -1,0 +1,13 @@
+<button mat-button [routerLink]="['/users/qr-scan']">QR</button>
+<ag-grid-angular
+  [pagination]="true"
+  domLayout="autoHeight"
+  class="ag-theme-alpine"
+  [rowData]="rowData "
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [context]="this"
+  [skipHeaderOnAutoSize]="true"
+  [paginationPageSize]="10"
+>
+</ag-grid-angular>

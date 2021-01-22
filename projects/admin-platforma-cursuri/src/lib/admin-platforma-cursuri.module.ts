@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { VideoListComponent } from './video-list/video-list.component';
-import { VideoListActionsComponent } from './video-list-actions/video-list-actions.component';
-import { VideoListEditComponent } from './video-list-edit/video-list-edit.component';
+import { VideoListComponent } from './video-lesson/video-list/video-list.component';
+import { VideoListActionsComponent } from './video-lesson/video-list-actions/video-list-actions.component';
+import { VideoListEditComponent } from './video-lesson/video-list-edit/video-list-edit.component';
 import {AgGridModule} from 'ag-grid-angular';
 import {AdminPlatformaCursuriComponent} from './admin-platforma-cursuri/admin-platforma-cursuri.component';
 import {RouterModule} from '@angular/router';
@@ -10,14 +10,34 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
-import {FlexModule} from '@angular/flex-layout';
+import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { ImageListComponent } from './photo-galery/image-list/image-list.component';
+import { ImageEditComponent } from './photo-galery/image-edit/image-edit.component';
+import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { VideoGaleryEditComponent } from './video-galery/video-galery-edit/video-galery-edit.component';
+import { VideoGaleryListComponent } from './video-galery/video-galery-list/video-galery-list.component';
+import { VideoGaleryListActionsComponent } from './video-galery/video-galery-list-actions/video-galery-list-actions.component';
+import { PriceListComponent } from './price/price-list/price-list.component';
+import { PriceEditComponent } from './price/price-edit/price-edit.component';
+import { PriceActionsListComponent } from './price/price-actions-list/price-actions-list.component';
+import { ProgramActionsListComponent } from './program/program-actions-list/program-actions-list.component';
+import { ProgramListComponent } from './program/program-list/program-list.component';
+import { ProgramEditComponent } from './program/program-edit/program-edit.component';
+import {MatSelectModule} from '@angular/material/select';
+import { CursantiListComponent } from './panou-cursanti/cursanti-list/cursanti-list.component';
+import { CursantiListActionsComponent } from './panou-cursanti/cursanti-list-actions/cursanti-list-actions.component';
+import { CursantiPayComponent } from './panou-cursanti/cursanti-pay/cursanti-pay.component';
+import { CursantiCalendarComponent } from './panou-cursanti/cursanti-calendar/cursanti-calendar.component';
+import {UserModule} from '../../../user/src/lib/user.module';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
-  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent],
+  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent],
   imports: [
     AgGridModule,
     RouterModule.forChild(routes),
@@ -28,7 +48,13 @@ import {MatIconModule} from '@angular/material/icon';
     FlexModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+    ExtendedModule,
+    MatSelectModule,
+    UserModule,
+    MatCheckboxModule
   ],
   exports: [AdminPlatformaCursuriComponent]
 })

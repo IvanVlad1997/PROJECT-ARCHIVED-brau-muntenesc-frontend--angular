@@ -1,8 +1,14 @@
 <div fxLayoutAlign="center center" class="margin-top-1" fxLayout="row wrap" >
-  <h1 *ngIf="video && video.name" fxLayoutAlign="center center" fxFlex="100">{{video.name}}</h1>
+  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <span></span>
+    <h1 *ngIf="video && video.name" fxLayoutAlign="center center" >{{video.name}}</h1>
+    <button mat-icon-button (click)="openOverlay()"><mat-icon svgIcon="menu-open"></mat-icon></button>
+  </div>
+
   <div fxFlex="80" plyr [plyrOptions]="options" class="margins"
        plyrTitle="Video 1"
        [plyrPlaysInline]="true"
        [plyrPlaysInline]="true"
        [plyrSources]="videoSources" ></div>
 </div>
+

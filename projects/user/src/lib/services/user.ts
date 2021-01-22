@@ -229,6 +229,52 @@ export class UserService {
   //       }
   //     )
   // }
+
+  addPresenceToUser(token: string, _id: string, presence: {title: string, date: string}): void {
+    this.http.post(`${environment.appApi}/user/presence`,
+      {
+        presence: presence,
+        _id: _id
+      },
+      {
+        headers: {
+          authtoken: token
+        }
+      })
+      .subscribe(
+        (data: {ok: boolean}) => {
+          if (data.ok) {
+            this.toastService.success('Prezența a fost adăugată');
+          } else {
+            this.toastService.error('Prezența nu a fost adăugată');
+          }
+        }
+      )
+  }
+
+  pay(token: string, payment: any): void {
+    this.http.post(`${environment.appApi}/user/pay`,
+      {
+        payment: payment
+      },
+      {
+        headers: {
+          authtoken: token
+        }
+      })
+      .subscribe(
+        (data) => {
+          console.log(data)
+          // if (data.ok) {
+          //   this.toastService.success('Prezența a fost adăugată');
+          // } else {
+          //   this.toastService.error('Prezența nu a fost adăugată');
+          // }
+        }
+      )
+  }
+
+
 }
 
 

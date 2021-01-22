@@ -1,0 +1,9 @@
+<div class="overlay" fxLayout="column" fxLayoutAlign="start stretch" >
+  <button mat-raised-button color="warn" (click)="closeOverlay()"><mat-icon svgIcon="close"></mat-icon></button>
+  <button mat-raised-button color="accent" [routerLink]="['/platforma-cursuri']" (click)="closeOverlay()">Toate dansurile</button>
+<!--  <div class="recent">Adăugate recent</div>-->
+  <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+  <div *ngFor="let video of videos" [routerLink]="['/platforma-cursuri/video', video.slug]" (click)="closeOverlay()" >
+    <div class="video-name" fxLayout="column" fxLayoutAlign="center center">{{video.name}}</div>
+  </div>
+</div>

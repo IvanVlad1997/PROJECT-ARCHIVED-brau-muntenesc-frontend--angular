@@ -4,13 +4,16 @@ import {BehaviorSubject, Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {FormatsDialogComponent} from './formats-dialog/formats-dialog.component';
 import {AppInfoDialogComponent} from './app-info-dialog/app-info-dialog.component';
+import {AuthService} from '../../../../auth/src/lib/services/auth';
+import {UserService} from '../../../../user/src/lib/services/user';
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: 'lib-qr-scan',
   templateUrl: './qr-scan.component.html',
   styleUrls: ['./qr-scan.component.scss']
 })
-export class QrScanComponent implements OnDestroy{
+export class QrScanComponent implements OnDestroy, OnInit {
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo = null;
 
@@ -25,13 +28,27 @@ export class QrScanComponent implements OnDestroy{
   hasPermission: boolean;
 
   qrResultString: string;
+  result: string = '';
 
   torchEnabled = false;
   torchAvailable$ = new BehaviorSubject<boolean>(false);
   tryHarder = false;
-    private subscription: Subscription;
+  private subscription: Subscription;
 
-  constructor(private readonly dialog: MatDialog) { }
+  constructor(private readonly dialog: MatDialog,
+              private authService: AuthService,
+              private userService: UserService) { }
+
+  authSubscription: Subscription;
+  token: string = '';
+
+  ngOnInit(): void {
+    this.authSubscription = this.authService.isAuthenticated
+      .subscribe(
+        (token) => {
+          this.token = token;
+        });
+  }
 
   clearResult(): void {
     this.qrResultString = null;
@@ -45,6 +62,18 @@ export class QrScanComponent implements OnDestroy{
   // TODO: BS -> trebuie sa ia rezultatul doar daca e diferit
   onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
+    if (this.result !== this.qrResultString) {
+      this.result = this.qrResultString
+      const format = 'yyyy-MM-dd';
+      const myDate = new Date()
+      const locale = 'ro-RO';
+      const formattedDate = formatDate(myDate, format, locale);
+      const presence = {
+        title : 'Prezență curs',
+        date: formattedDate
+      }
+      this.userService.addPresenceToUser(this.token, this.result, presence)
+    }
   }
 
   onDeviceSelectChange(selected: string): void {
@@ -91,6 +120,9 @@ export class QrScanComponent implements OnDestroy{
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe()
     }
   }
 }

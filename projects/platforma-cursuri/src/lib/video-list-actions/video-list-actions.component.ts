@@ -6,7 +6,7 @@ import {VideoPlatformService} from '../../../../admin-platforma-cursuri/src/lib/
 import {ToastService} from 'angular-toastify';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {VideoPlatform} from '../../../../common/video-platform';
-import {VideoListEditComponent} from '../../../../admin-platforma-cursuri/src/lib/video-list-edit/video-list-edit.component';
+import {VideoListEditComponent} from '../../../../admin-platforma-cursuri/src/lib/video-lesson/video-list-edit/video-list-edit.component';
 import {Router} from '@angular/router';
 
 @Component({

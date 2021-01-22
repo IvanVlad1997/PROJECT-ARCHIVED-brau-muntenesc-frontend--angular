@@ -4,6 +4,8 @@ import {PaginaStartComponent} from '../pagina-start/pagina-start.component';
 import {AuthGuard} from '../guards/auth-guard';
 import {AdminGuard} from '../guards/admin-guard';
 import {PageNotFoundComponent} from '../page-not-found/page-not-found.component';
+import {ContactComponent} from '../contact/contact.component';
+import {PrivacyComponent} from '../privacy/privacy.component';
 
 
 export const routes: Routes = [
@@ -49,10 +51,28 @@ export const routes: Routes = [
       {
         path: 'admin-platforma-cursuri',
         loadChildren: () => import('../../../projects/admin-platforma-cursuri/src/lib/admin-platforma-cursuri.module').then(module => module.AdminPlatformaCursuriModule),
+        canActivate: [AdminGuard]
+      },
+      {
+        path: 'admin-evenimente',
+        loadChildren: () => import('../../../projects/admin-evenimente/src/lib/admin-evenimente.module').then(module => module.AdminEvenimenteModule),
+        canActivate: [AdminGuard]
       },
       {
         path: 'evenimente',
         loadChildren: () => import('../../../projects/evenimente/src/lib/evenimente.module').then(module => module.EvenimenteModule),
+      },
+      {
+        path: 'cv-vlad-ivan',
+        loadChildren: () => import('../../../projects/cv/src/lib/cv.module').then(module => module.CvModule),
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      },
+      {
+        path: 'politica-de-confidentialitate',
+        component: PrivacyComponent
       },
       {
         path: 'not-found',

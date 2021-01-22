@@ -27,6 +27,10 @@
         <mat-icon mat-list-icon svgIcon="dance-ballroom"></mat-icon>
         <span>Evenimente</span>
       </a>
+      <a mat-list-item routerLink="/contact">
+        <mat-icon mat-list-icon svgIcon="card-account-phone"></mat-icon>
+        <span>Contact</span>
+      </a>
       <a mat-list-item routerLink="/user" *ngIf="isAuthenticated">
         <mat-icon mat-list-icon svgIcon="account"></mat-icon>
         <span>Cont</span>
@@ -34,6 +38,14 @@
       <a mat-list-item routerLink="/admin" *ngIf="isAdmin">
         <mat-icon mat-list-icon svgIcon="camera-control"></mat-icon>
         <span>Admin</span>
+      </a>
+      <a mat-list-item routerLink="/admin-platforma-cursuri/panou-cursanti" *ngIf="isAdmin">
+        <mat-icon mat-list-icon svgIcon="head-minus"></mat-icon>
+        <span>Admin Cursuri</span>
+      </a>
+      <a mat-list-item routerLink="/admin-evenimente" *ngIf="isAdmin">
+        <mat-icon mat-list-icon svgIcon="gamepad-square"></mat-icon>
+        <span>Admin Evenimente</span>
       </a>
       <ng-container *ngTemplateOutlet="options"></ng-container>
       <hr fxHide.gt-sm />
@@ -49,7 +61,6 @@
         <mat-icon mat-list-icon svgIcon="account-arrow-right-outline"></mat-icon>
         <span>Ieși de pe cont</span>
       </a>
-
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content >

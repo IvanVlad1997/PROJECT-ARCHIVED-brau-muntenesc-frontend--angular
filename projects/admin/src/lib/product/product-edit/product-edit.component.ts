@@ -7,6 +7,7 @@ import {Product} from '../../../../../common/product';
 import {ProductService} from '../../../../../broderie/src/lib/services/product';
 import {CategoryService} from '../../../../../broderie/src/lib/services/category';
 import {CompressImageService} from '../../../../../../src/app/services/compress-image.service';
+import {AuthService} from '../../../../../auth/src/lib/services/auth';
 
 @Component({
   selector: 'lib-product-edit',
@@ -31,9 +32,25 @@ export class ProductEditComponent implements OnInit, OnDestroy {
               private ref: MatDialogRef<ProductEditComponent>,
               private productService: ProductService,
               private categoryService: CategoryService,
-              private compressImageService: CompressImageService) { }
+              private compressImageService: CompressImageService,
+              private authService: AuthService) { }
+
+  authSubscription: Subscription
+  token: string = ''
+
 
   ngOnInit(): void {
+    this.authSubscription = this.authService.isAuthenticated
+      .subscribe(
+        (token) => {
+          this.token = token;
+          if (token !== '') {
+            this.loadCategories()
+          }
+        });
+  }
+
+  loadCategories(): void {
     this.categoryService.getCategories();
     this.categorySubscription = this.categoryService.getCategoriesListener()
       .subscribe(categories => {
@@ -82,8 +99,11 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     }
     if (!this.saveClicked) {
       for (let image of this.compressedImages) {
-        this.compressImageService.removeImage(image.public_id)
+        this.compressImageService.removeImage(image.public_id, this.token)
       }
+    }
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe()
     }
   }
 
@@ -96,7 +116,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
       const reader = new FileReader();
       reader.onload = async (e: any) => {
           this.localUrl = e.target.result;
-          const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 25)
+          const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 25, this.token)
           this.compressedImages.push(imageCompressed)
           console.log(this.compressedImages)
           this.imageIsUploading = false
@@ -109,7 +129,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   handleImageRemove(id: any, index: number, compressed: boolean): void {
     this.imageIsUploading = true
     console.log('remove img', id)
-    this.compressImageService.removeImage(id)
+    this.compressImageService.removeImage(id, this.token)
     console.log(this.compressedImages)
     console.log(index)
     if (compressed) {

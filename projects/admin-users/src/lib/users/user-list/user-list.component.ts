@@ -88,20 +88,4 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
 
-  // async create(): Promise<void> {
-  //   const newCategory: Category = {
-  //     createdAt: undefined,
-  //     name: '',
-  //     slug: '',
-  //     updatedAt: undefined,
-  //     _v: null,
-  //     _id: ''
-  //   };
-  //   this.dialog.open(CategoryEditComponent, {
-  //     data: newCategory,
-  //     disableClose: true
-  //   })
-  // }
-
-
 }
