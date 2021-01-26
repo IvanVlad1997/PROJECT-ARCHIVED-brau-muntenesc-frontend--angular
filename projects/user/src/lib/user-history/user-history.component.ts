@@ -38,7 +38,7 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
   }
 
   loadOrders(token): void {
-    this.userService.getUserOrders(token)
+    this.userServiceSubscription = this.userService.getUserOrders(token)
       .subscribe(
         (orders: Order[]) => {
           this.orders = orders;

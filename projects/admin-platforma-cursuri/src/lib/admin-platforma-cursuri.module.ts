@@ -34,10 +34,12 @@ import { CursantiPayComponent } from './panou-cursanti/cursanti-pay/cursanti-pay
 import { CursantiCalendarComponent } from './panou-cursanti/cursanti-calendar/cursanti-calendar.component';
 import {UserModule} from '../../../user/src/lib/user.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {QRCodeModule} from 'angularx-qrcode';
+import { QrDialogComponent } from './panou-cursanti/qr-dialog/qr-dialog.component';
 
 
 @NgModule({
-  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent],
+  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent],
   imports: [
     AgGridModule,
     RouterModule.forChild(routes),
@@ -54,7 +56,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ExtendedModule,
     MatSelectModule,
     UserModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    QRCodeModule,
   ],
   exports: [AdminPlatformaCursuriComponent]
 })

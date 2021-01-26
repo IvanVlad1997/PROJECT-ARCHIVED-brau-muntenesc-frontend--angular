@@ -33,9 +33,10 @@ export class PrimaPaginaComponent implements OnInit {
     quality: 720
   }
 
-  images = [{url: 'https://i.imgur.com/pcLAVGx.jpg'},
-    {url: 'https://i.imgur.com/lq6H4QD.jpg'},
-    {url: 'https://i.imgur.com/gKSUxuh.jpg'}
+  images = [
+    // {url: 'https://i.imgur.com/pcLAVGx.jpg'},
+    {url: 'https://i.imgur.com/Y0D48Iu.png'},
+    {url: 'https://i.imgur.com/Ui18Fl8.png'}
   ]
 
   texts = [

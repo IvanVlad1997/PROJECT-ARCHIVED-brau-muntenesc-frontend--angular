@@ -37,7 +37,7 @@ export class PriceListComponent implements OnInit, OnDestroy {
       field: 'category',
       sortable: true,
       filter: true,
-      width: 150,
+      width: 250,
     },
     {
       headerName: 'Price',
@@ -59,8 +59,10 @@ export class PriceListComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.isAuthenticated
       .subscribe(
         (token) => {
-          this.token = token;
-           this.loadPrices()
+          if (token) {
+            this.token = token;
+            this.loadPrices()
+          }
         });
   }
 

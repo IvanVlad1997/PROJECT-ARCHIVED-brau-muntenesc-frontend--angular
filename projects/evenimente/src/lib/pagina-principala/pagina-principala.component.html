@@ -37,7 +37,8 @@
   </div>
   <div fxFlex="40" fxFlex.lt-md="100" fxLayout="column">
       <a mat-raised-button color="primary" class="button-p" href="mailto:braumuntenesc@gmail.com" > Trimite-ne un email</a>
-      <a mat-raised-button color="primary" class="button-p"> Trimite-ne informațiile direct de pe site</a>
+      <a mat-raised-button color="primary" class="button-p" (click)="sendInfo()"> Trimite-ne informațiile direct de pe site</a>
+      <a mat-raised-button color="primary" class="button-p" (click)="info()"> Află mai multe</a>
   </div>
 </div>
 
@@ -45,11 +46,11 @@
   <div fxFlex="10" fxHide.lt-md="true"></div>
   <div fxFlex="39" fxLayout="column" fxFlex.lt-md="100">
       <h1  class="sub-title">Galerie Video</h1>
-      <div  plyr [plyrOptions]="options" class="margins"
+      <div  plyr [plyrOptions]="options1" class="margins"
            plyrTitle="Video 1"
            [plyrPlaysInline]="true"
            [plyrPlaysInline]="true"
-           [plyrSources]="videoSources" >
+           [plyrSources]="videoSources1" >
     </div>
   </div>
   <div fxFlex="2" fxHide.lt-md="true"></div>
@@ -67,7 +68,7 @@
         <mat-icon svgIcon="eye"></mat-icon>
         Urmărește povestea aici!
       </a>
-      <a mat-raised-button class="button-2" color="primary" href="https://www.tvrplus.ro/emisiuni/femei-de-10,-b%C4%83rba%C5%A3i-de-10-44-2314?fbclid=IwAR0MfxkjGgL0MOShFB3HNLjpPoznX24cKBKCJffCAzGAkO5XDuTGvDR6FNA" target="_blank">
+      <a mat-raised-button class="button-2" color="primary" [routerLink]="['galerie-video']">
         <mat-icon svgIcon="eye"></mat-icon>
         Spre galeria video
       </a>

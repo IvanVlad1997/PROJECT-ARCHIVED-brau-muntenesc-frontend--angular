@@ -11,6 +11,7 @@ import 'firebase/auth';
 import auth = firebase.auth;
 import {BehaviorSubject} from 'rxjs';
 import {UserService} from "../../../../user/src/lib/services/user";
+import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 
 
 @Injectable({providedIn: 'root'})
@@ -34,7 +35,8 @@ export class AuthService {
     presenceHistory: [],
     group: '',
     picture: '',
-    dance: undefined
+    dance: undefined,
+    payHistory: []
   });
 
   constructor(private http: HttpClient,
@@ -42,6 +44,7 @@ export class AuthService {
               private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
               private route: ActivatedRoute,
+              private nodemailer: NodemailerService
            ) {}
 
   async logout(): Promise<void> {
@@ -63,7 +66,8 @@ export class AuthService {
       presenceHistory: [],
       group: '',
       picture: '',
-      dance: undefined
+      dance: undefined,
+      payHistory: []
     });
     this.isAuthenticated.next('');
     this.isAdmin.next(false);
@@ -90,9 +94,7 @@ export class AuthService {
           }
         )
           .subscribe(async (data: User) => {
-            if (other) {
-             await this.updateMany(other.email, other.telNum, other.address, other.isDancer, other.name);
-            }
+            await this.updateMany(other.email, other.telNum, other.address, other.isDancer, other.name);
             await this.getCurrentUser(token)
             await this.roleBaseRedirect(data.role)
           });
@@ -175,7 +177,17 @@ export class AuthService {
     const result = await this.angularFirebaseAuth.createUserWithEmailAndPassword(email, password)
       .then(async (data) => {
         await this.login(email, password, other)
-        // await this.updateMany(email, telNum, address, isDancer, name);
+        this.nodemailer.infoMail(`Cont nou - ${email}`,
+          `<h1>A fost înregistrat un cont nou</h1>
+                </br>
+                <p>Email: ${email}</p>
+                <p>Număr de telefon ${telNum}</p>
+                <p>Pentru dansuri: ${isDancer}}</p>`)
+        await this.updateMany(email, telNum, address, isDancer, name);
+        this.nodemailer.targetMail(`Cont Brâu Muntenesc`,
+          `<h1>Îți mulțumim pentru crearea unui cont pe Brâu Muntenesc®. Poți accesa zona contului pentru a-ți vedea comenzile, pentru a-ți schimba parola și altele la: https://www.braumuntenesc.com/user De-abia așteptăm să te revedem!”</h1>` ,
+          [email]
+          );
       })
       .catch((error) => console.log(error));
   }
@@ -201,6 +213,7 @@ export class AuthService {
         )
           .subscribe((data: User) => {
             this.roleBaseRedirect(data.role);
+            this.nodemailer.infoMail('Logare cu gmail', `<p>Nouă logare cu gmail - ${data.email}</p>`)
           });
       })
       .catch(() => console.log('login failed'));

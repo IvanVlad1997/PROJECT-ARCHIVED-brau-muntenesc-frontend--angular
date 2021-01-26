@@ -4,6 +4,8 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {User} from '../../../../common/user';
 import {Order} from '../../../../common/order';
+import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
+import {ToastService} from 'angular-toastify';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -13,7 +15,9 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class UserHistoryProductsTableComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private nodemailer: NodemailerService,
+              private toastService: ToastService) { }
 
   @Input() order: Order;
 
@@ -41,7 +45,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
           color: '#047886'
         },
         {
-          text: 'Factură',
+          text: 'Factură proformă',
           fontSize: 20,
           bold: true,
           alignment: 'center',
@@ -49,24 +53,50 @@ export class UserHistoryProductsTableComponent implements OnInit {
           color: 'skyblue'
         },
         {
-          text: 'Detalii despre client',
-          style: 'sectionHeader'
+          text: `Număr ${new Date().getTime()}`,
+          alignment: 'right'
+        },
+        {
+          text: `Seria: BRAU`,
+          alignment: 'right'
+        },
+        {
+          text: `Dată: ${new Date().toLocaleString()}`,
+          alignment: 'right'
+        },
+        {
+          columns: [
+            {
+              text: 'Brâu Muntenesc',
+              style: 'sectionHeader'
+            },
+            {
+              text: 'Detalii despre client',
+              style: 'sectionHeader'
+            }
+          ],
+
         },
         {
           columns: [
             [
-              { text: this.user.email },
+              { text: 'PLOIEȘTI str. MALU ROȘU nr.98 Bl.35B Ap.2' },
+              { text: 'Județul: PRAHOVA' },
+              { text: 'Nr.ord.reg.om./an: JS29/1810/2019' },
+              { text: 'C.I.F: 41123710' },
+              { text: 'Banca: ING BANK' },
+              { text: 'Cod IBAN: RO73INGB0000999909056584' },
+              { text: 'Capital Social: 200.00' },
             ],
-            // [
-            //   {
-            //     text: `Date: ${new Date().toLocaleString()}`,
-            //     alignment: 'right'
-            //   },
-            //   // {
-            //   //   text: `Bill No : ${((Math.random() *1000).toFixed(0))}`,
-            //   //   alignment: 'right'
-            //   // }
-            // ]
+            [
+              { text: `Cumpărător: ${this.user.name}` },
+              { text: `Sediul/Adresa: ${this.user.address[1]}` },
+              { text: `Email: ${this.user.email}` },
+              // { text: 'Nr.ord.reg.om./an: .........' },
+              // { text: 'C.I.F/ CNP: .......' },
+              // { text: 'Banca: ........' },
+              // { text: 'Cod IBAN: ........' },
+            ],
           ]
         },
         {
@@ -74,10 +104,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
           style: 'sectionHeader'
         },
         {
-          text: `Date: ${new Date().toLocaleString()}`
-        },
-        {
-          text: `Id-ul comenzii: ${this.order.paymentIntent.client_secret}`,
+          text: `Id-ul comenzii: ${this.order.paymentIntent.id}`,
         },
         {
           text: `Statusul comenzii: ${this.order.orderStatus}`,
@@ -92,13 +119,22 @@ export class UserHistoryProductsTableComponent implements OnInit {
         {
           table: {
             headerRows: 1,
-            widths: ['*', 'auto', 'auto', 'auto'],
+            widths: ['*', 'auto', 'auto', 'auto', 'auto', 'auto'],
             body: [
-              ['Produs', 'Preț', 'Cantitate', 'Sumă produs'],
-              ...this.order.products.map(p => ([p.product.title, p.product.price, p.count, (p.product.price * p.count).toFixed(2)])),
-              // [{text: 'Total Amount', colSpan: 3}, {}, {}, this.invoice.products.reduce((sum, p)=> sum + (p.qty * p.price), 0).toFixed(2)]
+              ['Produs', 'Preț', 'Cantitate', 'U.M.', 'Preț unitar(fără TVA)', 'Sumă produs'],
+              ...this.order.products.map(p => ([p.product.title, p.product.price, p.count, 'buc.', p.product.price, (p.product.price * p.count).toFixed(2)])),
             ]
           }
+        },
+        {
+          text: `Firmă neplătitoare de TVA`,
+        },
+        {
+          text: `Conform art. 319 alin. (29) din Legea nr. 227/2015 privind Codul Fiscal, factura este valabilă fără semnătură și ștampilă
+                Plată numerar/POS ramburs, Plata numerar/POS cu bon fiscal/chitanță`,
+        },
+        {
+          text: `Date privind expediția: Curier`,
         },
 
 
@@ -118,4 +154,8 @@ export class UserHistoryProductsTableComponent implements OnInit {
   }
 
 
+  sendInvoice(): void {
+    this.nodemailer.infoMail('SOLICITARE FACTURA FISCALA', `<h1>COMANDA ${JSON.stringify(this.order.paymentIntent.id)}</h1> <h1>EMAIL ${this.user.email}</h1>`)
+    this.toastService.info(`Solicitarea a fost trimisă. Veți primi factura pe mail în cel mai scurt timp posibil. Dacă există nelămuriri, sunați la 0751105873.`)
+  }
 }

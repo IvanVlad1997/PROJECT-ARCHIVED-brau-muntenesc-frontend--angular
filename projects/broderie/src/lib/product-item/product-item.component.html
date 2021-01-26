@@ -20,9 +20,9 @@
       Vezi produsul
     </button>
     <button mat-button  *ngIf="product && !(product.sold > 0) " (click)="handleAddToCart(product)"
-           [matTooltip]="isAdded ? 'Produsul este adăugat. Verifică coșul de cumpărături' : 'Nu avem pe stoc. Facem la comandă. Va dura mai mult.'">
+           [matTooltip]="isAdded ? 'Produsul este adăugat. Verifică coșul de cumpărături' : 'Stoc epuizat momentan. Se poate executa la comandă, în maximum 3 zile lucrătoare. Continuă cumpărăturile (sau adaugă în coș)'">
         <mat-icon svgIcon="cart"></mat-icon>
-      Comandă
+      Adaugă în coș
     </button>
 
 

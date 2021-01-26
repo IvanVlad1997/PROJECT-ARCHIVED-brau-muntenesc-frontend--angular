@@ -1,0 +1,34 @@
+
+<h1 mat-dialog-title fxLayoutAlign="center center">
+  Planifică eveniment
+</h1>
+
+<form #form (submit)="sendInfo()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field>
+      <mat-label >Nume</mat-label>
+      <input matInput name="name" type="text" [(ngModel)]="nume" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Email</mat-label>
+      <input matInput name="email" type="email" [(ngModel)]="email" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Număr de telefon</mat-label>
+      <input matInput name="tel" type="number" [(ngModel)]="nrTel" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Data evenimentului</mat-label>
+      <input matInput name="evDate" type="text" [(ngModel)]="evDate" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Restaurant</mat-label>
+      <input matInput name="resta" type="text" [(ngModel)]="restaurant" required/>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()"  >Salvează</button>
+  </div>
+</form>
+

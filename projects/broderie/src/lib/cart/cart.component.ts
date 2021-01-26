@@ -76,6 +76,8 @@ export class CartComponent implements OnInit, OnDestroy {
           if (token !== '') {
             console.log(token)
             this.loadCart(token)
+          } else  {
+            this.router.navigate(['/auth/login'])
           }
         });
   }
@@ -91,7 +93,9 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.cartSubscription.unsubscribe();
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();
     }

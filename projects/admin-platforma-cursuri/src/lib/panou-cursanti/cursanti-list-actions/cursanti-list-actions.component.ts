@@ -8,6 +8,9 @@ import {User} from '../../../../../common/user';
 import {UserEditComponent} from '../../../../../admin-users/src/lib/users/user-edit/user-edit.component';
 import {CursantiPayComponent} from '../cursanti-pay/cursanti-pay.component';
 import {CursantiCalendarComponent} from '../cursanti-calendar/cursanti-calendar.component';
+import {CursantiService} from '../../services/panou-cursanti';
+import {AuthService} from '../../../../../auth/src/lib/services/auth';
+import {QrDialogComponent} from '../qr-dialog/qr-dialog.component';
 
 @Component({
   selector: 'lib-cursanti-list-actions',
@@ -17,8 +20,8 @@ import {CursantiCalendarComponent} from '../cursanti-calendar/cursanti-calendar.
 export class CursantiListActionsComponent implements AgFrameworkComponent<BaseColDefParams> {
 
   constructor(private dialog: MatDialog,
-              private usersService: UsersService,
-              private toastService: ToastService) { }
+              private cursantiService: CursantiService,
+              private authService: AuthService) { }
 
   user: User;
 
@@ -32,11 +35,24 @@ export class CursantiListActionsComponent implements AgFrameworkComponent<BaseCo
       {
         data: this.user,
         disableClose: true
-      });
+      }).afterClosed().toPromise().then(
+      () => {
+        let token = this.authService.isAuthenticated.getValue()
+        this.cursantiService.getUsers(token) ;
+      }
+    );
   }
 
   viewCalendar(): void {
     this.dialog.open(CursantiCalendarComponent,
+      {
+        data: this.user,
+        disableClose: true
+      });
+  }
+
+  generateQR(): void {
+    this.dialog.open(QrDialogComponent,
       {
         data: this.user,
         disableClose: true

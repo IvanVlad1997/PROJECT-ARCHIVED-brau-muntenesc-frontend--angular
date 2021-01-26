@@ -24,7 +24,7 @@ export class CursantiListComponent implements OnInit, OnDestroy {
 
   columnDefs = [
     { headerName: 'Actions',
-      width: 150,
+      width: 200,
       cellRendererFramework: CursantiListActionsComponent
     },
     { headerName: 'Nume',
@@ -66,6 +66,7 @@ export class CursantiListComponent implements OnInit, OnDestroy {
     this.cursantiService.getUsers(token);
     this.userSubscription = this.cursantiService.getUsersListener()
       .subscribe(users => {
+        console.log('USERS', users)
         this.users = users;
         this.rowData = this.users;
       })

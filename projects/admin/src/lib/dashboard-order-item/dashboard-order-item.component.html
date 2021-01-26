@@ -6,7 +6,9 @@
   <div fxFlex="100" fxLayoutAlign="center center">Status livrare: {{order.orderStatus}}</div>
   <div fxFlex="100" fxLayoutAlign="center center">Id comandă: {{order._id}}</div>
   <div fxFlex="100" fxLayoutAlign="center center">Comandă plasată în: {{order.createdAt | date}}</div>
-  <div fxFlex="100" fxLayoutAlign="center center">Sumă: {{order.paymentIntent.amount}}</div>
+  <div fxFlex="100" fxLayoutAlign="center center" *ngIf="order.paymentIntent.description === 'amountForCash'">Sumă: {{order.paymentIntent.amount }}</div>
+  <div fxFlex="100" fxLayoutAlign="center center" *ngIf="!(order.paymentIntent.description === 'amountForCash')">Sumă: {{order.paymentIntent.amount/100 }}</div>
+
   <div fxFlex="100" fxLayoutAlign="center center">Comandat de: {{order.orderedBy.email}}</div>
     <mat-select class="select-status" fxFlex.gt-md="20" fxFlex="80" (valueChange)="changeOrderStatus($event)" [value]="order.orderStatus">
       <mat-option *ngFor="let status of typesOfOrderStatus" [value]="status">{{status}}</mat-option>

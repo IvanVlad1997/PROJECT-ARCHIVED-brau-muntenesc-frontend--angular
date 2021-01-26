@@ -7,6 +7,9 @@ import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {Subscription} from 'rxjs';
 import {UserService} from '../../../../user/src/lib/services/user';
 import {CartService} from '../services/cart';
+import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
+import {User} from '../../../../common/user';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'lib-payment',
@@ -21,11 +24,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
               private router: Router,
               private authService: AuthService,
               private userService: UserService,
-              private cartService: CartService) {}
+              private cartService: CartService,
+              private nodemailer: NodemailerService) {}
 
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
 
-  loading: boolean = false;
+  loading = false;
   success = false;
   error = '';
   processing = false;
@@ -36,9 +40,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
   totalAfterDiscount: number = null;
   isCupon = false;
   payable: number = null;
-  token: string = '';
+  token = '';
+  user: User;
 
   authSubscription: Subscription;
+  authSubscription1: Subscription;
   stripeSubscription: Subscription;
   tokenSubscription: Subscription;
   userServiceSubscriptioon: Subscription;
@@ -106,11 +112,18 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
           }
           });
+    this.authSubscription1 = this.authService.user
+      .subscribe(
+        (user) => this.user = user
+      );
   }
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
+    }
+    if (this.authSubscription1) {
+      this.authSubscription1.unsubscribe();
     }
     if (this.stripeSubscription) {
       this.stripeSubscription.unsubscribe();
@@ -151,6 +164,24 @@ export class PaymentComponent implements OnInit, OnDestroy {
                   .subscribe(
                     (ok) => {
                       if (ok) {
+                        console.log(ok)
+                        for (const product of ok.products) {
+                          if (product.product.title === 'Abonament cursuri') {
+                            {
+                              const format = 'yyyy-MM-dd';
+                              const date = new Date();
+                              const locale = 'ro-RO';
+                              const formattedDate = formatDate(date, format, locale);
+                              let payment = {
+                                title : `Plată  curs online - 80 - abonament`,
+                                date: formattedDate,
+                                color: 'green'
+                              }
+                              this.userService.pay(this.token, payment, this.user.email, 80)
+                            }
+                          }
+                        }
+                        this.nodemailer.infoMail('Comanda noua', `<h1>${JSON.stringify(ok)}</h1>`);
                         this.cartService.removeAllFromCart();
                         this.userService.emptyUserCart();
                       }
@@ -168,7 +199,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
           }
         );
     } else {
-
+        alert('Nu s-a reușit trecerea în calendar! Sunați la 0751105873.')
     }
   }
 }

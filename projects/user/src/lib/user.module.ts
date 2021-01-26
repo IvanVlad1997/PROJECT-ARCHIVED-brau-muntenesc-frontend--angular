@@ -28,6 +28,7 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import { registerLocaleData } from '@angular/common';
 import localesRO from "@angular/common/locales/ro";
 import { PresenceHistoryComponent } from './presence-history/presence-history.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 registerLocaleData(localesRO, "ro");
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -54,7 +55,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
         MatCardModule,
         QuillModule.forRoot(),
         QRCodeModule,
-        FullCalendarModule
+        FullCalendarModule,
+        MatTooltipModule
     ],
   exports: [CalendarComponent]
 })

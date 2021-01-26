@@ -25,7 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductListBySubCategoryComponent } from './product-list-by-sub-category/product-list-by-sub-category.component';
 import { SearchComponent } from './search/search.component';
-import { ShopComponent } from './shop/shop.component'
+import { ShopComponent } from './shop/shop.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { FiltersComponent } from './shop/filters/filters.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -47,6 +47,9 @@ import { NgxStripeModule } from 'ngx-stripe';
 import {environment} from '../../../../src/environments/environment';
 import {MatChipsModule} from '@angular/material/chips';
 import { CumCumparComponent } from './cum-cumpar/cum-cumpar.component';
+import { registerLocaleData } from '@angular/common';
+import localesRO from '@angular/common/locales/ro';
+registerLocaleData(localesRO, 'ro');
 
 @NgModule({
   declarations: [

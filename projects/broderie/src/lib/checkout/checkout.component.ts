@@ -8,6 +8,7 @@ import {ToastService} from 'angular-toastify';
 import {ContentChange} from 'ngx-quill';
 import {ChangeDetectorRef } from '@angular/core';
 import {Router} from '@angular/router';
+import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 
 @Component({
   selector: 'lib-checkout',
@@ -20,10 +21,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private cartService: CartService,
               private toastService: ToastService,
-              private router: Router
+              private router: Router,
+              private nodemailer: NodemailerService
               ) { }
 
-
+  isCashOk: boolean = true;
   tokenSubscription: Subscription;
   authSubscription: Subscription;
   addressSubscription: Subscription;
@@ -67,6 +69,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   this.products = c[0];
                   this.totalAfterDiscount = c[1];
                   this.total = c[2];
+                  let transport: boolean = false;
+                  for (let product of this.products) {
+                    if (product.product.shipping === 'Nu') {
+                      this.isCashOk = false;
+                    } else  {
+                      transport = true;
+                    }
+                  }
+                  // if (transport) {
+                  //   this.products.push(
+                  //     {
+                  //       product : {
+                  //         title: 'Transport',
+                  //         price: 20
+                  //       },
+                  //       count: 1,
+                  //       description: 'Transport',
+                  //       price: 20
+                  //     },
+                  //   )
+                  // }
                   this.isLoading = false;
                 }
               );
@@ -160,6 +183,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.createNewCashOrder(this.token)
       .subscribe(
         (res) => {
+          this.nodemailer.infoMail('Comanda cash noua', `<h1>${JSON.stringify(res)}</h1>`)
           console.log('User Cash Order Res', res)
           this.cartService.removeAllFromCart();
           this.userService.emptyUserCart();

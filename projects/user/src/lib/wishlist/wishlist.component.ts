@@ -4,6 +4,7 @@ import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {UserService} from '../services/user';
 import {Product} from '../../../../common/product';
 import {ToastService} from 'angular-toastify';
+import {CartService} from '../../../../broderie/src/lib/services/cart';
 
 @Component({
   selector: 'lib-wishlist',
@@ -14,7 +15,8 @@ export class WishlistComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private userService: UserService,
-              private toastService: ToastService) { }
+              private toastService: ToastService,
+              private cartService: CartService) { }
 
   authSubscription: Subscription;
   wishlistSub: Subscription;
@@ -32,6 +34,7 @@ export class WishlistComponent implements OnInit, OnDestroy {
           }
         });
   }
+
 
   loadWishList(token: string): void {
     this.wishlistSub = this.userService.getWishlist(token)
@@ -63,5 +66,9 @@ export class WishlistComponent implements OnInit, OnDestroy {
           this.authService.getCurrentUser(this.token)
         }
       )
+  }
+
+  handleAddToCart(product: Product): void {
+    this.cartService.handlerAddToCart(product);
   }
 }

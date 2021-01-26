@@ -5,7 +5,7 @@
     <p>Rol: <span *ngIf="user.role==='subscriber'">Abonat</span> <span *ngIf="user.role==='admin'">Admin</span></p>
     <p>Cont creat în {{user.createdAt | date}}</p>
     <p *ngIf="user.telNum">Număr de telefon: {{user.telNum}}</p>
-    <p *ngIf="user.address !== '\n' && user.address !== '' && user.address.length !==0" fxLayout="row wrap" fxLayoutAlign="center center">
+    <p *ngIf="user.address && user.address !== '\n' && user.address !== '' && user.address.length !==0" fxLayout="row wrap" fxLayoutAlign="center center">
       <span fxFlex="100" fxLayoutAlign="center center">Adresa:</span>
       <span [innerHTML]="user.address[0]" fxFlex="100" fxLayoutAlign="center center"></span>
     </p>
@@ -29,7 +29,7 @@
     <div>
       <button mat-raised-button color="accent" [routerLink]="['/user/history']">Du-te la istoric cumpărături </button>
     </div>
-    <div *ngIf="user.presenceHistory.length > 0">
+    <div >
       <button mat-raised-button color="accent" [routerLink]="['/user/calendar']">Prezențe curs</button>
     </div>
     <div>

@@ -1,13 +1,14 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyCEI4gm8ayRLooJtFoNPes3I8Qc21KDF7U",
-    authDomain: "angular-1f468.firebaseapp.com",
-    projectId: "angular-1f468",
-    storageBucket: "angular-1f468.appspot.com",
-    messagingSenderId: "462777700678",
-    appId: "1:462777700678:web:611a87b80a0af21b399547",
-    measurementId: "G-Y2HW8NEX49"
+    apiKey: "AIzaSyAlGbNZ2JL5yhL4P-ctyS5LSpaPdyBcTik",
+    authDomain: "brau-muntenesc.firebaseapp.com",
+    databaseURL: "https://brau-muntenesc.firebaseio.com",
+    projectId: "brau-muntenesc",
+    storageBucket: "brau-muntenesc.appspot.com",
+    messagingSenderId: "414757078348",
+    appId: "1:414757078348:web:cfb8ceec8f9de9eec2bbe9",
+    measurementId: "G-CYWFDKTZ0J"
   },
   passwordRedirectUrl: 'http://localhost:4200/auth/login',
   // appApi: 'http://localhost:8000/api',

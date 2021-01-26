@@ -18,11 +18,11 @@
     </mat-form-field>
     <mat-form-field fxFlex="70%" color="accent">
       <mat-label>Nume</mat-label>
-      <input name="name" type="text" minlength="9" maxlength="11" matInput autocomplete="off" required [(ngModel)]="name" #NameModel="ngModel"/>
+      <input name="name" type="text"  matInput autocomplete="off" minlength="3" required [(ngModel)]="name" #NameModel="ngModel"/>
       <mat-error *ngIf="NameModel.errors">
         <ng-container *ngFor="let item of NameModel.errors | keyvalue">
           <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
-          <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină 10 cifre</p>
+          <p *ngIf="item.key === 'minlength'">Câmpul trebuie să cel puțin 3 caractere</p>
         </ng-container>
       </mat-error>
     </mat-form-field>
@@ -38,11 +38,11 @@
     </mat-form-field>
     <mat-form-field fxFlex="70%" color="accent">
       <mat-label>Număr de telefon</mat-label>
-      <input name="telNum" type="number" matInput required minlength="9"  [(ngModel)]="telNum" #TelNumModel="ngModel"/>
+      <input name="telNum" type="text" matInput required minlength="10" maxlength="10"  [(ngModel)]="telNum" #TelNumModel="ngModel"/>
       <mat-error *ngIf="TelNumModel.errors">
         <ng-container *ngFor="let item of TelNumModel.errors | keyvalue">
           <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
-          <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină numărul de telefon</p>
+          <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină 10 cifre</p>
         </ng-container>
       </mat-error>
     </mat-form-field>

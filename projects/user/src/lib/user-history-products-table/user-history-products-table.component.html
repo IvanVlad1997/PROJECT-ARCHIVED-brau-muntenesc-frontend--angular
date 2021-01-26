@@ -5,6 +5,8 @@
   <hr fxFlex="90"/>
   <div fxFlex="100" fxLayoutAlign="center center">Status livrare: {{order.orderStatus}}</div>
   <div fxFlex="100" fxLayoutAlign="center center">Comandă plasată în: {{order.createdAt | date}}</div>
-  <div fxFlex="100" fxLayoutAlign="center center">Sumă: {{order.paymentIntent.amount}}</div>
-  <button fxFlex="70" mat-raised-button color="primary" (click)="generatePDF()">Generate PDF</button>
+  <div fxFlex="100" fxLayoutAlign="center center" *ngIf="order.paymentIntent.description === 'amountForCash'">Sumă: {{order.paymentIntent.amount }}</div>
+  <div fxFlex="100" fxLayoutAlign="center center" *ngIf="!(order.paymentIntent.description === 'amountForCash')">Sumă: {{order.paymentIntent.amount / 100 }}</div>
+  <button fxFlex="70" mat-raised-button color="primary" (click)="generatePDF()">Downloadează factura proformă</button>
+  <button fxFlex="70" mat-raised-button color="primary" (click)="sendInvoice()">Solicită factura fiscală pe mail</button>
 </div>

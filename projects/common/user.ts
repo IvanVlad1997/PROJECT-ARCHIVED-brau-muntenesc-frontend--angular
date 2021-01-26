@@ -11,7 +11,8 @@ export interface User {
   telNum: string;
   address: string[];
   presenceHistory: any[];
+  payHistory: any[];
   group: string;
   picture: string;
-  dance: boolean
+  dance: boolean;
 }

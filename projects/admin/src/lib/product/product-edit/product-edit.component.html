@@ -38,12 +38,11 @@
 
     <mat-form-field>
       <mat-label >Cantitate</mat-label>
-      <input name="quantity" type="number" minlength="2" matInput  required [(ngModel)]="product.quantity" #QuantityModel="ngModel" />
+      <input name="quantity" type="number" matInput  required [(ngModel)]="product.quantity" #QuantityModel="ngModel" />
     </mat-form-field>
     <mat-error *ngIf="QuantityModel.errors && QuantityModel.touched">
       <ng-container *ngFor="let item of QuantityModel.errors | keyvalue">
         <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
-        <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină mai mult de două caractere</p>
       </ng-container>
     </mat-error>
 

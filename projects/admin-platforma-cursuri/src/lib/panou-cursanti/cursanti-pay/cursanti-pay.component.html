@@ -2,7 +2,7 @@
   Plata {{user.name}}
 </h1>
 
-<form #form (submit)="edit()">
+<form #form (submit)="pay()">
   <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
     <mat-form-field>
       <mat-label >Sumă</mat-label>
@@ -14,7 +14,19 @@
         <mat-option value="ședință">O ședință</mat-option>
       </mat-select>
     </mat-form-field>
-<!--    <mat-checkbox fxFlex="70"  (change)="changeDate()">Folosește data de astăzi</mat-checkbox>-->
+    <mat-checkbox fxFlex="70"  (change)="changeDate()">Folosește data de astăzi</mat-checkbox>
+    <mat-form-field>
+      <mat-label >Zi</mat-label>
+      <input matInput name="zi" type="number" max="31" [(ngModel)]="zi" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Lună</mat-label>
+      <input matInput name="luna" type="number" max="12" [(ngModel)]="luna" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >An</mat-label>
+      <input matInput name="an" type="number"  min="2021" [(ngModel)]="an" />
+    </mat-form-field>
 
   </div>
 

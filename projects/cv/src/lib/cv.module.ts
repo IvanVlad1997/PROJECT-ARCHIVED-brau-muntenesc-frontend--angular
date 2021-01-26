@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {CvComponent} from './cv/cv.component';
 import {RouterModule} from '@angular/router';
 import {routes} from './routes';
+import {FlexModule} from '@angular/flex-layout';
 
 
 
@@ -10,6 +11,7 @@ import {routes} from './routes';
   declarations: [CvComponent],
   imports: [
     RouterModule.forChild(routes),
+    FlexModule,
   ],
   exports: [CvComponent]
 })
