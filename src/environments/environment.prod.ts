@@ -13,5 +13,5 @@ export const environment = {
   passwordRedirectUrl: 'https://www.braumuntenesc.com/auth/login',
   // appApi: 'http://localhost:8000/api',
   appApi: 'https://calm-anchorage-09606.herokuapp.com/api',
-  stripeKey: 'pk_test_51I8hg4IMtClZ7xMeg5PrlOxJEkdkFZJq6QfyxwfSNEb0UjihKYNNQ7vGB9om0T2N5tsS0sxWcy3zDptQfO6jlCO4000lmF02lp',
+  stripeKey: 'pk_live_51I8hg4IMtClZ7xMeX4U72mtd9F1Gyndmyd1mzTdG1fOT9DfpqdFstCAzCGryCwtMBZohx41yEnJTWJ1T1HjFZSKg00NSW13h8n',
 };

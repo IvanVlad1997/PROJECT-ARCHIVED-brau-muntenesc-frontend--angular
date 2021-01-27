@@ -12,10 +12,10 @@
         <hr />
         <p>Produse</p>
         <div *ngFor="let cartProduct of cart">
-          {{cartProduct.product.title}} x {{cartProduct.count}} = {{cartProduct.product.price * cartProduct.count}}
+          {{cartProduct.product.title}} x {{cartProduct.count}} = {{cartProduct.product.price * cartProduct.count}} lei
         </div>
         <hr />
-        Total: <b>{{totalPrice}}</b>
+        Total: <b>{{totalPrice}}</b> lei
         <hr />
         <button mat-raised-button color="primary" class="button" (click)="saveOrderToDb()">Comandă</button>
         <button mat-raised-button color="warn" class="button" (click)="emptyUserCart()">Golește coșul de cumpărături</button>

@@ -4,9 +4,9 @@
       Plătește cu cardul
     </h1>
     <h3 fxFlex="100" fxFlex.gt-md="70" fxLayout="row wrap" class="total" fxLayoutAlign="center center">
-      <p fxFlex="100" fxLayoutAlign="center center" *ngIf="totalAfterDiscount">Total înainte de dicount: {{total}}</p> <br/>
-      <p  fxFlex="100" fxLayoutAlign="center center" *ngIf="totalAfterDiscount">Total după discount: {{totalAfterDiscount}}</p> <br/>
-      <p fxFlex="100" fxLayoutAlign="center center">Total de plată: {{payable}}</p>
+      <p fxFlex="100" fxLayoutAlign="center center" *ngIf="totalAfterDiscount">Total înainte de dicount: {{total}} lei</p> <br/>
+      <p  fxFlex="100" fxLayoutAlign="center center" *ngIf="totalAfterDiscount">Total după discount: {{totalAfterDiscount}} lei</p> <br/>
+      <p fxFlex="100" fxLayoutAlign="center center">Total de plată: {{payable}} lei</p>
 
     </h3>
     <button *ngIf="success" mat-raised-button [routerLink]="['/user/history']">Plata efectuata cu succes. Apasă aici pentru a fi redirecționat către pagina ta.</button>

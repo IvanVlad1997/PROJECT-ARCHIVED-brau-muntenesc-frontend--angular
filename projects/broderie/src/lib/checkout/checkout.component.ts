@@ -167,7 +167,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.createNewCashOrder(this.token)
       .subscribe(
         (res) => {
-          this.nodemailer.infoMail('Comanda cash noua', `<h1>${JSON.stringify(res)}</h1>`)
+          let textProduse: string;
+          for (let product of res.products) {
+            textProduse = textProduse + `<br/>${product.product.title} ${product.count}`
+          }
+          this.nodemailer.targetMail('Comanda cash noua', `<h1>${textProduse}</h1><h1>${JSON.stringify(res)}</h1>`, ['braumuntenesc@gmail.com', 'mariana@telegrama.ro'])
           console.log('User Cash Order Res', res)
           this.cartService.removeAllFromCart();
           this.userService.emptyUserCart();

@@ -20,7 +20,7 @@
   <div fxFlex="50" fxFlex.lt-lg="100"  fxLayout="row wrap" fxLayoutAlign="center center">
     <h4 fxFlex="100" fxLayoutAlign="center center">Rezumatul comenzii:</h4>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <p fxFlex="100" fxLayoutAlign="center center" *ngFor="let product of products">{{product.product.title}} x {{product.count}} - Preț: {{product.product.price * product.count}} </p>
+    <p fxFlex="100" fxLayoutAlign="center center" *ngFor="let product of products">{{product.product.title}} x {{product.count}} - Preț: {{product.product.price * product.count}} lei </p>
     <p fxFlex="100" fxLayoutAlign="center center">Total Comandă {{total}}</p>
     <p *ngIf="totalAfterDiscount" fxFlex="100" fxLayoutAlign="center center">Total dupa discount {{totalAfterDiscount}}</p>
     <p fxFlex="100" fxLayoutAlign="center center">Adresa salvata: {{savedAddress}}</p>

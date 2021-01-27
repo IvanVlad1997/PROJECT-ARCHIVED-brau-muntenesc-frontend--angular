@@ -181,7 +181,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
                             }
                           }
                         }
-                        this.nodemailer.infoMail('Comanda noua', `<h1>${JSON.stringify(ok)}</h1>`);
+                        let textProduse: string;
+                        for (const product of ok.products) {
+                          textProduse = textProduse + `<br/>${product.product.title} ${product.count}`
+                        }
+                        this.nodemailer.targetMail('Comanda cash noua', `<h1>${textProduse}</h1><h1>${JSON.stringify(ok)}</h1>`, ['braumuntenesc@gmail.com', 'mariana@telegrama.ro'])
                         this.cartService.removeAllFromCart();
                         this.userService.emptyUserCart();
                       }
