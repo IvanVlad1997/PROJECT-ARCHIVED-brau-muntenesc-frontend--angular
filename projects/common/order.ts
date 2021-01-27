@@ -4,6 +4,7 @@ import {User} from './user';
 export interface Order {
   _id: string;
   orderStatus: string;
+  orderNumber: number,
   products: [
     {
       _id: string;

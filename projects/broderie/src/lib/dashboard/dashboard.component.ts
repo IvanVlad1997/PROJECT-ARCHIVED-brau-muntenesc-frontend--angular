@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
      this.productService.countProducts().then(c => {
-       this.productsCount = c;
+       this.productsCount = c-1;
      })
      this.loadingNew = true;
      this.loadingBest = true;

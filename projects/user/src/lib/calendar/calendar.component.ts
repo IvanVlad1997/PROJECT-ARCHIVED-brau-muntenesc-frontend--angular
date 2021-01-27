@@ -17,19 +17,14 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
 
   @Input() user: User;
-
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
   };
   token: string;
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          this.authService.getCurrentUser(token)
-        })
+    this.token = this.authService.isAuthenticated.getValue()
+    this.authService.getCurrentUser(this.token)
     console.log(this.user)
     const paymentHistory = this.user.payHistory.map((payment) => payment.payment )
     console.log(paymentHistory)

@@ -10,8 +10,8 @@ export const environment = {
     appId: "1:414757078348:web:cfb8ceec8f9de9eec2bbe9",
     measurementId: "G-CYWFDKTZ0J"
   },
-  passwordRedirectUrl: 'http://localhost:4200/auth/login',
+  passwordRedirectUrl: 'https://www.braumuntenesc.com/auth/login',
   // appApi: 'http://localhost:8000/api',
-  appApi: 'https://evening-dawn-58977.herokuapp.com/api',
+  appApi: 'https://calm-anchorage-09606.herokuapp.com/api',
   stripeKey: 'pk_test_51I8hg4IMtClZ7xMeg5PrlOxJEkdkFZJq6QfyxwfSNEb0UjihKYNNQ7vGB9om0T2N5tsS0sxWcy3zDptQfO6jlCO4000lmF02lp',
 };

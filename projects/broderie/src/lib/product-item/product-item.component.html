@@ -1,35 +1,32 @@
-<div>
-  <mat-card-header fxLayoutAlign="center center">
-    <mat-card-title>{{product.title}}</mat-card-title>
-    <mat-card-subtitle fxLayoutAlign="center center">{{product.price}} lei</mat-card-subtitle>
-  </mat-card-header>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <bar-rating [(rate)]="rate" [max]="5" [readOnly]="true" [theme]="'stars'"></bar-rating>
-    <h3>( {{length}} )</h3>
-  </div>
+<div class="full" fxLayout="column" fxLayoutAlign="space-between ">
   <img class="product-image" mat-card-image [src]="product.images[0].url" [alt]="product.title" *ngIf="product.images[0]">
-  <mat-card-content>
 
-<!--    <p>-->
-<!--      {{product.description}}-->
-<!--    </p>-->
-  </mat-card-content>
-  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-button  (click)="navigateToProduct(product)">
-      <mat-icon svgIcon="eye"></mat-icon>
-      Vezi produsul
-    </button>
-    <button mat-button  *ngIf="product && !(product.sold > 0) " (click)="handleAddToCart(product)"
-           [matTooltip]="isAdded ? 'Produsul este adăugat. Verifică coșul de cumpărături' : 'Stoc epuizat momentan. Se poate executa la comandă, în maximum 3 zile lucrătoare. Continuă cumpărăturile (sau adaugă în coș)'">
+  <div>
+    <div fxLayout="row" fxLayoutAlign="center center" >
+      <h1 fxFlex="25"></h1>
+      <bar-rating [(rate)]="rate" [max]="5" [readOnly]="true" [theme]="'stars'" fxFlex="50"></bar-rating>
+      <h3 fxFlex="25">( {{length}} )</h3>
+    </div>
+    <mat-card-header fxLayoutAlign="center stretch">
+      <mat-card-title>{{product.title}}</mat-card-title>
+      <mat-card-subtitle fxLayoutAlign="center center">{{product.price}} lei</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions fxLayout="row wrap" fxLayoutAlign="space-between end">
+      <button mat-button  (click)="navigateToProduct(product)" fxFlex="100">
+        <mat-icon svgIcon="eye"></mat-icon>
+        Vezi produsul
+      </button>
+      <button mat-button  *ngIf="product && !(product.sold > 0) " (click)="handleAddToCart(product)" fxFlex="100"
+              [matTooltip]="isAdded ? 'Produsul este adăugat. Verifică coșul de cumpărături' : 'Stoc epuizat momentan. Se poate executa la comandă, în maximum 3 zile lucrătoare. Continuă cumpărăturile (sau adaugă în coș)'">
         <mat-icon svgIcon="cart"></mat-icon>
-      Adaugă în coș
-    </button>
+        Adaugă în coș
+      </button>
+      <button mat-button (click)="handleAddToCart(product)" *ngIf="product && product.sold > 0" fxFlex="100"
+              [matTooltip]="isAdded ? 'Produsul este adăugat. Verifică coșul de cumpărături' : 'Click pentru a adăuga'">
+        <mat-icon svgIcon="cart"></mat-icon>
+        Adaugă în coș
+      </button>
+    </mat-card-actions>
+  </div>
 
-
-    <button mat-button (click)="handleAddToCart(product)" *ngIf="product && product.sold > 0"
-            [matTooltip]="isAdded ? 'Produsul este adăugat. Verifică coșul de cumpărături' : 'Click pentru a adăuga'">
-      <mat-icon svgIcon="cart"></mat-icon>
-      Adaugă în coș
-    </button>
-  </mat-card-actions>
 </div>

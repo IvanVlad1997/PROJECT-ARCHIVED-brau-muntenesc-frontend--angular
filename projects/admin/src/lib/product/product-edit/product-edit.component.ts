@@ -116,7 +116,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
       const reader = new FileReader();
       reader.onload = async (e: any) => {
           this.localUrl = e.target.result;
-          const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 25, this.token)
+          const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token)
           this.compressedImages.push(imageCompressed)
           console.log(this.compressedImages)
           this.imageIsUploading = false

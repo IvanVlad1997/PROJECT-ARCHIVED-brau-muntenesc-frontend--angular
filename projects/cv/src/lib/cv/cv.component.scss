@@ -1,10 +1,10 @@
 .first {
   background: #00838f;
-  min-height: 300px;
+  min-height: 400px;
 }
 
 .second {
-  min-height: 300px;
+  min-height: 400px;
 }
 
 .third {
@@ -13,8 +13,9 @@
 }
 
 .img1 {
-  width: 30%;
+  width: 50%;
   height: auto;
+  margin: 20px;
 
 }
 
@@ -24,4 +25,20 @@ h1 {
 
 h3 {
   text-align: center;
+}
+
+
+a {
+  color: white;
+  text-decoration: none;
+
+}
+
+a:hover {
+  color: #02c3c3;
+}
+
+button {
+  margin: 10px;
+  min-width: 200px;
 }

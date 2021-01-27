@@ -17,9 +17,11 @@ import { GalerieFotoComponent } from './galerie-foto/galerie-foto.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { GalerieVideoComponent } from './galerie-video/galerie-video.component';
 import { InformatiiComponent } from './informatii/informatii.component';
+import { ParteneriMediaComponent } from './parteneri-media/parteneri-media.component';
+import {CarouselGalerieComponent} from './carousel/carousel-galerie.component';
 
 @NgModule({
-  declarations: [CursuriComponent, PrimaPaginaComponent, CarouselPhotoGalerieComponent, GalerieFotoComponent, GalerieVideoComponent, InformatiiComponent],
+  declarations: [CarouselGalerieComponent, CursuriComponent, PrimaPaginaComponent, CarouselPhotoGalerieComponent, GalerieFotoComponent, GalerieVideoComponent, InformatiiComponent, ParteneriMediaComponent],
   imports: [
     RouterModule.forChild(routes),
     FlexModule,
@@ -32,6 +34,7 @@ import { InformatiiComponent } from './informatii/informatii.component';
     MatIconModule,
     MatListModule,
     MatProgressSpinnerModule,
+
   ],
   exports: []
 })

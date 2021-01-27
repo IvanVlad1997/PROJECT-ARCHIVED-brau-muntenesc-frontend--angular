@@ -69,27 +69,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   this.products = c[0];
                   this.totalAfterDiscount = c[1];
                   this.total = c[2];
-                  let transport: boolean = false;
                   for (let product of this.products) {
                     if (product.product.shipping === 'Nu') {
                       this.isCashOk = false;
-                    } else  {
-                      transport = true;
                     }
                   }
-                  // if (transport) {
-                  //   this.products.push(
-                  //     {
-                  //       product : {
-                  //         title: 'Transport',
-                  //         price: 20
-                  //       },
-                  //       count: 1,
-                  //       description: 'Transport',
-                  //       price: 20
-                  //     },
-                  //   )
-                  // }
                   this.isLoading = false;
                 }
               );

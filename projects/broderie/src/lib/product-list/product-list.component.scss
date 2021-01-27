@@ -1,9 +1,19 @@
-@media only screen and (max-width : 1279px) {
-  .product {
-    margin: 15px;
-  }
-}
+//@media only screen and (max-width : 1279px) {
+//  .product {
+//    margin: 15px;
+//  }
+//}
+
 
 mat-card {
   margin-top: 10px;
+  padding: 0;
+  width: 300px;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+img {
+  margin: 0;
 }

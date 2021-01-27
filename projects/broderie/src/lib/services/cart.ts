@@ -30,11 +30,45 @@ export class CartService {
 
   getCart(): void {
     let cart: Cart[] = [];
+    let existItemsWithTransport = false;
+    let isWithTransport = false;
     if (typeof window !== 'undefined') {
       if (localStorage.getItem('cart')) {
         cart = JSON.parse(localStorage.getItem('cart'));
       }
-      console.log(cart)
+      for (const product of cart) {
+        if (product.product.shipping === 'Da') {
+          existItemsWithTransport = true;
+        }
+        if (product.product.title === 'Transport') {
+          isWithTransport = true;
+        }
+      }
+
+      if (existItemsWithTransport && !isWithTransport)  {
+          cart.push({
+            product: {
+              title : 'Transport',
+              price : 20,
+              brand: '-',
+              images: [
+                {
+                public_id: 'mlldrjyebq7jeqst5chs',
+                url: 'https://res.cloudinary.com/www-braumuntenesc-com/image/upload/v1611668823/grxt2vajsna78rugsbjq.png'
+              },
+              ],
+
+              _id: '601019cbe8f14926543aae60'
+            },
+            count: 1,
+            description: 'Transport',
+          } as any);
+        } else if (!existItemsWithTransport && isWithTransport) {
+        cart = cart.filter((product) => product.product.title !== 'Transport');
+      }
+
+
+      console.log(cart);
       this.cartUpdate.next([...cart]);
     }
   }
@@ -46,44 +80,44 @@ export class CartService {
         productC.count = newCount;
       }
       return productC;
-    })
+    });
     localStorage.setItem('cart', JSON.stringify(newCartArray));
-    this.toastService.success('Cantitatea produsului a fost modificată în coșul de cumpărături!')
+    this.toastService.success('Cantitatea produsului a fost modificată în coșul de cumpărături!');
     this.getCart();
   }
 
   removeAllFromCart(): void {
-    localStorage.setItem('cart', JSON.stringify([]))
-    this.getCart()
+    localStorage.setItem('cart', JSON.stringify([]));
+    this.getCart();
   }
 
   handleRemoveFromCart(slug: string): void {
     const productsInCart: Cart[] = this.cartUpdate.getValue();
     const newCartArray: Cart[] = productsInCart.filter((productC) => {
       return productC.product.slug !== slug;
-    })
+    });
     localStorage.setItem('cart', JSON.stringify(newCartArray));
-    this.toastService.success('Produsul a fost șters din coșul de cumpărături!')
+    this.toastService.success('Produsul a fost șters din coșul de cumpărături!');
     this.getCart();
   }
 
   handlerAddToCart(product: Product): void {
       const productsInCart: Cart[] = this.cartUpdate.getValue();
-      console.log(productsInCart)
+      console.log(productsInCart);
       if (!this.isProductInCart(product)) {
           const newCartArray = [...productsInCart,
             {
-              product: product,
+              product,
               count: 1,
               description: ''
             }
           ];
-          console.log(newCartArray)
+          console.log(newCartArray);
           localStorage.setItem('cart', JSON.stringify(newCartArray));
-          this.toastService.success('Produsul a fost adăugat în coșul de cumpărături!')
+          this.toastService.success('Produsul a fost adăugat în coșul de cumpărături!');
           this.getCart();
       } else {
-          this.toastService.info('Produsul există deja în lista de cumpărături.')
+          this.toastService.info('Produsul există deja în lista de cumpărături.');
       }
     }
 }

@@ -36,10 +36,11 @@ import {UserModule} from '../../../user/src/lib/user.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {QRCodeModule} from 'angularx-qrcode';
 import { QrDialogComponent } from './panou-cursanti/qr-dialog/qr-dialog.component';
+import { UltimaPlataComponent } from './panou-cursanti/ultima-plata/ultima-plata.component';
 
 
 @NgModule({
-  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent],
+  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent, UltimaPlataComponent],
   imports: [
     AgGridModule,
     RouterModule.forChild(routes),

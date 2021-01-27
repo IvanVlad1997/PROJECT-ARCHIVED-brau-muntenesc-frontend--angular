@@ -1,10 +1,13 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center" class="full-height" >
   <div fxFlex="33" fxFlex.lt-md="100" class="first" fxLayoutAlign="center center">
-    <img src="https://i.imgur.com/j6AJwIk.jpg" class="img1" fxFlex="50">
-    <h1 fxFlex="100" fxLayoutAlign="center center">Ivan Vlad Gabriel</h1>
+    <div fxLayout="row wrap" fxLayoutAlign="center center">
+      <img src="https://i.imgur.com/j6AJwIk.jpg" class="img1" >
+      <h1 fxFlex="100" fxLayoutAlign="center center"> <a href="https://github.com/IvanVlad1997">Git: IvanVlad1997</a></h1>
+      <h1 fxFlex="100" fxLayoutAlign="center center"> <a href="https://www.linkedin.com/in/ivanvlad1997/">Linkedin: ivanvlad1997</a></h1>
+    </div>
   </div>
   <div fxFlex fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
-    <h1 fxFlex="100">Locul de muncă vizat: Software developer</h1>
+    <h1 fxFlex="100">Locul de muncă vizat: Junior Software Developer</h1>
     <h1 fxFlex="100">Preferințe: MEAN Stack</h1>
   </div>
   <div fxFlex="33" fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
@@ -15,6 +18,31 @@
     <h3 fxFlex="100">Data naşterii: 12.11.1997 </h3>
     <h3 fxFlex="100">Sex: Bărbătesc </h3>
   </div>
+
+  <div class="third" fxFlex="100" fxLayout="row wrap"  fxLayoutAlign="center center">
+    <h1>Activități preferate</h1>
+  </div>
+  <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
+    <h1 fxFlex="100">Dans</h1>
+    <h3 fxFlex="100">Dansul, în special cel românesc, alături de prieteni, reprezintă o experiență care merită trăită de cât de multe ori se poate.</h3>
+    <h3 fxFlex="100">Îmi place să îî învăț pe oamenii din jurul meu să danseze.</h3>
+    <button mat-raised-button color="accent" [routerLink]="['/platforma-cursuri']">Proiect predare dansuri</button>
+  </div>
+  <div fxFlex fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
+    <h1 fxFlex="100">Programare</h1>
+    <h3 fxFlex="100">În anul 4, semestrul 2, am început să investesc foarte mult timp în a învăța programare.</h3>
+    <h3 fxFlex="100">Din aprilie 2020 până în prezent, au trecut foarte puține zile în care să nu am tangențe cu un IDE plin cu linii de cod.</h3>
+    <h3 fxFlex="100">Vreau să învăț, vreau să mă dezvolt frumos în domeniul acesta.</h3>
+    <button mat-raised-button color="primary" (click)="openProiecte()" >Proiecte</button>
+  </div>
+  <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
+    <h1 fxFlex="100">Schi</h1>
+    <h3 fxFlex="100">Peisaje, adrenalină, amintiri superbe: asta înseamnă a schia pentru mine.</h3>
+    <h3 fxFlex="100">Am învățat să schiez în clasele 5-8. Diriginta mea de sport organiza tabere de schi. Am încercat să nu ratez niciuna.</h3>
+    <h3 fxFlex="100">Am învățat-o pe prietena mea să schieze. Acum încercăm să le arătăm și celor din grupul nostru de prieteni.</h3>
+    <button mat-raised-button color="accent" (click)="openVideoSchi()" >Videoclip</button>
+  </div>
+
   <div class="third" fxFlex="100" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h1>Experiență profesională</h1>
   </div>
@@ -67,11 +95,15 @@
       <h3 fxFlex="100">Ușurință în stabilirea contactelor</h3>
     </div>
     <div fxFlex fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
-      <h3 fxFlex="100">Nivel englez: Mediu</h3>
-      <h3 fxFlex="100">În anul 2020 am început să învăț web development urmărind cursurile în limba engleză de pe Udemy.</h3>
+      <h3 fxFlex="100">Nivel engleză: Mediu</h3>
+      <h3 fxFlex="100">În anul 2020 am început să învăț web development urmărind cursurile în limba engleză de pe Udemy. În plus, am urmărit foarte multe seriale în engleză.</h3>
+
     </div>
     <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
       <h3 fxFlex="100">Permis de conducere: Categoria B</h3>
     </div>
   </div>
 
+<ng-template #header>
+  <p>Ivan Vlad Gabriel</p>
+</ng-template>

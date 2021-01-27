@@ -1,6 +1,10 @@
 <div >
-  <div *ngFor="let image of images">
-    <img [src]="image.imageUrl">
+<!--  <div *ngFor="let image of images">-->
+<!--    <img [src]="image.imageUrl">-->
+<!--  </div>-->
+
+  <div fxLayout="row wrap" fxLayoutAlign="center start">
+    <lib-galerie-carousel [images] = "images" *ngIf="images[0]" fxFlex="100"></lib-galerie-carousel>
   </div>
 </div>
 

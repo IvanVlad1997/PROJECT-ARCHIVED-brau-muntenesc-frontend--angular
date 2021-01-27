@@ -6,7 +6,7 @@ export interface Product {
   subCategory: SubCategory[];
   ratings: any[];
   sold: number;
-  images: string[];
+  images: any[];
   title: string;
   description: string;
   price: number;

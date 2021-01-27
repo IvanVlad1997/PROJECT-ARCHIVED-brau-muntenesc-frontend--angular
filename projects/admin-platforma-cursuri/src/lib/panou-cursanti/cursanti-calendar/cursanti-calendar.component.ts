@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {GalerieVideoEvenimente} from '../../../../../common/galerie-video-evenimente';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {User} from '../../../../../common/user';
 
 @Component({
@@ -8,15 +7,9 @@ import {User} from '../../../../../common/user';
   templateUrl: './cursanti-calendar.component.html',
   styleUrls: ['./cursanti-calendar.component.scss']
 })
-export class CursantiCalendarComponent implements OnInit {
+export class CursantiCalendarComponent {
 
-  constructor( @Inject(MAT_DIALOG_DATA) public user: User,
-               private ref: MatDialogRef<CursantiCalendarComponent>) { }
+  constructor( @Inject(MAT_DIALOG_DATA) public user: User) { }
 
-
-  ngOnInit(): void {
-    console.log(this.user)
-
-  }
 
 }

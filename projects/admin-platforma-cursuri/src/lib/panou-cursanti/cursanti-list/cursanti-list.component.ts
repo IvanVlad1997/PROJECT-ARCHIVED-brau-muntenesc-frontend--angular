@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {User} from '../../../../../common/user';
 import {CursantiService} from '../../services/panou-cursanti';
 import {CursantiListActionsComponent} from '../cursanti-list-actions/cursanti-list-actions.component';
+import {UltimaPlataComponent} from '../ultima-plata/ultima-plata.component';
 
 @Component({
   selector: 'lib-cursanti-list',
@@ -40,6 +41,11 @@ export class CursantiListComponent implements OnInit, OnDestroy {
       headerName: 'Număr',
       field: 'telNum',
       flex: 1
+    },
+    {
+      headerName: 'Ultima Plată',
+      cellRendererFramework: UltimaPlataComponent,
+      width: 150
     }
 
   ];

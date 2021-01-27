@@ -6,6 +6,7 @@ import {User} from '../../../../common/user';
 import {Order} from '../../../../common/order';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {ToastService} from 'angular-toastify';
+import {formatDate} from '@angular/common';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -36,6 +37,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
     } else {
       amount = this.order.paymentIntent.amount / 100;
     }
+    const formattedDate = formatDate(new Date(), 'dd/MM/yyyy', 'ro-RO')
     const docDefinition = {
       content: [
         {
@@ -53,7 +55,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
           color: 'skyblue'
         },
         {
-          text: `Număr ${new Date().getTime()}`,
+          text: `Număr ${this.order.orderNumber}`,
           alignment: 'right'
         },
         {
@@ -61,13 +63,13 @@ export class UserHistoryProductsTableComponent implements OnInit {
           alignment: 'right'
         },
         {
-          text: `Dată: ${new Date().toLocaleString()}`,
+          text: `Dată: ${formattedDate}`,
           alignment: 'right'
         },
         {
           columns: [
             {
-              text: 'Brâu Muntenesc',
+              text: 'Brâu Muntenesc SRL',
               style: 'sectionHeader'
             },
             {
@@ -86,12 +88,13 @@ export class UserHistoryProductsTableComponent implements OnInit {
               { text: 'C.I.F: 41123710' },
               { text: 'Banca: ING BANK' },
               { text: 'Cod IBAN: RO73INGB0000999909056584' },
-              { text: 'Capital Social: 200.00' },
+              { text: 'Capital Social: 200 lei' },
             ],
             [
               { text: `Cumpărător: ${this.user.name}` },
               { text: `Sediul/Adresa: ${this.user.address[1]}` },
               { text: `Email: ${this.user.email}` },
+              { text: `Număr de telefon: ${this.user.telNum}` },
               // { text: 'Nr.ord.reg.om./an: .........' },
               // { text: 'C.I.F/ CNP: .......' },
               // { text: 'Banca: ........' },
@@ -104,13 +107,10 @@ export class UserHistoryProductsTableComponent implements OnInit {
           style: 'sectionHeader'
         },
         {
-          text: `Id-ul comenzii: ${this.order.paymentIntent.id}`,
+          text: `Id-ul comenzii: ${this.order._id}`,
         },
         {
           text: `Statusul comenzii: ${this.order.orderStatus}`,
-        },
-        {
-          text: `Total de plată: ${amount}`,
         },
         {
           text: 'Produse',
@@ -127,11 +127,14 @@ export class UserHistoryProductsTableComponent implements OnInit {
           }
         },
         {
+          text: `Total de plată: ${amount}`,
+          style: 'sectionHeader'
+        },
+        {
           text: `Firmă neplătitoare de TVA`,
         },
         {
-          text: `Conform art. 319 alin. (29) din Legea nr. 227/2015 privind Codul Fiscal, factura este valabilă fără semnătură și ștampilă
-                Plată numerar/POS ramburs, Plata numerar/POS cu bon fiscal/chitanță`,
+          text: `Conform art. 319 alin. (29) din Legea nr. 227/2015 privind Codul Fiscal, factura este valabilă fără semnătură și ștampilă`
         },
         {
           text: `Date privind expediția: Curier`,
@@ -155,7 +158,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
 
 
   sendInvoice(): void {
-    this.nodemailer.infoMail('SOLICITARE FACTURA FISCALA', `<h1>COMANDA ${JSON.stringify(this.order.paymentIntent.id)}</h1> <h1>EMAIL ${this.user.email}</h1>`)
+    this.nodemailer.infoMail('SOLICITARE FACTURA FISCALA', `<h1>COMANDA ${JSON.stringify(this.order)}</h1> <h1>EMAIL ${this.user.email}</h1>`)
     this.toastService.info(`Solicitarea a fost trimisă. Veți primi factura pe mail în cel mai scurt timp posibil. Dacă există nelămuriri, sunați la 0751105873.`)
   }
 }

@@ -28,7 +28,7 @@ export class PaginaPrincipalaComponent implements OnInit, OnDestroy {
 
   columnDefs = [
     {
-      headerName: 'Actions',
+      headerName: 'Acțiuni',
       cellRendererFramework: VideoListActionsComponent,
       width: 150
     },
