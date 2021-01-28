@@ -10,7 +10,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import auth = firebase.auth;
 import {BehaviorSubject} from 'rxjs';
-import {UserService} from "../../../../user/src/lib/services/user";
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 
 
@@ -145,7 +144,7 @@ export class AuthService {
     );
   }
 
-  updateMany(email: string, telNum: number, address: string, isDancer: boolean, name: string ): void {
+  updateMany(email: string, telNum: number, address: string[], isDancer: boolean, name: string ): void {
     let token = this.isAuthenticated.getValue();
     this.http.post(`${environment.appApi}/user/update-many`,
       {
@@ -166,7 +165,7 @@ export class AuthService {
   }
 
 
-  async signUp(email: string, password: string, telNum: number, address: string, isDancer: boolean, name: string): Promise<void> {
+  async signUp(email: string, password: string, telNum: number, address: string[], isDancer: boolean, name: string): Promise<void> {
     let other = {
       email: email,
       telNum: telNum,
@@ -182,10 +181,10 @@ export class AuthService {
                 </br>
                 <p>Email: ${email}</p>
                 <p>Număr de telefon ${telNum}</p>
-                <p>Pentru dansuri: ${isDancer}}</p>`)
+                <p>Pentru dansuri: ${isDancer ? 'Da' : 'Nu'}</p>`)
         await this.updateMany(email, telNum, address, isDancer, name);
         this.nodemailer.targetMail(`Cont Brâu Muntenesc`,
-          `<h1>Îți mulțumim pentru crearea unui cont pe Brâu Muntenesc®. Poți accesa zona contului pentru a-ți vedea comenzile, pentru a-ți schimba parola și altele la: https://www.braumuntenesc.com/user De-abia așteptăm să te revedem!”</h1>` ,
+          `<h1>Îți mulțumim pentru crearea unui cont pe Brâu Muntenesc®. Poți accesa contul pentru a-ți vedea comenzile, pentru a-ți schimba parola și altele la: https://www.braumuntenesc.com/user De-abia așteptăm să te revedem!”</h1>` ,
           [email]
           );
       })

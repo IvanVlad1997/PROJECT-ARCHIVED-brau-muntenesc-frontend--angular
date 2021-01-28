@@ -53,8 +53,8 @@ export class CartService {
               brand: '-',
               images: [
                 {
-                public_id: 'mlldrjyebq7jeqst5chs',
-                url: 'https://res.cloudinary.com/www-braumuntenesc-com/image/upload/v1611668823/grxt2vajsna78rugsbjq.png'
+                public_id: 'ailj1xauedpc8fmpkjgc',
+                url: 'https://res.cloudinary.com/www-braumuntenesc-com/image/upload/v1611827832/ailj1xauedpc8fmpkjgc.jpg'
               },
               ],
 

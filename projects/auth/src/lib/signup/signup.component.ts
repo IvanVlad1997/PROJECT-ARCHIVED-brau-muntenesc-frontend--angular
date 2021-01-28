@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
   email: string;
   password: string;
   address: string;
+  properAddress: string[];
   telNum: number;
   isDancer: boolean = false;
   isOkPrivacy: boolean = false
@@ -40,7 +41,8 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
   }
 
   async register(form: any): Promise<void> {
-    await this.authService.signUp(this.email, this.password, this.telNum, this.address, this.isDancer, this.name);
+    this.properAddress = [this.address, this.address]
+    await this.authService.signUp(this.email, this.password, this.telNum, this.properAddress, this.isDancer, this.name);
     this.toastService.success(`Înregistrarea cu emailul: ${this.email} s-a realizat cu succes!`);
     form.resetForm();
 

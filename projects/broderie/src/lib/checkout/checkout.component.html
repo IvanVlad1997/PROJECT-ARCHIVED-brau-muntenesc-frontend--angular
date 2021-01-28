@@ -21,12 +21,12 @@
     <h4 fxFlex="100" fxLayoutAlign="center center">Rezumatul comenzii:</h4>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <p fxFlex="100" fxLayoutAlign="center center" *ngFor="let product of products">{{product.product.title}} x {{product.count}} - Preț: {{product.product.price * product.count}} lei </p>
-    <p fxFlex="100" fxLayoutAlign="center center">Total Comandă {{total}}</p>
-    <p *ngIf="totalAfterDiscount" fxFlex="100" fxLayoutAlign="center center">Total dupa discount {{totalAfterDiscount}}</p>
+    <p fxFlex="100" fxLayoutAlign="center center">Total Comandă {{total}} lei</p>
+    <p *ngIf="totalAfterDiscount" fxFlex="100" fxLayoutAlign="center center">Total dupa discount {{totalAfterDiscount}} lei</p>
     <p fxFlex="100" fxLayoutAlign="center center">Adresa salvata: {{savedAddress}}</p>
     <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center" >
-      <button class="button" color="accent" mat-raised-button [disabled]="savedAddress === '\n'" (click)="goToPayment()">Finalizează comanda - plată online</button>
-      <button class="button" color="accent" mat-raised-button [disabled]="savedAddress === '\n' || !isCashOk" (click)="cashOrder()">Finalizează comanda - plată cash la livrare</button>
+      <button class="button" color="accent" mat-raised-button [disabled]="!savedAddress || savedAddress === '\n'"  (click)="goToPayment()">Finalizează comanda - plată online</button>
+      <button class="button" color="accent" mat-raised-button [disabled]="!savedAddress || savedAddress === '\n' || !isCashOk" (click)="cashOrder()">Finalizează comanda - plată cash la livrare</button>
       <button class="button" color="warn" mat-raised-button (click)="emptyUserCart()">Golește coșul de cumpărături</button>
     </div>
   </div>

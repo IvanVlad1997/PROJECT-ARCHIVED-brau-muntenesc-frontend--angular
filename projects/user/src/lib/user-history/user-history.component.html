@@ -1,7 +1,7 @@
 <div class="full-height" >
   <ng-container *ngIf="!loading" >
     <div *ngIf="orders.length>0" class="order-title margin-top-1">
-      {{orders.length}} comenzi
+      {{orders.length}} comenzi - Dacă doriți anularea unei comenzi, sunați la numărul 0761/532.885
       <div *ngFor="let order of orders" class="border-user-history">
         <lib-user-history-products-table [order] = "order"></lib-user-history-products-table>
       </div>
@@ -13,5 +13,4 @@
   <div fxLayout="row" fxLayoutAlign="space-around center" *ngIf="loading" >
     <mat-spinner class="spinner"></mat-spinner>
   </div>
-
 </div>

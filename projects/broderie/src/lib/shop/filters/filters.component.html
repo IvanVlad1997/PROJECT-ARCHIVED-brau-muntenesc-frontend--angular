@@ -1,10 +1,13 @@
-<div fxHide.gt-sm>
-  <mat-icon mat-icon-button (click)="toggleFiltersAction()" fxFlex.gt-md="true" svgIcon="arrow-left-bold"></mat-icon>
+<div fxLayout="column" fxLayoutAlign="space-around center" >
+  <div fxHide.gt-sm>
+    <mat-icon mat-icon-button color="primary" class="icon-arrow" (click)="toggleFiltersAction()" fxFlex.gt-md="true" svgIcon="arrow-left-bold"></mat-icon>
+  </div>
+  <button mat-raised-button (click)="resetFilters()" color="accent"> Resetează filtrele </button>
+  <div fxHide.gt-md="" fxLayout="row" fxLayoutAlign="space-around center" >
+    <lib-search ></lib-search>
+  </div>
 </div>
-<button mat-raised-button (click)="resetFilters()"> Resetează filtrele </button>
-<div fxHide.gt-md="" fxLayout="row" fxLayoutAlign="space-around center" >
-  <lib-search ></lib-search>
-</div>
+
 <div mat-icon-button color="warn" (click)="togglePrice()" fxLayout="row" fxLayoutAlign="space-around center">
   <h4>Preț</h4>
   <mat-icon *ngIf="priceShow" svgIcon="chevron-down"></mat-icon>

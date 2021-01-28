@@ -2,7 +2,7 @@
   <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center">
     <span></span>
     <h1 *ngIf="video && video.name" fxLayoutAlign="center center" >{{video.name}}</h1>
-    <button mat-icon-button (click)="openOverlay()"><mat-icon svgIcon="menu-open"></mat-icon></button>
+    <button mat-icon-button (click)="openOverlay()"><mat-icon class="icon-arrow" svgIcon="menu-open"></mat-icon></button>
   </div>
 
   <div fxFlex="80" plyr [plyrOptions]="options" class="margins"

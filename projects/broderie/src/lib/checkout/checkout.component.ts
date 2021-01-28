@@ -9,6 +9,7 @@ import {ContentChange} from 'ngx-quill';
 import {ChangeDetectorRef } from '@angular/core';
 import {Router} from '@angular/router';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
+import {User} from '../../../../common/user';
 
 @Component({
   selector: 'lib-checkout',
@@ -39,6 +40,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   address = '';
   addressContent = '';
   savedAddress = '\n';
+  authSubscription1: Subscription;
+  user: User;
 
   cuponInput = '';
   // cuponError: boolean = false;
@@ -49,7 +52,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     toolbar: [
       [{ header: [1, 2, false] }],
       ['bold', 'italic', 'underline'],
-      ['image', 'code-block']
+      ['code-block']
     ]
   };
 
@@ -69,7 +72,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   this.products = c[0];
                   this.totalAfterDiscount = c[1];
                   this.total = c[2];
-                  for (let product of this.products) {
+                  for (const product of this.products) {
                     if (product.product.shipping === 'Nu') {
                       this.isCashOk = false;
                     }
@@ -92,6 +95,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           }
         }
       );
+    this.authSubscription1 = this.authService.user
+      .subscribe(
+        (user) => this.user = user
+      );
   }
 
 
@@ -99,6 +106,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
+    }
+    if (this.authSubscription1) {
+      this.authSubscription1.unsubscribe();
     }
     if (this.tokenSubscription) {
       this.tokenSubscription.unsubscribe();
@@ -168,11 +178,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       .subscribe(
         (res) => {
           let textProduse: string;
-          for (let product of res.products) {
-            textProduse = textProduse + `<br/>${product.product.title} ${product.count}`
-          }
-          this.nodemailer.targetMail('Comanda cash noua', `<h1>${textProduse}</h1><h1>${JSON.stringify(res)}</h1>`, ['braumuntenesc@gmail.com', 'mariana@telegrama.ro'])
-          console.log('User Cash Order Res', res)
+          console.log(res)
+          res.userCart.products.forEach(product => {
+            textProduse = textProduse + `<br/>${product.product.title} ${product.count}`;
+          })
+          this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată la livrare pentru Brâu Muntenesc a fost trimisă.</h1></h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, ['braumuntenesc@gmail.com', 'mariana@telegrama.ro', this.user.email])
           this.cartService.removeAllFromCart();
           this.userService.emptyUserCart();
           this.toastService.success('Comanda a fost preluată')

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from '../environments/environment';
+import {Meta} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,12 @@ import {environment} from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor() {
+  constructor(private meta: Meta) {
+    this.meta.addTag({
+      name: 'description',
+      content: `Cursuri de dansuri populare, broderie personalizată - realizare ie, participare la evenimente. Sună acum la 0751/105.873 pentru mai multe informații.`
+    })
   }
-
 
   ngOnInit(): void {
 

@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     toolbar: [
       [{ header: [1, 2, false] }],
       ['bold', 'italic', 'underline'],
-      ['image', 'code-block']
+      [ 'code-block']
     ]
   };
 

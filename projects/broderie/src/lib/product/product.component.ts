@@ -47,6 +47,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    if (this.route.snapshot.params.slug === 'transport') {
+      this.router.navigate(['/broderie'])
+    }
     this.authSubscription = this.authService.user.subscribe((user) => {
       this.user = user;
     });

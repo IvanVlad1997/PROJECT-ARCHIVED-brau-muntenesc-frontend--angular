@@ -126,8 +126,8 @@ export class UserService {
         }
       })
   }
-  createNewCashOrder(token: string): Observable<Order> {
-    return this.http.post<Order>(`${environment.appApi}/user/cash-order`,
+  createNewCashOrder(token: string): Observable<any> {
+    return this.http.post<any>(`${environment.appApi}/user/cash-order`,
       {},
       {
         headers: {
@@ -272,7 +272,7 @@ export class UserService {
       .subscribe(
         (data) => {
          if (data) {
-           this.nodemailer.infoMail('Plata', `<h1>${JSON.stringify(data)}</h1>`);
+           this.nodemailer.infoMail('Plată abonament adăugată în calendar', `<h1>${JSON.stringify(data)}</h1>`);
            this.nodemailer.targetMail('Plata Brâu Muntenesc', `<h1>Plata fost adăugată în calendar</h1>
             <p>Plata în data ${payment.date} a fost adăugată în calendar cu titlul: ${payment.title} pentru contul cu emailul: ${email}</p>`, [email] )
            this.toastService.success('Plata a fost adăugată ')

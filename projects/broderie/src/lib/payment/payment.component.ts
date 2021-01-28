@@ -172,7 +172,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
                               const date = new Date();
                               const locale = 'ro-RO';
                               const formattedDate = formatDate(date, format, locale);
-                              let payment = {
+                              const payment = {
                                 title : `Plată  curs online - 80 - abonament`,
                                 date: formattedDate,
                                 color: 'green'
@@ -181,11 +181,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
                             }
                           }
                         }
-                        let textProduse: string;
+                        let textProduse: string = '';
                         for (const product of ok.products) {
                           textProduse = textProduse + `<br/>${product.product.title} ${product.count}`
                         }
-                        this.nodemailer.targetMail('Comanda cash noua', `<h1>${textProduse}</h1><h1>${JSON.stringify(ok)}</h1>`, ['braumuntenesc@gmail.com', 'mariana@telegrama.ro'])
+                        this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată online pentru Brâu Muntenesc a fost trimisă.</h1></h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, ['braumuntenesc@gmail.com', 'mariana@telegrama.ro', this.user.email])
                         this.cartService.removeAllFromCart();
                         this.userService.emptyUserCart();
                       }
