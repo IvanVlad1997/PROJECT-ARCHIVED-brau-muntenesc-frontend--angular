@@ -3,7 +3,7 @@
 }
 
 
-.sidenav-container {
+.side-class {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -11,7 +11,7 @@
   right: 0;
 }
 
-.main-sidenav {
+.side {
   @media screen and (max-width: 960px) {
     width:100vw;
   }

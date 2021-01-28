@@ -1,5 +1,5 @@
-<mat-sidenav-container fxFlexFill class="sidenav-container">
-  <mat-sidenav mode="side" fixedInViewport class="main-sidenav" #sidenav [(opened)]="isOpened">
+<mat-sidenav-container fxFlexFill class="side-class">
+  <mat-sidenav mode="side" fixedInViewport class="side" #sidenav [(opened)]="openedSide">
     <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" color="primary" fxShow.gt-sm="false">
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon svgIcon="arrow-left"></mat-icon>

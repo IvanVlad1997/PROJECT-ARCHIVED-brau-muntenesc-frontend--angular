@@ -16,36 +16,32 @@ export class LayoutComponent implements OnInit, OnDestroy {
               private authService: AuthService
   ) { }
 
-  foods: any[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
 
-  isOpened: boolean = false;
-  component: object;
+
+  openedSide: boolean = false;
+  object: object;
   isAuthenticated: string = '';
   isAuthSubscription: Subscription;
   isAdminSubscription: Subscription;
   isAdmin: boolean = false;
 
   get header(): TemplateRef<any> {
-    if (this.component && TypeGuards.isHeaderAwareComponent(this.component)) {
-      return this.component.header;
+    if (this.object && TypeGuards.isHeaderAwareComponent(this.object)) {
+      return this.object.header;
     }
     return undefined;
   }
 
   get search(): TemplateRef<any> {
-    if (this.component && TypeGuards.isSearchAwareComponent(this.component)) {
-      return this.component.search;
+    if (this.object && TypeGuards.isSearchAwareComponent(this.object)) {
+      return this.object.search;
     }
     return undefined;
   }
 
   get options(): TemplateRef<any> {
-    if (this.component && TypeGuards.isOptionsAwareComponent(this.component)) {
-      return this.component.options;
+    if (this.object && TypeGuards.isOptionsAwareComponent(this.object)) {
+      return this.object.options;
     }
     return undefined;
   }
@@ -53,7 +49,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.router.events.pipe(takeUntil(this.onDestroy$)).subscribe(value => {
       if (value instanceof NavigationStart) {
-        this.isOpened = false;
+        this.openedSide = false;
       }
     });
 
@@ -77,12 +73,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   }
 
-  public componentChangeed(component: object): void {
-    this.component = component;
+  public componentChangeed(object: object): void {
+    this.object = object;
   }
 
   public clearComponent(): void {
-    delete this.component;
+    delete this.object;
   }
 
   public ngOnDestroy(): void {
