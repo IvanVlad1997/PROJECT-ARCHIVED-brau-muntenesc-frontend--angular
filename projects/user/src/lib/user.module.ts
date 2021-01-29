@@ -29,6 +29,8 @@ import { registerLocaleData } from '@angular/common';
 import localesRO from "@angular/common/locales/ro";
 import { PresenceHistoryComponent } from './presence-history/presence-history.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { ProductItemComponent } from './wishlist/product-item/product-item.component';
+import {BarRatingModule} from 'ngx-bar-rating';
 registerLocaleData(localesRO, "ro");
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -38,26 +40,27 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 
 
 @NgModule({
-  declarations: [UserHistoryComponent, UserComponent, PasswordComponent, WishlistComponent, UserHistoryProductsTableComponent, DashboardComponent, ChangeUserPropDialogComponent, CalendarComponent, PresenceHistoryComponent],
-    imports: [
-        RouterModule.forChild(routes),
-        MatListModule,
-        MatIconModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        FlexModule,
-        CommonModule,
-        MatButtonModule,
-        MatInputModule,
-        FormsModule,
-        MatDialogModule,
-        ExtendedModule,
-        MatCardModule,
-        QuillModule.forRoot(),
-        QRCodeModule,
-        FullCalendarModule,
-        MatTooltipModule
-    ],
+  declarations: [UserHistoryComponent, UserComponent, PasswordComponent, WishlistComponent, UserHistoryProductsTableComponent, DashboardComponent, ChangeUserPropDialogComponent, CalendarComponent, PresenceHistoryComponent, ProductItemComponent],
+  imports: [
+    RouterModule.forChild(routes),
+    MatListModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    FlexModule,
+    CommonModule,
+    MatButtonModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
+    ExtendedModule,
+    MatCardModule,
+    QuillModule.forRoot(),
+    QRCodeModule,
+    FullCalendarModule,
+    MatTooltipModule,
+    BarRatingModule
+  ],
   exports: [CalendarComponent]
 })
 export class UserModule {}

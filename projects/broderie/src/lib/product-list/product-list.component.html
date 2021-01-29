@@ -1,6 +1,6 @@
 <div  fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
   <ng-container  *ngFor="let product of products; let i = index">
-    <mat-card class="product" >
+    <mat-card>
       <lib-product-item [product]="product" ></lib-product-item>
     </mat-card>
   </ng-container>

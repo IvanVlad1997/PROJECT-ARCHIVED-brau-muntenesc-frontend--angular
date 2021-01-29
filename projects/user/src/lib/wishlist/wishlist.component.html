@@ -1,26 +1,13 @@
-<div class="full-height"  fxLayout="row wrap"  fxLayoutAlign="space-around center"  >
+<div class="full-height"  fxLayout="row wrap"  fxLayoutAlign="space-evenly stretch" >
   <div *ngIf="products && products.length === 0">
     <h1>Nu sunt produse adăugate la favorite.</h1>
   </div>
-  <div  *ngFor="let product of products" class="card-wishlist" fxLayout="row wrap"  fxLayoutAlign="space-around center"  fxFlex.gt-md="21" fxFlex="30" fxFlex.lt-md="80">
-     <div fxFlex="100">
-       <mat-card >
-         <mat-card-title fxLayout="row wrap"  fxLayoutAlign="space-around center">
-           <span>{{product.title}}</span>
-           <span class="price">{{product.price}} lei</span>
-         </mat-card-title>
-         <img class="product-image" mat-card-image [src]="product.images[0].url" [alt]="product.title" *ngIf="product.images[0]" >
-         <mat-card-actions fxLayoutAlign="space-between center" >
-           <button mat-button color="warn" (click)="removeFromWishlist(product._id)">Șterge de la favorite</button>
-           <button mat-button (click)="handleAddToCart(product)"
-                   [routerLink]="['/broderie/cart']"
-                   [matTooltip]="'Adaugă în coș'">
-             <mat-icon svgIcon="cart"></mat-icon>
-             Adaugă în coș
-           </button>
-         </mat-card-actions>
-       </mat-card>
-     </div>
-  </div>
+  <ng-container  *ngFor="let product of products; let i = index">
+    <mat-card>
+      <lib-product-item [product]="product" ></lib-product-item>
+    </mat-card>
+  </ng-container>
 </div>
+
+
 
