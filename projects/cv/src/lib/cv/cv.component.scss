@@ -1,10 +1,10 @@
 .first {
   background: #00838f;
-  min-height: 400px;
+  min-height: 450px;
 }
 
 .second {
-  min-height: 400px;
+  min-height: 450px;
 }
 
 .third {
@@ -40,5 +40,18 @@ a:hover {
 
 button {
   margin: 10px;
-  min-width: 200px;
+  min-width: 300px;
+  position: absolute;
+  bottom: 5px;
+}
+
+.button {
+  margin: 10px;
+  min-width: 300px;
+  position: absolute;
+  bottom: 5px;
+}
+
+div {
+  position: relative;
 }

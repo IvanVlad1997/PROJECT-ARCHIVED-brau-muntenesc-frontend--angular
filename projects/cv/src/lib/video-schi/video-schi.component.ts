@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import * as Plyr from 'plyr';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'lib-video-schi',
@@ -8,10 +9,10 @@ import * as Plyr from 'plyr';
 })
 export class VideoSchiComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
   videoSources: Plyr.Source[] = [
     {
-      src: 'd99MSvw4eTM',
+      src: this.data.src,
       provider: 'youtube',
     },
   ];

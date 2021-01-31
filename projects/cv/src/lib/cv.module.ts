@@ -8,11 +8,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ProiecteProgramareComponent } from './proiecte-programare/proiecte-programare.component';
 import { VideoSchiComponent } from './video-schi/video-schi.component';
 import {PlyrModule} from 'ngx-plyr';
+import { CursuriUdemyComponent } from './imagine/cursuri-udemy.component';
 
 
 
 @NgModule({
-  declarations: [CvComponent, ProiecteProgramareComponent, VideoSchiComponent],
+  declarations: [CvComponent, ProiecteProgramareComponent, VideoSchiComponent, CursuriUdemyComponent],
   imports: [
     RouterModule.forChild(routes),
     FlexModule,

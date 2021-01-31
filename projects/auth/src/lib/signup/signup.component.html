@@ -1,4 +1,7 @@
-<div fxLayout="row" fxLayoutAlign="space-around center" class="full-height" >
+<div fxLayout="row" fxLayoutAlign="space-around center" class="full-height"  *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around center" class="full-height" *ngIf="!loading">
 <!--  <div *ngIf="isLoading">-->
 <!--    <app-loading-spinner></app-loading-spinner>-->
 <!--  </div>-->

@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy, HeaderAwareComponent {
   userAuthServiceSubscription: Subscription;
   @ViewChild('header' , {static : true})
   public header: TemplateRef<any>;
+  loading: boolean = false;
 
   constructor(
               private angularFirebaseAuth: AngularFireAuth,
@@ -36,8 +37,11 @@ export class LoginComponent implements OnInit, OnDestroy, HeaderAwareComponent {
     });
   }
 
-  login(form: NgForm): void {
-    this.authService.login(this.email, this.password);
+  async login(form: NgForm): Promise<void> {
+    this.loading = true;
+    await this.authService.login(this.email, this.password);
+
+    this.loading = false;
   }
 
   async loginWithGoogle(): Promise<void> {

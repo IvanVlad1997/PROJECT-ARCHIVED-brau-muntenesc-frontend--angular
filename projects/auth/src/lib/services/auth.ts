@@ -93,7 +93,9 @@ export class AuthService {
           }
         )
           .subscribe(async (data: User) => {
-            await this.updateMany(other.email, other.telNum, other.address, other.isDancer, other.name);
+            if (other) {
+              await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
+            }
             await this.getCurrentUser(token)
             await this.roleBaseRedirect(data.role)
           });

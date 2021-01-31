@@ -1,17 +1,17 @@
 
-<div fxLayout="column" fxLayoutAlign="space-around center" class="preturi" >
-  <h1>Prețuri</h1>
-  <div *ngFor="let price of prices">
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="preturi" >
+  <h1 fxFlex="100" fxLayoutAlign="center center">Prețuri</h1>
+  <div fxFlex="100" *ngFor="let price of prices" fxLayoutAlign="center center">
       {{price.category}} - {{price.price}} lei
   </div>
 </div>
 
 <div fxLayout="column" fxLayoutAlign="space-around center" class="program">
   <h1>Program</h1>
-  <div *ngFor="let prog of program" fxLayoutAlign="center center">
+  <div *ngFor="let prog of program" fxLayoutAlign="space-between center" class="grupa">
     {{prog.category}} - {{prog.interval}}
-    <mat-icon mat-list-icon *ngIf="prog.status" svgIcon="play-circle" color="primary"></mat-icon>
-    <mat-icon mat-list-icon *ngIf="!prog.status" svgIcon="pause-octagon" color="warn"></mat-icon>
+    <span *ngIf="prog.status" fxLayout="row"  fxLayoutAlign="center center"><mat-icon mat-list-icon  svgIcon="play-circle" color="primary"></mat-icon><p>Grupă activă</p></span>
+    <span *ngIf="!prog.status" fxLayout="row" fxLayoutAlign="center center"><mat-icon mat-list-icon  svgIcon="pause-octagon" color="warn"></mat-icon><p>Grupă inactivă</p></span>
   </div>
 </div>
 

@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
   telNum: number;
   isDancer: boolean = false;
   isOkPrivacy: boolean = false
+  loading: boolean = false;
 
   user: any;
   userAuthServiceSubscription: Subscription;
@@ -41,10 +42,12 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
   }
 
   async register(form: any): Promise<void> {
+    this.loading = true;
     this.properAddress = [this.address, this.address]
     await this.authService.signUp(this.email, this.password, this.telNum, this.properAddress, this.isDancer, this.name);
     this.toastService.success(`Înregistrarea cu emailul: ${this.email} s-a realizat cu succes!`);
     form.resetForm();
+    this.loading = false
 
   }
 

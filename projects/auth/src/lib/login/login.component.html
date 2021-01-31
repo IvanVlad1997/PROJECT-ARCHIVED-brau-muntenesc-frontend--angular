@@ -1,4 +1,7 @@
-<div fxLayout="column" fxLayoutAlign="center center" class="full-height">
+<div fxLayout="column" fxLayoutAlign="center center" class="full-height" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div fxLayout="column" fxLayoutAlign="center center" class="full-height" *ngIf="!loading">
   <h1>Intră în cont</h1>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="login(form)" #form="ngForm" fxLayout="row wrap" fxLayoutAlign="space-around center" *ngIf="!isLoading" >

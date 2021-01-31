@@ -2,6 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ProiecteProgramareComponent} from '../proiecte-programare/proiecte-programare.component';
 import {VideoSchiComponent} from '../video-schi/video-schi.component';
+import {CursuriUdemyComponent} from '../imagine/cursuri-udemy.component';
 
 @Component({
   selector: 'lib-cv',
@@ -23,7 +24,63 @@ export class CvComponent implements OnInit {
   }
 
   openVideoSchi(): void {
-    this.dialog.open(VideoSchiComponent)
+    this.dialog.open(VideoSchiComponent,
+      {
+        data: {
+          src: 'd99MSvw4eTM',
+          title: 'Videoclip schi'
+        }
+      })
+  }
+
+  openVideoLicenta(): void {
+    this.dialog.open(VideoSchiComponent,
+      {
+        data: {
+          src: 'vQhfeJvNDyQ',
+          title: 'Proiect de diplomă'
+        }
+      })
+  }
+
+  openUdemyImage(): void {
+    this.dialog.open(CursuriUdemyComponent,
+      {
+        data: {
+          src: 'https://i.imgur.com/ZINMClC.png',
+          title: 'Cursuri Udemy'
+        }
+      })
+  }
+
+  openLicentaImage(): void {
+    this.dialog.open(CursuriUdemyComponent,
+      {
+        data: {
+          src: 'https://i.imgur.com/OkIur5N.jpg',
+          title: 'Adeverință licență'
+        }
+      })
+  }
+
+  openDansuriImage(): void {
+    this.dialog.open(CursuriUdemyComponent,
+      {
+        data: {
+          src: 'https://i.imgur.com/sFEh9s2.jpg',
+          title: 'Certificat instructor dans'
+        }
+      })
+  }
+
+  openAntreprenoriatImage(): void {
+    this.dialog.open(CursuriUdemyComponent,
+      {
+        data: {
+          src: 'https://i.imgur.com/priIr89.jpg',
+          title: 'Certificat antreprenoriat'
+        }
+      })
   }
 
 }
