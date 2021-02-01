@@ -9,11 +9,12 @@ import { ProiecteProgramareComponent } from './proiecte-programare/proiecte-prog
 import { VideoSchiComponent } from './video-schi/video-schi.component';
 import {PlyrModule} from 'ngx-plyr';
 import { CursuriUdemyComponent } from './imagine/cursuri-udemy.component';
+import { FrozenLogicComponent } from './frozen-logic/frozen-logic.component';
 
 
 
 @NgModule({
-  declarations: [CvComponent, ProiecteProgramareComponent, VideoSchiComponent, CursuriUdemyComponent],
+  declarations: [CvComponent, ProiecteProgramareComponent, VideoSchiComponent, CursuriUdemyComponent, FrozenLogicComponent],
   imports: [
     RouterModule.forChild(routes),
     FlexModule,

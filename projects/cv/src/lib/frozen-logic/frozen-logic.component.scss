@@ -1,0 +1,17 @@
+p {
+  background: #00838f;
+  padding: 10px;
+  min-height: 50px;
+  border-radius: 20px;
+  color: white;
+}
+
+p:hover {
+  background: #00695c;
+  color: #02c3c3;
+  cursor: none;
+}
+
+.mat-dialog-content {
+  min-width: 70vw;
+}

@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ProiecteProgramareComponent} from '../proiecte-programare/proiecte-programare.component';
 import {VideoSchiComponent} from '../video-schi/video-schi.component';
 import {CursuriUdemyComponent} from '../imagine/cursuri-udemy.component';
+import {FrozenLogicComponent} from '../frozen-logic/frozen-logic.component';
 
 @Component({
   selector: 'lib-cv',
@@ -22,6 +23,11 @@ export class CvComponent implements OnInit {
   openProiecte(): void {
     this.dialog.open(ProiecteProgramareComponent)
   }
+
+  openFrozen(): void {
+    this.dialog.open(FrozenLogicComponent)
+  }
+
 
   openVideoSchi(): void {
     this.dialog.open(VideoSchiComponent,

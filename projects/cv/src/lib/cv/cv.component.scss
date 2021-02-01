@@ -52,6 +52,11 @@ button {
   bottom: 5px;
 }
 
+button:hover, .button:hover {
+  background: #5469d4;
+  color: #02c3c3;
+}
+
 div {
   position: relative;
 }
