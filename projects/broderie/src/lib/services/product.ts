@@ -43,13 +43,14 @@ export class ProductService {
   }
 
   createProduct(product: Product): void {
+     let token: string = this.authService.tokenAdmin.getValue();
      this.http.post<Product>(`${environment.appApi}/product`,
       {
         product
       },
       {
         headers: {
-          authtoken: this.token
+          authtoken: token
         }
       })
       .subscribe(success => {
@@ -64,13 +65,14 @@ export class ProductService {
   }
 
   updateProduct(slug: string, product: Product): void {
+    let token: string = this.authService.tokenAdmin.getValue();
     this.http.put<Product>(`${environment.appApi}/product/${slug}`,
       {
         product
       },
       {
         headers: {
-          authtoken: this.token
+          authtoken: token
         }
       })
       .subscribe(p => {

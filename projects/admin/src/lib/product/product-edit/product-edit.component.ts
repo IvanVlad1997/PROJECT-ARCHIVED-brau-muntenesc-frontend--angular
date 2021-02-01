@@ -24,7 +24,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   imageIsUploading: boolean = false
   file: any;
   localUrl: any;
-  sizeOFCompressedImage:number;
+  sizeOFCompressedImage: number;
   compressedImages: any[] = [];
   saveClicked: boolean = false
 

@@ -114,7 +114,7 @@
     <div *ngIf="product.images && product.images[0]">
       <h1>Imagini existente:</h1>
       <div *ngFor="let image of product.images; let i = index">
-       <img mat-card-image [src]="image.url" [alt]="" *ngIf="image">
+       <img mat-card-image [src]="image.url" [alt]="" *ngIf="image" class="photos">
         <button mat-icon-button color="warn" type="button" (click)="handleImageRemove(product.images[i].public_id, i, false)">X</button>
       </div>
     </div>
