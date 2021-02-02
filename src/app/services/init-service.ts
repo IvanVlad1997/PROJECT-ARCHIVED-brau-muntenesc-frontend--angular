@@ -12,14 +12,7 @@ export class InitService {
   }
 
   async start(): Promise<void>{
-    await this.http.get(`${environment.appApi}/product/abonament-cursuri`).subscribe(
-       (c) =>  {
-         console.log('backend on');
-         this.loadCurrentUser()
-      },
-      () => {
-      }
-    );
+         await this.loadCurrentUser()
   }
 
   async loadCurrentUser(): Promise<void> {

@@ -1,15 +1,22 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
-import {StripeCardElementChangeEvent, StripeCardElementOptions, StripeElementsOptions} from '@stripe/stripe-js';
+import {
+  PaymentRequestPaymentMethodEvent,
+  PaymentRequestShippingAddressEvent,
+  StripeCardElementChangeEvent,
+  StripeCardElementOptions,
+  StripeElementsOptions
+} from '@stripe/stripe-js';
 import {Router} from '@angular/router';
 import {Stripe} from '../services/stripe';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
-import {Subscription} from 'rxjs';
+import {of, Subscription} from 'rxjs';
 import {UserService} from '../../../../user/src/lib/services/user';
 import {CartService} from '../services/cart';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
 import {formatDate} from '@angular/common';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'lib-payment',
@@ -49,6 +56,16 @@ export class PaymentComponent implements OnInit, OnDestroy {
   tokenSubscription: Subscription;
   userServiceSubscriptioon: Subscription;
 
+  paymentRequestOptions = {
+    country: 'RO',
+    currency: 'ron',
+    total: {
+      label: 'Demo Total',
+      amount: 1099,
+    },
+    requestPayerName: true,
+    requestPayerEmail: true,
+  };
   // TODO: Media query for card
   cardOptions: StripeCardElementOptions = {
     hidePostalCode: true,
@@ -205,5 +222,57 @@ export class PaymentComponent implements OnInit, OnDestroy {
     } else {
         alert('Nu s-a reușit trecerea în calendar! Sunați la 0751105873.')
     }
+  }
+
+  onPaymentMethod(ev: PaymentRequestPaymentMethodEvent): void {
+    this.stripeService.createPaymentIntent(this.token, this.isCupon)
+      .pipe(
+        switchMap((pi) => {
+          return this.realStripeService
+            .confirmCardPayment(
+              pi.client_secret,
+              { payment_method: ev.paymentMethod.id },
+              { handleActions: false }
+            )
+            .pipe(
+              switchMap((confirmResult) => {
+                if (confirmResult.error) {
+                  // Report to the browser that the payment failed,
+                  // prompting it to re-show the payment interface,
+                  // or show an error message and close the payment.
+                  ev.complete('fail');
+                  return of({
+                    error: new Error('Error Confirming the payment'),
+                  });
+                } else {
+                  // Report to the browser that the confirmation was
+                  // successful, prompting it to close the browser
+                  // payment method collection interface.
+                  ev.complete('success');
+                  // Let Stripe.js handle the rest of the payment flow.
+                  return this.realStripeService.confirmCardPayment(
+                    pi.client_secret
+                  );
+                }
+              })
+            );
+        })
+      )
+      .subscribe((result) => {
+        if (result.error) {
+          // The payment failed -- ask your customer for a new payment method.
+        } else {
+          // The payment has succeeded.
+        }
+      });
+  }
+
+  onShippingAddressChange(ev: PaymentRequestShippingAddressEvent): void {
+  }
+
+  onNotAvailable(): void {
+    // Subscribe to this event in case you want to act
+    // base on availability
+    console.log('Payment Request is not Available');
   }
 }

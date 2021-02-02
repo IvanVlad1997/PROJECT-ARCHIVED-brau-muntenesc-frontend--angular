@@ -10,6 +10,14 @@
 
     </h3>
     <button *ngIf="success" mat-raised-button [routerLink]="['/user/history']">Plata efectuata cu succes. Apasă aici pentru a fi redirecționat către pagina ta.</button>
+
+    <h2>Payment Request Button</h2>
+    <ngx-stripe-payment-request-button
+      [paymentOptions]="paymentRequestOptions"
+      (paymentMethod)="onPaymentMethod($event)"
+      (shippingaddresschange)="onShippingAddressChange($event)"
+      (notavailable)="onNotAvailable()"
+    ></ngx-stripe-payment-request-button>
     <form fxFlex="100" fxFlex.gt-md="70" class="card-stripe" fxLayout="row wrap" fxLayoutAlign="center center" novalidate (ngSubmit)="pay()">
       <mat-form-field  fxFlex="100">
         <mat-label >Nume</mat-label>
