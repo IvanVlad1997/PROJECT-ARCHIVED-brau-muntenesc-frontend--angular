@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<ng-container *ngIf="!loading">
+  <router-outlet></router-outlet>
+</ng-container>
+<div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center" class="full-height">
+  <mat-spinner ></mat-spinner>
+</div>
+
+

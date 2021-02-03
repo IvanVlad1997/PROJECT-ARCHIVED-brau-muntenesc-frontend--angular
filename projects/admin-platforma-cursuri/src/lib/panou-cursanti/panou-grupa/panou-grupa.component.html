@@ -1,0 +1,19 @@
+<h1 mat-dialog-title fxLayoutAlign="center center">
+  Grupă
+</h1>
+<form #form (submit)="sendInfo()">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field>
+      <mat-label>Grupă</mat-label>
+      <mat-select [(value)]="data.user.group" >
+        <mat-option *ngFor="let grupa of programs" [value]="grupa">{{grupa.category}}-{{grupa.interval}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center">
+    <a mat-button color="warn" mat-dialog-close >Anulează</a>
+    <button type="submit" mat-button [disabled]="!form.checkValidity()" >Salvează</button>
+  </div>
+</form>

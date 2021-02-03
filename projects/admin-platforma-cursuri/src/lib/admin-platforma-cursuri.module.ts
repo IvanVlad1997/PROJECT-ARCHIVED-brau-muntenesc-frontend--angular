@@ -6,7 +6,7 @@ import {AgGridModule} from 'ag-grid-angular';
 import {AdminPlatformaCursuriComponent} from './admin-platforma-cursuri/admin-platforma-cursuri.component';
 import {RouterModule} from '@angular/router';
 import {routes} from './routes';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
@@ -37,10 +37,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {QRCodeModule} from 'angularx-qrcode';
 import { QrDialogComponent } from './panou-cursanti/qr-dialog/qr-dialog.component';
 import { UltimaPlataComponent } from './panou-cursanti/ultima-plata/ultima-plata.component';
+import { PanouGrupaComponent } from './panou-cursanti/panou-grupa/panou-grupa.component';
 
 
 @NgModule({
-  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent, UltimaPlataComponent],
+  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent, UltimaPlataComponent, PanouGrupaComponent],
   imports: [
     AgGridModule,
     RouterModule.forChild(routes),
@@ -60,6 +61,10 @@ import { UltimaPlataComponent } from './panou-cursanti/ultima-plata/ultima-plata
     MatCheckboxModule,
     QRCodeModule,
   ],
-  exports: [AdminPlatformaCursuriComponent]
+  exports: [AdminPlatformaCursuriComponent],
+  // providers: [
+  //   { provide: MAT_DIALOG_DATA, useValue: {} },
+  //   { provide: MatDialogRef, useValue: {} }
+  // ]
 })
 export class AdminPlatformaCursuriModule { }

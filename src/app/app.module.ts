@@ -26,6 +26,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactComponent } from './contact/contact.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -44,26 +45,27 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     PrivacyComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    FlexModule,
-    FlexLayoutModule,
-    ReactiveFormsModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    AngularToastifyModule,
-    MatCardModule,
-    MatMenuModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatListModule,
+        FlexModule,
+        FlexLayoutModule,
+        ReactiveFormsModule,
+        FormsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        AngularToastifyModule,
+        MatCardModule,
+        MatMenuModule,
+        MatProgressSpinnerModule
+    ],
   providers: [ToastService,
     NgxImageCompressService,
     {

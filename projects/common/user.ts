@@ -1,3 +1,6 @@
+import {Program} from './program';
+
+
 export interface User {
   cart: [];
   createdAt: Date;
@@ -12,7 +15,7 @@ export interface User {
   address: string[];
   presenceHistory: any[];
   payHistory: any[];
-  group: string;
+  group: Program;
   picture: string;
   dance: boolean;
 }

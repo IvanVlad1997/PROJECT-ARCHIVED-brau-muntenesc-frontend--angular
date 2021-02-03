@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
+import {Program} from '../../../../common/program';
 
 @Injectable({providedIn: 'root'})
 export class CursantiService {
@@ -19,8 +20,11 @@ export class CursantiService {
     return this.usersUpdated.asObservable();
   }
 
-  getUsers(token: string): void {
-    this.http.get<User[]>(`${environment.appApi}/users/dancers`,
+  getUsers(token: string, group: Program): void {
+    this.http.post<User[]>(`${environment.appApi}/users/dancers`,
+      {
+        group: group
+      },
       {
         headers: {
           authtoken: token
@@ -28,6 +32,7 @@ export class CursantiService {
       })
       .subscribe(
         (users: User[]) => {
+          console.log(users)
           this.usersUpdated.next(users)
         }
       )

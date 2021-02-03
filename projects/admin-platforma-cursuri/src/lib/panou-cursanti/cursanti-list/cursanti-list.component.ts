@@ -7,6 +7,9 @@ import {User} from '../../../../../common/user';
 import {CursantiService} from '../../services/panou-cursanti';
 import {CursantiListActionsComponent} from '../cursanti-list-actions/cursanti-list-actions.component';
 import {UltimaPlataComponent} from '../ultima-plata/ultima-plata.component';
+import {ProgramService} from '../../services/program';
+import {Program} from '../../../../../common/program';
+import {distinct, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'lib-cursanti-list',
@@ -14,13 +17,17 @@ import {UltimaPlataComponent} from '../ultima-plata/ultima-plata.component';
   styleUrls: ['./cursanti-list.component.scss']
 })
 export class CursantiListComponent implements OnInit, OnDestroy {
+  private programSub: Subscription;
+  public selectedProgram: Program;
 
   constructor(private dialog: MatDialog,
               private authService: AuthService,
-              private cursantiService: CursantiService) { }
+              private cursantiService: CursantiService,
+              private programService: ProgramService) { }
 
   defaultColDef: ColDef = {
-    resizable: true
+    minWidth: 200,
+    resizable: true,
   };
 
   columnDefs = [
@@ -32,6 +39,18 @@ export class CursantiListComponent implements OnInit, OnDestroy {
       field: 'name',
       sortable: true,
       filter: true,
+    },
+    { headerName: 'Grupă',
+      field: 'group',
+      valueFormatter: params => {
+        console.log(params.data)
+        if (params && params.data && params.data.group && params.data.group) {
+          return `${params.data.group.category} ${params.data.group.interval}`
+        }
+        else  {
+          return '-'
+        }
+      },
     },
     {
       headerName: 'Email',
@@ -55,6 +74,7 @@ export class CursantiListComponent implements OnInit, OnDestroy {
   authSubscription: Subscription;
   token: string = '';
   users: User[] = [];
+  programs: Program[];
 
   ngOnInit(): void {
     this.authSubscription = this.authService.isAuthenticated
@@ -63,14 +83,31 @@ export class CursantiListComponent implements OnInit, OnDestroy {
           this.token = token;
           if (token !== '') {
             console.log(token)
-            this.loadUsers(token);
+
+
           }
         });
+    this.loadPrograms(this.token)
+    this.loadUsers(this.token);
+  }
+
+  loadPrograms(token: string): void {
+    this.programService.getPrograms();
+    this.programSub = this.programService.getProgramListener()
+       .subscribe((c) => {
+        this.programs = c
+      });
   }
 
   loadUsers(token: string): void {
-    this.cursantiService.getUsers(token);
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe()
+    }
+    this.cursantiService.getUsers(token, undefined);
     this.userSubscription = this.cursantiService.getUsersListener()
+      .pipe(
+        distinct()
+      )
       .subscribe(users => {
         console.log('USERS', users)
         this.users = users;
@@ -86,9 +123,16 @@ export class CursantiListComponent implements OnInit, OnDestroy {
     if  (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }
+    if  (this.programSub)  {
+      this.programSub.unsubscribe();
+    }
   }
 
 
+  valueChange(e: Program): void {
+    this.selectedProgram = e;
+    this.cursantiService.getUsers(this.token, e )
+  }
 }
 
 

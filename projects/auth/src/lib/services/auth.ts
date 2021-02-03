@@ -32,7 +32,7 @@ export class AuthService {
     telNum: '',
     address: [],
     presenceHistory: [],
-    group: '',
+    group: undefined,
     picture: '',
     dance: undefined,
     payHistory: []
@@ -63,7 +63,7 @@ export class AuthService {
       telNum: '',
       address: [],
       presenceHistory: [],
-      group: '',
+      group: undefined,
       picture: '',
       dance: undefined,
       payHistory: []
