@@ -27,16 +27,17 @@ export class PrimaPaginaComponent implements OnInit {
   options = {
     autoplay: true,
     volume: 0.5,
-    quality: 720
-  }
+    quality: 720,
+
+  };
   options1 = {
     quality: 720
-  }
+  };
 
   images = [
     // {url: 'https://i.imgur.com/pcLAVGx.jpg'},
-    {url: 'https://i.imgur.com/Y0D48Iu.png'},
-    {url: 'https://i.imgur.com/Ui18Fl8.png'}
+    {url: 'https://i.imgur.com/6wIoSeN.png'},
+    {url: 'https://i.imgur.com/1bJnRRS.png'}
   ]
 
   texts = [

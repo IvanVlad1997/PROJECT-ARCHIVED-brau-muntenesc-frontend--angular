@@ -2,6 +2,14 @@
   <router-outlet></router-outlet>
 </div>
 
+<ng-template #options>
+  <hr/>
+  <a mat-list-item routerLink="/platforma-cursuri">
+    <mat-icon mat-list-icon svgIcon="video"></mat-icon>
+    <span>Vlog</span>
+  </a>
+</ng-template>
+
 <!--OVERLAY-->
 <button  type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="changeOverlayStatus()" fxHide="true"></button>
 <ng-template cdkConnectedOverlay
@@ -12,4 +20,8 @@
     <lib-overlay></lib-overlay>
   </div>
 
+</ng-template>
+
+<ng-template #header>
+  <p>Suport audio-video</p>
 </ng-template>

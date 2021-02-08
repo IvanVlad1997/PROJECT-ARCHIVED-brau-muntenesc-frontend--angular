@@ -7,12 +7,18 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 })
 export class CursuriComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
 
   @ViewChild('options', {static: true})
   public options: TemplateRef<any>;
 
+  @ViewChild('header', {static: true})
+  public header: TemplateRef<any>;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 }
+
+

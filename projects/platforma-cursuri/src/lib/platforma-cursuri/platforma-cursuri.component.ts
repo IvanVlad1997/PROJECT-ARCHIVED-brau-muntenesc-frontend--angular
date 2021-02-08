@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {OverlayService} from '../services/overlay';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
@@ -15,17 +15,24 @@ export class PlatformaCursuriComponent implements OnInit, OnDestroy {
   constructor(private overlayService: OverlayService,
               private authService: AuthService) { }
 
-  overlayIsOpen: boolean = false
+  overlayIsOpen = false;
 
-  token: string = ''
+  token = '';
+
+  @ViewChild('options', {static: true})
+  public options: TemplateRef<any>;
+
+  @ViewChild('header', {static: true})
+  public header: TemplateRef<any>;
+
 
   ngOnInit(): void {
     this.authSubscription = this.authService.isAuthenticated
       .subscribe(
         (token) => {
           this.token = token;
-          console.log(token)
-          this.loadOverlay(token)
+          console.log(token);
+          this.loadOverlay(token);
           if (token !== '') {
 
           }
@@ -41,7 +48,7 @@ export class PlatformaCursuriComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.overlaySubscription) {
-      this.overlaySubscription.unsubscribe()
+      this.overlaySubscription.unsubscribe();
     }
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();
