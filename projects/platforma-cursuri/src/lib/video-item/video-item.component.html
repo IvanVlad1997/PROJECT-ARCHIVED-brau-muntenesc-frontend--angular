@@ -10,5 +10,13 @@
        [plyrPlaysInline]="true"
        [plyrPlaysInline]="true"
        [plyrSources]="videoSources" ></div>
+  <div fxFlex="100" *ngIf="relatedVideos && relatedVideos.length>0" class="title-related-videos" fxLayoutAlign="center center">
+    Variante pentru aceeași melodie
+  </div>
+  <div fxFlex="100" *ngIf="relatedVideos && relatedVideos.length>0"  fxLayout="column" class="related-videos" fxLayoutAlign="center center">
+    <mat-chip-list *ngFor="let video of relatedVideos"  class="chip-related-video">
+      <mat-chip fxLayoutAlign="center center" [routerLink]="['/platforma-cursuri/video/', video.slug]">{{video.name}}</mat-chip>
+    </mat-chip-list>
+  </div>
 </div>
 

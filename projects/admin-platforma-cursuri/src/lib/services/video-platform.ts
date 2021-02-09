@@ -36,6 +36,14 @@ export class VideoPlatformService {
       })
   }
 
+  getVideoPlatformBySubCategory(subCategory: string, slug: string): Observable<VideoPlatform[]> {
+    return this.http.post<VideoPlatform[]>(`${environment.appApi}/video-platform-subcategory`,
+      {
+        slug: slug,
+        subCategory: subCategory
+      })
+  }
+
 
   videoPlatformCreate(video: VideoPlatform, token: string): void {
     this.http.post<Product>(`${environment.appApi}/video-platform`,

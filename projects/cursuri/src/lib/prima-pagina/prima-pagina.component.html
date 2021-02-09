@@ -80,8 +80,9 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center">
   <div fxLayoutAlign="center center" fxFlex="90" fxLayout="row wrap">
     <div fxHide.gt-sm="true" fxFlex.lt-md="100">
-        <h1 fxFlex="100"  class="sub-title" [routerLink]="['/platforma-cursuri']">Urmărește videoclipurile cu dansuri </h1>
-    </div>
+      <div fxFlex="100" fxLayoutAlign="center center">
+        <button mat-raised-button color="primary"   [routerLink]="['/platforma-cursuri']">Urmărește videoclipurile cu dansuri</button>
+      </div>    </div>
     <div fxFlex="50" fxFlex.lt-md="100" fxLayoutAlign="center">
       <div fxFlex="90"  plyr [plyrOptions]="options1" class="margins"
              plyrTitle="Video1"

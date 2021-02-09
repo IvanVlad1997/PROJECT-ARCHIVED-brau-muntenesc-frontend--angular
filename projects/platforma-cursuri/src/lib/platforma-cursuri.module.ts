@@ -15,7 +15,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import { OverlayComponent } from './platforma-cursuri/overlay/overlay.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatListModule} from '@angular/material/list';
-
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -32,6 +32,7 @@ import {MatListModule} from '@angular/material/list';
         ExtendedModule,
         MatProgressSpinnerModule,
         MatListModule,
+        MatChipsModule
     ],
   exports: []
 })

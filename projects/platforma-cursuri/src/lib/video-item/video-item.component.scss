@@ -3,3 +3,32 @@
   height: 24px;
   transform: scale(2);
 }
+
+.title-related-videos {
+  background: #00695c;
+  height: 200px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 2px 2px #02c3c3;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  line-height: 40px;
+}
+
+
+.related-videos {
+  margin: 80px;
+  padding: 20px;
+}
+
+mat-chip {
+  text-align: center;
+  width: 200px;
+  height: 40px;
+  color: white !important;
+  background: #00695c !important;
+}
+

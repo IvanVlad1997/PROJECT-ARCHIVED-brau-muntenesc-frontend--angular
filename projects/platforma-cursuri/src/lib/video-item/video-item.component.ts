@@ -13,6 +13,8 @@ import {Subscription} from "rxjs";
   styleUrls: ['./video-item.component.scss']
 })
 export class VideoItemComponent implements OnInit, OnDestroy {
+  relatedVideos: VideoPlatform[];
+  private videoSub: Subscription;
 
   constructor(private videoPlatformService: VideoPlatformService,
               private route: ActivatedRoute,
@@ -24,6 +26,7 @@ export class VideoItemComponent implements OnInit, OnDestroy {
   videoSources: Plyr.Source[] = []
 
   navigationSubscription: Subscription;
+  categoryVideoSub: Subscription
 
 
   options = {
@@ -34,13 +37,13 @@ export class VideoItemComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this.route.params
       .subscribe(
         (p) => {
-          this.loadVideos()
+          this.loadVideo()
         })
 
   }
 
-  loadVideos(): void {
-    this.videoPlatformService.getPlatformVideo(this.route.snapshot.params.slug)
+  loadVideo(): void {
+    this.videoSub = this.videoPlatformService.getPlatformVideo(this.route.snapshot.params.slug)
       .subscribe(
         (video) => {
           this.video = video.video;
@@ -50,6 +53,12 @@ export class VideoItemComponent implements OnInit, OnDestroy {
               provider: this.video.provider as Provider,
             },
           ];
+          this.categoryVideoSub =  this.videoPlatformService.getVideoPlatformBySubCategory(this.video.subCategory, this.video.slug)
+            .subscribe(
+              (videos) =>{
+                this.relatedVideos = videos;
+              }
+            )
         }
       )
   }
@@ -61,6 +70,12 @@ export class VideoItemComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
+    }
+    if (this.categoryVideoSub) {
+      this.categoryVideoSub.unsubscribe();
+    }
+    if (this.videoSub) {
+      this.videoSub.unsubscribe();
     }
   }
 }
