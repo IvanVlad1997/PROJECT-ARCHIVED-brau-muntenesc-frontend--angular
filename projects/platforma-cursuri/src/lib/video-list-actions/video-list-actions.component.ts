@@ -25,7 +25,4 @@ export class VideoListActionsComponent implements AgFrameworkComponent<BaseColDe
   }
 
 
-  view(): void {
-
-  }
 }

@@ -58,7 +58,7 @@ export class VideoListComponent implements OnInit, OnDestroy {
     },
     {
       headerName: 'Actions',
-      width: 150,
+      width: 200,
       cellRendererFramework: VideoListActionsComponent
     }
   ];

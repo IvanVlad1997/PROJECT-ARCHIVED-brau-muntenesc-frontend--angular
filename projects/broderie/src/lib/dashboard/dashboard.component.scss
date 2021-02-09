@@ -1,6 +1,6 @@
 .pret {
   font-size: 25px;
-  color: limegreen;
+  color: #00695c;
 }
 
 //.product{
@@ -26,7 +26,7 @@
 
 
 .title-dashboard-shop {
-  background: gray;
+  background: #00695c;
   width: 100vw;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -37,4 +37,12 @@
 mat-chip {
   padding: 30px;
   margin: 20px !important;
+  color: white !important;
+  background: #00695c !important;
+  cursor: pointer;
+}
+
+mat-chip:hover {
+  color: #5469d4 !important;
+  background: #02c3c3 !important;
 }
