@@ -16,10 +16,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { InformatiiComponent } from './informatii/informatii.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import {FullCalendarModule} from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
-  declarations: [EvenimenteComponent, PaginaPrincipalaComponent, GalerieVideoComponent, FormularEvenimenteComponent, InformatiiComponent],
+  declarations: [EvenimenteComponent, PaginaPrincipalaComponent, GalerieVideoComponent, FormularEvenimenteComponent, InformatiiComponent, CalendarComponent],
   imports: [
     RouterModule.forChild(routes),
     MatListModule,
@@ -32,7 +40,8 @@ import { InformatiiComponent } from './informatii/informatii.component';
     MatDialogModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    FullCalendarModule
   ],
   exports: [EvenimenteComponent]
 })
