@@ -5,8 +5,9 @@ import {routes} from './routes';
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-      preloadingStrategy: PreloadAllModules
-  })],
+    preloadingStrategy: PreloadAllModules,
+    relativeLinkResolution: 'legacy'
+})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
