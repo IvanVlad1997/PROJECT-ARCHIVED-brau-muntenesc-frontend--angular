@@ -19,7 +19,8 @@ import { InformatiiComponent } from './informatii/informatii.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction';
+import { BasicDirectiveDirective } from './directives/basic-directive.directive'; // a plugin
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -27,7 +28,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 ]);
 
 @NgModule({
-  declarations: [EvenimenteComponent, PaginaPrincipalaComponent, GalerieVideoComponent, FormularEvenimenteComponent, InformatiiComponent, CalendarComponent],
+  declarations: [EvenimenteComponent, PaginaPrincipalaComponent, GalerieVideoComponent, FormularEvenimenteComponent, InformatiiComponent, CalendarComponent, BasicDirectiveDirective],
   imports: [
     RouterModule.forChild(routes),
     MatListModule,

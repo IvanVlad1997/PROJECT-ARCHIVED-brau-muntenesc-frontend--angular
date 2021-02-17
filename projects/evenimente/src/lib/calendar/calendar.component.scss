@@ -1,0 +1,11 @@
+.modal-container {
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  z-index: 100;
+  width: 200px;
+  min-height: 300px;
+  background: #ff6687;
+}
