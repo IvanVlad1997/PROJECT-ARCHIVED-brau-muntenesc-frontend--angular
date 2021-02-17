@@ -10,6 +10,7 @@ import {ChangeDetectorRef } from '@angular/core';
 import {Router} from '@angular/router';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
+import {Brand} from '../../../../common/brand';
 
 @Component({
   selector: 'lib-checkout',
@@ -177,12 +178,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.createNewCashOrder(this.token)
       .subscribe(
         (res) => {
-          let textProduse: string;
-          console.log(res)
+          const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email]
+          let textProduse: string = '';
+
           res.userCart.products.forEach(product => {
-            textProduse = textProduse + `<br/>${product.product.title} ${product.count}`;
-          })
-          this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată la livrare pentru Brâu Muntenesc a fost trimisă.</h1></h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, ['braumuntenesc@gmail.com', 'mariana@telegrama.ro', this.user.email])
+            textProduse = textProduse + `<br/>${product.product.title} x ${product.count}`;
+            if (emails.indexOf(product.product.brand.email) > -1) {
+              emails.push(product.product.brand.email)
+            }
+          });
+
+          this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată la livrare pentru Brâu Muntenesc a fost trimisă.</h1><h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, emails)
           this.cartService.removeAllFromCart();
           this.userService.emptyUserCart();
           this.toastService.success('Comanda a fost preluată')

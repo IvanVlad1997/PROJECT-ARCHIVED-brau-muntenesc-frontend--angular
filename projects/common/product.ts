@@ -1,5 +1,6 @@
 import {SubCategory} from './sub-category';
 import {Category} from './category';
+import {Brand} from './brand';
 
 export interface Product {
   _id: string;
@@ -14,7 +15,7 @@ export interface Product {
   quantity: number;
   shipping: string;
   color: string;
-  brand: string;
+  brand: Brand;
   slug: string;
   createdAt: Date;
   updatedAt: Date;

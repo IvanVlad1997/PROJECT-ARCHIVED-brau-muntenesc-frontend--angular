@@ -68,7 +68,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
     },
     {
       headerName: 'Brand',
-      field: 'brand'
+      field: 'brand',
+      valueFormatter: params => {
+        if (params && params.data) {
+          return params.data.brand.name
+        }
+      }
     },
     {
       headerName: 'Pret',
@@ -136,7 +141,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
       quantity: null,
       shipping: '',
       color: '',
-      brand: '',
+      brand: undefined,
       slug: '',
       createdAt: undefined,
       updatedAt: undefined,

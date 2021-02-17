@@ -180,6 +180,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
                 this.userService.createNewOrder(result, this.token)
                   .subscribe(
                     (ok) => {
+                      const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email]
                       if (ok) {
                         console.log(ok)
                         for (const product of ok.products) {
@@ -200,9 +201,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
                         }
                         let textProduse: string = '';
                         for (const product of ok.products) {
-                          textProduse = textProduse + `<br/>${product.product.title} ${product.count}`
+                          textProduse = textProduse + `<br/>${product.product.title} x ${product.count}`
+                          if (emails.indexOf(product.product.brand.email) > -1) {
+                            emails.push(product.product.brand.email)
+                          }
                         }
-                        this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată online pentru Brâu Muntenesc a fost trimisă.</h1></h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, ['braumuntenesc@gmail.com', 'mariana@telegrama.ro', this.user.email])
+                        this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată online pentru Brâu Muntenesc a fost trimisă.</h1><h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, emails)
                         this.cartService.removeAllFromCart();
                         this.userService.emptyUserCart();
                       }

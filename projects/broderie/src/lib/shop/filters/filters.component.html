@@ -75,7 +75,7 @@
   <mat-icon *ngIf="!showBrand" svgIcon="chevron-right"></mat-icon>
 </div>
 <div *ngIf="showBrand" fxLayout="column">
-  <mat-checkbox *ngFor="let brand of brands; let i = index" (input)="changeBrand($event, i)" [checked]="checkBrand(brand)">{{brand}}</mat-checkbox>
+  <mat-checkbox *ngFor="let brand of brands; let i = index" (input)="changeBrand($event, i)" [checked]="checkBrand(brand)">{{brand.name}}</mat-checkbox>
 </div>
 
 

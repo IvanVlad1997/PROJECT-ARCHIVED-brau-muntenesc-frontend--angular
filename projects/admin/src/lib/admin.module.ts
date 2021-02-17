@@ -33,10 +33,13 @@ import { CuponListActionsComponent } from './cupon/cupon-list-actions/cupon-list
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DashboardOrderItemComponent } from './dashboard-order-item/dashboard-order-item.component';
+import { BrandListComponent } from './brand/brand-list/brand-list.component';
+import { BrandListActionsComponent } from './brand/brand-list-actions/brand-list-actions.component';
+import { BrandEditComponent } from './brand/brand-edit/brand-edit.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AdminComponent, CategoryListComponent, CategoryListActionsComponent, CategoryEditComponent, SubCategoryEditComponent, SubCategoryListComponent, SubCategoryListActionsComponent, ProductListComponent, ProductEditComponent, ProductListActionsComponent, CarouselPhotoListComponent, CarouselPhotoEditComponent, CuponListComponent, CuponEditComponent, CuponListActionsComponent, DashboardOrderItemComponent],
+  declarations: [DashboardComponent, AdminComponent, CategoryListComponent, CategoryListActionsComponent, CategoryEditComponent, SubCategoryEditComponent, SubCategoryListComponent, SubCategoryListActionsComponent, ProductListComponent, ProductEditComponent, ProductListActionsComponent, CarouselPhotoListComponent, CarouselPhotoEditComponent, CuponListComponent, CuponEditComponent, CuponListActionsComponent, DashboardOrderItemComponent, BrandListComponent, BrandListActionsComponent, BrandEditComponent],
     imports: [
         RouterModule.forChild(routes),
         MatListModule,

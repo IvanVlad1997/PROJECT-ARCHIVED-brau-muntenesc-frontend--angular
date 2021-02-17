@@ -8,6 +8,8 @@ import {ProductService} from '../../../../../broderie/src/lib/services/product';
 import {CategoryService} from '../../../../../broderie/src/lib/services/category';
 import {CompressImageService} from '../../../../../../src/app/services/compress-image.service';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
+import {BrandService} from '../../services/brand';
+import {Brand} from '../../../../../common/brand';
 
 @Component({
   selector: 'lib-product-edit',
@@ -17,7 +19,9 @@ import {AuthService} from '../../../../../auth/src/lib/services/auth';
 export class ProductEditComponent implements OnInit, OnDestroy {
 
   categorySubscription: Subscription;
+  brandySubscription: Subscription;
   categories: Category[];
+  brands: Brand[];
   subcategorySubscription: Subscription;
   subCategories: SubCategory[] = []
 
@@ -33,7 +37,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
               private productService: ProductService,
               private categoryService: CategoryService,
               private compressImageService: CompressImageService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private brandService: BrandService) { }
 
   authSubscription: Subscription
   token: string = ''
@@ -46,8 +51,17 @@ export class ProductEditComponent implements OnInit, OnDestroy {
           this.token = token;
           if (token !== '') {
             this.loadCategories()
+            this.loadBrands()
           }
         });
+  }
+
+  loadBrands(): void {
+    this.brandService.getBrands();
+    this.brandySubscription = this.brandService.getBrandListener()
+      .subscribe(brands => {
+        this.brands = brands;
+      });
   }
 
   loadCategories(): void {
@@ -104,6 +118,9 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     }
     if (this.authSubscription) {
       this.authSubscription.unsubscribe()
+    }
+    if (this.brandySubscription) {
+      this.brandySubscription.unsubscribe()
     }
   }
 

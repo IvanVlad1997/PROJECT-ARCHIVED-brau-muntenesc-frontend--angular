@@ -50,7 +50,7 @@ export class CartComponent implements OnInit, OnDestroy {
     },
     {
       headerName: 'Brand',
-      field: 'product.brand'
+      field: 'product.brand.name'
     },
     {
       headerName: 'Număr de produse',

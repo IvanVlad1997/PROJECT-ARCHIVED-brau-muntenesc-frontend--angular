@@ -75,8 +75,10 @@ export class FiltersComponent implements OnInit, OnDestroy {
   getColorsAndBrands(): void {
     this.colorsAndBrandSubscription = this.productService.getColorsAndBrands()
       .subscribe((colorsAndBrand) => {
+        console.log('colorsAndBrand', colorsAndBrand)
         this.colors = colorsAndBrand.colors.map((color) => color._id);
-        this.brands = colorsAndBrand.brands.map((brand) => brand._id);
+        this.brands = colorsAndBrand.brands
+
       })
   }
 

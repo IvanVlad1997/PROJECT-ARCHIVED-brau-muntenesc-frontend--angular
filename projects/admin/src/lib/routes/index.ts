@@ -5,6 +5,7 @@ import {SubCategoryListComponent} from '../sub-category/sub-category-list/sub-ca
 import {ProductListComponent} from '../product/product-list/product-list.component';
 import {CarouselPhotoListComponent} from '../carousel-photo/carousel-photo-list/carousel-photo-list.component';
 import {CuponListComponent} from '../cupon/cupon-list/cupon-list.component';
+import {BrandListComponent} from '../brand/brand-list/brand-list.component';
 
 export const routes = [
   {
@@ -30,6 +31,10 @@ export const routes = [
       {
         path: 'carousel-photo',
         component: CarouselPhotoListComponent
+      },
+      {
+        path: 'brand',
+        component: BrandListComponent
       },
       {
         path: 'cupon',

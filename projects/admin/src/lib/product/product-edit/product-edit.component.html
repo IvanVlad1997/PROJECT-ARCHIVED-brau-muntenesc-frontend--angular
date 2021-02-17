@@ -58,15 +58,12 @@
     </mat-error>
 
     <mat-form-field>
-      <mat-label >Brand</mat-label>
-      <input name="brand" type="text" minlength="2" matInput [(ngModel)]="product.brand" #BrandModel="ngModel" />
+      <mat-label *ngIf="product.brand && product.brand.name">{{product.brand.name}}</mat-label>
+      <mat-label *ngIf="!product.category">Brand</mat-label>
+      <mat-select [(value)]="product.brand" >
+        <mat-option *ngFor="let brand of brands" [value]="brand">{{brand.name}}</mat-option>
+      </mat-select>
     </mat-form-field>
-    <mat-error *ngIf="BrandModel.errors && BrandModel.touched">
-      <ng-container *ngFor="let item of BrandModel.errors | keyvalue">
-        <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
-        <p *ngIf="item.key === 'minlength'">Câmpul trebuie să conțină mai mult de două caractere</p>
-      </ng-container>
-    </mat-error>
 
     <mat-form-field>
       <mat-label >Transport</mat-label>
