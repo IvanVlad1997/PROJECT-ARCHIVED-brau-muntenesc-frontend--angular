@@ -1,1 +1,3 @@
-<lib-calendar [user] = user></lib-calendar>
+<div *ngIf="user && user.email">
+  <lib-calendar  [user] = user></lib-calendar>
+</div>
