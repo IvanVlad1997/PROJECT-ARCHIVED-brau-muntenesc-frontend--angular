@@ -15,15 +15,18 @@ export class PresenceHistoryComponent implements OnInit, OnDestroy {
 
   authSubscription: Subscription;
   user: User;
-
+  isTiming: boolean = false;
 
   ngOnInit(): void {
     this.authSubscription = this.authService.user
       .subscribe(
         (user: User) => {
-          console.log(user)
+          console.log(user);
           this.user = user;
         });
+    setTimeout(() => {
+      this.isTiming = true;
+    }, 500);
   }
 
   ngOnDestroy(): void {

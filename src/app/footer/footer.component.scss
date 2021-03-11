@@ -3,6 +3,7 @@
   background: #00695c;
   width: 100vw;
   //margin-top: 100px;
+  animation: gradient 10s infinite;
 }
 
 a {
@@ -11,9 +12,27 @@ a {
 }
 
 a:hover {
-  color: #02c3c3;
+  color: darkblue;
+  transform: scale(1.1);
 }
 
 .align {
   text-align: center;
 }
+
+@keyframes gradient {
+  0%{
+    background-position:0% 50%;
+    background-color: #00695c;
+    }
+  50%{
+    background-position:100% 50%;
+    background-color: #02c3c3;
+  }
+  100%{
+    background-position:0% 50%;
+    background-color: #00695c;
+  }
+}
+
+

@@ -1,3 +1,10 @@
 .icons-pagina-start {
   margin-bottom: 10px;
 }
+
+.card-item:hover {
+  transform: scale(1.02);
+}
+*[ng-reflect-router-link]:focus {
+  outline: none;
+}

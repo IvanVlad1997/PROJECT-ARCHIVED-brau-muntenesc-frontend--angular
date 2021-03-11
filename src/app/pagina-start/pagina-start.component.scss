@@ -1,26 +1,40 @@
 .card-item {
   margin-top: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px ;
+
 }
 
-@media only screen and (min-width: 1000px) {
-  .anunt {
-    padding: 100px;
-    margin: 40px;
-    border-radius: 100px;
+
+.first-div {
+  :active {
+    transform: scale(0.9);
+  }
+
+  :last-of-type {
+    margin-bottom: 30px;
   }
 }
+//.gr-noi {
+//  color: white;
+//}
 
-.anunt {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background: #02c3c3;
-  font-weight: bold;
-  font-size: 30px;
-  color: #00695c;
-  text-align: center;
-  line-height: 30px;
-}
 
-.gr-noi {
-  color: white;
-}
+//@media only screen and (min-width: 1000px) {
+//  .anunt {
+//    padding: 100px;
+//    margin: 40px;
+//    border-radius: 100px;
+//  }
+//}
+
+//.anunt {
+//  padding-top: 40px;
+//  padding-bottom: 40px;
+//  background: #02c3c3;
+//  font-weight: bold;
+//  font-size: 30px;
+//  color: #00695c;
+//  text-align: center;
+//  line-height: 30px;
+//}
