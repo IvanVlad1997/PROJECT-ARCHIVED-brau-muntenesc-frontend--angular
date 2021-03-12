@@ -38,29 +38,33 @@ import {QRCodeModule} from 'angularx-qrcode';
 import { QrDialogComponent } from './panou-cursanti/qr-dialog/qr-dialog.component';
 import { UltimaPlataComponent } from './panou-cursanti/ultima-plata/ultima-plata.component';
 import { PanouGrupaComponent } from './panou-cursanti/panou-grupa/panou-grupa.component';
+import { DayReportComponent } from './day-report/day-report.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
-  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent, UltimaPlataComponent, PanouGrupaComponent],
-  imports: [
-    AgGridModule,
-    RouterModule.forChild(routes),
-    MatDialogModule,
-    CommonModule,
-    MatFormFieldModule,
-    FormsModule,
-    FlexModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-    ExtendedModule,
-    MatSelectModule,
-    UserModule,
-    MatCheckboxModule,
-    QRCodeModule,
-  ],
+  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent, UltimaPlataComponent, PanouGrupaComponent, DayReportComponent, DashboardComponent],
+    imports: [
+        AgGridModule,
+        RouterModule.forChild(routes),
+        MatDialogModule,
+        CommonModule,
+        MatFormFieldModule,
+        FormsModule,
+        FlexModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatProgressSpinnerModule,
+        ExtendedModule,
+        MatSelectModule,
+        UserModule,
+        MatCheckboxModule,
+        QRCodeModule,
+        MatDatepickerModule,
+    ],
   exports: [AdminPlatformaCursuriComponent],
   // providers: [
   //   { provide: MAT_DIALOG_DATA, useValue: {} },
