@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(
         (user: User) => {
           this.user = user;
-          console.log(this.user)
+          console.log(this.user);
         }
       );
   }
@@ -76,7 +76,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       {
         data: {name: this.user.name,
               isName: true}
-      })
+      });
   }
 
   changeTelNum(): void {
@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           telNum: this.user.telNum,
           isTelNum: true
         }
-      })
+      });
   }
 
   // changeEmail(): void {
@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const newAddressArray: string[] = [this.address, this.addressContent];
     this.userSubscription = this.userService.saveUserAddress(newAddressArray)
       .subscribe((c) => {
-          this.user.address = newAddressArray
+          this.user.address = newAddressArray;
           this.toastService.success('Adresa a fost salvată cu succes! Puteți finaliza comanda');
         },
         error => {

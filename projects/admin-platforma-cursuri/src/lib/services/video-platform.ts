@@ -21,11 +21,11 @@ export class VideoPlatformService {
   }
 
   getVideosPlatform(token: string): void {
-    console.log('aici')
+    console.log('aici');
     this.http.get<VideoPlatform[]>(`${environment.appApi}/videos-platform`)
       .subscribe((videos: VideoPlatform[]) => {
         this.videosUpdated.next(videos);
-      })
+      });
   }
 
 
@@ -33,7 +33,7 @@ export class VideoPlatformService {
     return this.http.post<VideoPlatform[]>(`${environment.appApi}/video-platform-limit`,
       {
         windowInnerHeight: windowInnerHeight
-      })
+      });
   }
 
   getVideoPlatformBySubCategory(subCategory: string, slug: string): Observable<VideoPlatform[]> {
@@ -41,7 +41,7 @@ export class VideoPlatformService {
       {
         slug: slug,
         subCategory: subCategory
-      })
+      });
   }
 
 

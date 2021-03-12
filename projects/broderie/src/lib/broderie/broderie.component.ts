@@ -30,7 +30,7 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
   public header: TemplateRef<any>;
 
   authSubscription: Subscription;
-  token: string = ''
+  token: string = '';
 
   ngOnInit(): void {
     this.authSubscription = this.authService.isAuthenticated
@@ -38,9 +38,9 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadCart(token)
-            this.loadOverlay(token)
+            console.log(token);
+            this.loadCart(token);
+            this.loadOverlay(token);
           }
         });
   }
@@ -52,8 +52,8 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
       .subscribe((c) => {
         setTimeout(() => {
           this.cartLength = c.length;
-          console.log(c.length)
-        }, 1)
+          console.log(c.length);
+        }, 1);
       });
   }
 
@@ -66,10 +66,10 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
 
   ngOnDestroy(): void {
     if (this.cartSubscription) {
-      this.cartSubscription.unsubscribe()
+      this.cartSubscription.unsubscribe();
     }
     if (this.overlaySubscription) {
-      this.overlaySubscription.unsubscribe()
+      this.overlaySubscription.unsubscribe();
     }
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();

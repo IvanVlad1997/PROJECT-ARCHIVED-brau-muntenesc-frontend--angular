@@ -25,14 +25,14 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
   loading: boolean = false;
 
   ngOnInit(): void {
-    this.loading = true
+    this.loading = true;
     this.authSubscription = this.authService.isAuthenticated
       .subscribe(
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadOrders(token)
+            console.log(token);
+            this.loadOrders(token);
           }
         });
   }
@@ -42,10 +42,10 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
       .subscribe(
         (orders: Order[]) => {
           this.orders = orders;
-          console.log(this.orders)
+          console.log(this.orders);
           this.loading = false;
         }
-      )
+      );
   }
 
   ngOnDestroy(): void {

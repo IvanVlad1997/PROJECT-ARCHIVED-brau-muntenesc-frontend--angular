@@ -21,7 +21,7 @@ export class VideoSchiComponent implements OnInit {
     autoplay: true,
     volume: 0.5,
     quality: 720
-  }
+  };
 
   ngOnInit(): void {
   }

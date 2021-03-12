@@ -36,7 +36,7 @@ export class BrandListActionsComponent implements AgFrameworkComponent<BaseColDe
   }
 
   async delete(): Promise<void> {
-    let token: string = this.authService.isAuthenticated.getValue()
+    let token: string = this.authService.isAuthenticated.getValue();
     if (window.confirm(`Esti sigur că vrei să stergi categoria ${this.brand.name}?`))
     {
       try {

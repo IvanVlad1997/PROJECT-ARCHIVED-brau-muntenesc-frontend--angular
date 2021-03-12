@@ -28,9 +28,9 @@ export class ProductItemComponent implements OnInit, OnDestroy {
     this.navigationSubscribtion = this.route.params
       .subscribe(
         (p) => {
-          this.tasksForInitProduct()
+          this.tasksForInitProduct();
         }
-      )
+      );
   }
 
   tasksForInitProduct(): void {
@@ -50,12 +50,12 @@ export class ProductItemComponent implements OnInit, OnDestroy {
   }
 
   navigateToProduct(product: Product): void {
-    this.router.navigate([`broderie/product/${product.slug}`])
+    this.router.navigate([`broderie/product/${product.slug}`]);
   }
 
   ngOnDestroy(): void {
     if (this.navigationSubscribtion) {
-      this.navigationSubscribtion.unsubscribe()
+      this.navigationSubscribtion.unsubscribe();
     }
   }
 }

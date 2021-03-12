@@ -21,14 +21,14 @@ export class ImageEditComponent implements OnInit, OnDestroy {
 
   }
 
-  imageIsUploading: boolean = false
+  imageIsUploading: boolean = false;
   file: any;
   localUrl: any;
-  sizeOFCompressedImage:number;
+  sizeOFCompressedImage: number;
   compressedImages: any[] = [];
-  saveClicked: boolean = false
-  authSubscription: Subscription
-  token: string = ''
+  saveClicked: boolean = false;
+  authSubscription: Subscription;
+  token: string = '';
 
 
   ngOnInit(): void {
@@ -37,42 +37,42 @@ export class ImageEditComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
+            console.log(token);
           }
         });
   }
 
   ngOnDestroy(): void {
     if (!this.saveClicked) {
-      this.compressImageService.removeImage(this.image.imageId, this.token)
+      this.compressImageService.removeImage(this.image.imageId, this.token);
     }
     if (this.authSubscription) {
-      this.authSubscription.unsubscribe()
+      this.authSubscription.unsubscribe();
     }
   }
 
   async onImagePicked(event: Event): Promise<void> {
-    this.imageIsUploading = true
+    this.imageIsUploading = true;
     const files: any = (event.target as HTMLInputElement).files;
     for (let file of files){
-      this.imageIsUploading = true
+      this.imageIsUploading = true;
       const fileName = file.name;
       const reader = new FileReader();
       reader.onload = async (e: any) => {
         this.localUrl = e.target.result;
-        const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token)
-        console.log(imageCompressed)
-        console.log(imageCompressed)
+        const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token);
+        console.log(imageCompressed);
+        console.log(imageCompressed);
         this.image.imageUrl = imageCompressed.url;
         this.image.imageId = imageCompressed.public_id;
-        this.imageIsUploading = false
-      }
+        this.imageIsUploading = false;
+      };
       reader.readAsDataURL(file);
     }
   }
 
   async addPhoto(): Promise<void> {
-    this.imageIsUploading = true
+    this.imageIsUploading = true;
     this.saveClicked = true;
     await this.imageService.createPhoto(this.image, this.token);
     this.imageIsUploading = false;

@@ -15,7 +15,7 @@ import {FormsModule} from '@angular/forms';
 import {FlexModule} from '@angular/flex-layout';
 import {CommonModule} from '@angular/common';
 import { QrScanComponent } from './qr-scan/qr-scan.component';
-import { ZXingScannerModule } from "@zxing/ngx-scanner";
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { AppInfoComponent } from './qr-scan/app-info/app-info.component';
 import { AppInfoDialogComponent } from './qr-scan/app-info-dialog/app-info-dialog.component';
 import { FormatsDialogComponent } from './qr-scan/formats-dialog/formats-dialog.component';

@@ -61,8 +61,8 @@ export class BrandListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadBrands(token)
+            console.log(token);
+            this.loadBrands(token);
           }
         });
   }
@@ -72,14 +72,14 @@ export class BrandListComponent implements OnInit, OnDestroy {
     this.categorySubscription = this.bramdService.getBrandListener()
       .subscribe(brands => {
         this.brands = brands;
-        this.rowData =  this.brands
+        this.rowData =  this.brands;
       });
   }
 
 
   ngOnDestroy(): void {
     if (this.categorySubscription) {
-      this.categorySubscription.unsubscribe()
+      this.categorySubscription.unsubscribe();
     }
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();
@@ -100,7 +100,7 @@ export class BrandListComponent implements OnInit, OnDestroy {
     this.dialog.open(BrandEditComponent, {
       data: newBrand,
       disableClose: true
-    })
+    });
   }
 
 

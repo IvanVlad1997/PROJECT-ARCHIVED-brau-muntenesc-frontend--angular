@@ -21,7 +21,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy, HeaderAwareCo
               private authService: AuthService) { }
 
   email: string = '';
-  loading: boolean= false;
+  loading: boolean = false;
   userAuthServiceSubscription: Subscription;
   @ViewChild('header' , {static : true})
   public header: TemplateRef<any>;

@@ -36,7 +36,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.loading = true
+    this.loading = true;
     this.searchSubscription = this.searchService.getSearchListener()
       .pipe(
         debounce(() => interval(1000)),
@@ -69,7 +69,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   fetchProductsByFilter(): void {
-    this.loading = true
+    this.loading = true;
     this.productSubscription = this.productService.fetchProductsByFilter(this.text, [this.price[0], this.price[1]], this.selectedCategory, this.stars, this.selectedSubCategory, this.shipping, this.selectedColors, this.selectedBrands)
       .subscribe((products: Product[]) => {
           this.products = products;
@@ -96,7 +96,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.productSubscription.unsubscribe();
-    this.searchSubscription.unsubscribe()
+    this.searchSubscription.unsubscribe();
   }
 
   filterToggle(): void {

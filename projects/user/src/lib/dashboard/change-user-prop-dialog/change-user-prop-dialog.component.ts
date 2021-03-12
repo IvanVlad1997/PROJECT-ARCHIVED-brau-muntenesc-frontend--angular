@@ -29,7 +29,7 @@ export class ChangeUserPropDialogComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
+            console.log(token);
           }
         });
   }
@@ -45,9 +45,9 @@ export class ChangeUserPropDialogComponent implements OnInit, OnDestroy {
 
   async edit(): Promise<void> {
     if (this.data.isName) {
-      this.userSubscription =  this.userService.changeUserName(this.data.name, this.token)
+      this.userSubscription =  this.userService.changeUserName(this.data.name, this.token);
     } else if (this.data.isTelNum) {
-      this.userSubscription =  this.userService.changeTelNul(this.data.telNum, this.token)
+      this.userSubscription =  this.userService.changeTelNul(this.data.telNum, this.token);
     }
     // else if (this.data.isEmail) {
     //   this.userSubscription =  this.userService.changeEmail(this.data.email, this.token)

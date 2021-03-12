@@ -30,7 +30,7 @@ export class WishlistComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-              this.loadWishList(token)
+              this.loadWishList(token);
           }
         });
   }
@@ -40,11 +40,11 @@ export class WishlistComponent implements OnInit, OnDestroy {
     this.wishlistSub = this.userService.getWishlist(token)
       .subscribe(
         (data) => {
-          console.log(data)
+          console.log(data);
           this.products = data.wishlist;
           console.log(this.products);
         }
-      )
+      );
   }
 
   ngOnDestroy(): void {
@@ -60,12 +60,12 @@ export class WishlistComponent implements OnInit, OnDestroy {
     this.userService.removeWishlist(id, this.token)
       .subscribe(
         (p) => {
-          console.log(p)
-          this.loadWishList(this.token)
-          this.toastService.success('Produsul a fost scos de la favorite')
-          this.authService.getCurrentUser(this.token)
+          console.log(p);
+          this.loadWishList(this.token);
+          this.toastService.success('Produsul a fost scos de la favorite');
+          this.authService.getCurrentUser(this.token);
         }
-      )
+      );
   }
 
   handleAddToCart(product: Product): void {

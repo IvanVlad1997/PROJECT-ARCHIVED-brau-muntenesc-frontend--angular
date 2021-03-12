@@ -20,8 +20,8 @@ export class EventsService {
       {
       })
       .subscribe(c => {
-          this.nodemailer.infoMail('Cerere eveniment', `<p>${JSON.stringify(event)}</p>`)
-          this.toastService.success(`Au fost trimise informațiile. Veți primi un răspuns în cel mai scurt timp posibil.`)
+          this.nodemailer.infoMail('Cerere eveniment', `<p>${JSON.stringify(event)}</p>`);
+          this.toastService.success(`Au fost trimise informațiile. Veți primi un răspuns în cel mai scurt timp posibil.`);
         },
         (error =>  this.toastService.error(`Nu s-au putut trimite informațiile.`)));
   }

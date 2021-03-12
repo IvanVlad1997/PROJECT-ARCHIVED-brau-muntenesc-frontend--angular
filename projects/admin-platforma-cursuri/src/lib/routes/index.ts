@@ -5,8 +5,8 @@ import {VideoGaleryListComponent} from '../video-galery/video-galery-list/video-
 import {PriceListComponent} from '../price/price-list/price-list.component';
 import {ProgramListComponent} from '../program/program-list/program-list.component';
 import {CursantiListComponent} from '../panou-cursanti/cursanti-list/cursanti-list.component';
-import {DayReportComponent} from "../day-report/day-report.component";
-import {DashboardComponent} from "../dashboard/dashboard.component";
+import {DayReportComponent} from '../day-report/day-report.component';
+import {DashboardComponent} from '../dashboard/dashboard.component';
 
 export const routes = [
   {

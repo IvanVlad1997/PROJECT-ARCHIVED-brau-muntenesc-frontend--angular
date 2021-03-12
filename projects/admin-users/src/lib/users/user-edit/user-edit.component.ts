@@ -34,17 +34,17 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   async edit(): Promise<void> {
-    await this.usersService.updateUser(this.token, this.user)
+    await this.usersService.updateUser(this.token, this.user);
     this.ref.close();
   }
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
-      this.authSubscription.unsubscribe()
+      this.authSubscription.unsubscribe();
     }
   }
 
   changeDanceStatus(): void {
-    this.user.dance = !this.user.dance
+    this.user.dance = !this.user.dance;
   }
 }

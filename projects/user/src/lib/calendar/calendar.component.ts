@@ -23,10 +23,10 @@ export class CalendarComponent implements OnInit, OnDestroy {
   token: string;
 
   ngOnInit(): void {
-    this.token = this.authService.isAuthenticated.getValue()
-    this.authService.getCurrentUser(this.token)
-    const paymentHistory = this.user.payHistory.map((payment) => payment.payment )
-    this.calendarOptions.events = [...this.user.presenceHistory, ...paymentHistory]
+    this.token = this.authService.isAuthenticated.getValue();
+    this.authService.getCurrentUser(this.token);
+    const paymentHistory = this.user.payHistory.map((payment) => payment.payment );
+    this.calendarOptions.events = [...this.user.presenceHistory, ...paymentHistory];
   }
 
   ngOnDestroy(): void {

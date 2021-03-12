@@ -5,4 +5,4 @@ export interface Auth {
   role: string;
   id: string;
   loading: boolean;
-};
+}

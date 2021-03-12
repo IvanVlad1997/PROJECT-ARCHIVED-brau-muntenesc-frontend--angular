@@ -1,12 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PriceService} from '../../services/preturi';
 import {MatDialog} from '@angular/material/dialog';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
 import {Subscription} from 'rxjs';
-import {Price} from '../../../../../common/price';
 import {ColDef} from 'ag-grid-community';
-import {PriceActionsListComponent} from '../../price/price-actions-list/price-actions-list.component';
-import {PriceEditComponent} from '../../price/price-edit/price-edit.component';
 import {ProgramService} from '../../services/program';
 import {Program} from '../../../../../common/program';
 import {ProgramActionsListComponent} from '../program-actions-list/program-actions-list.component';
@@ -74,7 +70,7 @@ export class ProgramListComponent implements OnInit, OnDestroy {
       .subscribe(
         (token) => {
           this.token = token;
-          this.loadPrograms()
+          this.loadPrograms();
         });
   }
 
@@ -83,14 +79,14 @@ export class ProgramListComponent implements OnInit, OnDestroy {
     this.programSubscription = this.programService.getProgramListener()
       .subscribe(programs => {
         this.programs = programs;
-        this.rowData =  this.programs
+        this.rowData =  this.programs;
       });
   }
 
 
   ngOnDestroy(): void {
     if (this.programSubscription) {
-      this.programSubscription.unsubscribe()
+      this.programSubscription.unsubscribe();
     }
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();
@@ -112,7 +108,7 @@ export class ProgramListComponent implements OnInit, OnDestroy {
     this.dialog.open(ProgramEditComponent, {
       data: newProgram,
       disableClose: true
-    })
+    });
   }
 
 

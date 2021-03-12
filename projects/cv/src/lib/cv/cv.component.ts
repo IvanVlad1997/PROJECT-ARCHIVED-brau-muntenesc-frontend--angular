@@ -21,11 +21,11 @@ export class CvComponent implements OnInit {
   }
 
   openProiecte(): void {
-    this.dialog.open(ProiecteProgramareComponent)
+    this.dialog.open(ProiecteProgramareComponent);
   }
 
   openFrozen(): void {
-    this.dialog.open(FrozenLogicComponent)
+    this.dialog.open(FrozenLogicComponent);
   }
 
 
@@ -36,7 +36,7 @@ export class CvComponent implements OnInit {
           src: 'd99MSvw4eTM',
           title: 'Videoclip schi'
         }
-      })
+      });
   }
 
   openVideoLicenta(): void {
@@ -46,7 +46,7 @@ export class CvComponent implements OnInit {
           src: 'vQhfeJvNDyQ',
           title: 'Proiect de diplomă'
         }
-      })
+      });
   }
 
   openUdemyImage(): void {
@@ -56,7 +56,7 @@ export class CvComponent implements OnInit {
           src: 'https://i.imgur.com/ZINMClC.png',
           title: 'Cursuri Udemy'
         }
-      })
+      });
   }
 
   openLicentaImage(): void {
@@ -66,7 +66,7 @@ export class CvComponent implements OnInit {
           src: 'https://i.imgur.com/OkIur5N.jpg',
           title: 'Adeverință licență'
         }
-      })
+      });
   }
 
   openDansuriImage(): void {
@@ -76,7 +76,7 @@ export class CvComponent implements OnInit {
           src: 'https://i.imgur.com/sFEh9s2.jpg',
           title: 'Certificat instructor dans'
         }
-      })
+      });
   }
 
   openAntreprenoriatImage(): void {
@@ -86,7 +86,7 @@ export class CvComponent implements OnInit {
           src: 'https://i.imgur.com/priIr89.jpg',
           title: 'Certificat antreprenoriat'
         }
-      })
+      });
   }
 
   openCV(): void {
@@ -96,6 +96,6 @@ export class CvComponent implements OnInit {
           src: 'https://i.imgur.com/fsVOBnk.jpg',
           title: ''
         }
-      })
+      });
   }
 }

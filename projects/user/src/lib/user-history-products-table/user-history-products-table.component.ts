@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {User} from '../../../../common/user';
 import {Order} from '../../../../common/order';
@@ -25,9 +25,9 @@ export class UserHistoryProductsTableComponent implements OnInit {
   user: User;
 
   ngOnInit(): void {
-    console.log(this.order)
-    this.user = this.authService.user.getValue()
-    console.log(this.user)
+    console.log(this.order);
+    this.user = this.authService.user.getValue();
+    console.log(this.user);
   }
 
   generatePDF(): void {
@@ -37,7 +37,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
     } else {
       amount = this.order.paymentIntent.amount / 100;
     }
-    const formattedDate = formatDate(new Date(), 'dd/MM/yyyy', 'ro-RO')
+    const formattedDate = formatDate(new Date(), 'dd/MM/yyyy', 'ro-RO');
     const docDefinition = {
       content: [
         {
@@ -158,7 +158,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
 
 
   sendInvoice(): void {
-    this.nodemailer.infoMail('SOLICITARE FACTURA FISCALA', `<h1>COMANDA ${JSON.stringify(this.order)}</h1> <h1>EMAIL ${this.user.email}</h1>`)
-    this.toastService.info(`Solicitarea a fost trimisă. Veți primi factura pe mail în cel mai scurt timp posibil. Dacă există nelămuriri, sunați la 0751105873.`)
+    this.nodemailer.infoMail('SOLICITARE FACTURA FISCALA', `<h1>COMANDA ${JSON.stringify(this.order)}</h1> <h1>EMAIL ${this.user.email}</h1>`);
+    this.toastService.info(`Solicitarea a fost trimisă. Veți primi factura pe mail în cel mai scurt timp posibil. Dacă există nelămuriri, sunați la 0751105873.`);
   }
 }

@@ -1,12 +1,12 @@
  import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {User} from '../../../../common/user';
-import {HttpClient} from '@angular/common/http';
-import {AuthService} from '../../../../auth/src/lib/services/auth';
-import {ToastService} from 'angular-toastify';
-import {environment} from '../../../../../src/environments/environment';
+ import {BehaviorSubject, Observable} from 'rxjs';
+ import {User} from '../../../../common/user';
+ import {HttpClient} from '@angular/common/http';
+ import {AuthService} from '../../../../auth/src/lib/services/auth';
+ import {ToastService} from 'angular-toastify';
+ import {environment} from '../../../../../src/environments/environment';
 
-@Injectable({providedIn: 'root'})
+ @Injectable({providedIn: 'root'})
 export class UsersService {
   private usersUpdated: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
 
@@ -25,7 +25,7 @@ export class UsersService {
         headers: {
           authtoken: token
         }
-      })
+      });
   }
 
   getUsers(token: string): void {
@@ -37,9 +37,9 @@ export class UsersService {
       })
       .subscribe(
         (users: User[]) => {
-          this.usersUpdated.next(users)
+          this.usersUpdated.next(users);
         }
-      )
+      );
   }
 
   updateUser(token: string, user: User): void {

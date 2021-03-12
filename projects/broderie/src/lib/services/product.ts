@@ -35,7 +35,7 @@ export class ProductService {
   }
 
   getProductsByCount(count: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${environment.appApi}/products/${count}`)
+    return this.http.get<Product[]>(`${environment.appApi}/products/${count}`);
   }
 
   getProduct(slug: string): Observable<Product> {

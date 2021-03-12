@@ -42,7 +42,7 @@ export class VideoGaleryListActionsComponent implements AgFrameworkComponent<Bas
     if (window.confirm(`Esti sigur că vrei să stergi categoria ${this.video.name}?`))
     {
       try {
-        this.videoPlatformService.removeVideoPlatform(this.video.slug, token)
+        this.videoPlatformService.removeVideoPlatform(this.video.slug, token);
 
       } catch (error) {
         this.toastService.error('Nu s-a putut șterge categoria!');

@@ -28,10 +28,10 @@ export class CursantiListActionsComponent implements AgFrameworkComponent<BaseCo
   user: User;
 
   agInit(params: BaseColDefParams): void {
-    this.context = params.context
-    console.log(params)
+    this.context = params.context;
+    console.log(params);
     this.user = params.data;
-    console.log(this.user)
+    console.log(this.user);
   }
 
   pay(): void {
@@ -41,7 +41,7 @@ export class CursantiListActionsComponent implements AgFrameworkComponent<BaseCo
         disableClose: true
       }).afterClosed().toPromise().then(
       () => {
-        let token = this.authService.isAuthenticated.getValue()
+        let token = this.authService.isAuthenticated.getValue();
         this.cursantiService.getUsers(token, this.context.selectedProgram) ;
       }
     );
@@ -52,7 +52,7 @@ export class CursantiListActionsComponent implements AgFrameworkComponent<BaseCo
       {
         data: this.user,
         disableClose: true
-      })
+      });
   }
 
   generateQR(): void {

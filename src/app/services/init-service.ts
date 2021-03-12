@@ -11,7 +11,7 @@ export class InitService {
   }
 
   async start(): Promise<void>{
-         await this.loadCurrentUser()
+         await this.loadCurrentUser();
   }
 
   async loadCurrentUser(): Promise<void> {
@@ -19,7 +19,7 @@ export class InitService {
       // console.log('Se incerca conectarea la user-ul curent');
       if (user){
         const idTokenResult: any = await user.getIdTokenResult();
-        console.log(idTokenResult.token)
+        console.log(idTokenResult.token);
         await this.authService.getCurrentUser(idTokenResult.token);
       }
     });

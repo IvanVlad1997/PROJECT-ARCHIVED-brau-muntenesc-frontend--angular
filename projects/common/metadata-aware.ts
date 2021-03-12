@@ -5,9 +5,9 @@ export interface HeaderAwareComponent {
 }
 
 export interface SearchAwareComponent {
-  search: TemplateRef<any>
+  search: TemplateRef<any>;
 }
 
 export interface  OptionsAwareComponent {
-  options: TemplateRef<any>
+  options: TemplateRef<any>;
 }

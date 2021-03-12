@@ -57,8 +57,8 @@ export class SubCategoryListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadSubCategories(token)
+            console.log(token);
+            this.loadSubCategories(token);
           }
         });
   }
@@ -69,11 +69,11 @@ export class SubCategoryListComponent implements OnInit, OnDestroy {
       .subscribe(subCategories => {
         this.subCategories = subCategories;
         this.rowData = this.subCategories;
-      })
+      });
   }
 
   ngOnDestroy(): void {
-    this.subCategorySubscription.unsubscribe()
+    this.subCategorySubscription.unsubscribe();
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();
     }
@@ -93,7 +93,7 @@ export class SubCategoryListComponent implements OnInit, OnDestroy {
     this.dialog.open(SubCategoryEditComponent, {
       data: newSubCategory,
       disableClose: true
-    })
+    });
   }
 
 }

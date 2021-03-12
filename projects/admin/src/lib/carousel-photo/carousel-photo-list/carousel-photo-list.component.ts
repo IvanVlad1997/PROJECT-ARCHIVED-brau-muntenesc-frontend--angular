@@ -30,14 +30,14 @@ export class CarouselPhotoListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadCarouselPhotop(token)
+            console.log(token);
+            this.loadCarouselPhotop(token);
           }
         });
   }
 
   loadCarouselPhotop(token): void {
-    this.carouselPhotoService.getCarouselPhotos()
+    this.carouselPhotoService.getCarouselPhotos();
     this.carouselPhotoSubscription = this.carouselPhotoService.getCarouselPhotoListener()
       .subscribe(carouselPhotos => {
         this.carouselPhotos = carouselPhotos;
@@ -52,7 +52,7 @@ export class CarouselPhotoListComponent implements OnInit, OnDestroy {
   }
 
   async addPhoto(): Promise<void> {
-    console.log('adding photo')
+    console.log('adding photo');
     const newPhoto: CarouselPhoto = {
       _id: undefined,
       imageId: '',
@@ -62,12 +62,12 @@ export class CarouselPhotoListComponent implements OnInit, OnDestroy {
       createdAt: undefined,
       updatedAt: undefined,
       _v: null
-    }
+    };
     this.matDialog.open(CarouselPhotoEditComponent,
       {
         data: newPhoto,
         disableClose: true
-      })
+      });
   }
 
   async handleImageRemove(photo: CarouselPhoto): Promise<void> {

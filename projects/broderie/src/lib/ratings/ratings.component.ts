@@ -27,29 +27,29 @@ export class RatingsComponent implements OnInit, OnDestroy {
   authSubscription: Subscription;
 
   ngOnInit(): void {
-    console.log(this.product)
+    console.log(this.product);
     // console.log(this.ratingValue)
     this.authSubscription = this.authService.user.subscribe(
       (user => {
         this.user = user;
-        console.log(user)
+        console.log(user);
         if (this.product && this.product.ratings) {
-          const findRating = this.product.ratings.find((rating) => rating.postedBy.toString() === this.user._id.toString())
+          const findRating = this.product.ratings.find((rating) => rating.postedBy.toString() === this.user._id.toString());
           if (findRating  && findRating.star) {
             this.rate = findRating.star;
           }
         }
       })
-    )
+    );
   }
 
 
   async rateChange(rate: number): Promise<void> {
     await this.productService.productStar(this.product._id, rate, this.user.email);
-    this.ref.close()
+    this.ref.close();
   }
 
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe()
+    this.authSubscription.unsubscribe();
   }
 }

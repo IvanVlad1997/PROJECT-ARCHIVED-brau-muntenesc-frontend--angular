@@ -16,9 +16,9 @@ export class CartProductImageComponent implements  AgFrameworkComponent<BaseColD
   image: string;
 
   agInit(params: BaseColDefParams): void {
-    console.log(params)
+    console.log(params);
     if (params && params.data.product) {
-      this.image = params.data.product.images[0].url
+      this.image = params.data.product.images[0].url;
     }
   }
 

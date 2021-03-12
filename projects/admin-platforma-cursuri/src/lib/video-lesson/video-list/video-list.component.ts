@@ -74,8 +74,8 @@ export class VideoListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadVideos(token)
+            console.log(token);
+            this.loadVideos(token);
           }
         });
   }
@@ -85,14 +85,14 @@ export class VideoListComponent implements OnInit, OnDestroy {
     this.videoPlatformSub = this.videoPlatformService.getVideoPlatformListener()
       .subscribe(videos => {
         this.videos = videos;
-        this.rowData = this.videos
+        this.rowData = this.videos;
       });
   }
 
 
   ngOnDestroy(): void {
     if (this.videoPlatformSub) {
-      this.videoPlatformSub.unsubscribe()
+      this.videoPlatformSub.unsubscribe();
     }
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
@@ -118,6 +118,6 @@ export class VideoListComponent implements OnInit, OnDestroy {
     this.dialog.open(VideoListEditComponent, {
       data: videoP,
       disableClose: true
-    })
+    });
   }
 }

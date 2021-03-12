@@ -25,7 +25,7 @@ export class GalerieVideoService {
     this.http.get<GalerieVideoCursuri[]>(`${environment.appApi}/galerie-videos-cursuri`)
       .subscribe((videos: GalerieVideoCursuri[]) => {
         this.videosUpdated.next(videos);
-      })
+      });
   }
 
 

@@ -61,7 +61,7 @@ export class CuponListComponent implements OnInit, OnDestroy {
   rowData: any;
 
   authSubscription: Subscription;
-  token: string = ''
+  token: string = '';
 
   ngOnInit(): void {
     this.authSubscription = this.authService.isAuthenticated
@@ -69,8 +69,8 @@ export class CuponListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadCupons(token)
+            console.log(token);
+            this.loadCupons(token);
           }
         });
   }
@@ -81,14 +81,14 @@ export class CuponListComponent implements OnInit, OnDestroy {
       .subscribe(cupons => {
         this.cupons = cupons;
         this.rowData = this.cupons;
-      })
+      });
   }
 
   ngOnDestroy(): void {
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();
     }
-    this.cuponSubscription.unsubscribe()
+    this.cuponSubscription.unsubscribe();
   }
 
   async create(): Promise<void> {
@@ -104,7 +104,7 @@ export class CuponListComponent implements OnInit, OnDestroy {
     this.dialog.open(CuponEditComponent, {
       data: newCupon,
       disableClose: true
-    })
+    });
   }
 
 }

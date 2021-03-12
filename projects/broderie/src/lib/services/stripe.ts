@@ -21,7 +21,7 @@ export class Stripe {
         headers: {
           authtoken: token
         }
-      })
+      });
   }
 }
 

@@ -25,7 +25,7 @@ export class CarouselPhotoService {
     this.http.get<CarouselPhoto[]>(`${environment.appApi}/carousel-photos`)
       .subscribe((photos: CarouselPhoto[]) => {
         this.carouselPhotoUpdated.next(photos);
-      })
+      });
   }
 
   createCarouselPhoto(carouselPhoto: CarouselPhoto): void {
@@ -58,10 +58,10 @@ export class CarouselPhotoService {
       })
       .subscribe(() => {
         this.toastService.success('Fotografia a fost ștearsă');
-        this.getCarouselPhotos()
+        this.getCarouselPhotos();
       },
         (error => {
           this.toastService.error('Nu s-a putut șterge fotografia');
-        }))
+        }));
   }
 }

@@ -16,10 +16,10 @@ export class OverlayComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private videoPlatformService: VideoPlatformService) { }
 
-  videos: VideoPlatform[] = []
+  videos: VideoPlatform[] = [];
 
   authSubscription: Subscription;
-  token: string = ''
+  token: string = '';
   videoSubscription: Subscription;
   loading: boolean = false;
 
@@ -28,7 +28,7 @@ export class OverlayComponent implements OnInit, OnDestroy {
       .subscribe(
         (token) => {
           this.token = token;
-          this.loadVideos()
+          this.loadVideos();
           if (token !== '') {
 
           }
@@ -36,14 +36,14 @@ export class OverlayComponent implements OnInit, OnDestroy {
   }
 
   loadVideos(): void {
-    this.loading = true
+    this.loading = true;
     this.videoSubscription = this.videoPlatformService.getVideosPlatformWithLimit(this.token, window.innerHeight)
       .subscribe(
         (videos) => {
-          this.videos = videos
-          this.loading = false
+          this.videos = videos;
+          this.loading = false;
         }
-      )
+      );
   }
 
   closeOverlay(): void  {

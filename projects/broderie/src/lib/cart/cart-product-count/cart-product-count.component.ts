@@ -23,8 +23,8 @@ export class CartProductCountComponent implements AgFrameworkComponent<BaseColDe
 
   editCartProductQuantity(): void {
     if (!this.count) {
-      this.count = 1
+      this.count = 1;
     }
-    this.cartService.updateCartQuantity(this.product, this.count)
+    this.cartService.updateCartQuantity(this.product, this.count);
   }
 }

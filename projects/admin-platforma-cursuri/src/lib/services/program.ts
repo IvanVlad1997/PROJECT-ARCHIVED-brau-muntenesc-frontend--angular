@@ -27,7 +27,7 @@ export class ProgramService {
     this.http.get<Program[]>(`${environment.appApi}/programs`)
       .subscribe((programs: Program[]) => {
         this.programUpdated.next(programs);
-      })
+      });
   }
 
 

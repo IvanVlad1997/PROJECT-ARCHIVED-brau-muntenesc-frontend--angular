@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit,} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {User} from '../../../../../common/user';
 import {ProgramService} from '../../services/program';
@@ -24,7 +24,7 @@ export class PanouGrupaComponent implements OnInit, OnDestroy{
                private cursantiService: CursantiService) { }
 
   authSubscription: Subscription;
-  token: string = ''
+  token: string = '';
   programs: Program[];
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class PanouGrupaComponent implements OnInit, OnDestroy{
         (token) => {
           this.token = token;
           if (token !== '') {
-            this.loadPrograms(token)
+            this.loadPrograms(token);
           }
         });
   }
@@ -42,24 +42,24 @@ export class PanouGrupaComponent implements OnInit, OnDestroy{
     this.programService.getPrograms();
     this.programSub = this.programService.getProgramListener()
       .subscribe((c) => {
-             this.programs = c
+             this.programs = c;
       });
   }
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
-      this.authSubscription.unsubscribe()
+      this.authSubscription.unsubscribe();
     }
     if (this.programSub) {
-      this.programSub.unsubscribe()
+      this.programSub.unsubscribe();
     }
   }
 
   sendInfo(): void {
-    console.log(this.data.user.group)
-    this.userService.changeGrupa(this.data.user.group, this.token, this.data.user.email)
-    this.ref.close()
-    this.cursantiService.getUsers(this.token, this.data.context.selectedProgram)
+    console.log(this.data.user.group);
+    this.userService.changeGrupa(this.data.user.group, this.token, this.data.user.email);
+    this.ref.close();
+    this.cursantiService.getUsers(this.token, this.data.context.selectedProgram);
   }
 }
 

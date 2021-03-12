@@ -24,7 +24,7 @@ export class EventsVideoService {
     this.http.get<GalerieVideoEvenimente[]>(`${environment.appApi}/galerie-videos-evenimente`)
       .subscribe((videos: GalerieVideoEvenimente[]) => {
         this.videosUpdated.next(videos);
-      })
+      });
   }
 
 

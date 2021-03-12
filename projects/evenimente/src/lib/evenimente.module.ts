@@ -9,7 +9,7 @@ import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {PlyrModule} from 'ngx-plyr';
 import {MatButtonModule} from '@angular/material/button';
 import { GalerieVideoComponent } from './galerie-video/galerie-video.component';
-import {CommonModule} from "@angular/common";
+import {CommonModule} from '@angular/common';
 import { FormularEvenimenteComponent } from './formular-evenimente/formular-evenimente.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';

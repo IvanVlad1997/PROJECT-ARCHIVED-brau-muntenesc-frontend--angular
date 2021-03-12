@@ -5,7 +5,7 @@ import {VideoPlatform} from '../../../../common/video-platform';
 import {PlyrComponent} from 'ngx-plyr';
 import {Provider} from 'plyr';
 import {OverlayService} from '../services/overlay';
-import {Subscription} from "rxjs";
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'lib-video-item',
@@ -23,22 +23,22 @@ export class VideoItemComponent implements OnInit, OnDestroy {
   video: VideoPlatform;
   @ViewChild(PlyrComponent)
   plyr: PlyrComponent;
-  videoSources: Plyr.Source[] = []
+  videoSources: Plyr.Source[] = [];
 
   navigationSubscription: Subscription;
-  categoryVideoSub: Subscription
+  categoryVideoSub: Subscription;
 
 
   options = {
     quality: 1080
-  }
+  };
 
   ngOnInit(): void {
     this.navigationSubscription = this.route.params
       .subscribe(
         (p) => {
-          this.loadVideo()
-        })
+          this.loadVideo();
+        });
 
   }
 
@@ -55,12 +55,12 @@ export class VideoItemComponent implements OnInit, OnDestroy {
           ];
           this.categoryVideoSub =  this.videoPlatformService.getVideoPlatformBySubCategory(this.video.subCategory, this.video.slug)
             .subscribe(
-              (videos) =>{
+              (videos) => {
                 this.relatedVideos = videos;
               }
-            )
+            );
         }
-      )
+      );
   }
 
   openOverlay(): void {

@@ -23,14 +23,14 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   categories: Category[];
   brands: Brand[];
   subcategorySubscription: Subscription;
-  subCategories: SubCategory[] = []
+  subCategories: SubCategory[] = [];
 
-  imageIsUploading: boolean = false
+  imageIsUploading: boolean = false;
   file: any;
   localUrl: any;
   sizeOFCompressedImage: number;
   compressedImages: any[] = [];
-  saveClicked: boolean = false
+  saveClicked: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public product: Product,
               private ref: MatDialogRef<ProductEditComponent>,
@@ -40,8 +40,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private brandService: BrandService) { }
 
-  authSubscription: Subscription
-  token: string = ''
+  authSubscription: Subscription;
+  token: string = '';
 
 
   ngOnInit(): void {
@@ -50,8 +50,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            this.loadCategories()
-            this.loadBrands()
+            this.loadCategories();
+            this.loadBrands();
           }
         });
   }
@@ -76,16 +76,16 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   }
 
   async edit(): Promise<void> {
-    this.imageIsUploading = true
+    this.imageIsUploading = true;
     this.saveClicked = true;
     this.product.images = [...this.product.images, ...this.compressedImages];
     if (this.product.slug) {
         await this.productService.updateProduct(this.product.slug, this.product);
-        this.imageIsUploading = false
+        this.imageIsUploading = false;
         this.ref.close();
       } else {
         await this.productService.createProduct(this.product);
-        this.imageIsUploading = false
+        this.imageIsUploading = false;
         this.ref.close();
     }
   }
@@ -113,45 +113,45 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     }
     if (!this.saveClicked) {
       for (let image of this.compressedImages) {
-        this.compressImageService.removeImage(image.public_id, this.token)
+        this.compressImageService.removeImage(image.public_id, this.token);
       }
     }
     if (this.authSubscription) {
-      this.authSubscription.unsubscribe()
+      this.authSubscription.unsubscribe();
     }
     if (this.brandySubscription) {
-      this.brandySubscription.unsubscribe()
+      this.brandySubscription.unsubscribe();
     }
   }
 
   async onImagePicked(event: Event): Promise<void> {
-    this.imageIsUploading = true
+    this.imageIsUploading = true;
     const files: any = (event.target as HTMLInputElement).files;
     for (let file of files){
-      this.imageIsUploading = true
+      this.imageIsUploading = true;
       const fileName = file.name;
       const reader = new FileReader();
       reader.onload = async (e: any) => {
           this.localUrl = e.target.result;
-          const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token)
-          this.compressedImages.push(imageCompressed)
-          console.log(this.compressedImages)
-          this.imageIsUploading = false
-        }
+          const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token);
+          this.compressedImages.push(imageCompressed);
+          console.log(this.compressedImages);
+          this.imageIsUploading = false;
+        };
       reader.readAsDataURL(file);
     }
   }
 
 
   handleImageRemove(id: any, index: number, compressed: boolean): void {
-    this.imageIsUploading = true
-    console.log('remove img', id)
-    this.compressImageService.removeImage(id, this.token)
-    console.log(this.compressedImages)
-    console.log(index)
+    this.imageIsUploading = true;
+    console.log('remove img', id);
+    this.compressImageService.removeImage(id, this.token);
+    console.log(this.compressedImages);
+    console.log(index);
     if (compressed) {
       this.compressedImages.splice(index, 1);
-      console.log(this.compressedImages)
+      console.log(this.compressedImages);
     } else {
       this.product.images.splice(index, 1);
     }

@@ -38,7 +38,7 @@ export class PriceActionsListComponent implements AgFrameworkComponent<BaseColDe
   }
 
   async delete(): Promise<void> {
-    let token: string = this.authService.isAuthenticated.getValue()
+    let token: string = this.authService.isAuthenticated.getValue();
     if (window.confirm(`Esti sigur că vrei să stergi pretul ${this.price.category}?`))
     {
       try {

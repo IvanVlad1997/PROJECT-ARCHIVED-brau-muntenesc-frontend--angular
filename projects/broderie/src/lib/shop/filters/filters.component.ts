@@ -22,7 +22,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
               private productService: ProductService) {
   }
 
-  @Output() toggleFilters = new EventEmitter<boolean>()
+  @Output() toggleFilters = new EventEmitter<boolean>();
 
   priceShow: boolean = true;
   showCategory: boolean = true;
@@ -57,7 +57,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return '<b>Min preț:</b>'+ value;
+          return '<b>Min preț:</b>' + value;
         case LabelType.High:
           return '<b>Max preț:</b>' + value;
         default:
@@ -75,11 +75,11 @@ export class FiltersComponent implements OnInit, OnDestroy {
   getColorsAndBrands(): void {
     this.colorsAndBrandSubscription = this.productService.getColorsAndBrands()
       .subscribe((colorsAndBrand) => {
-        console.log('colorsAndBrand', colorsAndBrand)
+        console.log('colorsAndBrand', colorsAndBrand);
         this.colors = colorsAndBrand.colors.map((color) => color._id);
-        this.brands = colorsAndBrand.brands
+        this.brands = colorsAndBrand.brands;
 
-      })
+      });
   }
 
   loadCategories(): void {
@@ -99,7 +99,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.searchService.changeSearchText('', [null, null], [], null, [], '', [], [])
+    this.searchService.changeSearchText('', [null, null], [], null, [], '', [], []);
     if (this.categorySubscription) {
       this.categorySubscription.unsubscribe();
     }
@@ -125,7 +125,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   toggleCategory(): void {
     this.showCategory = !this.showCategory;
-    console.log(this.selectedCategories)
+    console.log(this.selectedCategories);
     const oldValues = this.searchService.searchTextUpdate.getValue();
     // if (this.showCategory) {
     //   this.selectedCategories = oldValues[2]
@@ -136,7 +136,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   toggleRatings(): void {
     this.ratingsShow = !this.ratingsShow;
     const oldValues = this.searchService.searchTextUpdate.getValue();
-    this.rate = oldValues[3]
+    this.rate = oldValues[3];
   }
 
   toggleSubCategories(): void {
@@ -197,7 +197,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
     } else {
       this.selectedColors.push(this.colors[i]);
     }
-    console.log(this.selectedColors)
+    console.log(this.selectedColors);
     const oldValues = this.searchService.searchTextUpdate.getValue();
     this.searchService.changeSearchText(oldValues[0], oldValues[1], oldValues[2], oldValues[3], oldValues[4], oldValues[5], this.selectedColors, oldValues[7]);
   }
@@ -211,7 +211,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
     } else {
       this.selectedBrands.push(this.brands[i]);
     }
-    console.log(this.selectedBrands)
+    console.log(this.selectedBrands);
     const oldValues = this.searchService.searchTextUpdate.getValue();
     this.searchService.changeSearchText(oldValues[0], oldValues[1], oldValues[2], oldValues[3], oldValues[4], oldValues[5], oldValues[6], this.selectedBrands);
   }
@@ -236,34 +236,34 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.selectedCategories = [];
     this.selectedSubCategories = [];
     const oldValues = this.searchService.searchTextUpdate.getValue();
-    this.searchService.changeSearchText(oldValues[0], [null, null], [], null, [], '', [], [])
+    this.searchService.changeSearchText(oldValues[0], [null, null], [], null, [], '', [], []);
   }
 
   checkSub(subCategory: SubCategory): boolean {
     if (this.selectedSubCategories.find((sub) => sub.slug === subCategory.slug )) {
       return true;
     }
-    return false
+    return false;
   }
 
   checkCat(category: Category): boolean {
     if (this.selectedCategories.find((sub) => sub.slug === category.slug )) {
       return true;
     }
-    return false
+    return false;
   }
 
   checkColor(color: string): boolean {
     if (this.selectedColors.find((col) => col === color )) {
       return true;
     }
-    return false
+    return false;
   }
 
   checkBrand(brand: string): boolean {
     if (this.selectedBrands.find((br) => brand === br )) {
       return true;
     }
-    return false
+    return false;
   }
 }

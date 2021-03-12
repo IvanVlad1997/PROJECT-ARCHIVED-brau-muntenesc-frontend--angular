@@ -42,18 +42,18 @@ export class CursantiPayComponent implements OnInit, OnDestroy {
   }
 
   async pay(): Promise<void> {
-    console.log(this.suma)
-    console.log(this.tipAbonament)
-    console.log(this.an)
-    console.log(this.luna)
-    console.log(this.zi)
+    console.log(this.suma);
+    console.log(this.tipAbonament);
+    console.log(this.an);
+    console.log(this.luna);
+    console.log(this.zi);
     let payment;
     let date: Date;
     const format = 'yyyy-MM-dd';
     if (this.useThisDate) {
-         date = new Date()
+         date = new Date();
        } else {
-      date = new Date(this.an, this.luna -1 , this.zi)
+      date = new Date(this.an, this.luna - 1 , this.zi);
     }
     const locale = 'ro-RO';
     const formattedDate = formatDate(date, format, locale);
@@ -61,20 +61,20 @@ export class CursantiPayComponent implements OnInit, OnDestroy {
         title : `Plată  curs - ${this.suma} - ${this.tipAbonament}`,
         date: formattedDate,
         color: 'red'
-    }
-    console.log(payment)
-    await this.userService.pay(this.token, payment, this.user.email, this.suma)
+    };
+    console.log(payment);
+    await this.userService.pay(this.token, payment, this.user.email, this.suma);
     this.ref.close();
   }
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
-      this.authSubscription.unsubscribe()
+      this.authSubscription.unsubscribe();
     }
   }
 
   changeDate(): void {
-    this.useThisDate = !this.useThisDate
+    this.useThisDate = !this.useThisDate;
   }
 }
 

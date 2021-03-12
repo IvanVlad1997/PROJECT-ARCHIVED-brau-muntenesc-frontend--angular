@@ -16,7 +16,7 @@ export class CartProductRemoveComponent implements AgFrameworkComponent<BaseColD
   cartProduct: Cart;
 
   agInit(params: BaseColDefParams): void {
-    this.cartProduct = params.data
+    this.cartProduct = params.data;
   }
 
   removeFromCart(): void {

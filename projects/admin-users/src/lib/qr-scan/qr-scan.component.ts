@@ -6,7 +6,7 @@ import {FormatsDialogComponent} from './formats-dialog/formats-dialog.component'
 import {AppInfoDialogComponent} from './app-info-dialog/app-info-dialog.component';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {UserService} from '../../../../user/src/lib/services/user';
-import { formatDate } from "@angular/common";
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'lib-qr-scan',
@@ -63,16 +63,16 @@ export class QrScanComponent implements OnDestroy, OnInit {
   onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
     if (this.result !== this.qrResultString) {
-      this.result = this.qrResultString
+      this.result = this.qrResultString;
       const format = 'yyyy-MM-dd';
-      const myDate = new Date()
+      const myDate = new Date();
       const locale = 'ro-RO';
       const formattedDate = formatDate(myDate, format, locale);
       const presence = {
         title : 'Prezență curs',
         date: formattedDate
-      }
-      this.userService.addPresenceToUser(this.token, this.result, presence)
+      };
+      this.userService.addPresenceToUser(this.token, this.result, presence);
     }
   }
 
@@ -122,7 +122,7 @@ export class QrScanComponent implements OnDestroy, OnInit {
       this.subscription.unsubscribe();
     }
     if (this.authSubscription) {
-      this.authSubscription.unsubscribe()
+      this.authSubscription.unsubscribe();
     }
   }
 }

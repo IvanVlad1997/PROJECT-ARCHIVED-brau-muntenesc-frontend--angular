@@ -58,7 +58,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
               if (authState) {
                 this.isAuthenticated = authState;
               } else {
-                this.isAuthenticated = ''
+                this.isAuthenticated = '';
               }
             });
     this.isAdminSubscription = this.authService.isAdmin
@@ -66,7 +66,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
         if (isAdm) {
           this.isAdmin = true;
         } else  {
-          this.isAdmin = false
+          this.isAdmin = false;
         }
       });
 

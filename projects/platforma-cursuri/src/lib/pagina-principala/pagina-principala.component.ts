@@ -68,9 +68,9 @@ export class PaginaPrincipalaComponent implements OnInit, OnDestroy {
       .subscribe(
         (token) => {
           this.token = token;
-          this.loadVideos(token)
+          this.loadVideos(token);
           if (token !== '') {
-            console.log(token)
+            console.log(token);
 
           }
         });
@@ -81,14 +81,14 @@ export class PaginaPrincipalaComponent implements OnInit, OnDestroy {
     this.videoPlatformSub = this.videoPlatformService.getVideoPlatformListener()
       .subscribe(videos => {
         this.videos = videos;
-        this.rowData = this.videos
+        this.rowData = this.videos;
       });
   }
 
 
   ngOnDestroy(): void {
     if (this.videoPlatformSub) {
-      this.videoPlatformSub.unsubscribe()
+      this.videoPlatformSub.unsubscribe();
     }
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();

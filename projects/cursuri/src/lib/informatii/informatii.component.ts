@@ -22,32 +22,32 @@ export class InformatiiComponent implements OnInit, OnDestroy {
   programSubscription: Subscription;
 
   ngOnInit(): void {
-    this.loadPrices()
-    this.loadProgram()
+    this.loadPrices();
+    this.loadProgram();
   }
 
   loadPrices(): void {
-    this.priceService.getPrices()
+    this.priceService.getPrices();
     this.priceSubscription = this.priceService.getPricesListener()
       .subscribe((prices) => {
-        this.prices = prices
-      })
+        this.prices = prices;
+      });
   }
 
   loadProgram(): void {
     this.programService.getPrograms();
     this.programSubscription = this.programService.getProgramListener()
       .subscribe((program) => {
-        this.program = program
-      })
+        this.program = program;
+      });
   }
 
   ngOnDestroy(): void {
     if (this.priceSubscription) {
-      this.priceSubscription.unsubscribe()
+      this.priceSubscription.unsubscribe();
     }
     if (this.programSubscription) {
-      this.programSubscription.unsubscribe()
+      this.programSubscription.unsubscribe();
     }
   }
 

@@ -35,7 +35,7 @@ export class VideoGaleryEditComponent implements OnInit, OnDestroy {
   async edit(): Promise<void> {
     console.log(this.video);
     if (this.video.slug) {
-      await this.videoPlatformService.videoPlatformUpdate(this.video.slug, this.video, this.token)
+      await this.videoPlatformService.videoPlatformUpdate(this.video.slug, this.video, this.token);
     } else {
       await this.videoPlatformService.videoPlatformCreate(this.video, this.token);
     }
@@ -44,7 +44,7 @@ export class VideoGaleryEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
-      this.authSubscription.unsubscribe()
+      this.authSubscription.unsubscribe();
     }
   }
 }

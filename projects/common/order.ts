@@ -4,7 +4,7 @@ import {User} from './user';
 export interface Order {
   _id: string;
   orderStatus: string;
-  orderNumber: number,
+  orderNumber: number;
   products: [
     {
       _id: string;
@@ -12,7 +12,7 @@ export interface Order {
       count: number;
       description: string;
     }
-  ],
+  ];
   paymentIntent: {
     id: string;
     object: string;
@@ -35,7 +35,7 @@ export interface Order {
     shipping: string;
     source: string;
     status: string;
-  },
+  };
   orderedBy: User;
   createdAt: Date;
   updatedAt: Date;

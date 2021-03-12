@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     this.meta.addTag({
       name: 'description',
       content: `Cursuri de dansuri populare, broderie personalizată - realizare ie, participare la evenimente. Sună acum la 0751/105.873 pentru mai multe informații.`
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -26,24 +26,24 @@ export class AppComponent implements OnInit {
     this.sub = this.http.get(`${environment.appApi}/product/abonament-cursuri`).subscribe(
       (c) => {
       },
-      () => {alert('Vă rugăm să dați refresh')},
+      () => {alert('Vă rugăm să dați refresh');},
       () => {
-        console.log('Backend on')
-        this.loading = false
-      })
+        console.log('Backend on');
+        this.loading = false;
+      });
 
     let cc = window as any;
     cc.cookieconsent.initialise({
       palette: {
         popup: {
-          background: "#164969"
+          background: '#164969'
         },
         button: {
-          background: "#ffe000",
-          text: "#164969"
+          background: '#ffe000',
+          text: '#164969'
         }
       },
-      theme: "classic",
+      theme: 'classic',
       type: 'info',
       content: {
         message: 'Acest website folosește cookies pentru a asigura o experiență plăcută.',

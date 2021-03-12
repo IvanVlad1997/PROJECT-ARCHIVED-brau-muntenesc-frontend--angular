@@ -18,18 +18,18 @@ export class GalerieVideoComponent implements OnInit, OnDestroy {
 
   constructor(private videoPlatformService: GalerieVideoService) { }
 
-    video: GalerieVideoCursuri[] =[];
+    video: GalerieVideoCursuri[] = [];
     @ViewChild(PlyrComponent)
     plyr: PlyrComponent;
-    sub: Subscription
+    sub: Subscription;
     videoSources = [];
 
     options = {
       quality: 1080
-    }
+    };
 
     ngOnInit(): void {
-      this.loadVideos()
+      this.loadVideos();
     }
 
     loadVideos(): void {
@@ -43,13 +43,13 @@ export class GalerieVideoComponent implements OnInit, OnDestroy {
                 this.videoSources.push(  [{
                   src: vid.src,
                   provider: vid.provider as Provider,
-                }])
-              console.log(this.videoSources)
+                }]);
+                console.log(this.videoSources);
               }
-            )
+            );
 
           }
-        )
+        );
     }
 
     ngOnDestroy(): void {

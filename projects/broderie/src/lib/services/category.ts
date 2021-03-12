@@ -58,7 +58,7 @@ export class CategoryService {
         }
       })
       .subscribe(c => {
-        this.toastService.success(`Categoria ${category.name} a fost creată cu succes!`)
+        this.toastService.success(`Categoria ${category.name} a fost creată cu succes!`);
         this.getCategories();
       },
         (error =>  this.toastService.error(`Nu s-a putut crea categoria.`)));

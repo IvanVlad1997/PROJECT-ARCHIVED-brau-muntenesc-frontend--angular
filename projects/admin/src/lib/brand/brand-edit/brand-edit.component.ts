@@ -33,7 +33,7 @@ export class BrandEditComponent implements OnInit, OnDestroy {
 
   async edit(): Promise<void> {
     if (this.brand.slug) {
-      await this.brandService.programUpdate(this.brand.slug, this.brand, this.token)
+      await this.brandService.programUpdate(this.brand.slug, this.brand, this.token);
     } else {
       await this.brandService.brandCreate(this.brand, this.token);
     }

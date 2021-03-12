@@ -30,7 +30,7 @@ export class NodemailerService {
       .subscribe(
         () => {
           console.log('e ok');
-        })
+        });
   }
 
   targetMailById(subject: string, html: string, _id: string): void {
@@ -43,6 +43,6 @@ export class NodemailerService {
       .subscribe(
         () => {
           console.log('e ok');
-        })
+        });
   }
 }

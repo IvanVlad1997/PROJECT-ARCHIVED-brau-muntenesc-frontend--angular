@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {AgFrameworkComponent} from 'ag-grid-angular';
 import {BaseColDefParams} from 'ag-grid-community/dist/lib/entities/colDef';
 import {MatDialog} from '@angular/material/dialog';
-import {PriceService} from '../../services/preturi';
 import {ToastService} from 'angular-toastify';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
-import {Price} from '../../../../../common/price';
-import {PriceEditComponent} from '../../price/price-edit/price-edit.component';
 import {ProgramService} from '../../services/program';
 import {Program} from '../../../../../common/program';
 import {ProgramEditComponent} from '../program-edit/program-edit.component';
@@ -38,7 +35,7 @@ export class ProgramActionsListComponent implements AgFrameworkComponent<BaseCol
   }
 
   async delete(): Promise<void> {
-    let token: string = this.authService.isAuthenticated.getValue()
+    let token: string = this.authService.isAuthenticated.getValue();
     if (window.confirm(`Esti sigur că vrei să stergi pretul ${this.program.category}?`))
     {
       try {

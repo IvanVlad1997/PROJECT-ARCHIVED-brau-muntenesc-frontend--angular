@@ -33,18 +33,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   categorySubscription: Subscription;
   subcategorySubscription: Subscription;
   loadingNew: boolean = false;
-  loadingBest: boolean = false
+  loadingBest: boolean = false;
   productsCount: number;
   pageBestSeller: number = 1;
   pageNewProducts: number = 1;
 
   ngOnInit(): void {
      this.productService.countProducts().then(c => {
-       this.productsCount = c-1;
-     })
+       this.productsCount = c - 1;
+     });
      this.loadingNew = true;
      this.loadingBest = true;
-     this.loadCarouselPhotos()
+     this.loadCarouselPhotos();
      this.loadNewProducts();
      this.loadBestSellers();
      this.loadCategories();
@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   loadCarouselPhotos(): void {
-    this.carouselPhotoService.getCarouselPhotos()
+    this.carouselPhotoService.getCarouselPhotos();
     this.carouselPhotoSubscription = this.carouselPhotoService.getCarouselPhotoListener()
       .subscribe(carouselPhotos => {
         this.carouselPhotos = carouselPhotos.map((photo) => ({
@@ -102,7 +102,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   loadBestSellers(): void {
-     console.log(this.pageBestSeller)
+     console.log(this.pageBestSeller);
      this.productsSubscription = this.productService.getProductWithPagination('sold', 'desc', this.pageBestSeller)
       .subscribe(
         (products: Product[]) => {
@@ -127,7 +127,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
        this.categorySubscription.unsubscribe();
      }
      if (this.subcategorySubscription) {
-       this.subcategorySubscription.unsubscribe()
+       this.subcategorySubscription.unsubscribe();
      }
   }
 

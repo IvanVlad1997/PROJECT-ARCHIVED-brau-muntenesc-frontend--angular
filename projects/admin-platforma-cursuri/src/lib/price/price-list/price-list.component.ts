@@ -61,7 +61,7 @@ export class PriceListComponent implements OnInit, OnDestroy {
         (token) => {
           if (token) {
             this.token = token;
-            this.loadPrices()
+            this.loadPrices();
           }
         });
   }
@@ -71,14 +71,14 @@ export class PriceListComponent implements OnInit, OnDestroy {
     this.priceSubscription = this.priceService.getPricesListener()
       .subscribe(prices => {
         this.prices = prices;
-        this.rowData =  this.prices
+        this.rowData =  this.prices;
       });
   }
 
 
   ngOnDestroy(): void {
     if (this.priceSubscription) {
-      this.priceSubscription.unsubscribe()
+      this.priceSubscription.unsubscribe();
     }
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();
@@ -99,7 +99,7 @@ export class PriceListComponent implements OnInit, OnDestroy {
     this.dialog.open(PriceEditComponent, {
       data: newPrice,
       disableClose: true
-    })
+    });
   }
 
 

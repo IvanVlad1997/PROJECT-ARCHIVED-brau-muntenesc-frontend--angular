@@ -1,4 +1,4 @@
-import {AfterContentChecked, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../../../user/src/lib/services/user';
 import {Cart} from '../../../../common/cart';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
@@ -6,11 +6,9 @@ import {Subscription} from 'rxjs';
 import {CartService} from '../services/cart';
 import {ToastService} from 'angular-toastify';
 import {ContentChange} from 'ngx-quill';
-import {ChangeDetectorRef } from '@angular/core';
 import {Router} from '@angular/router';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
-import {Brand} from '../../../../common/brand';
 
 @Component({
   selector: 'lib-checkout',
@@ -64,7 +62,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       .subscribe(
         (token) => {
           if (token !== '') {
-            this.token = token
+            this.token = token;
             this.tokenSubscription = this.userService.getUserCart(token);
             this.userServiceSubscriptioon = this.userService.getCartUpdateListener()
               .subscribe(
@@ -84,7 +82,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             this.addressSubscription = this.userService.getUserAddress()
               .subscribe( address => {
                 if (address && address.address[0]) {
-                  console.log(address)
+                  console.log(address);
                   const newAddressArray = address.address;
                   this.address = newAddressArray[0];
                   this.addressContent = newAddressArray[1];
@@ -171,29 +169,29 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   goToPayment(): void {
-    this.router.navigate(['/broderie/payment'])
+    this.router.navigate(['/broderie/payment']);
   }
 
   cashOrder(): void {
     this.userSubscription = this.userService.createNewCashOrder(this.token)
       .subscribe(
         (res) => {
-          const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email]
+          const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email];
           let textProduse: string = '';
 
           res.userCart.products.forEach(product => {
             textProduse = textProduse + `<br/>${product.product.title} x ${product.count}`;
             if (emails.indexOf(product.product.brand.email) > -1) {
-              emails.push(product.product.brand.email)
+              emails.push(product.product.brand.email);
             }
           });
 
-          this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată la livrare pentru Brâu Muntenesc a fost trimisă.</h1><h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, emails)
+          this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată la livrare pentru Brâu Muntenesc a fost trimisă.</h1><h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, emails);
           this.cartService.removeAllFromCart();
           this.userService.emptyUserCart();
-          this.toastService.success('Comanda a fost preluată')
-          this.router.navigate(['/user/history'])
+          this.toastService.success('Comanda a fost preluată');
+          this.router.navigate(['/user/history']);
         }
-      )
+      );
   }
 }

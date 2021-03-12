@@ -23,7 +23,7 @@ export class UserListActionsComponent implements AgFrameworkComponent<BaseColDef
 
   agInit(params: BaseColDefParams): void {
     this.user = params.data;
-    console.log(this.user)
+    console.log(this.user);
   }
 
   edit(): void {

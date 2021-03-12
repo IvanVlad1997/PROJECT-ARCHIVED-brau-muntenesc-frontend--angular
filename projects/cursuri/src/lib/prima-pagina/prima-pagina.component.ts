@@ -38,7 +38,7 @@ export class PrimaPaginaComponent implements OnInit {
     // {url: 'https://i.imgur.com/pcLAVGx.jpg'},
     {url: 'https://i.imgur.com/6wIoSeN.png'},
     {url: 'https://i.imgur.com/1bJnRRS.png'}
-  ]
+  ];
 
   texts = [
     {
@@ -61,7 +61,7 @@ export class PrimaPaginaComponent implements OnInit {
       title: '... artă și tradiție',
       icon: 'car'
     }
-  ]
+  ];
 
 
   ngOnInit(): void {

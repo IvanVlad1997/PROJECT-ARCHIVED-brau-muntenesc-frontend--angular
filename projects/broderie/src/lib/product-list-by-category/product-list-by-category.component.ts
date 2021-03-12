@@ -20,14 +20,14 @@ export class ProductListByCategoryComponent implements OnInit {
   products: Product[];
 
   ngOnInit(): void {
-    const slug = this.activatedRoute.snapshot.params.slug
+    const slug = this.activatedRoute.snapshot.params.slug;
     this.categoryService.getCategory(slug)
       .subscribe(
         (result => {
           this.category = result.category;
           this.products = result.products;
         })
-      )
+      );
   }
 
 }

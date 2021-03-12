@@ -32,10 +32,10 @@ export class CursantiService {
       })
       .subscribe(
         (users: User[]) => {
-          console.log(users)
-          this.usersUpdated.next(users)
+          console.log(users);
+          this.usersUpdated.next(users);
         }
-      )
+      );
   }
 
   // updateUser(token: string, user: User): void {

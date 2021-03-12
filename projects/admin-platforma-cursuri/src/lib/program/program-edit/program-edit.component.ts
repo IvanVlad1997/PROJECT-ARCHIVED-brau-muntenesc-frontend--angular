@@ -36,7 +36,7 @@ export class ProgramEditComponent implements OnInit, OnDestroy {
   async edit(): Promise<void> {
     console.log(this.program);
     if (this.program.slug) {
-      await this.programService.programUpdate(this.program.slug, this.program, this.token)
+      await this.programService.programUpdate(this.program.slug, this.program, this.token);
     } else {
       await this.programService.programCreate(this.program, this.token);
     }

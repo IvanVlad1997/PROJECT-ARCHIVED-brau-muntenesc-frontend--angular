@@ -24,7 +24,7 @@ export class ImageService {
     this.http.get<Image[]>(`${environment.appApi}/images`)
       .subscribe((photos: Image[]) => {
         this.imagesUpdate.next(photos);
-      })
+      });
   }
 
   createPhoto(image: Image, token: string): void {
@@ -57,10 +57,10 @@ export class ImageService {
       })
       .subscribe(() => {
           this.toastService.success('Fotografia a fost ștearsă');
-          this.getPhotos()
+          this.getPhotos();
         },
         (error => {
           this.toastService.error('Nu s-a putut șterge fotografia');
-        }))
+        }));
   }
 }

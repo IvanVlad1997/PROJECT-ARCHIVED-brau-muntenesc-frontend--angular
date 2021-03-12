@@ -30,10 +30,10 @@ export class DayReportService {
       })
       .subscribe(
         (users: User[]) => {
-          console.log(users)
-          this.todayReportUser.next(users)
+          console.log(users);
+          this.todayReportUser.next(users);
         }
-      )
+      );
   }
 
 

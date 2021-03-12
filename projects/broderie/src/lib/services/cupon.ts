@@ -9,7 +9,7 @@ import {ToastService} from 'angular-toastify';
 @Injectable({providedIn: 'root'})
 export class CuponService {
 
-  private cuponsUpdated: BehaviorSubject<Cupon[]> = new BehaviorSubject<Cupon[]>([])
+  private cuponsUpdated: BehaviorSubject<Cupon[]> = new BehaviorSubject<Cupon[]>([]);
 
   constructor(private http: HttpClient,
               private authService: AuthService,
@@ -24,7 +24,7 @@ export class CuponService {
     this.http.get<Cupon[]>(`${environment.appApi}/cupons`)
       .subscribe(
         (cupons: Cupon[]) => {
-          this.cuponsUpdated.next(cupons)
+          this.cuponsUpdated.next(cupons);
         }
       );
   }
@@ -60,13 +60,13 @@ export class CuponService {
       .subscribe(
         (c) => {
           this.toastService.success(`Cuponul ${cupon.name} a fost creat cu succes!`);
-          this.getCupons()
+          this.getCupons();
         },
         error => {
-          console.log(error)
+          console.log(error);
           this.toastService.error('Nu s-a putut crea cuponul');
         }
-      )
+      );
   }
 
 

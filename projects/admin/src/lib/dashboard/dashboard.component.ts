@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.loading = true;
           this.token = token;
           if (token !== '') {
-            console.log(token)
+            console.log(token);
             this.loadOrders(token);
           }
         });
@@ -40,23 +40,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   loadOrders(token): void {
-    this.adminService.getOrders(token)
+    this.adminService.getOrders(token);
     // setTimeout(() => this.loading = false, 1000)
     this.adminServiceSubscription = this.adminService.getOrdersListener()
       .subscribe(
         (orders) => {
-          console.log(orders)
+          console.log(orders);
           this.orders = orders;
           this.loading = false;
         }
-      )
+      );
   }
 
   ngOnDestroy(): void {
     if (this.adminServiceSubscription) {
       this.adminServiceSubscription.unsubscribe();
     }
-    this.authSubscription.unsubscribe()
+    this.authSubscription.unsubscribe();
   }
 
 }

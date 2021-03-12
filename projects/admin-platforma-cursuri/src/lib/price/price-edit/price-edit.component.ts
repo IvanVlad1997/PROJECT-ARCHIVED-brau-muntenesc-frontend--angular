@@ -36,7 +36,7 @@ export class PriceEditComponent implements OnInit, OnDestroy {
   async edit(): Promise<void> {
     console.log(this.price);
     if (this.price.slug) {
-      await this.priceService.priceUpdate(this.price.slug, this.price, this.token)
+      await this.priceService.priceUpdate(this.price.slug, this.price, this.token);
     } else {
       await this.priceService.priceCreate(this.price, this.token);
     }

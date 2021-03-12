@@ -28,11 +28,11 @@ export class AdminService {
         (orders: Order[]) => {
           this.ordersUpdated.next(orders);
         }
-      )
+      );
   }
 
   changedStatus(orderId, orderStatus, token): Observable<Order> {
-    return this.http.put<Order>(`${environment.appApi}/admin/order-status`,{
+    return this.http.put<Order>(`${environment.appApi}/admin/order-status`, {
       orderId: orderId,
       orderStatus: orderStatus
     },
@@ -40,6 +40,6 @@ export class AdminService {
         headers: {
           authtoken: token
         }
-      })
+      });
   }
 }

@@ -30,18 +30,18 @@ export class ImageListComponent  implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadPhotos(token)
+            console.log(token);
+            this.loadPhotos(token);
           }
         });
   }
 
   loadPhotos(token): void {
-    this.imageService.getPhotos()
+    this.imageService.getPhotos();
     this.photoSubscription = this.imageService.getImagesListener()
       .subscribe(images => {
         this.images = images;
-        console.log(images)
+        console.log(images);
       });
   }
 
@@ -55,7 +55,7 @@ export class ImageListComponent  implements OnInit, OnDestroy {
   }
 
   async addPhoto(): Promise<void> {
-    console.log('adding photo')
+    console.log('adding photo');
     const newPhoto: Image = {
       _id: undefined,
       type: 'galerie-cursuri',
@@ -66,12 +66,12 @@ export class ImageListComponent  implements OnInit, OnDestroy {
       createdAt: undefined,
       updatedAt: undefined,
       _v: null
-    }
+    };
     this.matDialog.open(ImageEditComponent,
       {
         data: newPhoto,
         disableClose: true
-      })
+      });
   }
 
   async handleImageRemove(photo: Image): Promise<void> {

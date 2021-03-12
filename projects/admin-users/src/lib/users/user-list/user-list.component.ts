@@ -72,7 +72,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
+            console.log(token);
             this.loadUsers(token);
           }
         });
@@ -84,7 +84,7 @@ export class UserListComponent implements OnInit, OnDestroy {
       .subscribe(users => {
         this.users = users;
         this.rowData = this.users;
-      })
+      });
   }
 
 

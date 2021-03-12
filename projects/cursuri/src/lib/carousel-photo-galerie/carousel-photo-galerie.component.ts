@@ -33,15 +33,15 @@ export class CarouselPhotoGalerieComponent implements AfterViewInit, OnInit, OnC
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.loadCarouselImages()
+    this.loadCarouselImages();
   }
 
   ngOnInit(): void {
-    this.loadCarouselImages()
+    this.loadCarouselImages();
   }
 
   loadCarouselImages(): void {
-    this.carouselItems = this.images.map((image) => image.url)
+    this.carouselItems = this.images.map((image) => image.url);
   }
 
 

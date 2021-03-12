@@ -96,8 +96,8 @@ export class AuthService {
             if (other) {
               await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
             }
-            await this.getCurrentUser(token)
-            await this.roleBaseRedirect(data.role)
+            await this.getCurrentUser(token);
+            await this.roleBaseRedirect(data.role);
           });
       })
       .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
@@ -163,7 +163,7 @@ export class AuthService {
       })
       .subscribe(
         (c) => console.log('date adaugate', c)
-      )
+      );
   }
 
 
@@ -174,16 +174,16 @@ export class AuthService {
       address: address,
       isDancer: isDancer,
       name: name
-    }
+    };
     const result = await this.angularFirebaseAuth.createUserWithEmailAndPassword(email, password)
       .then(async (data) => {
-        await this.login(email, password, other)
+        await this.login(email, password, other);
         this.nodemailer.infoMail(`Cont nou - ${email}`,
           `<h1>A fost înregistrat un cont nou</h1>
                 </br>
                 <p>Email: ${email}</p>
                 <p>Număr de telefon ${telNum}</p>
-                <p>Pentru dansuri: ${isDancer ? 'Da' : 'Nu'}</p>`)
+                <p>Pentru dansuri: ${isDancer ? 'Da' : 'Nu'}</p>`);
         await this.updateMany(email, telNum, address, isDancer, name);
         this.nodemailer.targetMail(`Cont Brâu Muntenesc`,
           `<h1>Îți mulțumim pentru crearea unui cont pe Brâu Muntenesc®. Poți accesa contul pentru a-ți vedea comenzile, pentru a-ți schimba parola și altele la: https://www.braumuntenesc.com/user De-abia așteptăm să te revedem!”</h1>` ,
@@ -214,7 +214,7 @@ export class AuthService {
         )
           .subscribe((data: User) => {
             this.roleBaseRedirect(data.role);
-            this.nodemailer.infoMail('Logare cu gmail', `<p>Nouă logare cu gmail - ${data.email}</p>`)
+            this.nodemailer.infoMail('Logare cu gmail', `<p>Nouă logare cu gmail - ${data.email}</p>`);
           });
       })
       .catch(() => console.log('login failed'));
@@ -227,11 +227,11 @@ export class AuthService {
     };
     await this.angularFirebaseAuth.sendPasswordResetEmail(email, config)
       .then(() => {
-        this.toastService.success('Verifica emailul pentru link-ul de resetare a parolei')
+        this.toastService.success('Verifica emailul pentru link-ul de resetare a parolei');
       })
       .catch((error) => {
         this.toastService.error(error.message);
-      })
+      });
   }
 
   async updatePassword(password: string): Promise<void> {
@@ -245,7 +245,7 @@ export class AuthService {
   }
 
   roleBaseRedirect(role): void {
-    this.toastService.success('Te-ai logat cu succes!')
+    this.toastService.success('Te-ai logat cu succes!');
     if (role === 'admin') {
       this.router.navigate(['/admin']);
     } else {

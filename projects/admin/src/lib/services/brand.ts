@@ -25,7 +25,7 @@ export class BrandService {
     this.http.get<Brand[]>(`${environment.appApi}/brands`)
       .subscribe((brands: Brand[]) => {
         this.brandUpdated.next(brands);
-      })
+      });
   }
 
 

@@ -65,19 +65,19 @@ export class CartComponent implements OnInit, OnDestroy {
 
   authSubscription: Subscription;
   token: string = '';
-  loading: boolean = false
+  loading: boolean = false;
 
   ngOnInit(): void {
-    this.loading = true
+    this.loading = true;
     this.authSubscription = this.authService.isAuthenticated
       .subscribe(
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadCart(token)
+            console.log(token);
+            this.loadCart(token);
           } else  {
-            this.router.navigate(['/auth/login'])
+            this.router.navigate(['/auth/login']);
           }
         });
   }
@@ -86,10 +86,10 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartSubscription = this.cartService.cartUpdate
       .subscribe((c) => {
         this.cart = c;
-        this.rowData = this.cart
-        this.getTotal()
-        this.loading = false
-      })
+        this.rowData = this.cart;
+        this.getTotal();
+        this.loading = false;
+      });
   }
 
   ngOnDestroy(): void {
@@ -102,7 +102,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   getTotal(): void {
-    console.log(this.cart)
+    console.log(this.cart);
     this.totalPrice = this.cart.reduce((currentValue, nextValue) => {
       return currentValue + nextValue.count * nextValue.product.price;
     }, 0);
@@ -112,19 +112,19 @@ export class CartComponent implements OnInit, OnDestroy {
     this.userService.userCart(this.cart)
       .subscribe(
         (cartProducts) => {
-          console.log('aici nu ')
-          this.router.navigate(['/broderie/checkout'])
+          console.log('aici nu ');
+          this.router.navigate(['/broderie/checkout']);
         },
         (error => {
-          this.toastService.error('Vă rugăm să dați un refresh înainte de a finaliza comanda.')
+          this.toastService.error('Vă rugăm să dați un refresh înainte de a finaliza comanda.');
         })
-      )
+      );
   }
 
   async emptyUserCart(): Promise<void> {
     await this.cartService.removeAllFromCart();
     await this.userService.emptyUserCart();
     this.toastService.success('Coșul a fost golit');
-    this.authService.getCurrentUser(this.token)
+    this.authService.getCurrentUser(this.token);
   }
 }

@@ -52,8 +52,10 @@
       "trace"
     ],
     "no-empty": false,
+    "prefer-const": false,
+    "object-literal-shorthand": false,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-non-null-assertion": true,

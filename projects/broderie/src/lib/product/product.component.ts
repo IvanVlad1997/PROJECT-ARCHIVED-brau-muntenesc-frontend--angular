@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.route.snapshot.params.slug === 'transport') {
-      this.router.navigate(['/broderie'])
+      this.router.navigate(['/broderie']);
     }
     this.authSubscription = this.authService.user.subscribe((user) => {
       this.user = user;
@@ -59,8 +59,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this.route.params
       .subscribe(
         (p) => {
-          this.loadProduct()
-        })
+          this.loadProduct();
+        });
 
   }
 
@@ -68,7 +68,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.getProductSubscription = this.productService.getRelated(this.product._id)
       .subscribe((products: Product[]) => {
         this.relatedProducts = products;
-        console.log(this.relatedProducts)
+        console.log(this.relatedProducts);
       },
         error => console.log(error));
   }
@@ -78,11 +78,11 @@ export class ProductComponent implements OnInit, OnDestroy {
     const slug = this.activatedRoute.snapshot.params.slug;
     this.getProductSubscription = this.productService.getProduct(slug)
       .subscribe((product: Product) => {
-          console.log(product)
+          console.log(product);
           this.product = product;
-          this.rateAndLength = this.ratingService.showAverage(this.product)
-          this.image = this.product.images[0]
-          this.loadRelatedProducts()
+          this.rateAndLength = this.ratingService.showAverage(this.product);
+          this.image = this.product.images[0];
+          this.loadRelatedProducts();
         },
         (error => console.log(error)));
   }
@@ -97,13 +97,13 @@ export class ProductComponent implements OnInit, OnDestroy {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
-    this.authSubscription.unsubscribe()
+    this.authSubscription.unsubscribe();
   }
 
   leaveARating(): void {
     this.dialog.open(RatingsComponent, {
       data: this.product
-    })
+    });
       // .afterClosed()
       // .toPromise()
       // .then(() => this.loadProduct())
@@ -119,8 +119,8 @@ export class ProductComponent implements OnInit, OnDestroy {
       .subscribe(
         (p) => {
           this.toastService.success('Produsul a fost adăugat la favorite');
-          this.router.navigate(['/user/wishlist'])
-          this.authService.getCurrentUser(this.token)
+          this.router.navigate(['/user/wishlist']);
+          this.authService.getCurrentUser(this.token);
         });
   }
 }

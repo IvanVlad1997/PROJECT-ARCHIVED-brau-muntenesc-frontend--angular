@@ -20,7 +20,7 @@ export class CategoryEditComponent implements OnInit {
   async edit(): Promise<void> {
     console.log(this.category);
     if (this.category.slug) {
-        await this.categoryService.updateCategory(this.category.slug, this.category)
+        await this.categoryService.updateCategory(this.category.slug, this.category);
     } else {
         await this.categoryService.createCategory(this.category);
     }

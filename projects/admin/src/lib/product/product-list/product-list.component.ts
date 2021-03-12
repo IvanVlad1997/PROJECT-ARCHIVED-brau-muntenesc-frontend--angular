@@ -71,7 +71,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
       field: 'brand',
       valueFormatter: params => {
         if (params && params.data) {
-          return params.data.brand.name
+          return params.data.brand.name;
         }
       }
     },
@@ -97,7 +97,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   rowData: any;
 
   authSubscription: Subscription;
-  token: string = ''
+  token: string = '';
 
   ngOnInit(): void {
     this.authSubscription = this.authService.isAuthenticated
@@ -105,8 +105,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadProducts(token)
+            console.log(token);
+            this.loadProducts(token);
           }
         });
   }

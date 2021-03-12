@@ -23,7 +23,7 @@ export class DashboardOrderItemComponent implements OnInit {
     'Anulat',
     'Plată la livrare',
     'Complet'
-  ]
+  ];
 
   ngOnInit(): void {
   }
@@ -32,14 +32,14 @@ export class DashboardOrderItemComponent implements OnInit {
    this.adminService.changedStatus(orderId, orderStatus, this.token)
      .subscribe(
        (res) => {
-         this.toastService.success('Statusul comenzii a fost modificat')
+         this.toastService.success('Statusul comenzii a fost modificat');
        }
-     )
+     );
   }
 
 
   changeOrderStatus(status: string): void {
     console.log(status);
-    this.changeStatus(this.order._id, status)
+    this.changeStatus(this.order._id, status);
   }
 }

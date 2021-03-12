@@ -40,9 +40,9 @@ export class FormularEvenimenteComponent implements OnInit {
       nrTel: this.nrTel,
       evDate: this.evDate,
       restaurant: this.restaurant,
-    }
-    this.eventsService.createEvent(event)
-    this.ref.close()
+    };
+    this.eventsService.createEvent(event);
+    this.ref.close();
   }
 
 

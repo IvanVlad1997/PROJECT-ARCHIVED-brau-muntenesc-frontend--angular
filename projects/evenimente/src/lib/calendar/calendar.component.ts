@@ -11,13 +11,13 @@ export class CalendarComponent implements OnInit {
   constructor() { }
 
   isModalOn = false;
-  position = {top: 0, left: 0}
+  position = {top: 0, left: 0};
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
     // locale: 'ro',
     eventMouseEnter: (p) => {
-      this.hover(p)
+      this.hover(p);
     },
     eventMouseLeave: (p) => {
       this.isModalOn = false;
@@ -51,23 +51,23 @@ export class CalendarComponent implements OnInit {
     if (p.jsEvent.screenX > 60 / 100 * window.innerWidth) {
       if (p.jsEvent.screenY > 60 / 100 * window.innerHeight) {
         this.position = {
-          left: p.jsEvent.screenX - 15/100 * p.jsEvent.screenX,
-          top: p.jsEvent.screenY - 5/100 * p.jsEvent.screenY
-        }
+          left: p.jsEvent.screenX - 15 / 100 * p.jsEvent.screenX,
+          top: p.jsEvent.screenY - 5 / 100 * p.jsEvent.screenY
+        };
       }
 
       else {
         this.position = {
-          left: p.jsEvent.screenX - 15/100 * p.jsEvent.screenX,
+          left: p.jsEvent.screenX - 15 / 100 * p.jsEvent.screenX,
           top: p.jsEvent.screenY
-        }
+        };
       }
     }
-    else if(p.jsEvent.screenY > 60/100 * window.innerHeight) {
+    else if (p.jsEvent.screenY > 60 / 100 * window.innerHeight) {
       this.position = {
         left: p.jsEvent.screenX,
         top: p.jsEvent.screenY - 5 / 100 * p.jsEvent.screenY
-      }
+      };
     }
     else {
       this.position = {
@@ -75,7 +75,7 @@ export class CalendarComponent implements OnInit {
         top: p.jsEvent.screenY
       };
     }
-    console.log(p)
+    console.log(p);
   }
 
 

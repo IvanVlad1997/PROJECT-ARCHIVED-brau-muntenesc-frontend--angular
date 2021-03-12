@@ -15,22 +15,22 @@ export class GalerieFotoComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private imageService: ImageService) { }
-              
+
   images: Image[] = [];
   imageSubscription: Subscription;
   authSubscription: Subscription;
-  token: string = ''
+  token: string = '';
   loading: boolean = false;
 
   ngOnInit(): void {
-    this.loading = true
+    this.loading = true;
     this.authSubscription = this.authService.isAuthenticated
       .subscribe(
         (token) => {
           this.token = token;
-          this.loadImages()
+          this.loadImages();
           if (token !== '') {
-            console.log(token)
+            console.log(token);
           }
         });
   }
@@ -40,11 +40,11 @@ export class GalerieFotoComponent implements OnInit, OnDestroy {
     this.imageSubscription = this.imageService.getImagesListener()
       .subscribe(
         (images) => {
-          this.images = images
-          console.log(this.images)
-          this.loading = false
+          this.images = images;
+          console.log(this.images);
+          this.loading = false;
         }
-      )
+      );
   }
 
   ngOnDestroy(): void {

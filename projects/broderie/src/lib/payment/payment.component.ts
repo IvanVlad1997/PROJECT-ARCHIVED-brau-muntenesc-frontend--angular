@@ -180,9 +180,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
                 this.userService.createNewOrder(result, this.token)
                   .subscribe(
                     (ok) => {
-                      const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email]
+                      const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email];
                       if (ok) {
-                        console.log(ok)
+                        console.log(ok);
                         for (const product of ok.products) {
                           if (product.product.title === 'Abonament cursuri') {
                             {
@@ -194,19 +194,19 @@ export class PaymentComponent implements OnInit, OnDestroy {
                                 title : `Plată  curs online - 80 - abonament`,
                                 date: formattedDate,
                                 color: 'green'
-                              }
-                              this.userService.pay(this.token, payment, this.user.email, 80)
+                              };
+                              this.userService.pay(this.token, payment, this.user.email, 80);
                             }
                           }
                         }
                         let textProduse: string = '';
                         for (const product of ok.products) {
-                          textProduse = textProduse + `<br/>${product.product.title} x ${product.count}`
+                          textProduse = textProduse + `<br/>${product.product.title} x ${product.count}`;
                           if (emails.indexOf(product.product.brand.email) > -1) {
-                            emails.push(product.product.brand.email)
+                            emails.push(product.product.brand.email);
                           }
                         }
-                        this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată online pentru Brâu Muntenesc a fost trimisă.</h1><h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, emails)
+                        this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată online pentru Brâu Muntenesc a fost trimisă.</h1><h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, emails);
                         this.cartService.removeAllFromCart();
                         this.userService.emptyUserCart();
                       }
@@ -224,7 +224,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
           }
         );
     } else {
-        alert('Nu s-a reușit trecerea în calendar! Sunați la 0751105873.')
+        alert('Nu s-a reușit trecerea în calendar! Sunați la 0751105873.');
     }
   }
 

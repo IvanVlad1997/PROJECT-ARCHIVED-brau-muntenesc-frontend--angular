@@ -26,12 +26,12 @@ import {FullCalendarModule} from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import { registerLocaleData } from '@angular/common';
-import localesRO from "@angular/common/locales/ro";
+import localesRO from '@angular/common/locales/ro';
 import { PresenceHistoryComponent } from './presence-history/presence-history.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ProductItemComponent } from './wishlist/product-item/product-item.component';
 import {BarRatingModule} from 'ngx-bar-rating';
-registerLocaleData(localesRO, "ro");
+registerLocaleData(localesRO, 'ro');
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,

@@ -43,12 +43,12 @@ export class CursantiListComponent implements OnInit, OnDestroy {
     { headerName: 'Grupă',
       field: 'group',
       valueFormatter: params => {
-        console.log(params.data)
+        console.log(params.data);
         if (params && params.data && params.data.group && params.data.group) {
-          return `${params.data.group.category} ${params.data.group.interval}`
+          return `${params.data.group.category} ${params.data.group.interval}`;
         }
         else  {
-          return '-'
+          return '-';
         }
       },
     },
@@ -82,12 +82,12 @@ export class CursantiListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
+            console.log(token);
 
 
           }
         });
-    this.loadPrograms(this.token)
+    this.loadPrograms(this.token);
     this.loadUsers(this.token);
   }
 
@@ -95,13 +95,13 @@ export class CursantiListComponent implements OnInit, OnDestroy {
     this.programService.getPrograms();
     this.programSub = this.programService.getProgramListener()
        .subscribe((c) => {
-        this.programs = c
+        this.programs = c;
       });
   }
 
   loadUsers(token: string): void {
     if (this.userSubscription) {
-      this.userSubscription.unsubscribe()
+      this.userSubscription.unsubscribe();
     }
     this.cursantiService.getUsers(token, undefined);
     this.userSubscription = this.cursantiService.getUsersListener()
@@ -109,10 +109,10 @@ export class CursantiListComponent implements OnInit, OnDestroy {
         distinct()
       )
       .subscribe(users => {
-        console.log('USERS', users)
+        console.log('USERS', users);
         this.users = users;
         this.rowData = this.users;
-      })
+      });
   }
 
 
@@ -131,7 +131,7 @@ export class CursantiListComponent implements OnInit, OnDestroy {
 
   valueChange(e: Program): void {
     this.selectedProgram = e;
-    this.cursantiService.getUsers(this.token, e )
+    this.cursantiService.getUsers(this.token, e );
   }
 }
 

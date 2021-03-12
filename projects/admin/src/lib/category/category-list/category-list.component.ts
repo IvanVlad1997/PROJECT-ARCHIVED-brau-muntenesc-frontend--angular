@@ -52,8 +52,8 @@ export class CategoryListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token)
-            this.loadCategories(token)
+            console.log(token);
+            this.loadCategories(token);
           }
         });
   }
@@ -63,14 +63,14 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.categorySubscription = this.categoryService.getCategoriesListener()
       .subscribe(categories => {
         this.categories = categories;
-        this.rowData =  this.categories
+        this.rowData =  this.categories;
       });
   }
 
 
   ngOnDestroy(): void {
     if (this.categorySubscription) {
-      this.categorySubscription.unsubscribe()
+      this.categorySubscription.unsubscribe();
     }
     if  (this.authSubscription)  {
       this.authSubscription.unsubscribe();
@@ -90,7 +90,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.dialog.open(CategoryEditComponent, {
       data: newCategory,
       disableClose: true
-    })
+    });
   }
 
 

@@ -33,12 +33,12 @@ export class PaginaPrincipalaComponent implements OnInit {
     autoplay: true,
     volume: 0.5,
     quality: 720
-  }
+  };
 
   options1 = {
     volume: 0.5,
     quality: 720
-  }
+  };
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
