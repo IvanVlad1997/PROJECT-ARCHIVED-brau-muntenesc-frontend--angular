@@ -1,4 +1,4 @@
-export interface Preturi {
+export interface Price {
   _id: string;
   price: number;
   category: string;

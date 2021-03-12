@@ -35,8 +35,14 @@ export class UserListComponent implements OnInit, OnDestroy {
       filter: true,
     },
     {
-      path: 'Rol',
-      field: 'role'
+      headerName: 'Dansator',
+      field: 'dance',
+      valueFormatter: params => {
+        if (params && params.data && params.data.dance) {
+          return 'Dansator';
+        }
+        return '-';
+      }
     },
     {
       headerName: 'Email',
@@ -46,7 +52,11 @@ export class UserListComponent implements OnInit, OnDestroy {
       headerName: 'Număr',
       field: 'telNum',
       flex: 1
-    }
+    },
+    {
+      path: 'Rol',
+      field: 'role'
+    },
 
   ];
 

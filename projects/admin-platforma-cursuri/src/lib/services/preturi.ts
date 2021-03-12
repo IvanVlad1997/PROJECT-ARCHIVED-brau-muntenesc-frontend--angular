@@ -1,37 +1,34 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {VideoPlatform} from '../../../../common/video-platform';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
-import {Product} from '../../../../common/product';
-import {GalerieVideoCursuri} from '../../../../common/galerie-video-cursuri';
-import {Preturi} from '../../../../common/preturi';
+import {Price} from '../../../../common/price';
 
 @Injectable({providedIn: 'root'})
 export class PriceService {
-  private preturiUpdated: BehaviorSubject<Preturi[]> = new BehaviorSubject<Preturi[]>([]);
+  private pricesUpdated: BehaviorSubject<Price[]> = new BehaviorSubject<Price[]>([]);
 
   constructor(private http: HttpClient,
               private authService: AuthService,
               private toastService: ToastService) {
   }
 
-  getPricesListener(): Observable<Preturi[]> {
-    return this.preturiUpdated.asObservable();
+  getPricesListener(): Observable<Price[]> {
+    return this.pricesUpdated.asObservable();
   }
 
   getPrices(): void {
-    this.http.get<Preturi[]>(`${environment.appApi}/prices`)
-      .subscribe((preturi: Preturi[]) => {
-        this.preturiUpdated.next(preturi);
-      })
+    this.http.get<Price[]>(`${environment.appApi}/prices`)
+      .subscribe((prices: Price[]) => {
+        this.pricesUpdated.next(prices);
+      });
   }
 
 
-  priceCreate(price: Preturi, token: string): void {
-    this.http.post<Preturi>(`${environment.appApi}/price`,
+  priceCreate(price: Price, token: string): void {
+    this.http.post<Price>(`${environment.appApi}/price`,
       {
         price: price
       },
@@ -43,16 +40,16 @@ export class PriceService {
       .subscribe(success => {
           console.log(success);
           this.getPrices();
-          this.toastService.success(`Pretul ${price.category} a fost creat cu succes!`);
+          this.toastService.success(`Prețul ${price.category} a fost creat cu succes!`);
         },
         err => {
           console.log(err);
-          this.toastService.error(`Nu s-a crea Pretul.`);
+          this.toastService.error(`Nu s-a crea Prețul.`);
         });
   }
 
-  priceUpdate(slug: string, price: Preturi, token: string): void {
-    this.http.put<Preturi>(`${environment.appApi}/price/${slug}`,
+  priceUpdate(slug: string, price: Price, token: string): void {
+    this.http.put<Price>(`${environment.appApi}/price/${slug}`,
       {
         price: price
       },
@@ -62,16 +59,16 @@ export class PriceService {
         }
       })
       .subscribe(p => {
-          this.toastService.success(`Videoul ${price.category} a fost editat cu succes!`);
+          this.toastService.success(`Videoclipul ${price.category} a fost editat cu succes!`);
           this.getPrices();
         },
         (err) => {
-          this.toastService.error(`Nu s-a putut edita Videoul.`);
+          this.toastService.error(`Nu s-a putut edita Videoclipul.`);
         });
   }
 
   priceRemove(slug: string, token: string): void {
-    this.http.delete<Preturi>(`${environment.appApi}/price/${slug}`,
+    this.http.delete<Price>(`${environment.appApi}/price/${slug}`,
       {
         headers: {
           authtoken: token
@@ -85,5 +82,4 @@ export class PriceService {
           this.toastService.error('Nu s-a putut șterge Videoul!');
         });
   }
-
 }

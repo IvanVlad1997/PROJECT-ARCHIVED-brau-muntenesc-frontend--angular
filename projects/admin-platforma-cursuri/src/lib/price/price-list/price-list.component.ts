@@ -8,7 +8,7 @@ import {ColDef} from 'ag-grid-community';
 import {CategoryListActionsComponent} from '../../../../../admin/src/lib/category/category-list-actions/category-list-actions.component';
 import {CategoryEditComponent} from '../../../../../admin/src/lib/category/category-edit/category-edit.component';
 import {PriceService} from '../../services/preturi';
-import {Preturi} from '../../../../../common/preturi';
+import {Price} from '../../../../../common/price';
 import {PriceActionsListComponent} from '../price-actions-list/price-actions-list.component';
 import {PriceEditComponent} from '../price-edit/price-edit.component';
 
@@ -25,7 +25,7 @@ export class PriceListComponent implements OnInit, OnDestroy {
 
 
   priceSubscription: Subscription;
-  prices: Preturi[] = [];
+  prices: Price[] = [];
 
   defaultColDef: ColDef = {
     resizable: true
@@ -87,7 +87,7 @@ export class PriceListComponent implements OnInit, OnDestroy {
 
 
   async create(): Promise<void> {
-    const newPrice: Preturi = {
+    const newPrice: Price = {
       createdAt: undefined,
       category: '',
       price: null,

@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Category} from '../../../../../common/category';
 import {CategoryService} from '../../../../../broderie/src/lib/services/category';
 import {ToastService} from 'angular-toastify';
-import {Preturi} from '../../../../../common/preturi';
+import {Price} from '../../../../../common/price';
 import {PriceService} from '../../services/preturi';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
@@ -15,7 +15,7 @@ import {AuthService} from '../../../../../auth/src/lib/services/auth';
 })
 export class PriceEditComponent implements OnInit, OnDestroy {
 
-  constructor( @Inject(MAT_DIALOG_DATA) public price: Preturi,
+  constructor( @Inject(MAT_DIALOG_DATA) public price: Price,
                private ref: MatDialogRef<PriceEditComponent>,
                private priceService: PriceService,
                private toastService: ToastService,

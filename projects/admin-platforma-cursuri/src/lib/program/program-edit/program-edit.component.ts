@@ -1,6 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Preturi} from '../../../../../common/preturi';
+import {Price} from '../../../../../common/price';
 import {PriceService} from '../../services/preturi';
 import {ToastService} from 'angular-toastify';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';

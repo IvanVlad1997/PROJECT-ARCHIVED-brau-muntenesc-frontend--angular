@@ -1,4 +1,5 @@
-<p *ngIf="payHistory && payHistory[length-1]">{{this.date}}
+<p *ngIf="payHistory && payHistory[length-1]" [ngClass]="{'ultima-plata-late': isLate}">
+  {{this.date}}
   <a mat-icon-button *ngIf="isLate">
     <mat-icon svgIcon="exclamation-thick" color="warn"></mat-icon>
   </a>

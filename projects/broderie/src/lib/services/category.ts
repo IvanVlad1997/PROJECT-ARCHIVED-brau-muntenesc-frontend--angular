@@ -11,7 +11,6 @@ import {ToastService} from 'angular-toastify';
 @Injectable({providedIn: 'root'})
 export class CategoryService {
 
-  // private categories: Category[] = [];
   private categoriesUpdated: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
 
   constructor(private http: HttpClient,

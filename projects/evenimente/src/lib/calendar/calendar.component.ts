@@ -15,6 +15,7 @@ export class CalendarComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
+    // locale: 'ro',
     eventMouseEnter: (p) => {
       this.hover(p)
     },

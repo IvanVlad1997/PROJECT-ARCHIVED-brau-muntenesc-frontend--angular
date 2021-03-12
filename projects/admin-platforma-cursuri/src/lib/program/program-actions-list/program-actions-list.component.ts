@@ -5,7 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {PriceService} from '../../services/preturi';
 import {ToastService} from 'angular-toastify';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
-import {Preturi} from '../../../../../common/preturi';
+import {Price} from '../../../../../common/price';
 import {PriceEditComponent} from '../../price/price-edit/price-edit.component';
 import {ProgramService} from '../../services/program';
 import {Program} from '../../../../../common/program';

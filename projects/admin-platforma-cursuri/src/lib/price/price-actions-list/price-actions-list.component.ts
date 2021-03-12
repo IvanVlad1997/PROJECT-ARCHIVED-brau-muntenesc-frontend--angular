@@ -7,7 +7,7 @@ import {ToastService} from 'angular-toastify';
 import {Category} from '../../../../../common/category';
 import {CategoryEditComponent} from '../../../../../admin/src/lib/category/category-edit/category-edit.component';
 import {PriceService} from '../../services/preturi';
-import {Preturi} from '../../../../../common/preturi';
+import {Price} from '../../../../../common/price';
 import {PriceEditComponent} from '../price-edit/price-edit.component';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
 
@@ -23,7 +23,7 @@ export class PriceActionsListComponent implements AgFrameworkComponent<BaseColDe
               private toastService: ToastService,
               private authService: AuthService) { }
 
-  price: Preturi;
+  price: Price;
 
   agInit(params: BaseColDefParams): void {
     this.price = params.data;

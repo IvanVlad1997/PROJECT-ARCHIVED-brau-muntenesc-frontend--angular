@@ -3,7 +3,7 @@ import {PriceService} from '../../services/preturi';
 import {MatDialog} from '@angular/material/dialog';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
 import {Subscription} from 'rxjs';
-import {Preturi} from '../../../../../common/preturi';
+import {Price} from '../../../../../common/price';
 import {ColDef} from 'ag-grid-community';
 import {PriceActionsListComponent} from '../../price/price-actions-list/price-actions-list.component';
 import {PriceEditComponent} from '../../price/price-edit/price-edit.component';

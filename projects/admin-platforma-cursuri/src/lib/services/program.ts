@@ -7,7 +7,7 @@ import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
 import {Product} from '../../../../common/product';
 import {GalerieVideoCursuri} from '../../../../common/galerie-video-cursuri';
-import {Preturi} from '../../../../common/preturi';
+import {Price} from '../../../../common/price';
 import {Program} from '../../../../common/program';
 
 @Injectable({providedIn: 'root'})
