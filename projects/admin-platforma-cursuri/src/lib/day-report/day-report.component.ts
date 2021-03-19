@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MatDatepickerInputEvent} from "@angular/material/datepicker";
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import {formatDate} from '@angular/common';
-import {Subscription} from "rxjs";
-import {User} from "../../../../common/user";
-import {distinct} from "rxjs/operators";
-import {AuthService} from "../../../../auth/src/lib/services/auth";
-import {DayReportService} from "../services/day-report";
+import {Subscription} from 'rxjs';
+import {User} from '../../../../common/user';
+import {distinct} from 'rxjs/operators';
+import {AuthService} from '../../../../auth/src/lib/services/auth';
+import {DayReportService} from '../services/day-report';
 
 @Component({
   selector: 'lib-day-report',
@@ -44,9 +44,9 @@ export class DayReportComponent implements OnInit, OnDestroy {
         distinct()
       )
       .subscribe(users => {
-        console.log('USERS', users)
+        console.log('USERS', users);
         this.users = users;
-      })
+      });
   }
 
 
