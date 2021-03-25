@@ -1,5 +1,5 @@
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, ErrorHandler, NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -28,6 +28,8 @@ import { ContactComponent } from './contact/contact.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatNativeDateModule} from '@angular/material/core';
+import { Router } from '@angular/router';
+import * as Sentry from '@sentry/angular';
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -75,7 +77,23 @@ function createInitializer(initializer: InitService): () => Promise<void> {
       useFactory: createInitializer,
       deps: [InitService],
       multi: true,
-    }
+    },
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        // showDialog: true,
+      }),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
   ],
   exports: [
   ],
