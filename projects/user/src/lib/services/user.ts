@@ -268,7 +268,7 @@ export class UserService {
         (data: {ok: boolean}) => {
           if (data.ok) {
             this.nodemailer.targetMailById('Prezență Brâu Muntenesc', `<h1>Preznța a fost adăugată în calendar</h1>
-            <p>Prezența la Brâu Muntenesc în data ${presence.date} a fost adăugată în calendar. Poți vedea calendarul pe contul de pe site.</p>`, _id );
+            <p>Prezența la Brâu Muntenesc în data ${presence.date} a fost adăugată în calendar. Poți vedea calendarul în contul de pe site.</p>`, _id );
             this.toastService.success('Prezența a fost adăugată');
           } else {
             this.toastService.error('Prezența nu a fost adăugată');

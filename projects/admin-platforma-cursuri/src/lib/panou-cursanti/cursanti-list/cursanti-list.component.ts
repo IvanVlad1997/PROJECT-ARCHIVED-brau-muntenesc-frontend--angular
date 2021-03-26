@@ -32,7 +32,7 @@ export class CursantiListComponent implements OnInit, OnDestroy {
 
   columnDefs = [
     { headerName: 'Actions',
-      width: 200,
+      width: 240,
       cellRendererFramework: CursantiListActionsComponent
     },
     { headerName: 'Nume',

@@ -12,6 +12,6 @@
 
 
 <mat-list *ngIf="users.length > 0">
-  <h1>Au fost prezente {{users.length}} persoane.</h1>
+<!--  <h1>Au fost prezente {{users.length}} persoane.</h1>-->
   <mat-list-item *ngFor="let user of users">{{user.name}} - {{user.group.category}} - {{user.group.interval}}</mat-list-item>
 </mat-list>
