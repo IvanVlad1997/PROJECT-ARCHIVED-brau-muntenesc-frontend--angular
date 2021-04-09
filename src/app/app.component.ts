@@ -22,6 +22,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // HEROKU - refresh 29 min for keeping app alive
+    setInterval(() => {
+      location.reload();
+    }, 29 * 60 * 1000 );
 
     this.sub = this.http.get(`${environment.appApi}/product/abonament-cursuri`).subscribe(
       (c) => {

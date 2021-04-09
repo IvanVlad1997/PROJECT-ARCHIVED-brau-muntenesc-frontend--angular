@@ -6,6 +6,7 @@ import {AdminGuard} from '../guards/admin-guard';
 import {PageNotFoundComponent} from '../page-not-found/page-not-found.component';
 import {ContactComponent} from '../contact/contact.component';
 import {PrivacyComponent} from '../privacy/privacy.component';
+import {StartingPageComponent} from '../starting-page/starting-page.component';
 
 
 export const routes: Routes = [

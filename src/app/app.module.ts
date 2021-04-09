@@ -30,6 +30,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatNativeDateModule} from '@angular/material/core';
 import { Router } from '@angular/router';
 import * as Sentry from '@sentry/angular';
+import { StartingPageComponent } from './starting-page/starting-page.component';
+import {FrontendSentryModule} from "../../projects/sentry/src/lib/sentry.module";
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -46,6 +48,7 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     PageNotFoundComponent,
     ContactComponent,
     PrivacyComponent,
+    StartingPageComponent,
 
   ],
     imports: [
@@ -68,7 +71,13 @@ function createInitializer(initializer: InitService): () => Promise<void> {
         MatCardModule,
         MatMenuModule,
         MatProgressSpinnerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        FrontendSentryModule.forRoot({
+          appVersion: undefined,
+          dsn: environment.sentry.dsn,
+          tracingOrigins: environment.sentry.tracingOrigins,
+          enabled: true,
+        })
     ],
   providers: [ToastService,
     NgxImageCompressService,
@@ -77,23 +86,7 @@ function createInitializer(initializer: InitService): () => Promise<void> {
       useFactory: createInitializer,
       deps: [InitService],
       multi: true,
-    },
-    {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({
-        // showDialog: true,
-      }),
-    },
-    {
-      provide: Sentry.TraceService,
-      deps: [Router],
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => {},
-      deps: [Sentry.TraceService],
-      multi: true,
-    },
+    }
   ],
   exports: [
   ],

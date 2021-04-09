@@ -1,0 +1,21 @@
+.first-header {
+  font-size: 40px;
+  color: #00695c;
+  margin-top: 100px;
+}
+
+.animated-paragraph {
+  font-size: 25px;
+  color: black;
+  margin-top: 100px;
+}
+
+#spin:after {
+  content:"";
+  animation: spin 9s linear infinite;
+}
+@keyframes spin {
+  0% { content:"Pregătim muzica";}
+  45% { content: "Brodăm iile"; }
+  90% { content: "Hai la dans!"; }
+}

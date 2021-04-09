@@ -56,6 +56,10 @@
         "dist/admin-evenimente/admin-evenimente",
         "dist/admin-evenimente"
       ],
+      "sentry": [
+        "dist/sentry/sentry",
+        "dist/sentry"
+      ],
       "cv": [
         "dist/cv/cv",
         "dist/cv"

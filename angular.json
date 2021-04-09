@@ -567,6 +567,46 @@
           }
         }
       }
+    },
+    "sentry": {
+      "projectType": "library",
+      "root": "projects/sentry",
+      "sourceRoot": "projects/sentry/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/sentry/tsconfig.lib.json",
+            "project": "projects/sentry/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sentry/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sentry/src/test.ts",
+            "tsConfig": "projects/sentry/tsconfig.spec.json",
+            "karmaConfig": "projects/sentry/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sentry/tsconfig.lib.json",
+              "projects/sentry/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "brau-muntenesc",
