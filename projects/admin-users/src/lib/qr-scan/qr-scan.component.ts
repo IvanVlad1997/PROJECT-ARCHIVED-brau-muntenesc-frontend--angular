@@ -7,6 +7,7 @@ import {AppInfoDialogComponent} from './app-info-dialog/app-info-dialog.componen
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {UserService} from '../../../../user/src/lib/services/user';
 import { formatDate } from '@angular/common';
+import {presenceSound} from '../../../../admin-platforma-cursuri/src/lib/common/presence-sound';
 
 @Component({
   selector: 'lib-qr-scan',
@@ -72,6 +73,8 @@ export class QrScanComponent implements OnDestroy, OnInit {
         title : 'Prezență curs',
         date: formattedDate
       };
+      let sound = new Audio(`data:audio/mpeg;base64,${presenceSound}`);
+      sound.play();
       this.userService.addPresenceToUser(this.token, this.result, presence);
     }
   }

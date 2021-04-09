@@ -11,8 +11,8 @@
 }
 
 #spin:after {
-  content:"";
-  animation: spin 9s linear infinite;
+  content:"Hai la dans!";
+  animation: spin 9s linear;
 }
 @keyframes spin {
   0% { content:"Pregătim muzica";}
