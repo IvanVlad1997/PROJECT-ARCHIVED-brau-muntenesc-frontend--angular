@@ -25,9 +25,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
   user: User;
 
   ngOnInit(): void {
-    console.log(this.order);
     this.user = this.authService.user.getValue();
-    console.log(this.user);
   }
 
   generatePDF(): void {

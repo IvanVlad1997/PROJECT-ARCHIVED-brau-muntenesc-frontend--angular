@@ -32,7 +32,6 @@ export class CursantiService {
       })
       .subscribe(
         (users: User[]) => {
-          console.log(users);
           this.usersUpdated.next(users);
         }
       );

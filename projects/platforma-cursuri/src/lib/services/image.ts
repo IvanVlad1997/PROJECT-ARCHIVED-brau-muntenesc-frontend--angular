@@ -38,7 +38,6 @@ export class ImageService {
         }
       })
       .subscribe(success => {
-          console.log(success);
           this.getPhotos();
           this.toastService.success(`Fotografia ${image.name} a fost adăugata cu succes în carusel„`);
         },

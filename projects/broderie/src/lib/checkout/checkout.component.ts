@@ -67,7 +67,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             this.userServiceSubscriptioon = this.userService.getCartUpdateListener()
               .subscribe(
                 (c) => {
-                  console.log(c);
                   this.products = c[0];
                   this.totalAfterDiscount = c[1];
                   this.total = c[2];
@@ -82,7 +81,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             this.addressSubscription = this.userService.getUserAddress()
               .subscribe( address => {
                 if (address && address.address[0]) {
-                  console.log(address);
                   const newAddressArray = address.address;
                   this.address = newAddressArray[0];
                   this.addressContent = newAddressArray[1];

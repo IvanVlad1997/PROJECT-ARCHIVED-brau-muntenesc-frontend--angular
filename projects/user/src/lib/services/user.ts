@@ -188,7 +188,6 @@ export class UserService {
       })
       .subscribe(
         (data) => {
-          console.log(data);
           this.authService.getCurrentUser(token);
         }
       );
@@ -206,7 +205,6 @@ export class UserService {
       })
       .subscribe(
       (data) => {
-        console.log(data);
         this.authService.getCurrentUser(token);
       }
     );

@@ -38,7 +38,6 @@ export class PriceService {
         }
       })
       .subscribe(success => {
-          console.log(success);
           this.getPrices();
           this.toastService.success(`Prețul ${price.category} a fost creat cu succes!`);
         },

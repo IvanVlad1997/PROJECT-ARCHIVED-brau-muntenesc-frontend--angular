@@ -74,7 +74,6 @@ export class CartComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadCart(token);
           } else  {
             this.router.navigate(['/auth/login']);
@@ -102,7 +101,6 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   getTotal(): void {
-    console.log(this.cart);
     this.totalPrice = this.cart.reduce((currentValue, nextValue) => {
       return currentValue + nextValue.count * nextValue.product.price;
     }, 0);
@@ -112,7 +110,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.userService.userCart(this.cart)
       .subscribe(
         (cartProducts) => {
-          console.log('aici nu ');
           this.router.navigate(['/broderie/checkout']);
         },
         (error => {

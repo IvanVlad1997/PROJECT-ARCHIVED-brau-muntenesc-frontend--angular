@@ -43,7 +43,6 @@ export class CursantiListComponent implements OnInit, OnDestroy {
     { headerName: 'Grupă',
       field: 'group',
       valueFormatter: params => {
-        console.log(params.data);
         if (params && params.data && params.data.group && params.data.group) {
           return `${params.data.group.category} ${params.data.group.interval}`;
         }
@@ -82,9 +81,6 @@ export class CursantiListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
-
-
           }
         });
     this.loadPrograms(this.token);
@@ -109,7 +105,6 @@ export class CursantiListComponent implements OnInit, OnDestroy {
         distinct()
       )
       .subscribe(users => {
-        console.log('USERS', users);
         this.users = users;
         this.rowData = this.users;
       });

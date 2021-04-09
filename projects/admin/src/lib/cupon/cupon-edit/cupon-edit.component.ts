@@ -33,7 +33,6 @@ export class CuponEditComponent implements OnInit {
   //   if (this.subCategory.slug) {
   //   await this.subCategoryService.updateSubCategory(this.subCategory.slug, this.subCategory);
   // } else {
-    console.log(this.cupon);
     await this.cuponService.createCupon(this.cupon);
   // }
     this.ref.close();
@@ -41,9 +40,7 @@ export class CuponEditComponent implements OnInit {
 
 
   addEvent(event: MatDatepickerInputEvent<Date>): void {
-    console.log(event.value);
     this.cupon.expire = event.value as Date;
-    console.log(this.cupon);
   }
 
 }

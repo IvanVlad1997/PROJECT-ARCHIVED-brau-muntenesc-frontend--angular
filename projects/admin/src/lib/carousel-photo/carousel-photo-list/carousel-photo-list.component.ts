@@ -30,7 +30,6 @@ export class CarouselPhotoListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadCarouselPhotop(token);
           }
         });
@@ -52,7 +51,6 @@ export class CarouselPhotoListComponent implements OnInit, OnDestroy {
   }
 
   async addPhoto(): Promise<void> {
-    console.log('adding photo');
     const newPhoto: CarouselPhoto = {
       _id: undefined,
       imageId: '',

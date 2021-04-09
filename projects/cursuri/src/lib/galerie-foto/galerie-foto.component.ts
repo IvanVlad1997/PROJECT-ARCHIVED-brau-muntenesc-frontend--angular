@@ -30,7 +30,6 @@ export class GalerieFotoComponent implements OnInit, OnDestroy {
           this.token = token;
           this.loadImages();
           if (token !== '') {
-            console.log(token);
           }
         });
   }
@@ -41,7 +40,6 @@ export class GalerieFotoComponent implements OnInit, OnDestroy {
       .subscribe(
         (images) => {
           this.images = images;
-          console.log(this.images);
           this.loading = false;
         }
       );

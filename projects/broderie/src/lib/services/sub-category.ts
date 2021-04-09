@@ -30,7 +30,6 @@ export class SubCategoryService {
     this.http.get<SubCategory[]>(`${environment.appApi}/sub-categories`)
       .subscribe((subCategories: SubCategory[]) => {
         this.subCategoriesUpdated.next(subCategories);
-        console.log(subCategories);
       });
   }
 

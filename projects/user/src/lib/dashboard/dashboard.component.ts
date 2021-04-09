@@ -46,7 +46,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadUser();
           }
         });
@@ -57,7 +56,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(
         (user: User) => {
           this.user = user;
-          console.log(this.user);
         }
       );
   }

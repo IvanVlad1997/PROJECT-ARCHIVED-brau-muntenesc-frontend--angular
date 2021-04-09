@@ -75,7 +75,6 @@ export class CalendarComponent implements OnInit {
         top: p.jsEvent.screenY
       };
     }
-    console.log(p);
   }
 
 

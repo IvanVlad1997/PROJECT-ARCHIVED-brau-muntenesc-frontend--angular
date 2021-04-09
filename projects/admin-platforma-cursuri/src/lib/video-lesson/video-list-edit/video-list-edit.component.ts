@@ -33,7 +33,6 @@ export class VideoListEditComponent implements OnInit, OnDestroy {
   }
 
   async edit(): Promise<void> {
-    console.log(this.video);
     if (this.video.slug) {
       await this.videoPlatformService.videoPlatformUpdate(this.video.slug, this.video, this.token);
     } else {

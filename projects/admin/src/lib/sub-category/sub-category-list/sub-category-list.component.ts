@@ -57,7 +57,6 @@ export class SubCategoryListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadSubCategories(token);
           }
         });

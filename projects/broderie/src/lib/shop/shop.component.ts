@@ -51,7 +51,6 @@ export class ShopComponent implements OnInit, OnDestroy {
         this.shipping = array[5];
         this.selectedColors = array[6];
         this.selectedBrands = array[7];
-        console.log(array);
         // if (!this.price) { this.price = [0, 500]}
         if (this.text === '' &&
           this.price[0] === null &&

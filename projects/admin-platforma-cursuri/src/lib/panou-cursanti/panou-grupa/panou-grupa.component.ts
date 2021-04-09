@@ -56,7 +56,6 @@ export class PanouGrupaComponent implements OnInit, OnDestroy{
   }
 
   sendInfo(): void {
-    console.log(this.data.user.group);
     this.userService.changeGrupa(this.data.user.group, this.token, this.data.user.email);
     this.ref.close();
     this.cursantiService.getUsers(this.token, this.data.context.selectedProgram);

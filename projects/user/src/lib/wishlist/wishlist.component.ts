@@ -40,9 +40,7 @@ export class WishlistComponent implements OnInit, OnDestroy {
     this.wishlistSub = this.userService.getWishlist(token)
       .subscribe(
         (data) => {
-          console.log(data);
           this.products = data.wishlist;
-          console.log(this.products);
         }
       );
   }
@@ -60,7 +58,6 @@ export class WishlistComponent implements OnInit, OnDestroy {
     this.userService.removeWishlist(id, this.token)
       .subscribe(
         (p) => {
-          console.log(p);
           this.loadWishList(this.token);
           this.toastService.success('Produsul a fost scos de la favorite');
           this.authService.getCurrentUser(this.token);

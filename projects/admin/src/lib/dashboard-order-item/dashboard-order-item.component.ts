@@ -39,7 +39,6 @@ export class DashboardOrderItemComponent implements OnInit {
 
 
   changeOrderStatus(status: string): void {
-    console.log(status);
     this.changeStatus(this.order._id, status);
   }
 }

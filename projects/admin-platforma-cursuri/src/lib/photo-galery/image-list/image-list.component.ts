@@ -30,7 +30,6 @@ export class ImageListComponent  implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadPhotos(token);
           }
         });
@@ -41,7 +40,6 @@ export class ImageListComponent  implements OnInit, OnDestroy {
     this.photoSubscription = this.imageService.getImagesListener()
       .subscribe(images => {
         this.images = images;
-        console.log(images);
       });
   }
 
@@ -55,7 +53,6 @@ export class ImageListComponent  implements OnInit, OnDestroy {
   }
 
   async addPhoto(): Promise<void> {
-    console.log('adding photo');
     const newPhoto: Image = {
       _id: undefined,
       type: 'galerie-cursuri',

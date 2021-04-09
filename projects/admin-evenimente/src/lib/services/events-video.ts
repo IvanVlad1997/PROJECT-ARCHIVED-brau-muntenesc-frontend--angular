@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {GalerieVideoCursuri} from '../../../../common/galerie-video-cursuri';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
@@ -39,7 +38,6 @@ export class EventsVideoService {
         }
       })
       .subscribe(success => {
-          console.log(success);
           this.getVideosPlatform();
           this.toastService.success(`Videoul ${video.name} a fost creat cu succes!`);
         },

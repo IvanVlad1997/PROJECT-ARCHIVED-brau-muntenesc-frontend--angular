@@ -38,7 +38,6 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadCart(token);
             this.loadOverlay(token);
           }
@@ -52,7 +51,6 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
       .subscribe((c) => {
         setTimeout(() => {
           this.cartLength = c.length;
-          console.log(c.length);
         }, 1);
       });
   }

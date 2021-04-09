@@ -44,7 +44,6 @@ export class DayReportComponent implements OnInit, OnDestroy {
         distinct()
       )
       .subscribe(users => {
-        console.log('USERS', users);
         this.users = users;
       });
   }

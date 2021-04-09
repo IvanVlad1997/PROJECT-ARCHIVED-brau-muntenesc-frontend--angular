@@ -19,7 +19,6 @@ export class OverlayCartComponent implements OnInit, OnDestroy {
     this.cartSubscription = this.cartService.cartUpdate
       .subscribe((c) => {
         this.cart = c;
-        console.log(this.cart);
       });
   }
 

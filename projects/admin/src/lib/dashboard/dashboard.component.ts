@@ -32,7 +32,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.loading = true;
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadOrders(token);
           }
         });
@@ -45,7 +44,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.adminServiceSubscription = this.adminService.getOrdersListener()
       .subscribe(
         (orders) => {
-          console.log(orders);
           this.orders = orders;
           this.loading = false;
         }

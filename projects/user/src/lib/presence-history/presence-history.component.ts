@@ -21,7 +21,6 @@ export class PresenceHistoryComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.user
       .subscribe(
         (user: User) => {
-          console.log(user);
           this.user = user;
         });
     setTimeout(() => {

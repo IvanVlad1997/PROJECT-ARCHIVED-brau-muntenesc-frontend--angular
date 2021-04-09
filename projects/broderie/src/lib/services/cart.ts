@@ -68,7 +68,6 @@ export class CartService {
       }
 
 
-      console.log(cart);
       this.cartUpdate.next([...cart]);
     }
   }
@@ -103,7 +102,6 @@ export class CartService {
 
   handlerAddToCart(product: Product): void {
       const productsInCart: Cart[] = this.cartUpdate.getValue();
-      console.log(productsInCart);
       if (!this.isProductInCart(product)) {
           const newCartArray = [...productsInCart,
             {
@@ -112,7 +110,6 @@ export class CartService {
               description: ''
             }
           ];
-          console.log(newCartArray);
           localStorage.setItem('cart', JSON.stringify(newCartArray));
           this.toastService.success('Produsul a fost adăugat în coșul de cumpărături!');
           this.getCart();

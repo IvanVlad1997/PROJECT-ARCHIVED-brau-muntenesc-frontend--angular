@@ -40,7 +40,6 @@ export class GalerieVideoService {
         }
       })
       .subscribe(success => {
-          console.log(success);
           this.getVideosPlatform();
           this.toastService.success(`Videoul ${video.name} a fost creat cu succes!`);
         },

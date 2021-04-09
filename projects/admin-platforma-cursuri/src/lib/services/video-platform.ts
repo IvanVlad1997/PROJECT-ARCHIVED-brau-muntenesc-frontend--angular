@@ -21,7 +21,6 @@ export class VideoPlatformService {
   }
 
   getVideosPlatform(token: string): void {
-    console.log('aici');
     this.http.get<VideoPlatform[]>(`${environment.appApi}/videos-platform`)
       .subscribe((videos: VideoPlatform[]) => {
         this.videosUpdated.next(videos);
@@ -56,7 +55,6 @@ export class VideoPlatformService {
         }
       })
       .subscribe(success => {
-          console.log(success);
           this.getVideosPlatform(token);
           this.toastService.success(`Videoul ${video.name} a fost creat cu succes!`);
         },

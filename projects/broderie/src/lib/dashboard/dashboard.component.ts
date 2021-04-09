@@ -102,7 +102,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   loadBestSellers(): void {
-     console.log(this.pageBestSeller);
      this.productsSubscription = this.productService.getProductWithPagination('sold', 'desc', this.pageBestSeller)
       .subscribe(
         (products: Product[]) => {

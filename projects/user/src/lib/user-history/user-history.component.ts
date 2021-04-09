@@ -31,7 +31,6 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadOrders(token);
           }
         });
@@ -42,7 +41,6 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
       .subscribe(
         (orders: Order[]) => {
           this.orders = orders;
-          console.log(this.orders);
           this.loading = false;
         }
       );

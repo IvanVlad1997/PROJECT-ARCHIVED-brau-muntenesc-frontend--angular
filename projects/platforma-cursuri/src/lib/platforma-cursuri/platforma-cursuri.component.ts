@@ -31,7 +31,6 @@ export class PlatformaCursuriComponent implements OnInit, OnDestroy {
       .subscribe(
         (token) => {
           this.token = token;
-          console.log(token);
           this.loadOverlay(token);
           if (token !== '') {
 

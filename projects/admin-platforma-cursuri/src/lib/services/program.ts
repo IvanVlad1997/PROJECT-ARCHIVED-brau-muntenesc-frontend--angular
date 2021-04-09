@@ -42,7 +42,6 @@ export class ProgramService {
         }
       })
       .subscribe(success => {
-          console.log(success);
           this.getPrograms();
           this.toastService.success(`Pretul ${program.category} a fost creat cu succes!`);
         },

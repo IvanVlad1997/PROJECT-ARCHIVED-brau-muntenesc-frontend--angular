@@ -89,6 +89,5 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.authService.logout();
-    console.log('logout');
   }
 }

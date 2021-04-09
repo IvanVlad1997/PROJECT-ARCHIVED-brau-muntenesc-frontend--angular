@@ -17,7 +17,6 @@ export class PasswordComponent implements OnInit {
   }
 
   async updatePassword(form: NgForm): Promise<void> {
-    console.log(this.password);
     this.loading = true;
     await this.authService.updatePassword(this.password);
     this.loading = false;

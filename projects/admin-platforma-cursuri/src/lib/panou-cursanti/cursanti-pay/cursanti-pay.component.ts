@@ -42,11 +42,6 @@ export class CursantiPayComponent implements OnInit, OnDestroy {
   }
 
   async pay(): Promise<void> {
-    console.log(this.suma);
-    console.log(this.tipAbonament);
-    console.log(this.an);
-    console.log(this.luna);
-    console.log(this.zi);
     let payment;
     let date: Date;
     const format = 'yyyy-MM-dd';
@@ -62,7 +57,6 @@ export class CursantiPayComponent implements OnInit, OnDestroy {
         date: formattedDate,
         color: 'red'
     };
-    console.log(payment);
     await this.userService.pay(this.token, payment, this.user.email, this.suma);
     this.ref.close();
   }

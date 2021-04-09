@@ -39,7 +39,6 @@ export class CarouselPhotoEditComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
           }
         });
   }
@@ -63,7 +62,6 @@ export class CarouselPhotoEditComponent implements OnInit, OnDestroy {
       reader.onload = async (e: any) => {
         this.localUrl = e.target.result;
         const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token);
-        console.log(imageCompressed);
         this.carouselPhoto.imageUrl = imageCompressed.url;
         this.carouselPhoto.imageId = imageCompressed.public_id;
         this.imageIsUploading = false;
@@ -73,7 +71,6 @@ export class CarouselPhotoEditComponent implements OnInit, OnDestroy {
   }
 
   async addPhoto(): Promise<void> {
-    console.log(this.carouselPhoto);
     this.imageIsUploading = true;
     this.saveClicked = true;
     await this.carouselPhotoService.createCarouselPhoto(this.carouselPhoto);

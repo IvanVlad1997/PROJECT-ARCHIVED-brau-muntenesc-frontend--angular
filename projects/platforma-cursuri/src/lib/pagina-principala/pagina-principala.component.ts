@@ -70,7 +70,6 @@ export class PaginaPrincipalaComponent implements OnInit, OnDestroy {
           this.token = token;
           this.loadVideos(token);
           if (token !== '') {
-            console.log(token);
 
           }
         });

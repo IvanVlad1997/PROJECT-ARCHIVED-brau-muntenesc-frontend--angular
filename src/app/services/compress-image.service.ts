@@ -15,10 +15,8 @@ export class CompressImageService {
   }
 
   async compressFile(image, fileName, ratio: number, token: string): Promise<any> {
-    console.log(image);
     const orientation = -1;
     const result = await this.imageCompress.compressFile(image, orientation, ratio, 90);
-    console.log(result);
     let compressedImage: any;
     await this.http.post(`${environment.appApi}/uploadImages`,
           {

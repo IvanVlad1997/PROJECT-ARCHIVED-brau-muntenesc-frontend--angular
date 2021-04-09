@@ -30,7 +30,6 @@ export class ProductService {
     this.http.get<Product[]>(`${environment.appApi}/products`)
       .subscribe((products: Product[]) => {
         this.productUpdated.next(products);
-        console.log(products);
       });
   }
 
@@ -54,12 +53,10 @@ export class ProductService {
         }
       })
       .subscribe(success => {
-          console.log(success);
           this.getProducts();
           this.toastService.success(`Produsul ${product.title} a fost creat cu succes!`);
         },
         err => {
-          console.log(err);
           this.toastService.error(`Nu s-a crea Produsul.`);
         });
   }
@@ -120,7 +117,6 @@ export class ProductService {
 
   async countProducts(): Promise<number> {
     const count: number = await this.http.get<number>(`${environment.appApi}/products/total`).toPromise();
-    console.log(count);
     return count;
   }
 
@@ -140,7 +136,6 @@ export class ProductService {
            this.toastService.success('Mulțumim pentru review. Va apărea în curând.');
          },
          (error => {
-           console.log(error);
            this.toastService.error('Ratingul nu a putut fi salvat. Încercați din nou.');
          })
        );

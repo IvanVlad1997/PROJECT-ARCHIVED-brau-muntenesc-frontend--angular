@@ -37,7 +37,6 @@ export class ImageEditComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
           }
         });
   }
@@ -61,8 +60,6 @@ export class ImageEditComponent implements OnInit, OnDestroy {
       reader.onload = async (e: any) => {
         this.localUrl = e.target.result;
         const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token);
-        console.log(imageCompressed);
-        console.log(imageCompressed);
         this.image.imageUrl = imageCompressed.url;
         this.image.imageId = imageCompressed.public_id;
         this.imageIsUploading = false;

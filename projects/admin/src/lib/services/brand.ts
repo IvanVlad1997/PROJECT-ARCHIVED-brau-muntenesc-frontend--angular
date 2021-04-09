@@ -41,7 +41,6 @@ export class BrandService {
         }
       })
       .subscribe(success => {
-          console.log(success);
           this.getBrands();
           this.toastService.success(`Brandul ${brand.name} a fost creat cu succes!`);
         },

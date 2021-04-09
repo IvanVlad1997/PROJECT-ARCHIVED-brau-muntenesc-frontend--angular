@@ -75,7 +75,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
   getColorsAndBrands(): void {
     this.colorsAndBrandSubscription = this.productService.getColorsAndBrands()
       .subscribe((colorsAndBrand) => {
-        console.log('colorsAndBrand', colorsAndBrand);
         this.colors = colorsAndBrand.colors.map((color) => color._id);
         this.brands = colorsAndBrand.brands;
 
@@ -113,7 +112,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
 
   priceRangeChange(): void {
-    console.log(this.minValue, this.maxValue);
     const oldValues = this.searchService.searchTextUpdate.getValue();
     this.searchService.changeSearchText(oldValues[0], [this.minValue, this.maxValue], oldValues[2], oldValues[3], oldValues[4], oldValues[5], oldValues[6], oldValues[7]);
 
@@ -125,7 +123,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   toggleCategory(): void {
     this.showCategory = !this.showCategory;
-    console.log(this.selectedCategories);
     const oldValues = this.searchService.searchTextUpdate.getValue();
     // if (this.showCategory) {
     //   this.selectedCategories = oldValues[2]
@@ -170,7 +167,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
 
   changeRating(stars: number): void {
-    console.log(stars);
     const oldValues = this.searchService.searchTextUpdate.getValue();
     this.searchService.changeSearchText(oldValues[0], oldValues[1], oldValues[2], stars, oldValues[4], oldValues[5], oldValues[6], oldValues[7]);
   }
@@ -197,7 +193,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
     } else {
       this.selectedColors.push(this.colors[i]);
     }
-    console.log(this.selectedColors);
     const oldValues = this.searchService.searchTextUpdate.getValue();
     this.searchService.changeSearchText(oldValues[0], oldValues[1], oldValues[2], oldValues[3], oldValues[4], oldValues[5], this.selectedColors, oldValues[7]);
   }
@@ -211,7 +206,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
     } else {
       this.selectedBrands.push(this.brands[i]);
     }
-    console.log(this.selectedBrands);
     const oldValues = this.searchService.searchTextUpdate.getValue();
     this.searchService.changeSearchText(oldValues[0], oldValues[1], oldValues[2], oldValues[3], oldValues[4], oldValues[5], oldValues[6], this.selectedBrands);
   }

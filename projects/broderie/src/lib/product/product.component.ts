@@ -68,7 +68,6 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.getProductSubscription = this.productService.getRelated(this.product._id)
       .subscribe((products: Product[]) => {
         this.relatedProducts = products;
-        console.log(this.relatedProducts);
       },
         error => console.log(error));
   }
@@ -78,7 +77,6 @@ export class ProductComponent implements OnInit, OnDestroy {
     const slug = this.activatedRoute.snapshot.params.slug;
     this.getProductSubscription = this.productService.getProduct(slug)
       .subscribe((product: Product) => {
-          console.log(product);
           this.product = product;
           this.rateAndLength = this.ratingService.showAverage(this.product);
           this.image = this.product.images[0];

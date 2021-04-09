@@ -52,7 +52,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
         (token) => {
           this.token = token;
           if (token !== '') {
-            console.log(token);
             this.loadCategories(token);
           }
         });

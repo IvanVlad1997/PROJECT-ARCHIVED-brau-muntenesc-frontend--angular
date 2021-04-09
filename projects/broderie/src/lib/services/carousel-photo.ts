@@ -39,12 +39,10 @@ export class CarouselPhotoService {
         }
       })
       .subscribe(success => {
-        console.log(success);
         this.getCarouselPhotos();
         this.toastService.success(`Fotografia ${carouselPhoto.name} a fost adăugata cu succes în carusel„`);
       },
         error => {
-        console.log(error);
         this.toastService.error('Fotografia nu a fost adăugată în carusel');
         });
   }

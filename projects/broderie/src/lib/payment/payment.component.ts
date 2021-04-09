@@ -106,7 +106,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
               .subscribe(
                 (c) => {
                   if (c[0].length > 0) {
-                    console.log(c);
                     const totalAfterDiscount = c[1];
                     if (totalAfterDiscount) {
                       this.isCupon = true;
@@ -151,7 +150,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   handleChange(stripeEvent: StripeCardElementChangeEvent): void {
-    console.log(stripeEvent);
     this.disabled = stripeEvent.empty;
     if (stripeEvent.error) {
       this.error = stripeEvent.error.message;

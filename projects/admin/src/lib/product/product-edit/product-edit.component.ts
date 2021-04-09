@@ -135,7 +135,6 @@ export class ProductEditComponent implements OnInit, OnDestroy {
           this.localUrl = e.target.result;
           const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token);
           this.compressedImages.push(imageCompressed);
-          console.log(this.compressedImages);
           this.imageIsUploading = false;
         };
       reader.readAsDataURL(file);
@@ -145,13 +144,9 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
   handleImageRemove(id: any, index: number, compressed: boolean): void {
     this.imageIsUploading = true;
-    console.log('remove img', id);
     this.compressImageService.removeImage(id, this.token);
-    console.log(this.compressedImages);
-    console.log(index);
     if (compressed) {
       this.compressedImages.splice(index, 1);
-      console.log(this.compressedImages);
     } else {
       this.product.images.splice(index, 1);
     }

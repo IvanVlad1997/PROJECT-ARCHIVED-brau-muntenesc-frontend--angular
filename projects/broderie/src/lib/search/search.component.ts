@@ -17,7 +17,6 @@ export class SearchComponent implements OnInit {
 
   search(): void {
     const oldValues = this.searchService.searchTextUpdate.getValue();
-    console.log(oldValues);
     this.searchService.changeSearchText(this.searchText, oldValues[1], oldValues[2], oldValues[3], oldValues[4], oldValues[5], oldValues[6], oldValues[7]);
     this.router.navigate([`/broderie/shop`]);
   }

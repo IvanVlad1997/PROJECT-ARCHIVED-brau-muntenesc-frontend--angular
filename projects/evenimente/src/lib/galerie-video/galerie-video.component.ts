@@ -42,7 +42,6 @@ export class GalerieVideoComponent implements OnInit, OnDestroy {
                 src: vid.src,
                 provider: vid.provider as Provider,
               }]);
-              console.log(this.videoSources);
             }
           );
 
