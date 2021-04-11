@@ -1,4 +1,6 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {GoogleAnalyticEventsService} from '../services/google-analytic-events.service';
+import {USER_STORAGE} from '../app.token';
 
 @Component({
   selector: 'app-pagina-start',
@@ -31,9 +33,12 @@ export class PaginaStartComponent implements OnInit {
   @ViewChild('header', {static: true})
   public header: TemplateRef<any>;
 
-  constructor() { }
+  constructor(public googleAnalyticsCart: GoogleAnalyticEventsService,
+              @Inject(USER_STORAGE) private userStorage: Storage) { }
 
   ngOnInit(): void {
+      this.googleAnalyticsCart.addToChart('hello');
+
   }
 
 }

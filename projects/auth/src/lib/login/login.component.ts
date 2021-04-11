@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit, OnDestroy, HeaderAwareComponent {
     this.loading = false;
   }
 
-  async loginWithGoogle(): Promise<void> {
-    await this.authService.loginWithGoogle();
-  }
+  // async loginWithGoogle(): Promise<void> {
+  //   await this.authService.loginWithGoogle();
+  // }
 
   ngOnDestroy(): void {
     this.userAuthServiceSubscription.unsubscribe();

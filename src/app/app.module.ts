@@ -28,10 +28,10 @@ import { ContactComponent } from './contact/contact.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatNativeDateModule} from '@angular/material/core';
-import { Router } from '@angular/router';
-import * as Sentry from '@sentry/angular';
 import { StartingPageComponent } from './starting-page/starting-page.component';
-import {FrontendSentryModule} from "../../projects/sentry/src/lib/sentry.module";
+import {FrontendSentryModule} from '../../projects/sentry/src/lib/sentry.module';
+import {GoogleAnalyticsService} from './services/google-analytics';
+import {USER_STORAGE} from './app.token';
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -81,11 +81,16 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     ],
   providers: [ToastService,
     NgxImageCompressService,
+    GoogleAnalyticsService,
     {
       provide: APP_INITIALIZER,
       useFactory: createInitializer,
       deps: [InitService],
       multi: true,
+    },
+    {
+      provide: USER_STORAGE,
+      useValue: localStorage
     }
   ],
   exports: [

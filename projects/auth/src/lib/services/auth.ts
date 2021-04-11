@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -11,11 +11,12 @@ import 'firebase/auth';
 import auth = firebase.auth;
 import {BehaviorSubject} from 'rxjs';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
+import {GoogleAnalyticsService} from '../../../../../src/app/services/google-analytics';
+import {USER_STORAGE} from '../../../../../src/app/app.token';
 
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-
   isAuthenticated: BehaviorSubject<string> = new BehaviorSubject<string>('');
   isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   tokenAdmin: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -43,12 +44,15 @@ export class AuthService {
               private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
               private route: ActivatedRoute,
-              private nodemailer: NodemailerService
+              private nodemailer: NodemailerService,
+              private googleAnalyticsService: GoogleAnalyticsService,
+              @Inject(USER_STORAGE) private userStorage: Storage
            ) {}
 
   async logout(): Promise<void> {
     await this.angularFirebaseAuth.signOut();
-    this.router.navigate(['/']);
+    this.userStorage.removeItem('current');
+    await this.router.navigate(['/']);
     this.toastService.success('Te-ai delogat cu succes!');
     this.user.next({
       cart: [],
@@ -97,8 +101,7 @@ export class AuthService {
               await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
             }
             await this.getCurrentUser(token);
-            await this.roleBaseRedirect(data.role);
-          });
+            await this.roleBaseRedirect(data.role);});
       })
       .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
   }
@@ -114,14 +117,19 @@ export class AuthService {
       }
     ).subscribe(
       (response: any) => {
+
         if (response) {
           this.user.next(response);
+          this.userStorage.setItem('current', JSON.stringify(response));
           this.isAuthenticated.next(token);
+          this.googleAnalyticsService.setCurrentUser(response._id);
           if (response.role === 'admin') {
             this.isAdmin.next(true);
           } else {
             this.isAdmin.next(false);
           }
+        } else {
+          this.userStorage.removeItem('current');
         }
         },
       (error => console.log('error'))
@@ -193,32 +201,32 @@ export class AuthService {
       .catch((error) => console.log(error));
   }
 
-  async loginWithGoogle(): Promise<void> {
-    await this.angularFirebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
-      .then((data: UserCredential) => {
-        if (data.user) {
-          return data.user.getIdToken();
-        } else {
-          return null;
-        }
-      })
-      .then((token: string) => {
-        return this.http.post<User>(
-          `${environment.appApi}/create-or-update-user`,
-          {},
-          {
-            headers: {
-              authtoken: token
-            }
-          }
-        )
-          .subscribe((data: User) => {
-            this.roleBaseRedirect(data.role);
-            this.nodemailer.infoMail('Logare cu gmail', `<p>Nouă logare cu gmail - ${data.email}</p>`);
-          });
-      })
-      .catch(() => console.log('login failed'));
-  }
+  // async loginWithGoogle(): Promise<void> {
+  //   await this.angularFirebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
+  //     .then((data: UserCredential) => {
+  //       if (data.user) {
+  //         return data.user.getIdToken();
+  //       } else {
+  //         return null;
+  //       }
+  //     })
+  //     .then((token: string) => {
+  //       return this.http.post<User>(
+  //         `${environment.appApi}/create-or-update-user`,
+  //         {},
+  //         {
+  //           headers: {
+  //             authtoken: token
+  //           }
+  //         }
+  //       )
+  //         .subscribe((data: User) => {
+  //           this.roleBaseRedirect(data.role);
+  //           this.nodemailer.infoMail('Logare cu gmail', `<p>Nouă logare cu gmail - ${data.email}</p>`);
+  //         });
+  //     })
+  //     .catch(() => console.log('login failed'));
+  // }
 
   async resetPassword(email: string): Promise<void> {
     const config  = {
