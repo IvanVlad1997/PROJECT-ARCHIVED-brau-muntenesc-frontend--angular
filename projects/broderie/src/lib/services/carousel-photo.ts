@@ -1,21 +1,20 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {CarouselPhoto} from '../../../../common/carousel-photo';
 import {HttpClient} from '@angular/common/http';
-import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class CarouselPhotoService {
   private carouselPhotoUpdated: BehaviorSubject<CarouselPhoto[]> = new BehaviorSubject<CarouselPhoto[]>([]);
 
   constructor(private http: HttpClient,
-              private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
-
-  token: string = this.authService.tokenAdmin.getValue();
 
   getCarouselPhotoListener(): Observable<CarouselPhoto[]> {
     return this.carouselPhotoUpdated.asObservable();
@@ -35,7 +34,7 @@ export class CarouselPhotoService {
       },
       {
         headers: {
-          authtoken: this.token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(success => {
@@ -51,7 +50,7 @@ export class CarouselPhotoService {
     this.http.delete<CarouselPhoto>(`${environment.appApi}/carousel-photo/${slug}`,
       {
         headers: {
-          authtoken: this.token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(() => {

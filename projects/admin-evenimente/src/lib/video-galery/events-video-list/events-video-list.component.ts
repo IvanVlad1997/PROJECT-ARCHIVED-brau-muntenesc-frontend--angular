@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {GalerieVideoService} from '../../../../../admin-platforma-cursuri/src/lib/services/video-galerie';
 import {MatDialog} from '@angular/material/dialog';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
@@ -11,6 +11,8 @@ import {EventsVideoService} from '../../services/events-video';
 import {GalerieVideoEvenimente} from '../../../../../common/galerie-video-evenimente';
 import {EventsVideoListActionsComponent} from '../events-video-list-actions/events-video-list-actions.component';
 import {EventsVideoEditComponent} from '../events-video-edit/events-video-edit.component';
+import {TOKEN} from '../../../../../../src/app/app.token';
+import {Token} from '../../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'lib-events-video-list',
@@ -21,7 +23,8 @@ export class EventsVideoListComponent implements OnInit, OnDestroy {
 
   constructor(private videoPlatformService: EventsVideoService,
               private dialog: MatDialog,
-              private authService: AuthService) {
+              private authService: AuthService,
+              @Inject(TOKEN) private tokenStorage: Token) {
   }
 
 
@@ -68,14 +71,22 @@ export class EventsVideoListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadVideos(token);
-          }
-        });
+    this.tokenStorage.token.subscribe(
+      (token) => {
+        this.token = token;
+        if (token !== '') {
+          this.loadVideos(token);
+        }
+      }
+    );
+    // this.authSubscription = this.authService.isAuthenticated
+    //   .subscribe(
+    //     (token) => {
+    //       this.token = token;
+    //       if (token !== '') {
+    //         this.loadVideos(token);
+    //       }
+    //     });
   }
 
   loadVideos(token: string): void {

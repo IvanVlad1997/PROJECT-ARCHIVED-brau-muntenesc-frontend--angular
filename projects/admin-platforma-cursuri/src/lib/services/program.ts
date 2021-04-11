@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {VideoPlatform} from '../../../../common/video-platform';
 import {HttpClient} from '@angular/common/http';
@@ -9,6 +9,8 @@ import {Product} from '../../../../common/product';
 import {GalerieVideoCursuri} from '../../../../common/galerie-video-cursuri';
 import {Price} from '../../../../common/price';
 import {Program} from '../../../../common/program';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class ProgramService {
@@ -16,7 +18,8 @@ export class ProgramService {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
 
   getProgramListener(): Observable<Program[]> {
@@ -31,14 +34,14 @@ export class ProgramService {
   }
 
 
-  programCreate(program: Program, token: string): void {
+  programCreate(program: Program): void {
     this.http.post<Program>(`${environment.appApi}/program`,
       {
         program: program
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(success => {
@@ -51,14 +54,14 @@ export class ProgramService {
         });
   }
 
-  programUpdate(slug: string, program: Program, token: string): void {
+  programUpdate(slug: string, program: Program): void {
     this.http.put<Program>(`${environment.appApi}/program/${slug}`,
       {
         program: program
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(p => {
@@ -70,11 +73,11 @@ export class ProgramService {
         });
   }
 
-  programRemove(slug: string, token: string): void {
+  programRemove(slug: string): void {
     this.http.delete<Program>(`${environment.appApi}/program/${slug}`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(() => {

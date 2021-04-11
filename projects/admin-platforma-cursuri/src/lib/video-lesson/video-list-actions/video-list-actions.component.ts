@@ -20,8 +20,7 @@ export class VideoListActionsComponent implements AgFrameworkComponent<BaseColDe
 
   constructor(private dialog: MatDialog,
               private videoPlatformService: VideoPlatformService,
-              private toastService: ToastService,
-              private authService: AuthService) { }
+              private toastService: ToastService) { }
 
   video: VideoPlatform;
 
@@ -38,11 +37,10 @@ export class VideoListActionsComponent implements AgFrameworkComponent<BaseColDe
   }
 
   async delete(): Promise<void> {
-    let token: string = this.authService.isAuthenticated.getValue();
     if (window.confirm(`Esti sigur că vrei să stergi categoria ${this.video.name}?`))
     {
       try {
-        this.videoPlatformService.removeVideoPlatform(this.video.slug, token);
+        this.videoPlatformService.removeVideoPlatform(this.video.slug);
 
       } catch (error) {
         this.toastService.error('Nu s-a putut șterge categoria!');

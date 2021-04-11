@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {Subscription} from 'rxjs';
 import {User} from '../../../../common/user';
@@ -7,6 +7,8 @@ import {ChangeUserPropDialogComponent} from './change-user-prop-dialog/change-us
 import {ContentChange} from 'ngx-quill';
 import {UserService} from '../services/user';
 import {ToastService} from 'angular-toastify';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'lib-dashboard',
@@ -18,7 +20,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService,
               private dialog: MatDialog,
               private userService: UserService,
-              private toastService: ToastService) { }
+              private toastService: ToastService,
+              @Inject(TOKEN) private tokenStorage: Token
+  ) { }
 
   authSubscription: Subscription;
   userSubscription: Subscription;
@@ -41,14 +45,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
+    this.token = this.tokenStorage.token.getValue()
+    if (this.token !== '') {
             this.loadUser();
           }
-        });
   }
 
   loadUser(): void {
@@ -61,9 +61,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
     if  (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }

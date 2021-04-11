@@ -21,7 +21,6 @@ export class CursantiListComponent implements OnInit, OnDestroy {
   public selectedProgram: Program;
 
   constructor(private dialog: MatDialog,
-              private authService: AuthService,
               private cursantiService: CursantiService,
               private programService: ProgramService) { }
 
@@ -76,18 +75,11 @@ export class CursantiListComponent implements OnInit, OnDestroy {
   programs: Program[];
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-          }
-        });
-    this.loadPrograms(this.token);
-    this.loadUsers(this.token);
+    this.loadPrograms();
+    this.loadUsers();
   }
 
-  loadPrograms(token: string): void {
+  loadPrograms(): void {
     this.programService.getPrograms();
     this.programSub = this.programService.getProgramListener()
        .subscribe((c) => {
@@ -95,11 +87,11 @@ export class CursantiListComponent implements OnInit, OnDestroy {
       });
   }
 
-  loadUsers(token: string): void {
+  loadUsers(): void {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
-    this.cursantiService.getUsers(token, undefined);
+    this.cursantiService.getUsers(undefined);
     this.userSubscription = this.cursantiService.getUsersListener()
       .pipe(
         distinct()
@@ -112,9 +104,6 @@ export class CursantiListComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
     if  (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }
@@ -126,7 +115,7 @@ export class CursantiListComponent implements OnInit, OnDestroy {
 
   valueChange(e: Program): void {
     this.selectedProgram = e;
-    this.cursantiService.getUsers(this.token, e );
+    this.cursantiService.getUsers( e );
   }
 }
 

@@ -22,7 +22,7 @@ export class VideoListComponent implements OnInit, OnDestroy {
 
   constructor(private videoPlatformService: VideoPlatformService,
               private dialog: MatDialog,
-              private authService: AuthService) {
+             ) {
   }
 
 
@@ -69,18 +69,11 @@ export class VideoListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadVideos(token);
-          }
-        });
+    this.loadVideos();
   }
 
-  loadVideos(token: string): void {
-    this.videoPlatformService.getVideosPlatform(token);
+  loadVideos(): void {
+    this.videoPlatformService.getVideosPlatform();
     this.videoPlatformSub = this.videoPlatformService.getVideoPlatformListener()
       .subscribe(videos => {
         this.videos = videos;
@@ -92,9 +85,6 @@ export class VideoListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.videoPlatformSub) {
       this.videoPlatformSub.unsubscribe();
-    }
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
     }
   }
 

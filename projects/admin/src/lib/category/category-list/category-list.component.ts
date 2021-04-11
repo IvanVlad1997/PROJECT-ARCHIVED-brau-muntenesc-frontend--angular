@@ -17,7 +17,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
 
   constructor(private categoryService: CategoryService,
               private dialog: MatDialog,
-              private authService: AuthService) { }
+             ) { }
 
 
   categorySubscription: Subscription;
@@ -47,17 +47,10 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadCategories(token);
-          }
-        });
+    this.loadCategories();
   }
 
-  loadCategories(token: string): void {
+  loadCategories(): void {
     this.categoryService.getCategories();
     this.categorySubscription = this.categoryService.getCategoriesListener()
       .subscribe(categories => {
@@ -70,9 +63,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.categorySubscription) {
       this.categorySubscription.unsubscribe();
-    }
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
     }
   }
 

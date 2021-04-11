@@ -21,7 +21,7 @@ export class BrandListComponent implements OnInit, OnDestroy {
 
   constructor(private bramdService: BrandService,
               private dialog: MatDialog,
-              private authService: AuthService) { }
+             ) { }
 
 
   categorySubscription: Subscription;
@@ -56,17 +56,10 @@ export class BrandListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadBrands(token);
-          }
-        });
+    this.loadBrands();
   }
 
-  loadBrands(token: string): void {
+  loadBrands(): void {
     this.bramdService.getBrands();
     this.categorySubscription = this.bramdService.getBrandListener()
       .subscribe(brands => {
@@ -79,9 +72,6 @@ export class BrandListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.categorySubscription) {
       this.categorySubscription.unsubscribe();
-    }
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
     }
   }
 

@@ -1,8 +1,10 @@
-import {Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {HeaderAwareComponent, OptionsAwareComponent, SearchAwareComponent} from '../../../../common/metadata-aware';
 import {CartService} from '../services/cart';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'app-broderie',
@@ -12,7 +14,9 @@ import {AuthService} from '../../../../auth/src/lib/services/auth';
 export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareComponent, SearchAwareComponent, HeaderAwareComponent {
 
   constructor(private cartService: CartService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              @Inject(TOKEN) private tokenStorage: Token
+              ) {
   }
 
   cartSubscription: Subscription;
@@ -33,19 +37,16 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadCart(token);
-            this.loadOverlay(token);
+          this.token = this.tokenStorage.token.getValue();
+          if (this.token !== '') {
+            this.loadCart();
+            this.loadOverlay();
           }
-        });
   }
 
+  // TODO: De găsit variantă
 
-  loadCart(token: string): void {
+  loadCart(): void {
     this.cartService.getCart();
     this.cartSubscription = this.cartService.cartUpdate
       .subscribe((c) => {
@@ -55,7 +56,7 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
       });
   }
 
-  loadOverlay(token: string): void {
+  loadOverlay(): void {
     this.overlaySubscription = this.cartService.getOverlayStatus()
       .subscribe((status) => {
         this.overlayIsOpen = status;
@@ -68,9 +69,6 @@ export class BroderieComponent implements OnInit, OnDestroy, OptionsAwareCompone
     }
     if (this.overlaySubscription) {
       this.overlaySubscription.unsubscribe();
-    }
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
     }
   }
 

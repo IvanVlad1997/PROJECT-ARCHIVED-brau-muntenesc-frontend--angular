@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService,
               private dialog: MatDialog,
-              private authService: AuthService) {
+              ) {
   }
 
   productSubscription: Subscription;
@@ -100,17 +100,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadProducts(token);
-          }
-        });
+    this.loadProducts();
   }
 
-  loadProducts(token: string): void {
+  loadProducts(): void {
     this.productService.getProducts();
     this.productSubscription = this.productService.getProductListener()
       .subscribe(products => {
@@ -121,9 +114,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.productSubscription.unsubscribe();
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
   }
 
   async create(): Promise<void> {

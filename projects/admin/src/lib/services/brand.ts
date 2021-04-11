@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
@@ -6,6 +6,8 @@ import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
 import {Program} from '../../../../common/program';
 import {Brand} from '../../../../common/brand';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class BrandService {
@@ -14,7 +16,8 @@ export class BrandService {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
 
   getBrandListener(): Observable<Brand[]> {
@@ -29,7 +32,7 @@ export class BrandService {
   }
 
 
-  brandCreate(brand: Brand, token: string): void {
+  brandCreate(brand: Brand): void {
     this.http.post<Brand>(`${environment.appApi}/brand`,
       {
         name: brand.name,
@@ -37,7 +40,7 @@ export class BrandService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(success => {
@@ -50,7 +53,7 @@ export class BrandService {
         });
   }
 
-  programUpdate(slug: string, brand: Brand, token: string): void {
+  programUpdate(slug: string, brand: Brand): void {
     this.http.put<Brand>(`${environment.appApi}/brand/${slug}`,
       {
         name: brand.name,
@@ -58,7 +61,7 @@ export class BrandService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(p => {
@@ -70,11 +73,11 @@ export class BrandService {
         });
   }
 
-  programRemove(slug: string, token: string): void {
+  programRemove(slug: string): void {
     this.http.delete<Brand>(`${environment.appApi}/brand/${slug}`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(() => {

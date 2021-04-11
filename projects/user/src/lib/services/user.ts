@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Cart} from '../../../../common/cart';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {HttpClient} from '@angular/common/http';
@@ -10,6 +10,8 @@ import {ToastService} from 'angular-toastify';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {Program} from '../../../../common/program';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -18,7 +20,8 @@ export class UserService {
               private http: HttpClient,
               private toastService: ToastService,
               private angularFireAuth: AngularFireAuth,
-              private nodemailer: NodemailerService) {}
+              private nodemailer: NodemailerService,
+              @Inject(TOKEN) private token: Token) {}
 
   products: Cart[] = [];
   totalAfterDiscount: number;
@@ -32,21 +35,20 @@ export class UserService {
 
    userCart(cart: Cart[]): Observable<Cart[]> {
     this.userCartUpdated.next([[], null, null]);
-    const token = this.authService.isAuthenticated.getValue();
     return this.http.post<Cart[]>(`${environment.appApi}/user/cart`,
       {cart},
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
 }
 
-  getUserCart(token: string): any {
+  getUserCart(): any {
     this.http.get<{ products: Cart[], cartTotal: number, totalAfterDiscount: number}>(`${environment.appApi}/user/cart`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(
@@ -65,13 +67,12 @@ export class UserService {
   }
 
   emptyUserCart(): any {
-    const token = this.authService.isAuthenticated.getValue();
     this.http.put<any>(`${environment.appApi}/user/cart`,
       {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(
@@ -82,35 +83,32 @@ export class UserService {
   }
 
   saveUserAddress(address: string[]): Observable<any> {
-    const token = this.authService.isAuthenticated.getValue();
     return this.http.post<any>(`${environment.appApi}/user/address`,
       {address: address[0], addressContent: address[1]},
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
 }
 
   getUserAddress(): Observable<{ address: string[] }> {
-    const token = this.authService.isAuthenticated.getValue();
     return this.http.get<{ address: string[] }>(`${environment.appApi}/user/address`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
   }
 
   applyCupon(cupon: string): Observable<number> {
-    const token = this.authService.isAuthenticated.getValue();
     return this.http.post<number>(`${environment.appApi}/user/cart/cupon`,
       {
         cupon
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
   }
@@ -123,94 +121,94 @@ export class UserService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
   }
-  createNewCashOrder(token: string): Observable<any> {
+  createNewCashOrder(): Observable<any> {
     return this.http.post<any>(`${environment.appApi}/user/cash-order`,
       {},
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
   }
 
-  getUserOrders(token): Observable<Order[]> {
+  getUserOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${environment.appApi}/user/orders`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
   }
 
-  getWishlist(token): Observable<any> {
+  getWishlist(): Observable<any> {
     return this.http.get(`${environment.appApi}/user/wishlist`,
       {
         headers: {
-          authtoken: token,
+          authtoken: this.token.token.getValue()
         }
       });
   }
 
-  removeWishlist(productId, token): Observable<any> {
+  removeWishlist(productId): Observable<any> {
     return this.http.put(`${environment.appApi}/user/wishlist/${productId}`, {
     },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
   }
 
-  addToWishlist(productId, token): Observable<any> {
+  addToWishlist(productId): Observable<any> {
     return this.http.post(`${environment.appApi}/user/wishlist`, {
         productId
     },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
   }
 
-  changeUserName(name: string, token: string): any {
+  changeUserName(name: string): any {
     this.http.post(`${environment.appApi}/user/change-name`,
       {
         name
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(
         (data) => {
-          this.authService.getCurrentUser(token);
+          this.authService.getCurrentUser(this.token.token.getValue());
         }
       );
   }
 
-  changeTelNul(telNum: string, token: string): any {
+  changeTelNul(telNum: string): any {
     this.http.post(`${environment.appApi}/user/change-telnum`,
       {
         telNum
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(
       (data) => {
-        this.authService.getCurrentUser(token);
+        this.authService.getCurrentUser(this.token.token.getValue());
       }
     );
   }
 
-  changeGrupa(group: Program, token: string, email: string): any {
+  changeGrupa(group: Program, email: string): any {
     this.http.post(`${environment.appApi}/user/grupa`,
       {
         email: email,
@@ -218,7 +216,7 @@ export class UserService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(
@@ -251,7 +249,7 @@ export class UserService {
   //     )
   // }
 
-  addPresenceToUser(token: string, _id: string, presence: {title: string, date: string}): void {
+  addPresenceToUser(_id: string, presence: {title: string, date: string}): void {
     this.http.post(`${environment.appApi}/user/presence`,
       {
         presence,
@@ -259,7 +257,7 @@ export class UserService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(
@@ -275,7 +273,7 @@ export class UserService {
       );
   }
 
-  pay(token: string, payment: any, email: string, total: number): void {
+  pay(payment: any, email: string, total: number): void {
     this.http.post(`${environment.appApi}/user/pay`,
       {
         email,
@@ -284,7 +282,7 @@ export class UserService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(

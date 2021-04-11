@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private toastService: ToastService,
     private adminService: AdminService,
-    private authService: AuthService
   ) { }
 
   orders: Order[] = [];
@@ -25,21 +24,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loading: boolean = false;
 
   ngOnInit(): void {
-
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.loading = true;
-          this.token = token;
-          if (token !== '') {
-            this.loadOrders(token);
-          }
-        });
+    this.loadOrders();
 
   }
 
-  loadOrders(token): void {
-    this.adminService.getOrders(token);
+  loadOrders(): void {
+    this.adminService.getOrders();
     // setTimeout(() => this.loading = false, 1000)
     this.adminServiceSubscription = this.adminService.getOrdersListener()
       .subscribe(
@@ -54,7 +44,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.adminServiceSubscription) {
       this.adminServiceSubscription.unsubscribe();
     }
-    this.authSubscription.unsubscribe();
   }
 
 }

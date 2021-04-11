@@ -21,7 +21,7 @@ export class PriceActionsListComponent implements AgFrameworkComponent<BaseColDe
   constructor(private dialog: MatDialog,
               private priceService: PriceService,
               private toastService: ToastService,
-              private authService: AuthService) { }
+              ) { }
 
   price: Price;
 
@@ -38,11 +38,10 @@ export class PriceActionsListComponent implements AgFrameworkComponent<BaseColDe
   }
 
   async delete(): Promise<void> {
-    let token: string = this.authService.isAuthenticated.getValue();
     if (window.confirm(`Esti sigur că vrei să stergi pretul ${this.price.category}?`))
     {
       try {
-        this.priceService.priceRemove(this.price.slug, token);
+        this.priceService.priceRemove(this.price.slug);
 
       } catch (error) {
         this.toastService.error('Nu s-a putut șterge pretul!');

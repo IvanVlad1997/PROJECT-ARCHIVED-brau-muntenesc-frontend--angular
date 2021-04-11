@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../src/environments/environment';
 import {Category} from '../../../../common/category';
@@ -7,20 +7,21 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {SubCategory} from '../../../../common/sub-category';
 import {ToastService} from 'angular-toastify';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class SubCategoryService {
 
-  // private categories: Category[] = [];
   private subCategoriesUpdated: BehaviorSubject<SubCategory[]> = new BehaviorSubject<SubCategory[]>([]);
 
   constructor(private http: HttpClient,
               private angularFireAuth: AngularFireAuth,
               private authService: AuthService,
-              private toastService: ToastService) {}
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {}
 
 
-  token: string = this.authService.tokenAdmin.getValue();
 
   getSubCategoriesListener(): Observable<SubCategory[]> {
     return this.subCategoriesUpdated.asObservable();
@@ -41,7 +42,7 @@ export class SubCategoryService {
     this.http.put<SubCategory>(`${environment.appApi}/sub-category/${slug}`, {subCategory},
       {
         headers: {
-          authtoken: this.token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(c => {
@@ -57,7 +58,7 @@ export class SubCategoryService {
     this.http.post<SubCategory>(`${environment.appApi}/sub-category`, {subCategory},
       {
         headers: {
-          authtoken: this.token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(c => {
@@ -72,7 +73,7 @@ export class SubCategoryService {
   removeSubCategory(slug: string): void {
     this.http.delete<SubCategory>(`${environment.appApi}/sub-category/${slug}`, {
       headers: {
-        authtoken: this.token
+        authtoken: this.token.token.getValue()
       }
     }).subscribe(() => {
         this.toastService.success('Subcategoria a fost ștearsă!');

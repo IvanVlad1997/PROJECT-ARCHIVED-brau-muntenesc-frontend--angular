@@ -18,32 +18,23 @@ export class VideoListEditComponent implements OnInit, OnDestroy {
   constructor( @Inject(MAT_DIALOG_DATA) public video: VideoPlatform,
                private ref: MatDialogRef<VideoListEditComponent>,
                private videoPlatformService: VideoPlatformService,
-               private toastService: ToastService,
-               private authService: AuthService) {}
+               private toastService: ToastService) {}
 
   authSubscription: Subscription;
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-        });
   }
 
   async edit(): Promise<void> {
     if (this.video.slug) {
-      await this.videoPlatformService.videoPlatformUpdate(this.video.slug, this.video, this.token);
+      await this.videoPlatformService.videoPlatformUpdate(this.video.slug, this.video);
     } else {
-      await this.videoPlatformService.videoPlatformCreate(this.video, this.token);
+      await this.videoPlatformService.videoPlatformCreate(this.video);
     }
     this.ref.close();
   }
 
   ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
   }
 }

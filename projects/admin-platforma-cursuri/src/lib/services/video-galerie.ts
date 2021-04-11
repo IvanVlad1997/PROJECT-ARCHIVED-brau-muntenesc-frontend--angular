@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {VideoPlatform} from '../../../../common/video-platform';
 import {HttpClient} from '@angular/common/http';
@@ -7,6 +7,8 @@ import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
 import {Product} from '../../../../common/product';
 import {GalerieVideoCursuri} from '../../../../common/galerie-video-cursuri';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class GalerieVideoService {
@@ -14,7 +16,8 @@ export class GalerieVideoService {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
 
   getVideoPlatformListener(): Observable<GalerieVideoCursuri[]> {
@@ -29,14 +32,14 @@ export class GalerieVideoService {
   }
 
 
-  videoPlatformCreate(video: GalerieVideoCursuri, token: string): void {
+  videoPlatformCreate(video: GalerieVideoCursuri): void {
     this.http.post<GalerieVideoCursuri>(`${environment.appApi}/galerie-video-cursuri`,
       {
         video: video
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(success => {
@@ -49,14 +52,14 @@ export class GalerieVideoService {
         });
   }
 
-  videoPlatformUpdate(slug: string, video: GalerieVideoCursuri, token: string): void {
+  videoPlatformUpdate(slug: string, video: GalerieVideoCursuri): void {
     this.http.put<GalerieVideoCursuri>(`${environment.appApi}/galerie-video-cursuri/${slug}`,
       {
         video: video
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(p => {
@@ -68,11 +71,11 @@ export class GalerieVideoService {
         });
   }
 
-  removeVideoPlatform(slug: string, token: string): void {
+  removeVideoPlatform(slug: string): void {
     this.http.delete<GalerieVideoCursuri>(`${environment.appApi}/galerie-video-cursuri/${slug}`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(() => {

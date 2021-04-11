@@ -4,7 +4,6 @@ import {formatDate} from '@angular/common';
 import {Subscription} from 'rxjs';
 import {User} from '../../../../common/user';
 import {distinct} from 'rxjs/operators';
-import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {DayReportService} from '../services/day-report';
 
 @Component({
@@ -14,31 +13,22 @@ import {DayReportService} from '../services/day-report';
 })
 export class DayReportComponent implements OnInit, OnDestroy {
 
-  constructor(private authService: AuthService,
-              private dayReportService: DayReportService) { }
+  constructor(private dayReportService: DayReportService) { }
   userSubscription: Subscription;
-  authSubscription: Subscription;
   token: string = '';
   users: User[] = [];
 
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          if (token !== '') {
-            this.token = token;
-          }
-        });
   }
 
 
 
-  loadUsers(token: string, date: string): void {
+  loadUsers(date: string): void {
     if (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }
-    this.dayReportService.getUsers(token, date);
+    this.dayReportService.getUsers(date);
     this.userSubscription = this.dayReportService.getUsersListener()
       .pipe(
         distinct()
@@ -50,9 +40,6 @@ export class DayReportComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
     if  (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }
@@ -62,6 +49,6 @@ export class DayReportComponent implements OnInit, OnDestroy {
   changeDate(selectedDate: MatDatepickerInputEvent<unknown, unknown>): void {
     let date: Date = selectedDate.value as Date;
     const formattedDate = formatDate(date, 'yyyy-MM-dd', 'ro-RO');
-    this.loadUsers(this.token, formattedDate);
+    this.loadUsers(formattedDate);
   }
 }

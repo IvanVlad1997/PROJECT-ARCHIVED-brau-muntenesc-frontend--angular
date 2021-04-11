@@ -1,12 +1,13 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../src/environments/environment';
 import {Category} from '../../../../common/category';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {SubCategory} from '../../../../common/sub-category';
 import {ToastService} from 'angular-toastify';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class CategoryService {
@@ -15,11 +16,10 @@ export class CategoryService {
 
   constructor(private http: HttpClient,
               private angularFireAuth: AngularFireAuth,
-              private authService: AuthService,
-              private toastService: ToastService) {}
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {}
 
 
-  token: string = this.authService.tokenAdmin.getValue();
 
   getCategoriesListener(): Observable<Category[]> {
     return this.categoriesUpdated.asObservable();
@@ -40,7 +40,7 @@ export class CategoryService {
     this.http.put<Category>(`${environment.appApi}/category/${slug}`, {category},
       {
         headers: {
-          authtoken: this.token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(c => {
@@ -54,7 +54,7 @@ export class CategoryService {
     this.http.post<Category>(`${environment.appApi}/category`, {category},
       {
         headers: {
-          authtoken: this.token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(c => {
@@ -67,7 +67,7 @@ export class CategoryService {
   removeCategory(slug: string): void {
     this.http.delete<Category>(`${environment.appApi}/category/${slug}`, {
       headers: {
-        authtoken: this.token
+        authtoken: this.token.token.getValue()
       }
     }).subscribe(() => {
         this.toastService.success('Categoria a fost ștearsă!');

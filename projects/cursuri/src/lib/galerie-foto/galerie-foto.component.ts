@@ -13,7 +13,7 @@ export class GalerieFotoComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private authService: AuthService,
+  constructor(
               private imageService: ImageService) { }
 
   images: Image[] = [];
@@ -24,14 +24,8 @@ export class GalerieFotoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loading = true;
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          this.loadImages();
-          if (token !== '') {
-          }
-        });
+    this.loadImages();
+
   }
 
   loadImages(): void {

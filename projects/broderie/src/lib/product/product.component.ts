@@ -53,9 +53,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.user.subscribe((user) => {
       this.user = user;
     });
-    this.authSubscription = this.authService.isAuthenticated.subscribe(token => {
-      this.token = token;
-    });
+
     this.navigationSubscription = this.route.params
       .subscribe(
         (p) => {
@@ -113,7 +111,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   addToWishlist(id: string): void {
-    this.userSubscription = this.userService.addToWishlist(id, this.token)
+    this.userSubscription = this.userService.addToWishlist(id)
       .subscribe(
         (p) => {
           this.toastService.success('Produsul a fost adăugat la favorite');

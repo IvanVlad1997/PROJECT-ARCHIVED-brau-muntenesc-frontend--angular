@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {CartService} from '../services/cart';
 import {Cart} from '../../../../common/cart';
 import {Subscription} from 'rxjs';
@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 import {UserService} from '../../../../user/src/lib/services/user';
 import {ToastService} from 'angular-toastify';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'lib-cart',
@@ -22,7 +24,9 @@ export class CartComponent implements OnInit, OnDestroy {
               private router: Router,
               private userService: UserService,
               private toastService: ToastService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              @Inject(TOKEN) private tokenStorage: Token,
+              ) { }
 
   cart: Cart[] = [];
   cartSubscription: Subscription;
@@ -69,19 +73,15 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loading = true;
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadCart(token);
-          } else  {
+    this.token = this.tokenStorage.token.getValue();
+          if (this.token !== '') {
+            this.loadCart();
+          } else {
             this.router.navigate(['/auth/login']);
           }
-        });
   }
 
-  loadCart(token: string): void {
+  loadCart(): void {
     this.cartSubscription = this.cartService.cartUpdate
       .subscribe((c) => {
         this.cart = c;
@@ -95,9 +95,7 @@ export class CartComponent implements OnInit, OnDestroy {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
+
   }
 
   getTotal(): void {
@@ -122,6 +120,6 @@ export class CartComponent implements OnInit, OnDestroy {
     await this.cartService.removeAllFromCart();
     await this.userService.emptyUserCart();
     this.toastService.success('Coșul a fost golit');
-    this.authService.getCurrentUser(this.token);
+    this.authService.getCurrentUser(this.tokenStorage.token.getValue());
   }
 }

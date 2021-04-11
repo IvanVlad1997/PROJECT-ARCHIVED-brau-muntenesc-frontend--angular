@@ -1,9 +1,11 @@
-import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
 import {Subject, Subscription} from 'rxjs';
 import {AuthService} from '../../../projects/auth/src/lib/services/auth';
 import {TypeGuards} from '../services/type-guard';
+import {TOKEN} from '../app.token';
+import {Token} from '../../../projects/auth/src/lib/services/token';
 
 @Component({
   selector: 'app-layout',
@@ -13,14 +15,15 @@ import {TypeGuards} from '../services/type-guard';
 export class LayoutComponent implements OnInit, OnDestroy {
   private onDestroy$: Subject<void> = new Subject();
   constructor(private router: Router,
-              private authService: AuthService
+              private authService: AuthService,
+              @Inject(TOKEN) private token: Token
   ) { }
 
 
 
   openedSide: boolean = false;
   object: object;
-  isAuthenticated: string = '';
+  isAuthenticated: boolean = false;
   isAuthSubscription: Subscription;
   isAdminSubscription: Subscription;
   isAdmin: boolean = false;
@@ -52,15 +55,16 @@ export class LayoutComponent implements OnInit, OnDestroy {
         this.openedSide = false;
       }
     });
+    this.token.token.pipe(takeUntil(this.onDestroy$)).subscribe(
+      (token) => {
+        if (token !== '') {
+          this.isAuthenticated = true;
+        } else  {
+          this.isAuthenticated = false;
+        }
+      }
+    )
 
-    this.isAuthSubscription = this.authService.isAuthenticated
-      .subscribe((authState: string) => {
-              if (authState) {
-                this.isAuthenticated = authState;
-              } else {
-                this.isAuthenticated = '';
-              }
-            });
     this.isAdminSubscription = this.authService.isAdmin
       .subscribe((isAdm: boolean) => {
         if (isAdm) {

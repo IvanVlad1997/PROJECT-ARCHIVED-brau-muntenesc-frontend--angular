@@ -12,14 +12,13 @@ import auth = firebase.auth;
 import {BehaviorSubject} from 'rxjs';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {GoogleAnalyticsService} from '../../../../../src/app/services/google-analytics';
-import {USER_STORAGE} from '../../../../../src/app/app.token';
+import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
+import {Token} from './token';
 
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-  isAuthenticated: BehaviorSubject<string> = new BehaviorSubject<string>('');
   isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  tokenAdmin: BehaviorSubject<string> = new BehaviorSubject<string>('');
   user: BehaviorSubject<User> = new BehaviorSubject<User>( {
     cart: [],
     createdAt: undefined,
@@ -46,11 +45,13 @@ export class AuthService {
               private route: ActivatedRoute,
               private nodemailer: NodemailerService,
               private googleAnalyticsService: GoogleAnalyticsService,
-              @Inject(USER_STORAGE) private userStorage: Storage
+              @Inject(USER_STORAGE) private userStorage: Storage,
+              @Inject(TOKEN) private token: Token
            ) {}
 
   async logout(): Promise<void> {
     await this.angularFirebaseAuth.signOut();
+    await this.token.token.next('');
     this.userStorage.removeItem('current');
     await this.router.navigate(['/']);
     this.toastService.success('Te-ai delogat cu succes!');
@@ -72,39 +73,61 @@ export class AuthService {
       dance: undefined,
       payHistory: []
     });
-    this.isAuthenticated.next('');
     this.isAdmin.next(false);
-    this.tokenAdmin.next('');
   }
 
   async login(email: string, password: string, other?: any): Promise<void> {
-    await this.angularFirebaseAuth.signInWithEmailAndPassword(email, password)
-      .then((data: UserCredential) => {
-        if (data.user) {
-          return data.user.getIdToken();
-        } else {
-          return null;
-        }
-      })
-      .then((token: string) => {
-        return this.http.post<User>(
-          `${environment.appApi}/create-or-update-user`,
-          {},
-          {
-            headers: {
-              authtoken: token
-            }
+     let userCredential: UserCredential = await this.angularFirebaseAuth.signInWithEmailAndPassword(email, password);
+     if (userCredential.user) {
+       this.token.token.next(await userCredential.user.getIdToken());
+     } else {
+       this.token.token.next(undefined);
+     }
+     this.http.post<User>(
+        `${environment.appApi}/create-or-update-user`,
+        {},
+        {
+          headers: {
+            authtoken: await this.token.token.getValue()
           }
-        )
-          .subscribe(async (data: User) => {
-            if (other) {
-              await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
-            }
-            await this.getCurrentUser(token);
-            await this.roleBaseRedirect(data.role);});
-      })
-      .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
-  }
+        }
+      )
+        .subscribe(async (data: User) => {
+          if (other) {
+            await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
+          }
+          await this.getCurrentUser(await this.token.token.getValue());
+          await this.roleBaseRedirect(data.role);
+        });
+    }
+    // .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
+
+      // .then((data: UserCredential) => {
+      //   if (data.user) {
+      //     return data.user.getIdToken();
+      //   } else {
+      //     return null;
+      //   }
+      // })
+      // .then((token: string) => {
+      //   return this.http.post<User>(
+      //     `${environment.appApi}/create-or-update-user`,
+      //     {},
+      //     {
+      //       headers: {
+      //         authtoken: token
+      //       }
+      //     }
+      //   )
+      //     .subscribe(async (data: User) => {
+      //       if (other) {
+      //         await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
+      //       }
+      //       await this.getCurrentUser(token);
+      //       await this.roleBaseRedirect(data.role);});
+      // })
+      // .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
+  // }
 
    getCurrentUser(token: string): void {
     this.http.post(
@@ -112,7 +135,7 @@ export class AuthService {
       {},
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       }
     ).subscribe(
@@ -121,7 +144,6 @@ export class AuthService {
         if (response) {
           this.user.next(response);
           this.userStorage.setItem('current', JSON.stringify(response));
-          this.isAuthenticated.next(token);
           this.googleAnalyticsService.setCurrentUser(response._id);
           if (response.role === 'admin') {
             this.isAdmin.next(true);
@@ -136,26 +158,27 @@ export class AuthService {
     );
   }
 
-   getAdmin(token: string): void {
-     this.tokenAdmin.next(token);
-     this.http.post(
+   getAdmin(token: string): Promise<any> {
+     // this.tokenAdmin.next(token);
+    return  this.http.post(
       `${environment.appApi}/current-admin`,
       {},
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       }
-    ).subscribe(
-      (response: any) => {
-        this.isAdmin.next(true);
-      },
-      (error => console.log('error'))
-    );
+    ).toPromise()
+      .catch(err => console.log(err))
+    //   .subscribe(
+    //   (response: any) => {
+    //     this.isAdmin.next(true);
+    //   },
+    //   (error => console.log('error'))
+    // );
   }
 
   updateMany(email: string, telNum: number, address: string[], isDancer: boolean, name: string ): void {
-    let token = this.isAuthenticated.getValue();
     this.http.post(`${environment.appApi}/user/update-many`,
       {
         email: email,
@@ -166,7 +189,7 @@ export class AuthService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(

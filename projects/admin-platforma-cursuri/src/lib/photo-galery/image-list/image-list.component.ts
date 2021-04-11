@@ -17,7 +17,7 @@ export class ImageListComponent  implements OnInit, OnDestroy {
   constructor(private imageService: ImageService,
               private matDialog: MatDialog,
               private compressImageService: CompressImageService,
-              private authService: AuthService) { }
+             ) { }
 
   images: Image[] = [];
   photoSubscription: Subscription;
@@ -25,17 +25,10 @@ export class ImageListComponent  implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadPhotos(token);
-          }
-        });
+    this.loadPhotos();
   }
 
-  loadPhotos(token): void {
+  loadPhotos(): void {
     this.imageService.getPhotos();
     this.photoSubscription = this.imageService.getImagesListener()
       .subscribe(images => {
@@ -46,9 +39,6 @@ export class ImageListComponent  implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if  (this.photoSubscription)  {
       this.photoSubscription.unsubscribe();
-    }
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
     }
   }
 
@@ -73,8 +63,8 @@ export class ImageListComponent  implements OnInit, OnDestroy {
 
   async handleImageRemove(photo: Image): Promise<void> {
     if (window.confirm('Esti sigur, ba?')) {
-      await this.compressImageService.removeImage(photo.imageId, this.token);
-      this.imageService.removePhoto(photo.slug, this.token);
+      await this.compressImageService.removeImage(photo.imageId);
+      this.imageService.removePhoto(photo.slug);
     }
   }
 }

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Product} from '../../../../common/product';
 import {HttpClient} from '@angular/common/http';
@@ -8,6 +8,8 @@ import {environment} from '../../../../../src/environments/environment';
 import {ToastService} from 'angular-toastify';
 import {Category} from '../../../../common/category';
 import {SubCategory} from '../../../../common/sub-category';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 
 @Injectable({providedIn: 'root'})
@@ -17,10 +19,10 @@ export class ProductService {
   constructor(private http: HttpClient,
               private angularFireAuth: AngularFireAuth,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
 
-  token: string = this.authService.tokenAdmin.getValue();
 
   getProductListener(): Observable<Product[]> {
     return this.productUpdated.asObservable();
@@ -42,14 +44,13 @@ export class ProductService {
   }
 
   createProduct(product: Product): void {
-     let token: string = this.authService.tokenAdmin.getValue();
      this.http.post<Product>(`${environment.appApi}/product`,
       {
         product
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(success => {
@@ -62,14 +63,13 @@ export class ProductService {
   }
 
   updateProduct(slug: string, product: Product): void {
-    let token: string = this.authService.tokenAdmin.getValue();
     this.http.put<Product>(`${environment.appApi}/product/${slug}`,
       {
         product
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(p => {
@@ -85,7 +85,7 @@ export class ProductService {
     this.http.delete<Product>(`${environment.appApi}/product/${slug}`,
       {
         headers: {
-          authtoken: this.token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(() => {
@@ -128,7 +128,7 @@ export class ProductService {
        },
        {
          headers: {
-           authtoken: this.token
+           authtoken: this.token.token.getValue()
          }
        })
        .subscribe(

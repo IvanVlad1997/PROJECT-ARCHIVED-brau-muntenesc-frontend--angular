@@ -17,7 +17,7 @@ export class CarouselPhotoEditComponent implements OnInit, OnDestroy {
               private ref: MatDialogRef<CarouselPhotoEditComponent>,
               private carouselPhotoService: CarouselPhotoService,
               private compressImageService: CompressImageService,
-              private authService: AuthService) {
+            ) {
 
   }
 
@@ -34,21 +34,12 @@ export class CarouselPhotoEditComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-          }
-        });
+
   }
 
   ngOnDestroy(): void {
     if (!this.saveClicked) {
-        this.compressImageService.removeImage(this.carouselPhoto.imageId, this.token);
-    }
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
+        this.compressImageService.removeImage(this.carouselPhoto.imageId);
     }
   }
 
@@ -61,7 +52,7 @@ export class CarouselPhotoEditComponent implements OnInit, OnDestroy {
       const reader = new FileReader();
       reader.onload = async (e: any) => {
         this.localUrl = e.target.result;
-        const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100, this.token);
+        const imageCompressed = await this.compressImageService.compressFile(this.localUrl, fileName, 100);
         this.carouselPhoto.imageUrl = imageCompressed.url;
         this.carouselPhoto.imageId = imageCompressed.public_id;
         this.imageIsUploading = false;

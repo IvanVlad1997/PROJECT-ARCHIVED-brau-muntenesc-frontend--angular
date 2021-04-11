@@ -1,12 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CategoryService} from '../../../../../broderie/src/lib/services/category';
 import {MatDialog} from '@angular/material/dialog';
-import {AuthService} from '../../../../../auth/src/lib/services/auth';
 import {Subscription} from 'rxjs';
-import {Category} from '../../../../../common/category';
 import {ColDef} from 'ag-grid-community';
-import {CategoryListActionsComponent} from '../../../../../admin/src/lib/category/category-list-actions/category-list-actions.component';
-import {CategoryEditComponent} from '../../../../../admin/src/lib/category/category-edit/category-edit.component';
 import {PriceService} from '../../services/preturi';
 import {Price} from '../../../../../common/price';
 import {PriceActionsListComponent} from '../price-actions-list/price-actions-list.component';
@@ -20,8 +15,7 @@ import {PriceEditComponent} from '../price-edit/price-edit.component';
 export class PriceListComponent implements OnInit, OnDestroy {
 
   constructor(private priceService: PriceService,
-              private dialog: MatDialog,
-              private authService: AuthService) { }
+              private dialog: MatDialog) { }
 
 
   priceSubscription: Subscription;
@@ -56,14 +50,7 @@ export class PriceListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          if (token) {
-            this.token = token;
-            this.loadPrices();
-          }
-        });
+    this.loadPrices();
   }
 
   loadPrices(): void {
@@ -79,9 +66,6 @@ export class PriceListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.priceSubscription) {
       this.priceSubscription.unsubscribe();
-    }
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
     }
   }
 

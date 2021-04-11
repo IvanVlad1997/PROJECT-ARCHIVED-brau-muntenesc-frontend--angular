@@ -13,7 +13,6 @@ import {VideoPlatformService} from '../../../../../admin-platforma-cursuri/src/l
 export class OverlayComponent implements OnInit, OnDestroy {
 
   constructor(private overlayService: OverlayService,
-              private authService: AuthService,
               private videoPlatformService: VideoPlatformService) { }
 
   videos: VideoPlatform[] = [];
@@ -24,20 +23,12 @@ export class OverlayComponent implements OnInit, OnDestroy {
   loading: boolean = false;
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          this.loadVideos();
-          if (token !== '') {
-
-          }
-        });
+    this.loadVideos();
   }
 
   loadVideos(): void {
     this.loading = true;
-    this.videoSubscription = this.videoPlatformService.getVideosPlatformWithLimit(this.token, window.innerHeight)
+    this.videoSubscription = this.videoPlatformService.getVideosPlatformWithLimit(window.innerHeight)
       .subscribe(
         (videos) => {
           this.videos = videos;
@@ -51,9 +42,6 @@ export class OverlayComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
     if  (this.videoSubscription)  {
       this.videoSubscription.unsubscribe();
     }

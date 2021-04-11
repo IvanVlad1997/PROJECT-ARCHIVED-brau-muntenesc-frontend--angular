@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
 import {GalerieVideoEvenimente} from '../../../../common/galerie-video-evenimente';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class EventsVideoService {
@@ -12,7 +14,8 @@ export class EventsVideoService {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private tokenStorage: Token) {
   }
 
   getVideoPlatformListener(): Observable<GalerieVideoEvenimente[]> {
@@ -34,7 +37,7 @@ export class EventsVideoService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.tokenStorage.token.getValue()
         }
       })
       .subscribe(success => {
@@ -54,7 +57,7 @@ export class EventsVideoService {
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.tokenStorage.token.getValue()
         }
       })
       .subscribe(p => {
@@ -66,11 +69,11 @@ export class EventsVideoService {
         });
   }
 
-  removeVideoPlatform(slug: string, token: string): void {
+  removeVideoPlatform(slug: string): void {
     this.http.delete<GalerieVideoEvenimente>(`${environment.appApi}/galerie-video-evenimente/${slug}`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.tokenStorage.token.getValue()
         }
       })
       .subscribe(() => {

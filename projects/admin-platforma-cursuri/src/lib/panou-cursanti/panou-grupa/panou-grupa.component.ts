@@ -18,7 +18,6 @@ export class PanouGrupaComponent implements OnInit, OnDestroy{
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any,
                private programService: ProgramService,
-               private authService: AuthService,
                private userService: UserService,
                private ref: MatDialogRef<PanouGrupaComponent>,
                private cursantiService: CursantiService) { }
@@ -28,17 +27,10 @@ export class PanouGrupaComponent implements OnInit, OnDestroy{
   programs: Program[];
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadPrograms(token);
-          }
-        });
+    this.loadPrograms();
   }
 
-  loadPrograms(token: string): void {
+  loadPrograms(): void {
     this.programService.getPrograms();
     this.programSub = this.programService.getProgramListener()
       .subscribe((c) => {
@@ -47,18 +39,15 @@ export class PanouGrupaComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
     if (this.programSub) {
       this.programSub.unsubscribe();
     }
   }
 
   sendInfo(): void {
-    this.userService.changeGrupa(this.data.user.group, this.token, this.data.user.email);
+    this.userService.changeGrupa(this.data.user.group, this.data.user.email);
     this.ref.close();
-    this.cursantiService.getUsers(this.token, this.data.context.selectedProgram);
+    this.cursantiService.getUsers(this.data.context.selectedProgram);
   }
 }
 

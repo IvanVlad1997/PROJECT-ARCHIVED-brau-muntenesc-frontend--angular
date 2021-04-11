@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Cupon} from '../../../../common/cupon';
 import {environment} from '../../../../../src/environments/environment';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
+import {Token} from '../../../../auth/src/lib/services/token';
+import {TOKEN} from '../../../../../src/app/app.token';
 
 @Injectable({providedIn: 'root'})
 export class CuponService {
@@ -13,7 +15,8 @@ export class CuponService {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
 
   getCuponsListener(): Observable<Cupon[]> {
@@ -30,11 +33,11 @@ export class CuponService {
   }
 
   removeCupons(id: string): void {
-    const token: string = this.authService.tokenAdmin.getValue();
     this.http.delete<Cupon>(`${environment.appApi}/cupon/${id}`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
+
         }
       })
       .subscribe(
@@ -47,14 +50,13 @@ export class CuponService {
   }
 
   createCupon(cupon: Cupon): void {
-    const token: string = this.authService.tokenAdmin.getValue();
     this.http.post<Cupon>(`${environment.appApi}/cupon`,
       {
         cupon
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(

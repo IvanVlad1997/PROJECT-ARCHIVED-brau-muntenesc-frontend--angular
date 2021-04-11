@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {AuthService} from '../../../../../auth/src/lib/services/auth';
 import {Subscription} from 'rxjs';
 import {ColDef} from 'ag-grid-community';
 import {ProgramService} from '../../services/program';
@@ -16,8 +15,7 @@ import {ProgramEditComponent} from '../program-edit/program-edit.component';
 export class ProgramListComponent implements OnInit, OnDestroy {
 
   constructor(private programService: ProgramService,
-              private dialog: MatDialog,
-              private authService: AuthService) { }
+              private dialog: MatDialog) { }
 
 
   programSubscription: Subscription;
@@ -66,12 +64,7 @@ export class ProgramListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          this.loadPrograms();
-        });
+    this.loadPrograms();
   }
 
   loadPrograms(): void {
@@ -87,9 +80,6 @@ export class ProgramListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.programSubscription) {
       this.programSubscription.unsubscribe();
-    }
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
     }
   }
 

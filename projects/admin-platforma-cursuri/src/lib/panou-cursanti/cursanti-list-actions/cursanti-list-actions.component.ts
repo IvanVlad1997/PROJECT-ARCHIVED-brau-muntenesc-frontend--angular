@@ -22,7 +22,6 @@ export class CursantiListActionsComponent implements AgFrameworkComponent<BaseCo
 
   constructor(private dialog: MatDialog,
               private cursantiService: CursantiService,
-              private authService: AuthService,
               private userService: UserService) { }
 
   user: User;
@@ -39,8 +38,7 @@ export class CursantiListActionsComponent implements AgFrameworkComponent<BaseCo
         disableClose: true
       }).afterClosed().toPromise().then(
       () => {
-        let token = this.authService.isAuthenticated.getValue();
-        this.cursantiService.getUsers(token, this.context.selectedProgram) ;
+        this.cursantiService.getUsers(this.context.selectedProgram) ;
       }
     );
   }
@@ -96,8 +94,7 @@ export class CursantiListActionsComponent implements AgFrameworkComponent<BaseCo
       title : 'Prezență curs - fără scanare',
       date: formattedDate
     };
-    let token: string = this.authService.isAuthenticated.getValue();
-    this.userService.addPresenceToUser(token, this.user._id, presence);
-    this.cursantiService.getUsers(token, this.context.selectedProgram);
+    this.userService.addPresenceToUser(this.user._id, presence);
+    this.cursantiService.getUsers( this.context.selectedProgram);
   }
 }

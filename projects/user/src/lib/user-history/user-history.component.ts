@@ -1,9 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../services/user';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {Order} from '../../../../common/order';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 
 @Component({
@@ -15,7 +17,8 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
 
   constructor(private userService: UserService,
               private authService: AuthService,
-              private toastService: ToastService) { }
+              private toastService: ToastService,
+              @Inject(TOKEN) private tokenStorage: Token) { }
 
 
   userServiceSubscription: Subscription;
@@ -26,18 +29,14 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loading = true;
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadOrders(token);
-          }
-        });
+    this.token = this.tokenStorage.token.getValue();
+    if (this.token !== '') {
+      this.loadOrders();
+    }
   }
 
-  loadOrders(token): void {
-    this.userServiceSubscription = this.userService.getUserOrders(token)
+  loadOrders(): void {
+    this.userServiceSubscription = this.userService.getUserOrders()
       .subscribe(
         (orders: Order[]) => {
           this.orders = orders;
@@ -47,9 +46,6 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
     if (this.userServiceSubscription) {
       this.userServiceSubscription.unsubscribe();
     }

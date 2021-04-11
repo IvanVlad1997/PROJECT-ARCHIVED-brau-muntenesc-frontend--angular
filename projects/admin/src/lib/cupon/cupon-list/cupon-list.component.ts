@@ -23,7 +23,7 @@ export class CuponListComponent implements OnInit, OnDestroy {
   constructor(private cuponService: CuponService,
               private dialog: MatDialog,
               private datePipe: DatePipe,
-              private authService: AuthService) { }
+             ) { }
 
   cuponSubscription: Subscription;
   cupons: Cupon[] = [];
@@ -64,17 +64,10 @@ export class CuponListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadCupons(token);
-          }
-        });
+    this.loadCupons();
   }
 
-  loadCupons(token: string): void {
+  loadCupons(): void {
     this.cuponService.getCupons();
     this.cuponSubscription = this.cuponService.getCuponsListener()
       .subscribe(cupons => {
@@ -84,9 +77,6 @@ export class CuponListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
     this.cuponSubscription.unsubscribe();
   }
 

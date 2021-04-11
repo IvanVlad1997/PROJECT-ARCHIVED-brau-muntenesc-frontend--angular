@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Image} from '../../../../common/image';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class ImageService {
@@ -12,7 +14,8 @@ export class ImageService {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
 
 
@@ -27,14 +30,14 @@ export class ImageService {
       });
   }
 
-  createPhoto(image: Image, token: string): void {
+  createPhoto(image: Image): void {
     this.http.post<Image>(`${environment.appApi}/image`,
       {
         image
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(success => {
@@ -47,11 +50,11 @@ export class ImageService {
         });
   }
 
-  removePhoto(slug: string, token: string): void {
+  removePhoto(slug: string): void {
     this.http.delete<Image>(`${environment.appApi}/image/${slug}`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(() => {

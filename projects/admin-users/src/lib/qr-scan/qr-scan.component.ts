@@ -4,7 +4,6 @@ import {BehaviorSubject, Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {FormatsDialogComponent} from './formats-dialog/formats-dialog.component';
 import {AppInfoDialogComponent} from './app-info-dialog/app-info-dialog.component';
-import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {UserService} from '../../../../user/src/lib/services/user';
 import { formatDate } from '@angular/common';
 import {presenceSound} from '../../../../admin-platforma-cursuri/src/lib/common/presence-sound';
@@ -37,18 +36,12 @@ export class QrScanComponent implements OnDestroy, OnInit {
   private subscription: Subscription;
 
   constructor(private readonly dialog: MatDialog,
-              private authService: AuthService,
               private userService: UserService) { }
 
   authSubscription: Subscription;
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-        });
   }
 
   clearResult(): void {
@@ -75,7 +68,7 @@ export class QrScanComponent implements OnDestroy, OnInit {
       };
       let sound = new Audio(`data:audio/mpeg;base64,${presenceSound}`);
       sound.play();
-      this.userService.addPresenceToUser(this.token, this.result, presence);
+      this.userService.addPresenceToUser(this.result, presence);
     }
   }
 
@@ -123,9 +116,6 @@ export class QrScanComponent implements OnDestroy, OnInit {
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
-    }
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
     }
   }
 }

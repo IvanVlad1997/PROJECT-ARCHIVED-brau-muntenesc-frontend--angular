@@ -1,10 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {UserService} from '../services/user';
 import {Product} from '../../../../common/product';
 import {ToastService} from 'angular-toastify';
 import {CartService} from '../../../../broderie/src/lib/services/cart';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'lib-wishlist',
@@ -16,7 +18,8 @@ export class WishlistComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService,
               private userService: UserService,
               private toastService: ToastService,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              @Inject(TOKEN) private tokenStorage: Token) { }
 
   authSubscription: Subscription;
   wishlistSub: Subscription;
@@ -25,19 +28,15 @@ export class WishlistComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-              this.loadWishList(token);
-          }
-        });
+    this.token = this.tokenStorage.token.getValue();
+    if (this.token !== '') {
+      this.loadWishList();
+    }
   }
 
 
-  loadWishList(token: string): void {
-    this.wishlistSub = this.userService.getWishlist(token)
+  loadWishList(): void {
+    this.wishlistSub = this.userService.getWishlist()
       .subscribe(
         (data) => {
           this.products = data.wishlist;
@@ -46,19 +45,16 @@ export class WishlistComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
     if (this.wishlistSub) {
       this.wishlistSub.unsubscribe();
     }
   }
 
   removeFromWishlist(id: string): void {
-    this.userService.removeWishlist(id, this.token)
+    this.userService.removeWishlist(id)
       .subscribe(
         (p) => {
-          this.loadWishList(this.token);
+          this.loadWishList();
           this.toastService.success('Produsul a fost scos de la favorite');
           this.authService.getCurrentUser(this.token);
         }

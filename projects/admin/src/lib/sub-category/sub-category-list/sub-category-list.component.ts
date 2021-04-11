@@ -17,7 +17,7 @@ export class SubCategoryListComponent implements OnInit, OnDestroy {
 
   constructor(private subCategoryService: SubCategoryService,
               private dialog: MatDialog,
-              private authService: AuthService) { }
+             ) { }
 
   subCategorySubscription: Subscription;
   subCategories: SubCategory[] = [];
@@ -52,17 +52,10 @@ export class SubCategoryListComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadSubCategories(token);
-          }
-        });
+    this.loadSubCategories();
   }
 
-  loadSubCategories(token: string): void {
+  loadSubCategories(): void {
     this.subCategoryService.getSubCategories();
     this.subCategorySubscription = this.subCategoryService.getSubCategoriesListener()
       .subscribe(subCategories => {
@@ -73,9 +66,6 @@ export class SubCategoryListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subCategorySubscription.unsubscribe();
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
   }
 
 

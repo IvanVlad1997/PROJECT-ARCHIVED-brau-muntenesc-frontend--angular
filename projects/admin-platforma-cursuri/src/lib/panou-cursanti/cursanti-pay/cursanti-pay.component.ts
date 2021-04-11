@@ -20,7 +20,6 @@ export class CursantiPayComponent implements OnInit, OnDestroy {
   constructor( @Inject(MAT_DIALOG_DATA) public user: User,
                private ref: MatDialogRef<CursantiPayComponent>,
                private toastService: ToastService,
-               private authService: AuthService,
                private userService: UserService) {
   }
 
@@ -34,11 +33,6 @@ export class CursantiPayComponent implements OnInit, OnDestroy {
   useThisDate: boolean = false;
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-        });
   }
 
   async pay(): Promise<void> {
@@ -55,16 +49,13 @@ export class CursantiPayComponent implements OnInit, OnDestroy {
     payment = {
         title : `Plată  curs - ${this.suma} - ${this.tipAbonament}`,
         date: formattedDate,
-        color: 'red'
+        color: 'purple'
     };
-    await this.userService.pay(this.token, payment, this.user.email, this.suma);
+    await this.userService.pay(payment, this.user.email, this.suma);
     this.ref.close();
   }
 
   ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
   }
 
   changeDate(): void {

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../../../user/src/lib/services/user';
 import {Cart} from '../../../../common/cart';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
@@ -9,6 +9,8 @@ import {ContentChange} from 'ngx-quill';
 import {Router} from '@angular/router';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'lib-checkout',
@@ -22,7 +24,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               private cartService: CartService,
               private toastService: ToastService,
               private router: Router,
-              private nodemailer: NodemailerService
+              private nodemailer: NodemailerService,
+              @Inject(TOKEN) private tokenStorage: Token
               ) { }
 
   isCashOk: boolean = true;
@@ -58,12 +61,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          if (token !== '') {
-            this.token = token;
-            this.tokenSubscription = this.userService.getUserCart(token);
+    this.token = this.tokenStorage.token.getValue();
+    if (this.token !== '') {
+            this.tokenSubscription = this.userService.getUserCart();
             this.userServiceSubscriptioon = this.userService.getCartUpdateListener()
               .subscribe(
                 (c) => {
@@ -90,8 +90,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               },
                 error => console.log('error address'));
           }
-        }
-      );
+
     this.authSubscription1 = this.authService.user
       .subscribe(
         (user) => this.user = user
@@ -171,7 +170,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   cashOrder(): void {
-    this.userSubscription = this.userService.createNewCashOrder(this.token)
+    this.userSubscription = this.userService.createNewCashOrder()
       .subscribe(
         (res) => {
           const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email];

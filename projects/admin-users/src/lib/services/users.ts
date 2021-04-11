@@ -1,10 +1,12 @@
- import {Injectable} from '@angular/core';
+ import {Inject, Injectable} from '@angular/core';
  import {BehaviorSubject, Observable} from 'rxjs';
  import {User} from '../../../../common/user';
  import {HttpClient} from '@angular/common/http';
  import {AuthService} from '../../../../auth/src/lib/services/auth';
  import {ToastService} from 'angular-toastify';
  import {environment} from '../../../../../src/environments/environment';
+ import {TOKEN} from '../../../../../src/app/app.token';
+ import {Token} from '../../../../auth/src/lib/services/token';
 
  @Injectable({providedIn: 'root'})
 export class UsersService {
@@ -12,7 +14,8 @@ export class UsersService {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
 
   getUsersListener(): Observable<User[]> {
@@ -23,16 +26,16 @@ export class UsersService {
     this.http.get(`${environment.appApi}/users/${email}`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       });
   }
 
-  getUsers(token: string): void {
+  getUsers(): void {
     this.http.get<User[]>(`${environment.appApi}/users`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(
@@ -42,19 +45,19 @@ export class UsersService {
       );
   }
 
-  updateUser(token: string, user: User): void {
+  updateUser(user: User): void {
     this.http.put<User[]>(`${environment.appApi}/user/${user.email}`,
       {
         user
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(p => {
           this.toastService.success(`Userul cu emailul ${user.email} a fost editat cu succes!`);
-          this.getUsers(token);
+          this.getUsers();
         },
         (err) => {
           this.toastService.error(`Nu s-a putut edita userul.`);

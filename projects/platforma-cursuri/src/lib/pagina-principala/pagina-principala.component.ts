@@ -1,7 +1,6 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {VideoPlatform} from '../../../../common/video-platform';
 import {VideoPlatformService} from '../../../../admin-platforma-cursuri/src/lib/services/video-platform';
-import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {Subscription} from 'rxjs';
 import {ColDef} from 'ag-grid-community';
 import {VideoListActionsComponent} from '../video-list-actions/video-list-actions.component';
@@ -14,7 +13,7 @@ import {VideoListActionsComponent} from '../video-list-actions/video-list-action
 export class PaginaPrincipalaComponent implements OnInit, OnDestroy {
 
   constructor(private videoPlatformService: VideoPlatformService,
-              private authService: AuthService) {
+              ) {
   }
 
 
@@ -64,19 +63,11 @@ export class PaginaPrincipalaComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          this.loadVideos(token);
-          if (token !== '') {
-
-          }
-        });
+    this.loadVideos();
   }
 
-  loadVideos(token: string): void {
-    this.videoPlatformService.getVideosPlatform(token);
+  loadVideos(): void {
+    this.videoPlatformService.getVideosPlatform();
     this.videoPlatformSub = this.videoPlatformService.getVideoPlatformListener()
       .subscribe(videos => {
         this.videos = videos;
@@ -88,9 +79,6 @@ export class PaginaPrincipalaComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.videoPlatformSub) {
       this.videoPlatformSub.unsubscribe();
-    }
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
     }
   }
 

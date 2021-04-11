@@ -24,19 +24,9 @@ export class ChangeUserPropDialogComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-          }
-        });
   }
 
   ngOnDestroy(): void {
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
     if  (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }
@@ -44,9 +34,9 @@ export class ChangeUserPropDialogComponent implements OnInit, OnDestroy {
 
   async edit(): Promise<void> {
     if (this.data.isName) {
-      this.userSubscription =  this.userService.changeUserName(this.data.name, this.token);
+      this.userSubscription =  this.userService.changeUserName(this.data.name);
     } else if (this.data.isTelNum) {
-      this.userSubscription =  this.userService.changeTelNul(this.data.telNum, this.token);
+      this.userSubscription =  this.userService.changeTelNul(this.data.telNum);
     }
     // else if (this.data.isEmail) {
     //   this.userSubscription =  this.userService.changeEmail(this.data.email, this.token)

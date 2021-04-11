@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
 import {Price} from '../../../../common/price';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
 export class PriceService {
@@ -12,7 +14,8 @@ export class PriceService {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              @Inject(TOKEN) private token: Token) {
   }
 
   getPricesListener(): Observable<Price[]> {
@@ -27,14 +30,14 @@ export class PriceService {
   }
 
 
-  priceCreate(price: Price, token: string): void {
+  priceCreate(price: Price): void {
     this.http.post<Price>(`${environment.appApi}/price`,
       {
         price: price
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(success => {
@@ -47,14 +50,14 @@ export class PriceService {
         });
   }
 
-  priceUpdate(slug: string, price: Price, token: string): void {
+  priceUpdate(slug: string, price: Price): void {
     this.http.put<Price>(`${environment.appApi}/price/${slug}`,
       {
         price: price
       },
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(p => {
@@ -66,11 +69,11 @@ export class PriceService {
         });
   }
 
-  priceRemove(slug: string, token: string): void {
+  priceRemove(slug: string): void {
     this.http.delete<Price>(`${environment.appApi}/price/${slug}`,
       {
         headers: {
-          authtoken: token
+          authtoken: this.token.token.getValue()
         }
       })
       .subscribe(() => {

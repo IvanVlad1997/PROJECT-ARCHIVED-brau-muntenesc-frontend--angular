@@ -17,7 +17,6 @@ import {UserListActionsComponent} from '../user-list-actions/user-list-actions.c
 export class UserListComponent implements OnInit, OnDestroy {
 
   constructor(private dialog: MatDialog,
-              private authService: AuthService,
               private usersService: UsersService) { }
 
   defaultColDef: ColDef = {
@@ -67,18 +66,12 @@ export class UserListComponent implements OnInit, OnDestroy {
   users: User[] = [];
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.loadUsers(token);
-          }
-        });
+    this.loadUsers();
+
   }
 
-  loadUsers(token: string): void {
-    this.usersService.getUsers(token);
+  loadUsers(): void {
+    this.usersService.getUsers();
     this.userSubscription = this.usersService.getUsersListener()
       .subscribe(users => {
         this.users = users;
@@ -88,9 +81,6 @@ export class UserListComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
-    }
     if  (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }

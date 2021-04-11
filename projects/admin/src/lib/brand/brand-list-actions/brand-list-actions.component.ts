@@ -19,7 +19,7 @@ export class BrandListActionsComponent implements AgFrameworkComponent<BaseColDe
   constructor(private dialog: MatDialog,
               private brandService: BrandService,
               private toastService: ToastService,
-              private authService: AuthService) { }
+             ) { }
 
   brand: Brand;
 
@@ -36,11 +36,10 @@ export class BrandListActionsComponent implements AgFrameworkComponent<BaseColDe
   }
 
   async delete(): Promise<void> {
-    let token: string = this.authService.isAuthenticated.getValue();
     if (window.confirm(`Esti sigur că vrei să stergi categoria ${this.brand.name}?`))
     {
       try {
-        this.brandService.programRemove(this.brand.slug, token);
+        this.brandService.programRemove(this.brand.slug);
 
       } catch (error) {
         this.toastService.error('Nu s-a putut șterge categoria!');

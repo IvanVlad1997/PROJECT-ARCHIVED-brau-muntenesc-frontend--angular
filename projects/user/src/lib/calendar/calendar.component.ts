@@ -1,8 +1,10 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {User} from '../../../../common/user';
-import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { CalendarOptions } from '@fullcalendar/angular';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token'; // useful for typechecking
 
 @Component({
   selector: 'lib-calendar',
@@ -12,7 +14,9 @@ import { CalendarOptions } from '@fullcalendar/angular'; // useful for typecheck
 export class CalendarComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              @Inject(TOKEN) private tokenStorage: Token
+  ) { }
 
 
 
@@ -23,7 +27,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   token: string;
 
   ngOnInit(): void {
-    this.token = this.authService.isAuthenticated.getValue();
+    this.token = this.tokenStorage.token.getValue();
     this.authService.getCurrentUser(this.token);
     const paymentHistory = this.user.payHistory.map((payment) => payment.payment );
     this.calendarOptions.events = [...this.user.presenceHistory, ...paymentHistory];

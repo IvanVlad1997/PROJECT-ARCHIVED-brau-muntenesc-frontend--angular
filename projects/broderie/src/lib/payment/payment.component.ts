@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import {
   PaymentRequestPaymentMethodEvent,
@@ -17,6 +17,8 @@ import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
 import {formatDate} from '@angular/common';
 import {switchMap} from 'rxjs/operators';
+import {TOKEN} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'lib-payment',
@@ -32,7 +34,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private userService: UserService,
               private cartService: CartService,
-              private nodemailer: NodemailerService) {}
+              private nodemailer: NodemailerService,
+              @Inject(TOKEN) private tokenStorage: Token) {}
 
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
 
@@ -96,12 +99,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loading = true;
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          if (token !== '') {
-            this.tokenSubscription = this.userService.getUserCart(token);
+    this.token = this.tokenStorage.token.getValue();
+          if (this.token !== '') {
+            this.tokenSubscription = this.userService.getUserCart();
             this.userServiceSubscriptioon = this.userService.getCartUpdateListener()
               .subscribe(
                 (c) => {
@@ -110,7 +110,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
                     if (totalAfterDiscount) {
                       this.isCupon = true;
                     }
-                    this.stripeSubscription = this.stripeService.createPaymentIntent(token, this.isCupon)
+                    this.stripeSubscription = this.stripeService.createPaymentIntent(this.isCupon)
                       .subscribe(
                         (res) => {
                           console.log('create payment intent', res);
@@ -127,7 +127,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
               );
 
           }
-          });
     this.authSubscription1 = this.authService.user
       .subscribe(
         (user) => this.user = user
@@ -193,7 +192,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
                                 date: formattedDate,
                                 color: 'green'
                               };
-                              this.userService.pay(this.token, payment, this.user.email, 80);
+                              this.userService.pay(payment, this.user.email, 80);
                             }
                           }
                         }

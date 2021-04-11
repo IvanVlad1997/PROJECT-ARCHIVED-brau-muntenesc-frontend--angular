@@ -17,8 +17,7 @@ export class ProgramActionsListComponent implements AgFrameworkComponent<BaseCol
 
   constructor(private dialog: MatDialog,
               private programService: ProgramService,
-              private toastService: ToastService,
-              private authService: AuthService) { }
+              private toastService: ToastService) { }
 
   program: Program;
 
@@ -35,11 +34,10 @@ export class ProgramActionsListComponent implements AgFrameworkComponent<BaseCol
   }
 
   async delete(): Promise<void> {
-    let token: string = this.authService.isAuthenticated.getValue();
     if (window.confirm(`Esti sigur că vrei să stergi pretul ${this.program.category}?`))
     {
       try {
-        this.programService.programRemove(this.program.slug, token);
+        this.programService.programRemove(this.program.slug);
 
       } catch (error) {
         this.toastService.error('Nu s-a putut șterge pretul!');

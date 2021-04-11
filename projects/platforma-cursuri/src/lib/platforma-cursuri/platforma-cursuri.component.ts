@@ -13,7 +13,7 @@ export class PlatformaCursuriComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription;
 
   constructor(private overlayService: OverlayService,
-              private authService: AuthService) { }
+            ) { }
 
   overlayIsOpen = false;
 
@@ -27,18 +27,10 @@ export class PlatformaCursuriComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-          this.loadOverlay(token);
-          if (token !== '') {
-
-          }
-        });
+    this.loadOverlay();
   }
 
-  loadOverlay(token: string): void {
+  loadOverlay(): void {
     this.overlaySubscription = this.overlayService.getOverlayStatus()
       .subscribe((status) => {
         this.overlayIsOpen = status;
@@ -48,9 +40,6 @@ export class PlatformaCursuriComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.overlaySubscription) {
       this.overlaySubscription.unsubscribe();
-    }
-    if  (this.authSubscription)  {
-      this.authSubscription.unsubscribe();
     }
   }
 

@@ -7,6 +7,8 @@ import {AuthService} from '../../../../../auth/src/lib/services/auth';
 import {Subscription} from 'rxjs';
 import {GalerieVideoEvenimente} from '../../../../../common/galerie-video-evenimente';
 import {EventsVideoService} from '../../services/events-video';
+import {TOKEN} from '../../../../../../src/app/app.token';
+import {Token} from '../../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'lib-events-video-edit',
@@ -19,17 +21,19 @@ export class EventsVideoEditComponent  implements OnInit, OnDestroy {
                private ref: MatDialogRef<EventsVideoEditComponent>,
                private videoPlatformService: EventsVideoService,
                private toastService: ToastService,
-               private authService: AuthService) {}
+               private authService: AuthService,
+               @Inject(TOKEN) private tokenStorage: Token) {}
 
   authSubscription: Subscription;
-  token: string = '';
+
+  token: string;
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated
-      .subscribe(
-        (token) => {
-          this.token = token;
-        });
+    this.tokenStorage.token.subscribe(
+      (token) => {
+        this.token = token;
+      }
+    );
   }
 
   async edit(): Promise<void> {

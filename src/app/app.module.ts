@@ -31,7 +31,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { StartingPageComponent } from './starting-page/starting-page.component';
 import {FrontendSentryModule} from '../../projects/sentry/src/lib/sentry.module';
 import {GoogleAnalyticsService} from './services/google-analytics';
-import {USER_STORAGE} from './app.token';
+import {TOKEN, USER_STORAGE} from './app.token';
+import {Token} from '../../projects/auth/src/lib/services/token';
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -91,6 +92,11 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     {
       provide: USER_STORAGE,
       useValue: localStorage
+    },
+    {
+      provide: TOKEN,
+      useClass: Token
+
     }
   ],
   exports: [
