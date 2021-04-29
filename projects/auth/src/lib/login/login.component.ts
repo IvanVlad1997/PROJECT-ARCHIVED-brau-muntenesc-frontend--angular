@@ -39,9 +39,13 @@ export class LoginComponent implements OnInit, OnDestroy, HeaderAwareComponent {
 
   async login(form: NgForm): Promise<void> {
     this.loading = true;
-    await this.authService.login(this.email, this.password);
-
-    this.loading = false;
+    try {
+      await this.authService.login(this.email, this.password);
+    } catch (e) {
+      console.log(e);
+      this.loading = false;
+      this.toastService.error('Contul nu este corect. Vă rugăm să reîncercați.')
+    }
   }
 
   // async loginWithGoogle(): Promise<void> {

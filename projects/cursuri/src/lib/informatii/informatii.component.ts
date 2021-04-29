@@ -38,7 +38,7 @@ export class InformatiiComponent implements OnInit, OnDestroy {
     this.programService.getPrograms();
     this.programSubscription = this.programService.getProgramListener()
       .subscribe((program) => {
-        this.program = program;
+        this.program = program.filter((prg) => prg.category !== 'Arhivă');
       });
   }
 
