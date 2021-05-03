@@ -12,6 +12,7 @@ import {ToastService} from 'angular-toastify';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {TOKEN} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
+import {skip} from 'rxjs/operators';
 
 @Component({
   selector: 'lib-cart',
@@ -30,6 +31,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   cart: Cart[] = [];
   cartSubscription: Subscription;
+  tokenSubscription: Subscription;
 
   totalPrice: number;
 
@@ -73,18 +75,25 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loading = true;
-    this.token = this.tokenStorage.token.getValue();
-          if (this.token !== '') {
+    this.cartService.getCart();
+    this.tokenSubscription = this.tokenStorage.token.pipe().subscribe(
+      (token => {
+        this.token = token;
+        console.log('this.token from cart', this.token)
+        if (this.token !== '') {
             this.loadCart();
           } else {
             this.router.navigate(['/auth/login']);
           }
+  })
+    );
   }
 
   loadCart(): void {
     this.cartSubscription = this.cartService.cartUpdate
       .subscribe((c) => {
         this.cart = c;
+        console.log('cart', this.cart);
         this.rowData = this.cart;
         this.getTotal();
         this.loading = false;
@@ -94,6 +103,9 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
+    }
+    if (this.tokenSubscription) {
+      this.tokenSubscription.unsubscribe();
     }
 
   }

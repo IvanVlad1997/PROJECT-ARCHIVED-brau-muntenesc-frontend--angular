@@ -67,7 +67,6 @@ export class CartService {
         cart = cart.filter((product) => product.product.title !== 'Transport');
       }
 
-
       this.cartUpdate.next([...cart]);
     }
   }

@@ -9,7 +9,6 @@ import {ToastService} from 'angular-toastify';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import auth = firebase.auth;
-import {BehaviorSubject} from 'rxjs';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {GoogleAnalyticsService} from '../../../../../src/app/services/google-analytics';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
@@ -18,25 +17,6 @@ import {Token} from './token';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-  isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  user: BehaviorSubject<User> = new BehaviorSubject<User>( {
-    cart: [],
-    createdAt: undefined,
-    email: '',
-    name: '',
-    role: '',
-    updatedAt: undefined,
-    _v: null,
-    _id: 'string',
-    wishlist: [],
-    telNum: '',
-    address: [],
-    presenceHistory: [],
-    group: undefined,
-    picture: '',
-    dance: undefined,
-    payHistory: []
-  });
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -51,44 +31,20 @@ export class AuthService {
 
   async logout(): Promise<void> {
     await this.angularFirebaseAuth.signOut();
-    await this.token.token.next('');
     this.userStorage.removeItem('current');
     await this.router.navigate(['/']);
     this.toastService.success('Te-ai delogat cu succes!');
-    this.user.next({
-      cart: [],
-      createdAt: undefined,
-      email: '',
-      name: '',
-      role: '',
-      updatedAt: undefined,
-      _v: null,
-      _id: 'string',
-      wishlist: [],
-      telNum: '',
-      address: [],
-      presenceHistory: [],
-      group: undefined,
-      picture: '',
-      dance: undefined,
-      payHistory: []
-    });
-    this.isAdmin.next(false);
+    this.token.token.next('');
   }
 
   async login(email: string, password: string, other?: any): Promise<void> {
      let userCredential: UserCredential = await this.angularFirebaseAuth.signInWithEmailAndPassword(email, password);
-     if (userCredential.user) {
-       this.token.token.next(await userCredential.user.getIdToken());
-     } else {
-       this.token.token.next(undefined);
-     }
      this.http.post<User>(
         `${environment.appApi}/create-or-update-user`,
         {},
         {
           headers: {
-            authtoken: await this.token.token.getValue()
+            authtoken: await userCredential.user.getIdToken()
           }
         }
       )
@@ -96,8 +52,13 @@ export class AuthService {
           if (other) {
             await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
           }
-          await this.getCurrentUser(await this.token.token.getValue());
+          await this.getCurrentUser(await userCredential.user.getIdToken());
           await this.roleBaseRedirect(data.role);
+          if (userCredential.user) {
+            this.token.token.next(await userCredential.user.getIdToken());
+          } else {
+            this.token.token.next(undefined);
+          }
         });
     }
     // .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
@@ -135,27 +96,33 @@ export class AuthService {
       {},
       {
         headers: {
-          authtoken: this.token.token.getValue()
+          authtoken: token
         }
       }
     ).subscribe(
       (response: any) => {
-
+        console.log('response from getCurrentUser', response)
         if (response) {
-          this.user.next(response);
           this.userStorage.setItem('current', JSON.stringify(response));
           this.googleAnalyticsService.setCurrentUser(response._id);
-          if (response.role === 'admin') {
-            this.isAdmin.next(true);
-          } else {
-            this.isAdmin.next(false);
-          }
         } else {
           this.userStorage.removeItem('current');
         }
         },
       (error => console.log('error'))
     );
+  }
+
+  getCurrentUser1(token): Promise<any> {
+    return this.http.post(
+      `${environment.appApi}/current-user`,
+      {},
+      {
+        headers: {
+          authtoken: token
+        }
+      }
+    ).toPromise();
   }
 
    getAdmin(token: string): Promise<any> {
@@ -278,7 +245,7 @@ export class AuthService {
   roleBaseRedirect(role): void {
     this.toastService.success('Te-ai logat cu succes!');
     if (role === 'admin') {
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/']);
     } else {
       this.router.navigate(['/user']);
     }

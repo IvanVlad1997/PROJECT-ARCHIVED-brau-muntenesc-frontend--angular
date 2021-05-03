@@ -17,7 +17,7 @@ import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
 import {formatDate} from '@angular/common';
 import {switchMap} from 'rxjs/operators';
-import {TOKEN} from '../../../../../src/app/app.token';
+import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
@@ -35,7 +35,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private cartService: CartService,
               private nodemailer: NodemailerService,
-              @Inject(TOKEN) private tokenStorage: Token) {}
+              @Inject(TOKEN) private tokenStorage: Token,
+              @Inject(USER_STORAGE) private userStorage: Storage) {}
 
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
 
@@ -57,6 +58,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   authSubscription1: Subscription;
   stripeSubscription: Subscription;
   tokenSubscription: Subscription;
+  tokenSubscription1: Subscription;
   userServiceSubscriptioon: Subscription;
 
   paymentRequestOptions = {
@@ -98,53 +100,56 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    this.user = user;
     this.loading = true;
     this.token = this.tokenStorage.token.getValue();
-          if (this.token !== '') {
-            this.tokenSubscription = this.userService.getUserCart();
-            this.userServiceSubscriptioon = this.userService.getCartUpdateListener()
-              .subscribe(
-                (c) => {
-                  if (c[0].length > 0) {
-                    const totalAfterDiscount = c[1];
-                    if (totalAfterDiscount) {
-                      this.isCupon = true;
-                    }
-                    this.stripeSubscription = this.stripeService.createPaymentIntent(this.isCupon)
-                      .subscribe(
-                        (res) => {
-                          console.log('create payment intent', res);
-                          this.clientSecret = res.clientSecret;
-                          this.total = res.cartTotal;
-                          this.totalAfterDiscount = res.totalAfterDiscount;
-                          this.payable = res.payable / 100;
-                          this.loading = false;
-                        },
-                        error1 => console.log(error1)
-                      );
+    this.tokenSubscription = this.tokenStorage.token.subscribe(
+      (token => {
+        this.token = token;
+        if (this.token !== '') {
+          this.tokenSubscription1 = this.userService.getUserCart();
+          this.userServiceSubscriptioon = this.userService.getCartUpdateListener()
+            .subscribe(
+              (c) => {
+                if (c[0].length > 0) {
+                  const totalAfterDiscount = c[1];
+                  if (totalAfterDiscount) {
+                    this.isCupon = true;
                   }
+                  this.stripeSubscription = this.stripeService.createPaymentIntent(this.isCupon)
+                    .subscribe(
+                      (res) => {
+                        console.log('create payment intent', res);
+                        this.clientSecret = res.clientSecret;
+                        this.total = res.cartTotal;
+                        this.totalAfterDiscount = res.totalAfterDiscount;
+                        this.payable = res.payable / 100;
+                        this.loading = false;
+                      },
+                      error1 => console.log(error1)
+                    );
                 }
-              );
+              }
+            );
 
-          }
-    this.authSubscription1 = this.authService.user
-      .subscribe(
-        (user) => this.user = user
-      );
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
-    if (this.authSubscription1) {
-      this.authSubscription1.unsubscribe();
-    }
     if (this.stripeSubscription) {
       this.stripeSubscription.unsubscribe();
     }
     if (this.userServiceSubscriptioon) {
       this.userServiceSubscriptioon.unsubscribe();
+    }
+    if (this.tokenSubscription1) {
+      this.tokenSubscription1.unsubscribe();
     }
   }
 

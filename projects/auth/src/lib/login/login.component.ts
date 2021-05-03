@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth';
 import {Subscription} from 'rxjs';
 import {HeaderAwareComponent} from '../../../../common/metadata-aware';
+import {USER_STORAGE} from '../../../../../src/app/app.token';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,6 @@ export class LoginComponent implements OnInit, OnDestroy, HeaderAwareComponent {
   password: string;
   email: string;
   isLoading: boolean = false;
-  userAuthServiceSubscription: Subscription;
   @ViewChild('header' , {static : true})
   public header: TemplateRef<any>;
   loading: boolean = false;
@@ -27,20 +27,21 @@ export class LoginComponent implements OnInit, OnDestroy, HeaderAwareComponent {
               private router: Router,
               private toastService: ToastService,
               private http: HttpClient,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              @Inject(USER_STORAGE) private userStorage: Storage) { }
 
   ngOnInit(): void {
-    this.userAuthServiceSubscription = this.authService.user.subscribe((user) => {
-      if (user && user.email !== '') {
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    if (user && user.email !== '') {
         this.router.navigate(['/']);
       }
-    });
   }
 
   async login(form: NgForm): Promise<void> {
     this.loading = true;
     try {
       await this.authService.login(this.email, this.password);
+      this.loading = false;
     } catch (e) {
       console.log(e);
       this.loading = false;
@@ -53,7 +54,6 @@ export class LoginComponent implements OnInit, OnDestroy, HeaderAwareComponent {
   // }
 
   ngOnDestroy(): void {
-    this.userAuthServiceSubscription.unsubscribe();
   }
 
 

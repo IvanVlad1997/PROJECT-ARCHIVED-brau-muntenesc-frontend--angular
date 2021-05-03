@@ -4,8 +4,9 @@ import {takeUntil} from 'rxjs/operators';
 import {Subject, Subscription} from 'rxjs';
 import {AuthService} from '../../../projects/auth/src/lib/services/auth';
 import {TypeGuards} from '../services/type-guard';
-import {TOKEN} from '../app.token';
+import {TOKEN, USER_STORAGE} from '../app.token';
 import {Token} from '../../../projects/auth/src/lib/services/token';
+import {User} from '../../../projects/common/user';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +17,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private onDestroy$: Subject<void> = new Subject();
   constructor(private router: Router,
               private authService: AuthService,
-              @Inject(TOKEN) private token: Token
+              @Inject(TOKEN) private token: Token,
+              @Inject(USER_STORAGE) private userStorage: Storage
   ) { }
 
 
@@ -57,22 +59,31 @@ export class LayoutComponent implements OnInit, OnDestroy {
     });
     this.token.token.pipe(takeUntil(this.onDestroy$)).subscribe(
       (token) => {
+
         if (token !== '') {
           this.isAuthenticated = true;
+          let user = JSON.parse(this.userStorage.getItem('current'));
+          console.log('user from token pipe', user)
+          if (user && user.role === 'admin') {
+            this.isAdmin = true;
+          } else {
+            this.isAdmin = false;
+          }
         } else  {
           this.isAuthenticated = false;
-        }
-      }
-    )
-
-    this.isAdminSubscription = this.authService.isAdmin
-      .subscribe((isAdm: boolean) => {
-        if (isAdm) {
-          this.isAdmin = true;
-        } else  {
           this.isAdmin = false;
         }
-      });
+      }
+    );
+
+    // this.isAdminSubscription = this.authService.isAdmin
+    //   .subscribe((isAdm: boolean) => {
+    //     if (isAdm) {
+    //       this.isAdmin = true;
+    //     } else  {
+    //       this.isAdmin = false;
+    //     }
+    //   });
 
 
   }

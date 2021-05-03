@@ -1,9 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit, } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {User} from '../../../../../common/user';
 import {ProgramService} from '../../services/program';
 import {Subscription} from 'rxjs';
-import {AuthService} from '../../../../../auth/src/lib/services/auth';
 import {Program} from '../../../../../common/program';
 import {UserService} from '../../../../../user/src/lib/services/user';
 import {CursantiService} from '../../services/panou-cursanti';

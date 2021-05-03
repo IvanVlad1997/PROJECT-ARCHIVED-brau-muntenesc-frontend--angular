@@ -4,9 +4,9 @@ import {Product} from '../../../../common/product';
 import {ProductService} from '../services/product';
 import {ToastService} from 'angular-toastify';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
-import {Auth} from '../../../../common/auth';
 import {Subscription} from 'rxjs';
 import {User} from '../../../../common/user';
+import {USER_STORAGE} from '../../../../../src/app/app.token';
 
 @Component({
   selector: 'lib-ratings',
@@ -19,7 +19,8 @@ export class RatingsComponent implements OnInit, OnDestroy {
               private ref: MatDialogRef<RatingsComponent>,
               private productService: ProductService,
               private toastService: ToastService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              @Inject(USER_STORAGE) private userStorage: Storage) { }
 
   rate: number;
   ratingValue: any;
@@ -27,17 +28,14 @@ export class RatingsComponent implements OnInit, OnDestroy {
   authSubscription: Subscription;
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.user.subscribe(
-      (user => {
-        this.user = user;
-        if (this.product && this.product.ratings) {
-          const findRating = this.product.ratings.find((rating) => rating.postedBy.toString() === this.user._id.toString());
-          if (findRating  && findRating.star) {
-            this.rate = findRating.star;
-          }
-        }
-      })
-    );
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    this.user = user;
+    if (this.product && this.product.ratings) {
+      const findRating = this.product.ratings.find((rating) => rating.postedBy.toString() === this.user._id.toString());
+      if (findRating && findRating.star) {
+        this.rate = findRating.star;
+      }
+    }
   }
 
 

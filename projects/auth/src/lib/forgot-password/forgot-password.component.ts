@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {environment} from '../../../../../src/environments/environment';
 import {ToastService} from 'angular-toastify';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth';
 import {Subscription} from 'rxjs';
 import {HeaderAwareComponent} from '../../../../common/metadata-aware';
+import {USER_STORAGE} from '../../../../../src/app/app.token';
 
 @Component({
   selector: 'lib-forgot-password',
@@ -18,20 +18,19 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy, HeaderAwareCo
   constructor(private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
               private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              @Inject(USER_STORAGE) private userStorage: Storage) { }
 
   email: string = '';
   loading: boolean = false;
-  userAuthServiceSubscription: Subscription;
   @ViewChild('header' , {static : true})
   public header: TemplateRef<any>;
 
   ngOnInit(): void {
-    this.userAuthServiceSubscription = this.authService.user.subscribe((user) => {
-      if (user && user.email !== '') {
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    if (user && user.email !== '') {
         this.router.navigate(['/']);
       }
-    });
   }
 
   async handleSubmit(form: NgForm): Promise<void> {
@@ -41,6 +40,5 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy, HeaderAwareCo
   }
 
   ngOnDestroy(): void {
-    this.userAuthServiceSubscription.unsubscribe();
   }
 }

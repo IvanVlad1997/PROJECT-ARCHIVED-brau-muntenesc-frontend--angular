@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {AuthService} from '../../../projects/auth/src/lib/services/auth';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {first} from 'rxjs/operators';
-import {TOKEN} from '../app.token';
+import {TOKEN, USER_STORAGE} from '../app.token';
 import {Token} from '../../../projects/auth/src/lib/services/token';
 
 
@@ -12,7 +12,8 @@ export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService,
               private router: Router,
               private angularFirebaseAuth: AngularFireAuth,
-              @Inject(TOKEN) private tokenStorage: Token) {
+              @Inject(TOKEN) private tokenStorage: Token,
+              @Inject(USER_STORAGE) private userStorage: Storage) {
   }
 
 
@@ -22,14 +23,11 @@ export class AdminGuard implements CanActivate {
 
 
   public async canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-    // TODO : userState - de ce trebuie?!
-    const userState = await this.angularFirebaseAuth.authState.pipe(first()).toPromise();
-    await this.authService.getAdmin( await this.tokenStorage.token.getValue());
-    const isAdmin = await this.authService.isAdmin.getValue();
-    if (isAdmin) {
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    if (user && user.role === 'admin') {
       return true;
-      }
+    }
     await this.router.navigate(['/']);
     return false;
-    }
+  }
 }

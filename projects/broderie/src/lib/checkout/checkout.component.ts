@@ -9,7 +9,7 @@ import {ContentChange} from 'ngx-quill';
 import {Router} from '@angular/router';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
-import {TOKEN} from '../../../../../src/app/app.token';
+import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
@@ -25,11 +25,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               private toastService: ToastService,
               private router: Router,
               private nodemailer: NodemailerService,
-              @Inject(TOKEN) private tokenStorage: Token
+              @Inject(TOKEN) private tokenStorage: Token,
+              @Inject(USER_STORAGE) private userStorage: Storage
               ) { }
 
   isCashOk: boolean = true;
   tokenSubscription: Subscription;
+  tokenSubscription1: Subscription;
   authSubscription: Subscription;
   addressSubscription: Subscription;
   userServiceSubscriptioon: Subscription;
@@ -61,25 +63,29 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.token = this.tokenStorage.token.getValue();
-    if (this.token !== '') {
-            this.tokenSubscription = this.userService.getUserCart();
-            this.userServiceSubscriptioon = this.userService.getCartUpdateListener()
-              .subscribe(
-                (c) => {
-                  this.products = c[0];
-                  this.totalAfterDiscount = c[1];
-                  this.total = c[2];
-                  for (const product of this.products) {
-                    if (product.product.shipping === 'Nu') {
-                      this.isCashOk = false;
-                    }
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    this.user = user;
+    this.tokenSubscription = this.tokenStorage.token.subscribe(
+      (token => {
+        this.token = token;
+        if (this.token !== '') {
+          this.tokenSubscription1 = this.userService.getUserCart();
+          this.userServiceSubscriptioon = this.userService.getCartUpdateListener()
+            .subscribe(
+              (c) => {
+                this.products = c[0];
+                this.totalAfterDiscount = c[1];
+                this.total = c[2];
+                for (const product of this.products) {
+                  if (product.product.shipping === 'Nu') {
+                    this.isCashOk = false;
                   }
-                  this.isLoading = false;
                 }
-              );
-            this.addressSubscription = this.userService.getUserAddress()
-              .subscribe( address => {
+                this.isLoading = false;
+              }
+            );
+          this.addressSubscription = this.userService.getUserAddress()
+            .subscribe( address => {
                 if (address && address.address[0]) {
                   const newAddressArray = address.address;
                   this.address = newAddressArray[0];
@@ -88,13 +94,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   this.savedAddress = this.addressContent;
                 }
               },
-                error => console.log('error address'));
-          }
+              error => console.log('error address'));
+        }
+      })
+    );
 
-    this.authSubscription1 = this.authService.user
-      .subscribe(
-        (user) => this.user = user
-      );
+
   }
 
 
@@ -108,6 +113,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
     if (this.tokenSubscription) {
       this.tokenSubscription.unsubscribe();
+    }
+    if (this.tokenSubscription1) {
+      this.tokenSubscription1.unsubscribe();
     }
     if (this.addressSubscription) {
       this.addressSubscription.unsubscribe();

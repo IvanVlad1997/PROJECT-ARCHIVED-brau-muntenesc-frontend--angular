@@ -3,18 +3,25 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthService} from '../../../projects/auth/src/lib/services/auth';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {TOKEN} from '../app.token';
+import {TOKEN, USER_STORAGE} from '../app.token';
 import {Token} from '../../../projects/auth/src/lib/services/token';
+import {first} from 'rxjs/operators';
+import {GoogleAnalyticsService} from './google-analytics';
 
 @Injectable({providedIn: 'root'})
 export class InitService {
   constructor(private angularFirebaseAuth: AngularFireAuth,
               private authService: AuthService,
-              @Inject(TOKEN) private token: Token) {
+              @Inject(TOKEN) private token: Token,
+              @Inject(USER_STORAGE) private userStorage: Storage,
+              private googleAnalyticsService: GoogleAnalyticsService
+              ) {
   }
 
   async start(): Promise<void>{
-         await this.loadCurrentUser();
+    // TODO : userState - de ce trebuie?!
+    await this.angularFirebaseAuth.authState.pipe(first()).toPromise();
+    await this.loadCurrentUser();
   }
 
   async loadCurrentUser(): Promise<void> {
@@ -26,19 +33,18 @@ export class InitService {
       } else  {
         refreshedToken = '';
       }
-      this.token.token.next(refreshedToken);
       if (refreshedToken) {
-        await this.authService.getCurrentUser(refreshedToken);
-      }
-
-      console.log('refreshed token', this.token.token.getValue())
-
-      // console.log('user init', await user.getIdTokenResult())
-      // console.log('Se incerca conectarea la user-ul curent');
-      // if (user){
-      //   const idTokenResult: any = await user.getIdTokenResult();
-      //   await this.authService.getCurrentUser(idTokenResult.token);
-      // }
+        // await this.authService.getCurrentUser(refreshedToken);
+        let response = await this.authService.getCurrentUser1(refreshedToken)
+        console.log('response from getCurrentUser', response)
+        if (response) {
+              this.userStorage.setItem('current', JSON.stringify(response));
+              this.googleAnalyticsService.setCurrentUser(response._id);
+            } else {
+              this.userStorage.removeItem('current');
+            }
+          }
+      this.token.token.next(refreshedToken);
     });
   }
 }

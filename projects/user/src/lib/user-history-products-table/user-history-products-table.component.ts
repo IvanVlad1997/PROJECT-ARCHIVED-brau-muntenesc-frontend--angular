@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
@@ -7,6 +7,7 @@ import {Order} from '../../../../common/order';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {ToastService} from 'angular-toastify';
 import {formatDate} from '@angular/common';
+import {USER_STORAGE} from '../../../../../src/app/app.token';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -18,14 +19,16 @@ export class UserHistoryProductsTableComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private nodemailer: NodemailerService,
-              private toastService: ToastService) { }
+              private toastService: ToastService,
+              @Inject(USER_STORAGE) private userStorage: Storage) { }
 
   @Input() order: Order;
 
   user: User;
 
   ngOnInit(): void {
-    this.user = this.authService.user.getValue();
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    this.user = user;
   }
 
   generatePDF(): void {

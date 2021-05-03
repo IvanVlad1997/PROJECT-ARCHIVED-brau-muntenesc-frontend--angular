@@ -1,10 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from '../services/product';
 import {Product} from '../../../../common/product';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
-import {Auth} from '../../../../common/auth';
 import {MatDialog} from '@angular/material/dialog';
 import {RatingsComponent} from '../ratings/ratings.component';
 import {User} from '../../../../common/user';
@@ -12,6 +11,8 @@ import {RatingService} from '../services/rating';
 import {CartService} from '../services/cart';
 import {UserService} from '../../../../user/src/lib/services/user';
 import {ToastService} from 'angular-toastify';
+import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
+import {Token} from '../../../../auth/src/lib/services/token';
 
 @Component({
   selector: 'lib-product',
@@ -31,12 +32,16 @@ export class ProductComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private toastService: ToastService,
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              @Inject(USER_STORAGE) private userStorage: Storage,
+              @Inject(TOKEN) private tokenStorage: Token) {}
 
   relatedProducts: Product[] = [];
   product: Product;
   getProductSubscription: Subscription;
   authSubscription: Subscription;
+  tokenSubscription: Subscription;
+
   user: User;
   token: string = '';
   image: string = '';
@@ -50,10 +55,12 @@ export class ProductComponent implements OnInit, OnDestroy {
     if (this.route.snapshot.params.slug === 'transport') {
       this.router.navigate(['/broderie']);
     }
-    this.authSubscription = this.authService.user.subscribe((user) => {
-      this.user = user;
-    });
-
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    this.user = user;
+    this.tokenSubscription = this.tokenStorage.token.subscribe(
+      (token => {
+        this.token = token;
+      }))
     this.navigationSubscription = this.route.params
       .subscribe(
         (p) => {
@@ -93,7 +100,9 @@ export class ProductComponent implements OnInit, OnDestroy {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
-    this.authSubscription.unsubscribe();
+    if (this.tokenSubscription) {
+      this.tokenSubscription.unsubscribe();
+    }
   }
 
   leaveARating(): void {

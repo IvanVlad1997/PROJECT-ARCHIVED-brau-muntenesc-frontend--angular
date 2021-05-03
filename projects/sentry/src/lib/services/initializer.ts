@@ -3,16 +3,15 @@ import * as Sentry from '@sentry/angular';
 import * as Tracing from '@sentry/tracing';
 import {SentryConfig} from '../common/sentry-config';
 import {ENV_SENTRY} from '../frontend-sentry.tokens';
-import {AuthService} from '../../../../auth/src/lib/services/auth';
-import {User} from '../../../../common/user';
 import {USER_STORAGE} from '../../../../../src/app/app.token';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Injectable()
 export class Initializer {
   private environmentSentry: SentryConfig;
 
   constructor(@Inject(ENV_SENTRY) environmentSentry: SentryConfig,
-              private authService: AuthService,
+              private angularFireAuth: AngularFireAuth,
               @Inject(USER_STORAGE) private userStorage: Storage) {
     this.environmentSentry = environmentSentry;
 
@@ -31,8 +30,8 @@ export class Initializer {
       tracesSampleRate: 1.0,
     });
     // TODO: TO change
-    this.authService.user.subscribe(
-      (user: User) => {
+    this.angularFireAuth.user.subscribe(
+      () => {
         let userFromLocal = JSON.parse(this.userStorage.getItem('current'));
         if (userFromLocal) {
           Sentry.setUser({username: userFromLocal.name, id: userFromLocal._id.toString(), email: userFromLocal.email});

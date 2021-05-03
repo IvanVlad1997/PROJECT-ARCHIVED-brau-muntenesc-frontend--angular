@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {ToastService} from 'angular-toastify';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth';
 import {Subscription} from 'rxjs';
 import {HeaderAwareComponent} from '../../../../common/metadata-aware';
+import {USER_STORAGE} from '../../../../../src/app/app.token';
 
 @Component({
   selector: 'app-signup',
@@ -31,14 +32,14 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
   constructor(private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              @Inject(USER_STORAGE) private userStorage: Storage) { }
 
   ngOnInit(): void {
-    this.userAuthServiceSubscription = this.authService.user.subscribe((user) => {
-      if (user && user.email !== '') {
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    if (user && user.email !== '') {
         this.router.navigate(['/']);
       }
-    });
   }
 
   async register(form: any): Promise<void> {

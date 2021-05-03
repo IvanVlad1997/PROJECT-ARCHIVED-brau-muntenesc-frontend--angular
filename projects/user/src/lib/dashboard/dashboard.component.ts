@@ -7,8 +7,10 @@ import {ChangeUserPropDialogComponent} from './change-user-prop-dialog/change-us
 import {ContentChange} from 'ngx-quill';
 import {UserService} from '../services/user';
 import {ToastService} from 'angular-toastify';
-import {TOKEN} from '../../../../../src/app/app.token';
+import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
+import {first} from 'rxjs/operators';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'lib-dashboard',
@@ -20,8 +22,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService,
               private dialog: MatDialog,
               private userService: UserService,
+              private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
-              @Inject(TOKEN) private tokenStorage: Token
+              @Inject(TOKEN) private tokenStorage: Token,
+              @Inject(USER_STORAGE) private userStorage: Storage
   ) { }
 
   authSubscription: Subscription;
@@ -45,20 +49,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.token = this.tokenStorage.token.getValue()
-    if (this.token !== '') {
-            this.loadUser();
-          }
+    // TODO: Solve problem here
+    setTimeout(() => {
+      this.token = this.tokenStorage.token.getValue()
+      let user = JSON.parse(this.userStorage.getItem('current'));
+      if (this.token !== '') {
+        this.user = user;
+      }
+    }, 1000);
   }
 
-  loadUser(): void {
-    this.userSubscription = this.authService.user
-      .subscribe(
-        (user: User) => {
-          this.user = user;
-        }
-      );
-  }
 
   ngOnDestroy(): void {
     if  (this.userSubscription)  {
