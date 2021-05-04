@@ -125,7 +125,8 @@ export class ProductComponent implements OnInit, OnDestroy {
         (p) => {
           this.toastService.success('Produsul a fost adăugat la favorite');
           this.router.navigate(['/user/wishlist']);
-          this.authService.getCurrentUser(this.token);
+          // TODO : is Ok?
+          // this.authService.getCurrentUser(this.token);
         });
   }
 }

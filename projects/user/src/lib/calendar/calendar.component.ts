@@ -28,7 +28,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.token = this.tokenStorage.token.getValue();
-    this.authService.getCurrentUser(this.token);
+    // this.authService.getCurrentUser(this.token);
     const paymentHistory = this.user.payHistory.map((payment) => payment.payment );
     this.calendarOptions.events = [...this.user.presenceHistory, ...paymentHistory];
   }

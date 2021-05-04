@@ -59,33 +59,17 @@ export class LayoutComponent implements OnInit, OnDestroy {
     });
     this.token.token.pipe(takeUntil(this.onDestroy$)).subscribe(
       (token) => {
-
-        if (token !== '') {
+        this.isAuthenticated = false;
+        this.isAdmin = false;
+        let user: User = JSON.parse(this.userStorage.getItem('current'));
+        if (user) {
           this.isAuthenticated = true;
-          let user = JSON.parse(this.userStorage.getItem('current'));
-          console.log('user from token pipe', user)
-          if (user && user.role === 'admin') {
-            this.isAdmin = true;
-          } else {
-            this.isAdmin = false;
-          }
-        } else  {
-          this.isAuthenticated = false;
-          this.isAdmin = false;
+        }
+        if (user && user.role) {
+          this.isAdmin = true;
         }
       }
     );
-
-    // this.isAdminSubscription = this.authService.isAdmin
-    //   .subscribe((isAdm: boolean) => {
-    //     if (isAdm) {
-    //       this.isAdmin = true;
-    //     } else  {
-    //       this.isAdmin = false;
-    //     }
-    //   });
-
-
   }
 
   public componentChangeed(object: object): void {

@@ -56,7 +56,10 @@ export class WishlistComponent implements OnInit, OnDestroy {
         (p) => {
           this.loadWishList();
           this.toastService.success('Produsul a fost scos de la favorite');
-          this.authService.getCurrentUser(this.token);
+
+          //TODO: Remove from wishlost
+
+          // this.authService.getCurrentUser(this.token);
         }
       );
   }

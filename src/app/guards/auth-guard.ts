@@ -19,11 +19,14 @@ export class AuthGuard implements CanActivate {
 
   public async canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     let user = JSON.parse(this.userStorage.getItem('current'));
+    if (user) {
+      return true;
+    }
+    return false;
     // TODO: wtf
     // if (!user) {
     //   await this.router.navigate(['/auth/login']);
     //   return false;
     // }
-    return true;
   }
 }

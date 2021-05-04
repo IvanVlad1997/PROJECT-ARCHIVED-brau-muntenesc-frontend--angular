@@ -17,7 +17,6 @@ import {Token} from './token';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-
   constructor(private http: HttpClient,
               private router: Router,
               private angularFirebaseAuth: AngularFireAuth,
@@ -52,7 +51,9 @@ export class AuthService {
           if (other) {
             await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
           }
-          await this.getCurrentUser(await userCredential.user.getIdToken());
+          // TODO: is it ok?
+
+          // await this.getCurrentUser(await userCredential.user.getIdToken());
           await this.roleBaseRedirect(data.role);
           if (userCredential.user) {
             this.token.token.next(await userCredential.user.getIdToken());
@@ -90,30 +91,30 @@ export class AuthService {
       // .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
   // }
 
-   getCurrentUser(token: string): void {
-    this.http.post(
-      `${environment.appApi}/current-user`,
-      {},
-      {
-        headers: {
-          authtoken: token
-        }
-      }
-    ).subscribe(
-      (response: any) => {
-        console.log('response from getCurrentUser', response)
-        if (response) {
-          this.userStorage.setItem('current', JSON.stringify(response));
-          this.googleAnalyticsService.setCurrentUser(response._id);
-        } else {
-          this.userStorage.removeItem('current');
-        }
-        },
-      (error => console.log('error'))
-    );
-  }
+  //  getCurrentUser(token: string): void {
+  //   this.http.post(
+  //     `${environment.appApi}/current-user`,
+  //     {},
+  //     {
+  //       headers: {
+  //         authtoken: token
+  //       }
+  //     }
+  //   ).subscribe(
+  //     (response: any) => {
+  //       console.log('response from getCurrentUser', response)
+  //       if (response) {
+  //         this.userStorage.setItem('current', JSON.stringify(response));
+  //         this.googleAnalyticsService.setCurrentUser(response._id);
+  //       } else {
+  //         this.userStorage.removeItem('current');
+  //       }
+  //       },
+  //     (error => console.log('error'))
+  //   );
+  // }
 
-  getCurrentUser1(token): Promise<any> {
+  getCurrentUser(token): Promise<any> {
     return this.http.post(
       `${environment.appApi}/current-user`,
       {},

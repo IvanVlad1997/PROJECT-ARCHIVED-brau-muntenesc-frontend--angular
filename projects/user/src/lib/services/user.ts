@@ -186,7 +186,7 @@ export class UserService {
       })
       .subscribe(
         (data) => {
-          this.authService.getCurrentUser(this.token.token.getValue());
+          // this.authService.getCurrentUser(this.token.token.getValue());
         }
       );
   }
@@ -203,7 +203,7 @@ export class UserService {
       })
       .subscribe(
       (data) => {
-        this.authService.getCurrentUser(this.token.token.getValue());
+        // this.authService.getCurrentUser(this.token.token.getValue());
       }
     );
   }

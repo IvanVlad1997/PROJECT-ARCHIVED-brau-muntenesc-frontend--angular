@@ -1,6 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
-import {Subscription} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {User} from '../../../../common/user';
 import {MatDialog} from '@angular/material/dialog';
 import {ChangeUserPropDialogComponent} from './change-user-prop-dialog/change-user-prop-dialog.component';
@@ -9,7 +9,7 @@ import {UserService} from '../services/user';
 import {ToastService} from 'angular-toastify';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
-import {first} from 'rxjs/operators';
+import {first, takeUntil} from 'rxjs/operators';
 import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
@@ -18,6 +18,9 @@ import {AngularFireAuth} from '@angular/fire/auth';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+
+  private onDestroy$: Subject<void> = new Subject();
+
 
   constructor(private authService: AuthService,
               private dialog: MatDialog,
@@ -50,17 +53,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // TODO: Solve problem here
+    // this.tokenStorage.token.pipe(takeUntil(this.onDestroy$)).subscribe(
+    //   (token) => {
+    //     this.token = this.tokenStorage.token.getValue()
+    //     let user = JSON.parse(this.userStorage.getItem('current'));
+    //     if (this.token !== '') {
+    //       this.user = user;
+    //     }
+    //   })
     setTimeout(() => {
       this.token = this.tokenStorage.token.getValue()
       let user = JSON.parse(this.userStorage.getItem('current'));
       if (this.token !== '') {
         this.user = user;
       }
-    }, 1000);
+    }, 100);
   }
 
 
   ngOnDestroy(): void {
+    this.onDestroy$.next();
     if  (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }

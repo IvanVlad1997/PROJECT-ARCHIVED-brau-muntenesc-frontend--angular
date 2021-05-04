@@ -35,8 +35,7 @@ export class InitService {
       }
       if (refreshedToken) {
         // await this.authService.getCurrentUser(refreshedToken);
-        let response = await this.authService.getCurrentUser1(refreshedToken)
-        console.log('response from getCurrentUser', response)
+        let response = await this.authService.getCurrentUser(refreshedToken)
         if (response) {
               this.userStorage.setItem('current', JSON.stringify(response));
               this.googleAnalyticsService.setCurrentUser(response._id);

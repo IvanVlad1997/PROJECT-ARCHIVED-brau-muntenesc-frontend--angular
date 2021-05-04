@@ -132,6 +132,6 @@ export class CartComponent implements OnInit, OnDestroy {
     await this.cartService.removeAllFromCart();
     await this.userService.emptyUserCart();
     this.toastService.success('Coșul a fost golit');
-    this.authService.getCurrentUser(this.tokenStorage.token.getValue());
+    // this.authService.getCurrentUser(this.tokenStorage.token.getValue());
   }
 }
