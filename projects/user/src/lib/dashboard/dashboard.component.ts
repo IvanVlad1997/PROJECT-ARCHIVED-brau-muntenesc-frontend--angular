@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {Subject, Subscription} from 'rxjs';
 import {User} from '../../../../common/user';
@@ -9,7 +9,6 @@ import {UserService} from '../services/user';
 import {ToastService} from 'angular-toastify';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
-import {first, takeUntil} from 'rxjs/operators';
 import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
@@ -28,7 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
               private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
               @Inject(TOKEN) private tokenStorage: Token,
-              @Inject(USER_STORAGE) private userStorage: Storage
+              @Inject(USER_STORAGE) private userStorage: Storage,
   ) { }
 
   authSubscription: Subscription;
@@ -52,22 +51,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // TODO: Solve problem here
-    // this.tokenStorage.token.pipe(takeUntil(this.onDestroy$)).subscribe(
-    //   (token) => {
-    //     this.token = this.tokenStorage.token.getValue()
-    //     let user = JSON.parse(this.userStorage.getItem('current'));
-    //     if (this.token !== '') {
-    //       this.user = user;
-    //     }
-    //   })
-    setTimeout(() => {
-      this.token = this.tokenStorage.token.getValue()
-      let user = JSON.parse(this.userStorage.getItem('current'));
-      if (this.token !== '') {
-        this.user = user;
-      }
-    }, 100);
+    let user = JSON.parse(this.userStorage.getItem('current'));
+    this.user = user;
   }
 
 
@@ -83,6 +68,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       {
         data: {name: this.user.name,
               isName: true}
+      }).afterClosed()
+      .toPromise()
+      .then(() => {
+        let user = JSON.parse(this.userStorage.getItem('current'));
+        this.user = user;
       });
   }
 
@@ -93,6 +83,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
           telNum: this.user.telNum,
           isTelNum: true
         }
+      }).afterClosed()
+      .toPromise()
+      .then(() => {
+        let user = JSON.parse(this.userStorage.getItem('current'));
+        this.user = user;
       });
   }
 

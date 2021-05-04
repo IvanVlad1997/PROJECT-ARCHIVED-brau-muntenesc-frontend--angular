@@ -114,6 +114,17 @@ export class AuthService {
   //   );
   // }
 
+  async getCurrent(token): Promise<void> {
+    let response = await this.getCurrentUser(token)
+    if (response) {
+      await this.userStorage.setItem('current', JSON.stringify(response));
+      this.googleAnalyticsService.setCurrentUser(response._id);
+    } else {
+      this.userStorage.removeItem('current');
+    }
+  }
+
+
   getCurrentUser(token): Promise<any> {
     return this.http.post(
       `${environment.appApi}/current-user`,

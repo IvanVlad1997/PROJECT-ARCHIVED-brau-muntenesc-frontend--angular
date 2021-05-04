@@ -34,9 +34,9 @@ export class ChangeUserPropDialogComponent implements OnInit, OnDestroy {
 
   async edit(): Promise<void> {
     if (this.data.isName) {
-      this.userSubscription =  this.userService.changeUserName(this.data.name);
+      this.userSubscription =  await this.userService.changeUserName(this.data.name);
     } else if (this.data.isTelNum) {
-      this.userSubscription =  this.userService.changeTelNul(this.data.telNum);
+      this.userSubscription =  await this.userService.changeTelNul(this.data.telNum);
     }
     // else if (this.data.isEmail) {
     //   this.userSubscription =  this.userService.changeEmail(this.data.email, this.token)

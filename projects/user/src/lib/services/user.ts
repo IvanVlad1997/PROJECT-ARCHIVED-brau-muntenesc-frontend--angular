@@ -10,8 +10,9 @@ import {ToastService} from 'angular-toastify';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {Program} from '../../../../common/program';
-import {TOKEN} from '../../../../../src/app/app.token';
+import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
+import {User} from "../../../../common/user";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -21,7 +22,8 @@ export class UserService {
               private toastService: ToastService,
               private angularFireAuth: AngularFireAuth,
               private nodemailer: NodemailerService,
-              @Inject(TOKEN) private token: Token) {}
+              @Inject(TOKEN) private token: Token,
+              @Inject(USER_STORAGE) private userStorage: Storage) {}
 
   products: Cart[] = [];
   totalAfterDiscount: number;
@@ -174,8 +176,8 @@ export class UserService {
       });
   }
 
-  changeUserName(name: string): any {
-    this.http.post(`${environment.appApi}/user/change-name`,
+  async changeUserName(name: string): Promise<any> {
+    return this.http.post(`${environment.appApi}/user/change-name`,
       {
         name
       },
@@ -184,15 +186,15 @@ export class UserService {
           authtoken: this.token.token.getValue()
         }
       })
-      .subscribe(
-        (data) => {
-          // this.authService.getCurrentUser(this.token.token.getValue());
+      .toPromise().then(
+        (data: {updatedUser: User}) => {
+          this.userStorage.setItem('current', JSON.stringify(data.updatedUser));
         }
       );
   }
 
-  changeTelNul(telNum: string): any {
-    this.http.post(`${environment.appApi}/user/change-telnum`,
+  async changeTelNul(telNum: string): Promise<any> {
+    return this.http.post(`${environment.appApi}/user/change-telnum`,
       {
         telNum
       },
@@ -201,12 +203,14 @@ export class UserService {
           authtoken: this.token.token.getValue()
         }
       })
-      .subscribe(
-      (data) => {
-        // this.authService.getCurrentUser(this.token.token.getValue());
-      }
-    );
+      .toPromise().then(
+      (data: {updatedUser: User}) => {
+          this.userStorage.setItem('current', JSON.stringify(data.updatedUser));
+        }
+      );
   }
+
+
 
   changeGrupa(group: Program, email: string): any {
     this.http.post(`${environment.appApi}/user/grupa`,

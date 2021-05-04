@@ -34,15 +34,8 @@ export class InitService {
         refreshedToken = '';
       }
       if (refreshedToken) {
-        // await this.authService.getCurrentUser(refreshedToken);
-        let response = await this.authService.getCurrentUser(refreshedToken)
-        if (response) {
-              this.userStorage.setItem('current', JSON.stringify(response));
-              this.googleAnalyticsService.setCurrentUser(response._id);
-            } else {
-              this.userStorage.removeItem('current');
-            }
-          }
+        await this.authService.getCurrent(refreshedToken);
+      }
       this.token.token.next(refreshedToken);
     });
   }
