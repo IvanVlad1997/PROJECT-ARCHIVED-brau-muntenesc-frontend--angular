@@ -2,7 +2,6 @@ import {Inject, Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {AuthService} from '../../../projects/auth/src/lib/services/auth';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {first} from 'rxjs/operators';
 import {TOKEN, USER_STORAGE} from '../app.token';
 import {Token} from '../../../projects/auth/src/lib/services/token';
 

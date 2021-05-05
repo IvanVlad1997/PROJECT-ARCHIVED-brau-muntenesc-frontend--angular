@@ -1,15 +1,17 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {AuthService} from '../../../../../auth/src/lib/services/auth';
 import {ColDef} from 'ag-grid-community';
-import {Subscription} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {User} from '../../../../../common/user';
 import {CursantiService} from '../../services/panou-cursanti';
 import {CursantiListActionsComponent} from '../cursanti-list-actions/cursanti-list-actions.component';
 import {UltimaPlataComponent} from '../ultima-plata/ultima-plata.component';
 import {ProgramService} from '../../services/program';
 import {Program} from '../../../../../common/program';
-import {distinct, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {distinct, distinctUntilChanged, switchMap, takeUntil} from 'rxjs/operators';
+import {TOKEN} from "../../../../../../src/app/app.token";
+import {Token} from "../../../../../auth/src/lib/services/token";
 
 @Component({
   selector: 'lib-cursanti-list',
@@ -19,10 +21,12 @@ import {distinct, distinctUntilChanged, switchMap} from 'rxjs/operators';
 export class CursantiListComponent implements OnInit, OnDestroy {
   private programSub: Subscription;
   public selectedProgram: Program;
+  private onDestroy$: Subject<void> = new Subject();
 
   constructor(private dialog: MatDialog,
               private cursantiService: CursantiService,
-              private programService: ProgramService) { }
+              private programService: ProgramService,
+              @Inject(TOKEN) private tokenStorage: Token) { }
 
   defaultColDef: ColDef = {
     minWidth: 200,
@@ -75,8 +79,14 @@ export class CursantiListComponent implements OnInit, OnDestroy {
   programs: Program[];
 
   ngOnInit(): void {
-    this.loadPrograms();
-    this.loadUsers();
+    this.tokenStorage.token.pipe(takeUntil(this.onDestroy$)).subscribe(
+      (token) => {
+        if (token) {
+          this.loadPrograms();
+          this.loadUsers();
+        }
+      }
+    );
   }
 
   loadPrograms(): void {
@@ -104,6 +114,9 @@ export class CursantiListComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
+
+    this.onDestroy$.next();
+
     if  (this.userSubscription)  {
       this.userSubscription.unsubscribe();
     }

@@ -1,9 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {ToastService} from 'angular-toastify';
 import {AdminService} from '../../../../broderie/src/lib/services/admin';
 import {Order} from '../../../../common/order';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
-import {Subscription} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
+import {takeUntil} from "rxjs/operators";
+import {TOKEN} from "../../../../../src/app/app.token";
+import {Token} from "../../../../auth/src/lib/services/token";
 
 @Component({
   selector: 'lib-dashboard',
@@ -11,10 +14,12 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  private onDestroy$: Subject<void> = new Subject();
 
   constructor(
     private toastService: ToastService,
     private adminService: AdminService,
+    @Inject(TOKEN) private tokenStorage: Token,
   ) { }
 
   orders: Order[] = [];
@@ -24,8 +29,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loading: boolean = false;
 
   ngOnInit(): void {
-    this.loadOrders();
-
+    this.tokenStorage.token.pipe(takeUntil(this.onDestroy$)).subscribe(
+      (token) => {
+        if (token) {
+          this.loadOrders();
+        }
+      });
   }
 
   loadOrders(): void {
@@ -41,6 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.onDestroy$.next();
     if (this.adminServiceSubscription) {
       this.adminServiceSubscription.unsubscribe();
     }

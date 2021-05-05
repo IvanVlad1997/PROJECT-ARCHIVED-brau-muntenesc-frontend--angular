@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {AgFrameworkComponent} from 'ag-grid-angular';
 import {BaseColDefParams} from 'ag-grid-community/dist/lib/entities/colDef';
-import compareAsc from 'date-fns/compareAsc';
+import {differenceInMonths} from "date-fns";
+import {differenceInYears} from "date-fns/fp";
 
 @Component({
   selector: 'lib-ultima-plata',
@@ -25,10 +26,12 @@ export class UltimaPlataComponent implements AgFrameworkComponent<BaseColDefPara
       this.payHistory = params.data.payHistory;
       this.length = this.payHistory.length;
       this.date = this.payHistory[this.length - 1].payment.date;
-      const aux =  new Date(this.date);
-      this.days20 = aux.setDate(aux.getDate() + 20);
-      const result: number | any = compareAsc(this.days20, new Date());
-      if (result === -1) {
+      const today: Date =  new Date();
+      let formattedDate: Date = new Date(this.date)
+      if (differenceInMonths(formattedDate, today) !== 0) {
+        this.isLate = true;
+      }
+      if (formattedDate.getMonth() !== today.getMonth() && differenceInYears(formattedDate, today) < 1) {
         this.isLate = true;
       }
     }

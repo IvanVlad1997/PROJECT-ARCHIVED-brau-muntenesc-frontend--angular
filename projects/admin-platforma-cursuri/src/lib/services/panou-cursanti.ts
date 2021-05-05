@@ -6,7 +6,7 @@ import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
 import {Program} from '../../../../common/program';
-import {TOKEN} from '../../../../../src/app/app.token';
+import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
 
 @Injectable({providedIn: 'root'})
