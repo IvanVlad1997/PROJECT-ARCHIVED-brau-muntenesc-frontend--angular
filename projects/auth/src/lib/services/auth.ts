@@ -53,57 +53,6 @@ export class AuthService {
      await this.roleBaseRedirect(user.role);
   }
 
-  // .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
-
-      // .then((data: UserCredential) => {
-      //   if (data.user) {
-      //     return data.user.getIdToken();
-      //   } else {
-      //     return null;
-      //   }
-      // })
-      // .then((token: string) => {
-      //   return this.http.post<User>(
-      //     `${environment.appApi}/create-or-update-user`,
-      //     {},
-      //     {
-      //       headers: {
-      //         authtoken: token
-      //       }
-      //     }
-      //   )
-      //     .subscribe(async (data: User) => {
-      //       if (other) {
-      //         await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
-      //       }
-      //       await this.getCurrentUser(token);
-      //       await this.roleBaseRedirect(data.role);});
-      // })
-      // .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
-  // }
-
-  //  getCurrentUser(token: string): void {
-  //   this.http.post(
-  //     `${environment.appApi}/current-user`,
-  //     {},
-  //     {
-  //       headers: {
-  //         authtoken: token
-  //       }
-  //     }
-  //   ).subscribe(
-  //     (response: any) => {
-  //       console.log('response from getCurrentUser', response)
-  //       if (response) {
-  //         this.userStorage.setItem('current', JSON.stringify(response));
-  //         this.googleAnalyticsService.setCurrentUser(response._id);
-  //       } else {
-  //         this.userStorage.removeItem('current');
-  //       }
-  //       },
-  //     (error => console.log('error'))
-  //   );
-  // }
 
   async getCurrent(token): Promise<void> {
     let response = await this.getCurrentUser(token);
