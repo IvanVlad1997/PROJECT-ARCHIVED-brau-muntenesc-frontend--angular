@@ -1,9 +1,8 @@
-import {Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {ToastService} from 'angular-toastify';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth';
-import {Subscription} from 'rxjs';
 import {HeaderAwareComponent} from '../../../../common/metadata-aware';
 import {USER_STORAGE} from '../../../../../src/app/app.token';
 
@@ -12,7 +11,7 @@ import {USER_STORAGE} from '../../../../../src/app/app.token';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent {
+export class SignupComponent implements OnInit, HeaderAwareComponent {
   isLoading: boolean = false;
   email: string;
   password: string;
@@ -24,7 +23,6 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
   loading: boolean = false;
 
   user: any;
-  userAuthServiceSubscription: Subscription;
   @ViewChild('header' , {static : true})
   public header: TemplateRef<any>;
   name: string;
@@ -50,10 +48,6 @@ export class SignupComponent implements OnInit, OnDestroy, HeaderAwareComponent 
     form.resetForm();
     this.loading = false;
 
-  }
-
-  ngOnDestroy(): void {
-    this.userAuthServiceSubscription.unsubscribe();
   }
 
   changeDanceStatus(): void {

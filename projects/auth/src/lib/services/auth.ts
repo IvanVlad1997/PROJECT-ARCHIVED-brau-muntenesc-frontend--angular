@@ -38,31 +38,22 @@ export class AuthService {
 
   async login(email: string, password: string, other?: any): Promise<void> {
      let userCredential: UserCredential = await this.angularFirebaseAuth.signInWithEmailAndPassword(email, password);
-     this.http.post<User>(
+     let user = await this.http.post<User>(
         `${environment.appApi}/create-or-update-user`,
         {},
         {
           headers: {
             authtoken: await userCredential.user.getIdToken()
           }
-        }
-      )
-        .subscribe(async (data: User) => {
-          if (other) {
-            await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
-          }
-          // TODO: is it ok?
+        }).toPromise();
+     if (other) {
+           await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
+     }
+     await this.userStorage.setItem('current', JSON.stringify(user));
+     await this.roleBaseRedirect(user.role);
+  }
 
-          // await this.getCurrentUser(await userCredential.user.getIdToken());
-          await this.roleBaseRedirect(data.role);
-          if (userCredential.user) {
-            this.token.token.next(await userCredential.user.getIdToken());
-          } else {
-            this.token.token.next(undefined);
-          }
-        });
-    }
-    // .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
+  // .catch(() => this.toastService.error('Logarea nu a reușit. Încercați din nou.'));
 
       // .then((data: UserCredential) => {
       //   if (data.user) {
@@ -115,7 +106,7 @@ export class AuthService {
   // }
 
   async getCurrent(token): Promise<void> {
-    let response = await this.getCurrentUser(token)
+    let response = await this.getCurrentUser(token);
     if (response) {
       await this.userStorage.setItem('current', JSON.stringify(response));
       this.googleAnalyticsService.setCurrentUser(response._id);
@@ -138,7 +129,6 @@ export class AuthService {
   }
 
    getAdmin(token: string): Promise<any> {
-     // this.tokenAdmin.next(token);
     return  this.http.post(
       `${environment.appApi}/current-admin`,
       {},
@@ -254,12 +244,12 @@ export class AuthService {
       });
   }
 
-  roleBaseRedirect(role): void {
+  async roleBaseRedirect(role): Promise<void> {
     this.toastService.success('Te-ai logat cu succes!');
     if (role === 'admin') {
-      this.router.navigate(['/']);
+      await this.router.navigate(['/']);
     } else {
-      this.router.navigate(['/user']);
+      await  this.router.navigate(['/user']);
     }
   }
 }

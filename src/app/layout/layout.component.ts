@@ -65,7 +65,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
         if (user) {
           this.isAuthenticated = true;
         }
-        if (user && user.role) {
+        if (user && user.role === 'admin') {
           this.isAdmin = true;
         }
       }

@@ -1,8 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthService} from '../../../projects/auth/src/lib/services/auth';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {TOKEN, USER_STORAGE} from '../app.token';
 import {Token} from '../../../projects/auth/src/lib/services/token';
 import {first} from 'rxjs/operators';
