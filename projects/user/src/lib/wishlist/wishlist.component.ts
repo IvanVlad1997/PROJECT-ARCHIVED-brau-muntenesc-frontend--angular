@@ -5,8 +5,9 @@ import {UserService} from '../services/user';
 import {Product} from '../../../../common/product';
 import {ToastService} from 'angular-toastify';
 import {CartService} from '../../../../broderie/src/lib/services/cart';
-import {TOKEN} from '../../../../../src/app/app.token';
+import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
+import {User} from '../../../../common/user';
 
 @Component({
   selector: 'lib-wishlist',
@@ -19,7 +20,8 @@ export class WishlistComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private toastService: ToastService,
               private cartService: CartService,
-              @Inject(TOKEN) private tokenStorage: Token) { }
+              @Inject(TOKEN) private tokenStorage: Token,
+              @Inject(USER_STORAGE) private userStorage: Storage) { }
 
   authSubscription: Subscription;
   wishlistSub: Subscription;
@@ -28,21 +30,14 @@ export class WishlistComponent implements OnInit, OnDestroy {
   token: string = '';
 
   ngOnInit(): void {
-    this.token = this.tokenStorage.token.getValue();
-    if (this.token !== '') {
-      this.loadWishList();
-    }
+    this.loadWishlist();
   }
 
-
-  loadWishList(): void {
-    this.wishlistSub = this.userService.getWishlist()
-      .subscribe(
-        (data) => {
-          this.products = data.wishlist;
-        }
-      );
+  loadWishlist(): void {
+    let user: User = JSON.parse(this.userStorage.getItem('current'));
+    this.products = user.wishlist;
   }
+
 
   ngOnDestroy(): void {
     if (this.wishlistSub) {
@@ -54,10 +49,10 @@ export class WishlistComponent implements OnInit, OnDestroy {
     this.userService.removeWishlist(id)
       .subscribe(
         (p) => {
-          this.loadWishList();
+          this.loadWishlist();
           this.toastService.success('Produsul a fost scos de la favorite');
 
-          //TODO: Remove from wishlost
+          // TODO: Remove from wishlost
 
           // this.authService.getCurrentUser(this.token);
         }
