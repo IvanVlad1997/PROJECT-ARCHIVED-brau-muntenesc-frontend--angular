@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-declare let gtag: Function;
+declare let gtag: any;
 @Injectable()
 export class GoogleAnalyticsService {
 
@@ -17,10 +17,10 @@ export class GoogleAnalyticsService {
       eventLabel: eventLabel,
       eventAction: eventAction,
       eventValue: eventValue
-    })
+    });
   }
-
-  public setCurrentUser(userId: string): void{
-    gtag('set', 'userId', userId);
-  }
+  //
+  // public setCurrentUser(userId: string): void{
+  //   gtag('set', 'userId', userId);
+  // }
 }

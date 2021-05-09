@@ -9,10 +9,10 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import auth = firebase.auth;
 import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
-import {GoogleAnalyticsService} from '../../../../../src/app/services/google-analytics';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from './token';
 import {UserManager} from './user-manager';
+import {GoogleAnalyticEventsService} from '../../../../../src/app/services/google-analytic-events.service';
 
 
 @Injectable({providedIn: 'root'})
@@ -22,7 +22,7 @@ export class AuthService {
               private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
               private nodemailer: NodemailerService,
-              private googleAnalyticsService: GoogleAnalyticsService,
+              private googleAnalyticEventsService: GoogleAnalyticEventsService,
               @Inject(USER_STORAGE) private userStorage: Storage,
               @Inject(TOKEN) private token: Token
            ) {}
@@ -43,7 +43,7 @@ export class AuthService {
      }
      await this.userStorage.setItem('current', JSON.stringify(user));
      await this.roleBaseRedirect(user.role);
-     this.googleAnalyticsService.eventEmitter('login', 'user', 'signInWithEmailAndPassword', 'login', user.name, 1);
+     this.googleAnalyticEventsService.login(user.name);
   }
 
 
@@ -51,7 +51,6 @@ export class AuthService {
     let response: User = await this.userManager.getCurrentUser(token);
     if (response) {
       await this.userStorage.setItem('current', JSON.stringify(response));
-      this.googleAnalyticsService.setCurrentUser(response._id);
     } else {
       this.userStorage.removeItem('current');
     }
@@ -68,7 +67,7 @@ export class AuthService {
     await this.angularFirebaseAuth.createUserWithEmailAndPassword(email, password);
     await this.login(email, password, other);
     await this.userManager.updateMany(email, telNum, address, isDancer, name);
-    this.googleAnalyticsService.eventEmitter('signUp', 'user', 'signUp', 'login', email, 1);
+    this.googleAnalyticEventsService.signUp(name);
 
     this.nodemailer.infoMail(`Cont nou - ${email}`,
           `<h1>A fost înregistrat un cont nou</h1>
@@ -97,7 +96,7 @@ export class AuthService {
     await this.angularFirebaseAuth.sendPasswordResetEmail(email, config)
       .then(() => {
         this.toastService.success('Verifica emailul pentru link-ul de resetare a parolei');
-        this.googleAnalyticsService.eventEmitter('resetPassword', 'user', 'sendPasswordResetEmail', 'resetPassword', email, 1);
+        this.googleAnalyticEventsService.resetPassword(email);
       })
       .catch((error) => {
         this.toastService.error(error.message);
@@ -108,7 +107,7 @@ export class AuthService {
     await auth().currentUser.updatePassword(password)
       .then(() => {
         this.toastService.success('Ai schimbat parola cu succes!');
-        this.googleAnalyticsService.eventEmitter('updatePassword', 'user', 'updatePassword', 'updatePassword', 'updatePassword', 1);
+        this.googleAnalyticEventsService.updatePassword();
       })
       .catch(() => {
         this.toastService.error('Parola nu a fost schimbată. Operația necesită o autentificare recentă. Înainte de a încerca din nou, reloghează-te.');
