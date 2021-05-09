@@ -1,6 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import UserCredential = firebase.auth.UserCredential;
 import {environment} from '../../../../../src/environments/environment';
@@ -13,15 +12,15 @@ import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {GoogleAnalyticsService} from '../../../../../src/app/services/google-analytics';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from './token';
+import {UserManager} from './user-manager';
 
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-  constructor(private http: HttpClient,
+  constructor(private userManager: UserManager,
               private router: Router,
               private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
-              private route: ActivatedRoute,
               private nodemailer: NodemailerService,
               private googleAnalyticsService: GoogleAnalyticsService,
               @Inject(USER_STORAGE) private userStorage: Storage,
@@ -38,24 +37,18 @@ export class AuthService {
 
   async login(email: string, password: string, other?: any): Promise<void> {
      let userCredential: UserCredential = await this.angularFirebaseAuth.signInWithEmailAndPassword(email, password);
-     let user = await this.http.post<User>(
-        `${environment.appApi}/create-or-update-user`,
-        {},
-        {
-          headers: {
-            authtoken: await userCredential.user.getIdToken()
-          }
-        }).toPromise();
+     let user = await this.userManager.createOrUpdateUser(userCredential);
      if (other) {
-           await this.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
+           await this.userManager.updateMany(email, other.telNum, other.address, other.isDancer, other.name);
      }
      await this.userStorage.setItem('current', JSON.stringify(user));
      await this.roleBaseRedirect(user.role);
+     this.googleAnalyticsService.eventEmitter('login', 'user', 'signInWithEmailAndPassword', 'login', user.name, 1);
   }
 
 
   async getCurrent(token): Promise<void> {
-    let response = await this.getCurrentUser(token);
+    let response: User = await this.userManager.getCurrentUser(token);
     if (response) {
       await this.userStorage.setItem('current', JSON.stringify(response));
       this.googleAnalyticsService.setCurrentUser(response._id);
@@ -63,58 +56,6 @@ export class AuthService {
       this.userStorage.removeItem('current');
     }
   }
-
-
-  getCurrentUser(token): Promise<any> {
-    return this.http.post(
-      `${environment.appApi}/current-user`,
-      {},
-      {
-        headers: {
-          authtoken: token
-        }
-      }
-    ).toPromise();
-  }
-
-   getAdmin(token: string): Promise<any> {
-    return  this.http.post(
-      `${environment.appApi}/current-admin`,
-      {},
-      {
-        headers: {
-          authtoken: this.token.token.getValue()
-        }
-      }
-    ).toPromise()
-      .catch(err => console.log(err))
-    //   .subscribe(
-    //   (response: any) => {
-    //     this.isAdmin.next(true);
-    //   },
-    //   (error => console.log('error'))
-    // );
-  }
-
-  updateMany(email: string, telNum: number, address: string[], isDancer: boolean, name: string ): void {
-    this.http.post(`${environment.appApi}/user/update-many`,
-      {
-        email: email,
-        name: name,
-        telNum: telNum,
-        isDancer: isDancer,
-        address: address
-      },
-      {
-        headers: {
-          authtoken: this.token.token.getValue()
-        }
-      })
-      .subscribe(
-        (c) => console.log('date adaugate', c)
-      );
-  }
-
 
   async signUp(email: string, password: string, telNum: number, address: string[], isDancer: boolean, name: string): Promise<void> {
     let other = {
@@ -124,50 +65,29 @@ export class AuthService {
       isDancer: isDancer,
       name: name
     };
-    const result = await this.angularFirebaseAuth.createUserWithEmailAndPassword(email, password)
-      .then(async (data) => {
-        await this.login(email, password, other);
-        this.nodemailer.infoMail(`Cont nou - ${email}`,
+    await this.angularFirebaseAuth.createUserWithEmailAndPassword(email, password);
+    await this.login(email, password, other);
+    await this.userManager.updateMany(email, telNum, address, isDancer, name);
+    this.googleAnalyticsService.eventEmitter('signUp', 'user', 'signUp', 'login', email, 1);
+
+    this.nodemailer.infoMail(`Cont nou - ${email}`,
           `<h1>A fost înregistrat un cont nou</h1>
                 </br>
                 <p>Email: ${email}</p>
                 <p>Număr de telefon ${telNum}</p>
                 <p>Pentru dansuri: ${isDancer ? 'Da' : 'Nu'}</p>`);
-        await this.updateMany(email, telNum, address, isDancer, name);
-        this.nodemailer.targetMail(`Cont Brâu Muntenesc`,
-          `<h1>Îți mulțumim pentru crearea unui cont pe Brâu Muntenesc®. Poți accesa contul pentru a-ți vedea comenzile, pentru a-ți schimba parola și altele la: https://www.braumuntenesc.com/user De-abia așteptăm să te revedem!”</h1>` ,
+
+
+    this.nodemailer.targetMail(`Cont Brâu Muntenesc`,
+          `<h1>Îți mulțumim pentru crearea contului pe Brâu Muntenesc®.</h1>
+                 </br>
+                 <p>Poți accesa contul pe: <a>https://www.braumuntenesc.com</a></p>
+                 <p>O zi frumoasă!</p>  ` ,
           [email]
           );
-      })
-      .catch((error) => console.log(error));
   }
 
-  // async loginWithGoogle(): Promise<void> {
-  //   await this.angularFirebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
-  //     .then((data: UserCredential) => {
-  //       if (data.user) {
-  //         return data.user.getIdToken();
-  //       } else {
-  //         return null;
-  //       }
-  //     })
-  //     .then((token: string) => {
-  //       return this.http.post<User>(
-  //         `${environment.appApi}/create-or-update-user`,
-  //         {},
-  //         {
-  //           headers: {
-  //             authtoken: token
-  //           }
-  //         }
-  //       )
-  //         .subscribe((data: User) => {
-  //           this.roleBaseRedirect(data.role);
-  //           this.nodemailer.infoMail('Logare cu gmail', `<p>Nouă logare cu gmail - ${data.email}</p>`);
-  //         });
-  //     })
-  //     .catch(() => console.log('login failed'));
-  // }
+
 
   async resetPassword(email: string): Promise<void> {
     const config  = {
@@ -177,6 +97,7 @@ export class AuthService {
     await this.angularFirebaseAuth.sendPasswordResetEmail(email, config)
       .then(() => {
         this.toastService.success('Verifica emailul pentru link-ul de resetare a parolei');
+        this.googleAnalyticsService.eventEmitter('resetPassword', 'user', 'sendPasswordResetEmail', 'resetPassword', email, 1);
       })
       .catch((error) => {
         this.toastService.error(error.message);
@@ -187,6 +108,7 @@ export class AuthService {
     await auth().currentUser.updatePassword(password)
       .then(() => {
         this.toastService.success('Ai schimbat parola cu succes!');
+        this.googleAnalyticsService.eventEmitter('updatePassword', 'user', 'updatePassword', 'updatePassword', 'updatePassword', 1);
       })
       .catch(() => {
         this.toastService.error('Parola nu a fost schimbată. Operația necesită o autentificare recentă. Înainte de a încerca din nou, reloghează-te.');
