@@ -7,6 +7,7 @@ import {TypeGuards} from '../services/type-guard';
 import {TOKEN, USER_STORAGE} from '../app.token';
 import {Token} from '../../../projects/auth/src/lib/services/token';
 import {User} from '../../../projects/common/user';
+import {GoogleAnalyticsService} from '../services/google-analytics';
 
 @Component({
   selector: 'app-layout',
@@ -17,6 +18,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private onDestroy$: Subject<void> = new Subject();
   constructor(private router: Router,
               private authService: AuthService,
+              private googleAnalytics: GoogleAnalyticsService,
               @Inject(TOKEN) private token: Token,
               @Inject(USER_STORAGE) private userStorage: Storage
   ) { }
@@ -74,6 +76,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   public componentChangeed(object: object): void {
     this.object = object;
+    let user: User = JSON.parse(this.userStorage.getItem('current'));
+    this.googleAnalytics.eventEmitter('navigate', 'navigate', 'changeComponent', 'navigate', user.name, 1)
   }
 
   public clearComponent(): void {
