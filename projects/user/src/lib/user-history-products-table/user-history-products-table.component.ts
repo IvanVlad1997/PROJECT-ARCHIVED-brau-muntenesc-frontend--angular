@@ -4,10 +4,10 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {User} from '../../../../common/user';
 import {Order} from '../../../../common/order';
-import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {ToastService} from 'angular-toastify';
 import {formatDate} from '@angular/common';
 import {USER_STORAGE} from '../../../../../src/app/app.token';
+import {NodemailerHelper} from '../../../../../src/app/services/nodemailer-helper';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -18,7 +18,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class UserHistoryProductsTableComponent implements OnInit {
 
   constructor(private authService: AuthService,
-              private nodemailer: NodemailerService,
+              private nodemailerHelper: NodemailerHelper,
               private toastService: ToastService,
               @Inject(USER_STORAGE) private userStorage: Storage) { }
 
@@ -159,7 +159,7 @@ export class UserHistoryProductsTableComponent implements OnInit {
 
 
   sendInvoice(): void {
-    this.nodemailer.infoMail('SOLICITARE FACTURA FISCALA', `<h1>COMANDA ${JSON.stringify(this.order)}</h1> <h1>EMAIL ${this.user.email}</h1>`);
+    this.nodemailerHelper.infoFiscalBill(this.order, this.user.email);
     this.toastService.info(`Solicitarea a fost trimisă. Veți primi factura pe mail în cel mai scurt timp posibil. Dacă există nelămuriri, sunați la 0751105873.`);
   }
 }

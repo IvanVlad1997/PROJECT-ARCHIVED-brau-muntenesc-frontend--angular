@@ -5,14 +5,13 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../src/environments/environment';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Order} from '../../../../common/order';
-import {Product} from '../../../../common/product';
 import {ToastService} from 'angular-toastify';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {Program} from '../../../../common/program';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
-import {User} from "../../../../common/user";
+import {User} from '../../../../common/user';
+import {NodemailerHelper} from '../../../../../src/app/services/nodemailer-helper';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -21,7 +20,7 @@ export class UserService {
               private http: HttpClient,
               private toastService: ToastService,
               private angularFireAuth: AngularFireAuth,
-              private nodemailer: NodemailerService,
+              private nodemailerHelper: NodemailerHelper,
               @Inject(TOKEN) private token: Token,
               @Inject(USER_STORAGE) private userStorage: Storage) {}
 
@@ -267,8 +266,7 @@ export class UserService {
       .subscribe(
         (data: {ok: boolean}) => {
           if (data.ok) {
-            this.nodemailer.targetMailById('Prezență Brâu Muntenesc', `<h1>Preznța a fost adăugată în calendar</h1>
-            <p>Prezența la Brâu Muntenesc în data ${presence.date} a fost adăugată în calendar. Poți vedea calendarul în contul de pe site.</p>`, _id );
+            this.nodemailerHelper.targetByIdPresence(presence, _id);
             this.toastService.success('Prezența a fost adăugată');
           } else {
             this.toastService.error('Prezența nu a fost adăugată');
@@ -292,9 +290,8 @@ export class UserService {
       .subscribe(
         (data) => {
          if (data) {
-           this.nodemailer.infoMail('Plată abonament adăugată în calendar', `<h1>${JSON.stringify(data)}</h1>`);
-           this.nodemailer.targetMail('Plata Brâu Muntenesc', `<h1>Plata fost adăugată în calendar</h1>
-            <p>Plata în data ${payment.date} a fost adăugată în calendar cu titlul: ${payment.title} pentru contul cu emailul: ${email}</p>`, [email] );
+           this.nodemailerHelper.infoPaymaentCourse(data);
+           this.nodemailerHelper.targetMailPaymentOnlineCourse(payment, email);
            this.toastService.success('Plata a fost adăugată ');
          }  else  {
            this.toastService.error('Plata nu a fost adăugată');

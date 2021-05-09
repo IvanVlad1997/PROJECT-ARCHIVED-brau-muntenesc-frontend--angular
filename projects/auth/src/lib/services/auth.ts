@@ -8,11 +8,12 @@ import {ToastService} from 'angular-toastify';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import auth = firebase.auth;
-import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
+import {NodemailerService} from '../../../../../src/app/services/nodemailer-manager';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from './token';
 import {UserManager} from './user-manager';
 import {GoogleAnalyticEventsService} from '../../../../../src/app/services/google-analytic-events.service';
+import {NodemailerHelper} from '../../../../../src/app/services/nodemailer-helper';
 
 
 @Injectable({providedIn: 'root'})
@@ -22,6 +23,7 @@ export class AuthService {
               private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
               private nodemailer: NodemailerService,
+              private nodemailerHelper: NodemailerHelper,
               private googleAnalyticEventsService: GoogleAnalyticEventsService,
               @Inject(USER_STORAGE) private userStorage: Storage,
               @Inject(TOKEN) private token: Token
@@ -68,22 +70,8 @@ export class AuthService {
     await this.login(email, password, other);
     await this.userManager.updateMany(email, telNum, address, isDancer, name);
     this.googleAnalyticEventsService.signUp(name);
-
-    this.nodemailer.infoMail(`Cont nou - ${email}`,
-          `<h1>A fost înregistrat un cont nou</h1>
-                </br>
-                <p>Email: ${email}</p>
-                <p>Număr de telefon ${telNum}</p>
-                <p>Pentru dansuri: ${isDancer ? 'Da' : 'Nu'}</p>`);
-
-
-    this.nodemailer.targetMail(`Cont Brâu Muntenesc`,
-          `<h1>Îți mulțumim pentru crearea contului pe Brâu Muntenesc®.</h1>
-                 </br>
-                 <p>Poți accesa contul pe: <a>https://www.braumuntenesc.com</a></p>
-                 <p>O zi frumoasă!</p>  ` ,
-          [email]
-          );
+    this.nodemailerHelper.infoNewAccount(email, telNum, isDancer);
+    this.nodemailerHelper.targetNewAccount(email);
   }
 
 

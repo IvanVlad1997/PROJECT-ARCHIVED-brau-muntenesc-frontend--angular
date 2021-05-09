@@ -10,15 +10,14 @@ import {
 import {Router} from '@angular/router';
 import {Stripe} from '../services/stripe';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
-import {of, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {UserService} from '../../../../user/src/lib/services/user';
 import {CartService} from '../services/cart';
-import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
 import {formatDate} from '@angular/common';
-import {switchMap} from 'rxjs/operators';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
+import {NodemailerHelper} from '../../../../../src/app/services/nodemailer-helper';
 
 @Component({
   selector: 'lib-payment',
@@ -34,7 +33,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private userService: UserService,
               private cartService: CartService,
-              private nodemailer: NodemailerService,
+              private nodemailerHelper: NodemailerHelper,
               @Inject(TOKEN) private tokenStorage: Token,
               @Inject(USER_STORAGE) private userStorage: Storage) {}
 
@@ -182,7 +181,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
                 this.userService.createNewOrder(result, this.token)
                   .subscribe(
                     (ok) => {
-                      const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email];
                       if (ok) {
                         console.log(ok);
                         for (const product of ok.products) {
@@ -201,14 +199,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
                             }
                           }
                         }
-                        let textProduse: string = '';
-                        for (const product of ok.products) {
-                          textProduse = textProduse + `<br/>${product.product.title} x ${product.count}`;
-                          if (emails.indexOf(product.product.brand.email) > -1) {
-                            emails.push(product.product.brand.email);
-                          }
-                        }
-                        this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată online pentru Brâu Muntenesc a fost trimisă.</h1><h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, emails);
+                        this.nodemailerHelper.targetMailOnlineOrder(this.user.email, ok);
                         this.cartService.removeAllFromCart();
                         this.userService.emptyUserCart();
                       }

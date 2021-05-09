@@ -77,7 +77,7 @@ function createInitializer(initializer: InitService): () => Promise<void> {
           appVersion: undefined,
           dsn: environment.sentry.dsn,
           tracingOrigins: environment.sentry.tracingOrigins,
-          enabled: true,
+          enabled: environment.production,
         })
     ],
   providers: [ToastService,

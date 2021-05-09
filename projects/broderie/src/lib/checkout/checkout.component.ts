@@ -7,10 +7,10 @@ import {CartService} from '../services/cart';
 import {ToastService} from 'angular-toastify';
 import {ContentChange} from 'ngx-quill';
 import {Router} from '@angular/router';
-import {NodemailerService} from '../../../../admin/src/lib/services/nodemailer';
 import {User} from '../../../../common/user';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
+import {NodemailerHelper} from '../../../../../src/app/services/nodemailer-helper';
 
 @Component({
   selector: 'lib-checkout',
@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               private cartService: CartService,
               private toastService: ToastService,
               private router: Router,
-              private nodemailer: NodemailerService,
+              private nodemailerHelper: NodemailerHelper,
               @Inject(TOKEN) private tokenStorage: Token,
               @Inject(USER_STORAGE) private userStorage: Storage
               ) { }
@@ -181,17 +181,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.createNewCashOrder()
       .subscribe(
         (res) => {
-          const emails: string[] = ['ivanvlad1997@gmail.com', 'mariana@telegrama.ro', this.user.email];
-          let textProduse: string = '';
-
-          res.userCart.products.forEach(product => {
-            textProduse = textProduse + `<br/>${product.product.title} x ${product.count}`;
-            if (emails.indexOf(product.product.brand.email) > -1) {
-              emails.push(product.product.brand.email);
-            }
-          });
-
-          this.nodemailer.targetMail('Comandă Brâu Muntenesc', `<h1>Comanda cu plată la livrare pentru Brâu Muntenesc a fost trimisă.</h1><h1>Produse comandate:</h1><h1>${textProduse}</h1><h1>Email user: ${this.user.email}</h1>`, emails);
+          this.nodemailerHelper.targetNewOrder(res, this.user.email);
           this.cartService.removeAllFromCart();
           this.userService.emptyUserCart();
           this.toastService.success('Comanda a fost preluată');
