@@ -31,27 +31,27 @@
     <div class="margin-top-1" fxLayout="column" >
       <button mat-raised-button color="primary"  *ngIf="user && user.email" (click)="addToWishlist(product._id)">Adaugă la favorite</button>
       <button mat-raised-button color="accent" *ngIf="user && user.email" (click)="leaveARating()" i>Lasă un rating</button>
-      <button mat-raised-button color="warn" *ngIf="user && !user.email" routerLink="/auth/login">Loghează-te pentru a lăsa un rating</button>
+      <button mat-raised-button color="warn" *ngIf="!user " routerLink="/auth/login">Loghează-te pentru a lăsa un rating</button>
       <button mat-raised-button color='warn' (click)="handleCartAdd(product)" >Adaugă in coșul de cumpărături</button>
     </div>
   </div>
 
-  <mat-tab-group class="padding" fxFlex="80">
-    <mat-tab label="Descriere" >
-      <p fxLayoutAlign="center center">{{product.description}}</p>
-    </mat-tab>
-    <mat-tab label="Mai multe" >
-      <p fxLayoutAlign="center center">
-        Transport {{product.shipping}}
-     </p>
-      <p fxLayoutAlign="center center" *ngIf="product.quantity > 0">
-        În stoc {{product.quantity}}
-      </p>
-      <p fxLayoutAlign="center center">
-        Vândute {{product.sold}}
-      </p>
-    </mat-tab>
-  </mat-tab-group>
+<!--  <mat-tab-group class="padding" fxFlex="80">-->
+<!--    <mat-tab label="Descriere" >-->
+<!--      <p fxLayoutAlign="center center">{{product.description}}</p>-->
+<!--    </mat-tab>-->
+<!--    <mat-tab label="Mai multe" >-->
+<!--      <p fxLayoutAlign="center center">-->
+<!--        Transport {{product.shipping}}-->
+<!--     </p>-->
+<!--      <p fxLayoutAlign="center center" *ngIf="product.quantity > 0">-->
+<!--        În stoc {{product.quantity}}-->
+<!--      </p>-->
+<!--      <p fxLayoutAlign="center center">-->
+<!--        Vândute {{product.sold}}-->
+<!--      </p>-->
+<!--    </mat-tab>-->
+<!--  </mat-tab-group>-->
 
 
 
