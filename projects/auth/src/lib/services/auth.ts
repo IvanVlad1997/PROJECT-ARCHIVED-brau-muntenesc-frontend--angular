@@ -45,7 +45,7 @@ export class AuthService {
      }
      await this.userStorage.setItem('current', JSON.stringify(user));
      await this.roleBaseRedirect(user.role);
-     this.googleAnalyticEventsService.login(user.name);
+     this.googleAnalyticEventsService.login(user);
   }
 
 

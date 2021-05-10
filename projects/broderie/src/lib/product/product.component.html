@@ -29,9 +29,9 @@
       </p>
     </div>
     <div class="margin-top-1" fxLayout="column" >
-      <button mat-raised-button color="primary"  *ngIf="user.email" (click)="addToWishlist(product._id)">Adaugă la favorite</button>
-      <button mat-raised-button color="accent" *ngIf="user.email" (click)="leaveARating()" i>Lasă un rating</button>
-      <button mat-raised-button color="warn" *ngIf="!user.email" routerLink="/auth/login">Loghează-te pentru a lăsa un rating</button>
+      <button mat-raised-button color="primary"  *ngIf="user && user.email" (click)="addToWishlist(product._id)">Adaugă la favorite</button>
+      <button mat-raised-button color="accent" *ngIf="user && user.email" (click)="leaveARating()" i>Lasă un rating</button>
+      <button mat-raised-button color="warn" *ngIf="user && !user.email" routerLink="/auth/login">Loghează-te pentru a lăsa un rating</button>
       <button mat-raised-button color='warn' (click)="handleCartAdd(product)" >Adaugă in coșul de cumpărături</button>
     </div>
   </div>

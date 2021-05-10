@@ -22,12 +22,16 @@ export class GoogleAnalyticEventsService {
   // //     .eventEmitter(‘remove_from_cart’, ‘shop’, ‘cart’, ‘click’, productId);
   // }
 
-  navigate(name): void {
-    this.googleAnalyticsService.eventEmitter('navigate', 'navigate', 'changeComponent', 'navigate', name, 1);
+  navigate(user: User): void {
+    if (user && user.name) {
+      this.googleAnalyticsService.eventEmitter('navigate', 'navigate', 'changeComponent', 'navigate', user.name, 1);
+    }
   }
 
-  login(name): void {
-    this.googleAnalyticsService.eventEmitter('login', 'user', 'signInWithEmailAndPassword', 'login', name, 1);
+  login(user: User): void {
+    if (user && user.name) {
+      this.googleAnalyticsService.eventEmitter('login', 'user', 'signInWithEmailAndPassword', 'login', user.name, 1);
+    }
   }
 
   signUp(name): void {

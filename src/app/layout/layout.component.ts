@@ -77,7 +77,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   public componentChangeed(object: object): void {
     this.object = object;
     let user: User = JSON.parse(this.userStorage.getItem('current'));
-    this.googleAnalyticEventsService.navigate(user.name);
+    this.googleAnalyticEventsService.navigate(user);
   }
 
   public clearComponent(): void {
