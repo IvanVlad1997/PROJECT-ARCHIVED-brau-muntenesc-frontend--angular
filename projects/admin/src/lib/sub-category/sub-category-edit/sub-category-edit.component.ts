@@ -33,12 +33,15 @@ export class SubCategoryEditComponent implements OnInit {
   }
 
   async edit(): Promise<void> {
-    if (this.subCategory.slug) {
+    try {
+      if (this.subCategory.slug) {
         await this.subCategoryService.updateSubCategory(this.subCategory.slug, this.subCategory);
-    } else {
+      } else {
         await this.subCategoryService.createSubCategory(this.subCategory);
+      }
+      this.ref.close();
+    } catch (e) {
+      this.toastService.error(`Nu s-a putut edita subcategoria.`);
     }
-    this.ref.close();
   }
-
 }

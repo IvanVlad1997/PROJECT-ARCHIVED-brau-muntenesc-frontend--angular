@@ -34,9 +34,14 @@ export class SubCategoryListActionsComponent implements AgFrameworkComponent<Bas
   }
 
   async delete(): Promise<void> {
-    if (window.confirm(`Esti sigur că vrei să stergi subcategoria ${this.subcategory.name}?`)) {
+    try {
+      if (window.confirm(`Esti sigur că vrei să stergi subcategoria ${this.subcategory.name}?`)) {
         this.subCategoryService.removeSubCategory(this.subcategory.slug);
+      }
+    } catch (e) {
+      this.toastService.error('Nu s-a putut șterge subcategoria!');
     }
+
   }
 
 

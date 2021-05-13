@@ -1,14 +1,14 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../src/environments/environment';
-import {Category} from '../../../../common/category';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {SubCategory} from '../../../../common/sub-category';
 import {ToastService} from 'angular-toastify';
 import {TOKEN} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';
+import {SubCategoryManager} from './sub-category-manager';
 
 @Injectable({providedIn: 'root'})
 export class SubCategoryService {
@@ -19,6 +19,7 @@ export class SubCategoryService {
               private angularFireAuth: AngularFireAuth,
               private authService: AuthService,
               private toastService: ToastService,
+              private subCategoryManager: SubCategoryManager,
               @Inject(TOKEN) private token: Token) {}
 
 
@@ -38,50 +39,21 @@ export class SubCategoryService {
     return this.http.get(`${environment.appApi}/sub-category/${slug}`);
   }
 
-  updateSubCategory(slug: string, subCategory: SubCategory): void {
-    this.http.put<SubCategory>(`${environment.appApi}/sub-category/${slug}`, {subCategory},
-      {
-        headers: {
-          authtoken: this.token.token.getValue()
-        }
-      })
-      .subscribe(c => {
-          this.toastService.success(`Subcategoria ${subCategory.name} a fost editata cu succes!`);
-          this.getSubCategories();
-      },
-        (error => {
-          this.toastService.error(`Nu s-a putut edita subcategoria.`);
-        }));
+  async updateSubCategory(slug: string, subCategory: SubCategory): Promise<void> {
+      let updatedSubCategory: SubCategory = await this.subCategoryManager.updateSubCategory(slug, subCategory);
+      this.toastService.success(`Subcategoria ${subCategory.name} a fost editata cu succes!`);
+      this.getSubCategories();
   }
 
-  createSubCategory(subCategory: SubCategory): void {
-    this.http.post<SubCategory>(`${environment.appApi}/sub-category`, {subCategory},
-      {
-        headers: {
-          authtoken: this.token.token.getValue()
-        }
-      })
-      .subscribe(c => {
-        this.toastService.success(`Subcategoria ${subCategory.name} a fost creata cu succes!`);
-        this.getSubCategories();
-      },
-        (error => {
-          this.toastService.error(`Nu s-a putut crea subcategoria.`);
-        }));
+  async createSubCategory(subCategory: SubCategory): Promise<void> {
+    let newSubCategory: SubCategory = await this.subCategoryManager.createSubCategory(subCategory);
+    this.toastService.success(`Subcategoria ${subCategory.name} a fost creata cu succes!`);
+    this.getSubCategories();
   }
 
-  removeSubCategory(slug: string): void {
-    this.http.delete<SubCategory>(`${environment.appApi}/sub-category/${slug}`, {
-      headers: {
-        authtoken: this.token.token.getValue()
-      }
-    }).subscribe(() => {
-        this.toastService.success('Subcategoria a fost ștearsă!');
-        this.getSubCategories();
-      },
-      (error => {
-        this.toastService.error('Nu s-a putut șterge subcategoria!');
-      })
-    );
+  async removeSubCategory(slug: string): Promise<void> {
+    let deletedSubCategory: SubCategory = await this.subCategoryManager.removeSubCategory(slug);
+    this.toastService.success('Subcategoria a fost ștearsă!');
+    this.getSubCategories();
   }
 }
