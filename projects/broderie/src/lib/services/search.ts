@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {ProductService} from './product';
 import {Category} from '../../../../common/category';
 import {SubCategory} from '../../../../common/sub-category';
 

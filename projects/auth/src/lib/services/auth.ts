@@ -22,7 +22,6 @@ export class AuthService {
               private router: Router,
               private angularFirebaseAuth: AngularFireAuth,
               private toastService: ToastService,
-              private nodemailer: NodemailerService,
               private nodemailerHelper: NodemailerHelper,
               private googleAnalyticEventsService: GoogleAnalyticEventsService,
               @Inject(USER_STORAGE) private userStorage: Storage,

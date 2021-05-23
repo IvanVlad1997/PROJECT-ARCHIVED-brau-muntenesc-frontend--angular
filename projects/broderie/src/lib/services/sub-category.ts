@@ -2,8 +2,6 @@ import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../src/environments/environment';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {SubCategory} from '../../../../common/sub-category';
 import {ToastService} from 'angular-toastify';
 import {TOKEN} from '../../../../../src/app/app.token';
@@ -16,8 +14,6 @@ export class SubCategoryService {
   private subCategoriesUpdated: BehaviorSubject<SubCategory[]> = new BehaviorSubject<SubCategory[]>([]);
 
   constructor(private http: HttpClient,
-              private angularFireAuth: AngularFireAuth,
-              private authService: AuthService,
               private toastService: ToastService,
               private subCategoryManager: SubCategoryManager,
               @Inject(TOKEN) private token: Token) {}
