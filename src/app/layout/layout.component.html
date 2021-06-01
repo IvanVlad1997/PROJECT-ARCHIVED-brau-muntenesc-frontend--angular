@@ -86,6 +86,9 @@
                 <mat-icon svgIcon="account"></mat-icon>
               </a>
               <mat-menu #menu="matMenu">
+                <button mat-menu-item disabled  *ngIf="isAuthenticated" >
+                  <span>{{user.name}}</span>
+                </button>
                 <button mat-menu-item (click)="logout()"  *ngIf="isAuthenticated" >
                   <span>Log out</span>
                 </button>

@@ -8,7 +8,6 @@ import {ToastService} from 'angular-toastify';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import auth = firebase.auth;
-import {NodemailerService} from '../../../../../src/app/services/nodemailer-manager';
 import {TOKEN, USER_STORAGE} from '../../../../../src/app/app.token';
 import {Token} from './token';
 import {UserManager} from './user-manager';

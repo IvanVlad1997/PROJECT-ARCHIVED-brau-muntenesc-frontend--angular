@@ -39,6 +39,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
     return undefined;
   }
 
+  get user(): User {
+    let user: User = JSON.parse(this.userStorage.getItem('current'));
+    return user;
+  }
+
   get search(): TemplateRef<any> {
     if (this.object && TypeGuards.isSearchAwareComponent(this.object)) {
       return this.object.search;
@@ -62,11 +67,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.token.token.pipe(takeUntil(this.onDestroy$)).subscribe(
       (token) => {
         this.isAuthenticated = false;
-        this.isAdmin = false;
-        let user: User = JSON.parse(this.userStorage.getItem('current'));
-        if (user) {
+        if (token)  {
           this.isAuthenticated = true;
         }
+        // TODO: Doesn't work after a sign up
+        this.isAdmin = false;
+        let user: User = JSON.parse(this.userStorage.getItem('current'));
         if (user && user.role === 'admin') {
           this.isAdmin = true;
         }
