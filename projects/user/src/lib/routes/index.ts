@@ -3,8 +3,8 @@ import {UserComponent} from '../user/user.component';
 import {PasswordComponent} from '../password/password.component';
 import {WishlistComponent} from '../wishlist/wishlist.component';
 import {DashboardComponent} from '../dashboard/dashboard.component';
-import {CalendarComponent} from '../calendar/calendar.component';
 import {PresenceHistoryComponent} from '../presence-history/presence-history.component';
+import {MusicComponent} from '../music/music.component';
 
 export const routes = [
   {
@@ -30,6 +30,10 @@ export const routes = [
       {
         path: 'calendar',
         component: PresenceHistoryComponent
+      },
+      {
+        path: 'colaje',
+        component: MusicComponent
       }
     ]
   }

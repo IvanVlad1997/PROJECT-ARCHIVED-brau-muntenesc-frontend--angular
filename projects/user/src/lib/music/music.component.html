@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" >
+  <h1>Colaje</h1>
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="space-around center" >
+
+  <div fxFlex="30" fxFlex.lt-md="60" class="video-player">
+    <h1>Colajul 1</h1>
+    <div  plyr
+          [plyrTitle]="'Colaj 1'"
+          [plyrPlaysInline]="true"
+          [plyrSources]="videoSources1" >
+    </div>
+  </div>
+
+  <div fxFlex="30" fxFlex.lt-md="60" class="video-player">
+    <h1>Colajul 2</h1>
+    <div  plyr
+          [plyrTitle]="'Colaj 2'"
+          [plyrPlaysInline]="true"
+          [plyrSources]="videoSources2" >
+    </div>
+  </div>
+
+  <div   fxFlex="30" fxFlex.lt-md="60" class="video-player">
+    <h1>Colajul 3</h1>
+    <div  plyr
+        [plyrTitle]="'Colaj 3'"
+        [plyrPlaysInline]="true"
+        [plyrSources]="videoSources3" >
+  </div>
+  </div>
+</div>

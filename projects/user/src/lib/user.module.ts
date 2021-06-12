@@ -31,6 +31,8 @@ import { PresenceHistoryComponent } from './presence-history/presence-history.co
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ProductItemComponent } from './wishlist/product-item/product-item.component';
 import {BarRatingModule} from 'ngx-bar-rating';
+import { MusicComponent } from './music/music.component';
+import {PlyrModule} from "ngx-plyr";
 registerLocaleData(localesRO, 'ro');
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -40,27 +42,28 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 
 
 @NgModule({
-  declarations: [UserHistoryComponent, UserComponent, PasswordComponent, WishlistComponent, UserHistoryProductsTableComponent, DashboardComponent, ChangeUserPropDialogComponent, CalendarComponent, PresenceHistoryComponent, ProductItemComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    MatListModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    FlexModule,
-    CommonModule,
-    MatButtonModule,
-    MatInputModule,
-    FormsModule,
-    MatDialogModule,
-    ExtendedModule,
-    MatCardModule,
-    QuillModule.forRoot(),
-    QRCodeModule,
-    FullCalendarModule,
-    MatTooltipModule,
-    BarRatingModule
-  ],
+  declarations: [UserHistoryComponent, UserComponent, PasswordComponent, WishlistComponent, UserHistoryProductsTableComponent, DashboardComponent, ChangeUserPropDialogComponent, CalendarComponent, PresenceHistoryComponent, ProductItemComponent, MusicComponent],
+    imports: [
+        RouterModule.forChild(routes),
+        MatListModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        FlexModule,
+        CommonModule,
+        MatButtonModule,
+        MatInputModule,
+        FormsModule,
+        MatDialogModule,
+        ExtendedModule,
+        MatCardModule,
+        QuillModule.forRoot(),
+        QRCodeModule,
+        FullCalendarModule,
+        MatTooltipModule,
+        BarRatingModule,
+        PlyrModule
+    ],
   exports: [CalendarComponent]
 })
 export class UserModule {}
