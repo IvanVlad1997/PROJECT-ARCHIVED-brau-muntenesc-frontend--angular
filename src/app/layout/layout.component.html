@@ -90,19 +90,19 @@
                   <span>{{user.name}}</span>
                 </button>
                 <button mat-menu-item (click)="logout()"  *ngIf="isAuthenticated" >
-                  <span>Log out</span>
+                  <mat-icon svgIcon="logout"></mat-icon><span>Log out</span>
                 </button>
                 <button mat-menu-item [routerLink]="['/user']"  *ngIf="isAuthenticated" >
-                  <span>Cont</span>
+                  <mat-icon svgIcon="account"></mat-icon><span>Cont</span>
                 </button>
                 <button mat-menu-item [routerLink]="['/user/wishlist']"  *ngIf="isAuthenticated" >
-                  <span>Favorite</span>
+                  <mat-icon svgIcon="heart"></mat-icon><span>Favorite</span>
                 </button>
                 <button mat-menu-item [routerLink]="['/user/history']"  *ngIf="isAuthenticated" >
-                  <span>Istoric</span>
+                  <mat-icon svgIcon="history"></mat-icon><span>Istoric</span>
                 </button>
                 <button mat-menu-item [routerLink]="['/user/password']"  *ngIf="isAuthenticated" >
-                  <span>Schimbă parola</span>
+                  <mat-icon svgIcon="lock"></mat-icon><span>Schimbă parola</span>
                 </button>
               </mat-menu>
             </div >
