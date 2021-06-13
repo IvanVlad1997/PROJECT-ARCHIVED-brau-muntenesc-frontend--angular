@@ -51,24 +51,7 @@ export class CursantiListActionsComponent implements AgFrameworkComponent<BaseCo
       });
   }
 
-  generateQR(): void {
-    this.dialog.open(QrDialogComponent,
-      {
-        data: this.user,
-        disableClose: true
-      });
-  }
 
-  changeGroup(): void {
-    this.dialog.open(PanouGrupaComponent,
-      {
-        data: {
-          user: this.user,
-          context: this.context
-        },
-        disableClose: true
-      });
-  }
 
   formatTodayDate(): string {
     const format = 'yyyy-MM-dd';

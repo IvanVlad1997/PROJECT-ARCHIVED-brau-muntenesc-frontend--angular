@@ -4,12 +4,7 @@
 <a mat-icon-button color="warn" (click)="viewCalendar()">
   <mat-icon svgIcon="calendar"></mat-icon>
 </a>
-<a mat-icon-button color="warn" (click)="generateQR()">
-  <mat-icon svgIcon="qrcode"></mat-icon>
-</a>
-<a mat-icon-button color="accent" (click)="changeGroup()">
-  <mat-icon svgIcon="select-group"></mat-icon>
-</a>
+
 <a mat-icon-button (click)="presenceForToday()">
   <mat-icon [color]="findIfLastDateIsToday() ? 'primary' : 'warn'" svgIcon="hand-peace"></mat-icon>
 </a>

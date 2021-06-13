@@ -1,16 +1,22 @@
-<div fxLayout="row" fxLayoutAlign="space-around center">
-  <mat-form-field>
+<div fxLayout="row" [@openClose]="isSelected ? 'open' : 'closed'" fxLayoutAlign="center center">
+<!--  <mat-form-field>-->
+<!--    <mat-label>Grupă</mat-label>-->
+<!--    <mat-select (valueChange)="valueChange($event)"  >-->
+<!--      <mat-option [value]="">Toți cursanții</mat-option>-->
+<!--      <mat-option *ngFor="let grupa of programs" [value]="grupa">{{grupa.category}}-{{grupa.interval}}</mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+  <mat-form-field appearance="fill">
     <mat-label>Grupă</mat-label>
-    <mat-select (valueChange)="valueChange($event)"  >
-      <mat-option [value]="">Toți cursanții</mat-option>
+    <mat-select  multiple (valueChange)="valueChange($event)" >
       <mat-option *ngFor="let grupa of programs" [value]="grupa">{{grupa.category}}-{{grupa.interval}}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
-<ag-grid-angular
+<ag-grid-angular *ngIf="selectedProgram && selectedProgram.length > 0"
   [pagination]="true"
   domLayout="autoHeight"
-  class="ag-theme-alpine"
+  class="ag-theme-alpine ag-grid"
   [rowData]="rowData "
   [columnDefs]="columnDefs"
   [defaultColDef]="defaultColDef"

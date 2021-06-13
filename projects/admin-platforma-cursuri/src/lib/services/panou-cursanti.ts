@@ -23,7 +23,7 @@ export class CursantiService {
     return this.usersUpdated.asObservable();
   }
 
-  getUsers(group: Program): void {
+  getUsers(group: Program[]): void {
     this.http.post<User[]>(`${environment.appApi}/users/dancers`,
       {
         group: group

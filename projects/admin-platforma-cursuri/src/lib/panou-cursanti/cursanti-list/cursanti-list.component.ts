@@ -12,15 +12,35 @@ import {Program} from '../../../../../common/program';
 import {distinct, distinctUntilChanged, switchMap, takeUntil} from 'rxjs/operators';
 import {TOKEN} from "../../../../../../src/app/app.token";
 import {Token} from "../../../../../auth/src/lib/services/token";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {LastIconsComponent} from "../last-icons/last-icons.component";
 
 @Component({
   selector: 'lib-cursanti-list',
   templateUrl: './cursanti-list.component.html',
-  styleUrls: ['./cursanti-list.component.scss']
+  styleUrls: ['./cursanti-list.component.scss'],
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        opacity: 1,
+        backgroundColor: '#00838f'
+      })),
+      state('closed', style({
+        height: '70vh',
+        backgroundColor: '#00ffff',
+      })),
+      transition('open => closed', [
+        animate('1.5s')
+      ]),
+      transition('closed => open', [
+        animate('1.5s')
+      ]),
+    ]),
+  ],
 })
 export class CursantiListComponent implements OnInit, OnDestroy {
   private programSub: Subscription;
-  public selectedProgram: Program;
+  public selectedProgram: Program[];
   private onDestroy$: Subject<void> = new Subject();
 
   constructor(private dialog: MatDialog,
@@ -35,7 +55,7 @@ export class CursantiListComponent implements OnInit, OnDestroy {
 
   columnDefs = [
     { headerName: 'Actions',
-      width: 240,
+      width: 150,
       cellRendererFramework: CursantiListActionsComponent
     },
     { headerName: 'Nume',
@@ -67,9 +87,14 @@ export class CursantiListComponent implements OnInit, OnDestroy {
       headerName: 'Ultima Plată',
       cellRendererFramework: UltimaPlataComponent,
       width: 150
-    }
-
+    },
+    { headerName: 'More actions',
+      width: 100,
+      cellRendererFramework: LastIconsComponent
+    },
   ];
+  isSelected = false;
+
 
   rowData: any;
   userSubscription: Subscription;
@@ -89,6 +114,8 @@ export class CursantiListComponent implements OnInit, OnDestroy {
     );
   }
 
+
+
   loadPrograms(): void {
     this.programService.getPrograms();
     this.programSub = this.programService.getProgramListener()
@@ -101,7 +128,7 @@ export class CursantiListComponent implements OnInit, OnDestroy {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
-    this.cursantiService.getUsers(undefined);
+    // this.cursantiService.getUsers(undefined);
     this.userSubscription = this.cursantiService.getUsersListener()
       .pipe(
         distinct()
@@ -126,10 +153,16 @@ export class CursantiListComponent implements OnInit, OnDestroy {
   }
 
 
-  valueChange(e: Program): void {
+  valueChange(e: Program[]): void {
     this.selectedProgram = e;
-    this.cursantiService.getUsers( e );
+    if (this.selectedProgram && this.selectedProgram.length > 0) {
+      this.isSelected = true;
+      this.cursantiService.getUsers( this.selectedProgram );
+    } else {
+      this.isSelected = false;
+    }
   }
+
 }
 
 

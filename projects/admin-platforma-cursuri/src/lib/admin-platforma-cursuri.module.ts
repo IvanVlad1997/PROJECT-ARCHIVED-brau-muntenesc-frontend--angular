@@ -9,7 +9,7 @@ import {routes} from './routes';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -41,10 +41,11 @@ import { PanouGrupaComponent } from './panou-cursanti/panou-grupa/panou-grupa.co
 import { DayReportComponent } from './day-report/day-report.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LastIconsComponent } from './panou-cursanti/last-icons/last-icons.component';
 
 
 @NgModule({
-  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent, UltimaPlataComponent, PanouGrupaComponent, DayReportComponent, DashboardComponent],
+  declarations: [AdminPlatformaCursuriComponent, VideoListComponent, VideoListActionsComponent, VideoListEditComponent, ImageListComponent, ImageEditComponent, VideoGaleryEditComponent, VideoGaleryListComponent, VideoGaleryListActionsComponent, PriceListComponent, PriceEditComponent, PriceActionsListComponent, ProgramActionsListComponent, ProgramListComponent, ProgramEditComponent, CursantiListComponent, CursantiListActionsComponent, CursantiPayComponent, CursantiCalendarComponent, QrDialogComponent, UltimaPlataComponent, PanouGrupaComponent, DayReportComponent, DashboardComponent, LastIconsComponent],
     imports: [
         AgGridModule,
         RouterModule.forChild(routes),
@@ -64,6 +65,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         MatCheckboxModule,
         QRCodeModule,
         MatDatepickerModule,
+        ReactiveFormsModule,
     ],
   exports: [AdminPlatformaCursuriComponent],
   // providers: [
