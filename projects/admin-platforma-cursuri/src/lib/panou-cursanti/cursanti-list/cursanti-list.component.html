@@ -10,6 +10,7 @@
     <mat-label>Grupă</mat-label>
     <mat-select  multiple (valueChange)="valueChange($event)" >
       <mat-option *ngFor="let grupa of programs" [value]="grupa">{{grupa.category}}-{{grupa.interval}}</mat-option>
+      <mat-option [value]="undefined">Fără grupă</mat-option>
     </mat-select>
   </mat-form-field>
 </div>

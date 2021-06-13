@@ -82,7 +82,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   loadAllProducts(): void {
     this.loading = true;
-    this.productSubscription = this.productService.getProductsByCount(25)
+    this.productSubscription = this.productService.getProductsByCount(1000)
       .subscribe((products: Product[]) => {
           this.products = products;
           this.loading = false;
