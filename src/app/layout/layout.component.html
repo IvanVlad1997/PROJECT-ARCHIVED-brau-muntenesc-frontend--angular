@@ -81,10 +81,8 @@
             <ng-container *ngTemplateOutlet="search" fxFlex="50"></ng-container>
           </div>
           <div fxFlex="50"  fxLayout="row" fxLayoutAlign="end center">
-            <div fxLayout="row" fxLayoutAlign="end center" *ngIf="isAuthenticated">
-              <a mat-icon-button class="account-image" [matMenuTriggerFor]="menu">
-                <mat-icon svgIcon="account"></mat-icon>
-              </a>
+            <div fxLayout="row" fxLayoutAlign="end center" *ngIf="isAuthenticated" class="account-image">
+              <ngx-avatar [name]="user.name" [bgColor]="'#00838f'" [matMenuTriggerFor]="menu"></ngx-avatar>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item disabled  *ngIf="isAuthenticated" >
                   <span>{{user.name}}</span>

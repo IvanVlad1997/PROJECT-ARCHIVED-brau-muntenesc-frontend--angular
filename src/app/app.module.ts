@@ -33,6 +33,7 @@ import {FrontendSentryModule} from '../../projects/sentry/src/lib/sentry.module'
 import {GoogleAnalyticsService} from './services/google-analytics';
 import {TOKEN, USER_STORAGE} from './app.token';
 import {Token} from '../../projects/auth/src/lib/services/token';
+import {AvatarModule} from "ngx-avatar";
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -74,11 +75,12 @@ function createInitializer(initializer: InitService): () => Promise<void> {
         MatProgressSpinnerModule,
         MatNativeDateModule,
         FrontendSentryModule.forRoot({
-          appVersion: undefined,
-          dsn: environment.sentry.dsn,
-          tracingOrigins: environment.sentry.tracingOrigins,
-          enabled: environment.production,
-        })
+            appVersion: undefined,
+            dsn: environment.sentry.dsn,
+            tracingOrigins: environment.sentry.tracingOrigins,
+            enabled: environment.production,
+        }),
+        AvatarModule
     ],
   providers: [ToastService,
     NgxImageCompressService,

@@ -57,6 +57,7 @@
     "mongoose": "^5.11.8",
     "morgan": "^1.10.0",
     "ng5-slider": "^1.2.6",
+    "ngx-avatar": "^4.1.0",
     "ngx-bar-rating": "^2.0.0",
     "ngx-image-compress": "^11.0.3",
     "ngx-plyr": "^4.0.0",
