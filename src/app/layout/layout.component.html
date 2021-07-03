@@ -6,11 +6,11 @@
       </button>
     </mat-toolbar>
     <mat-toolbar color="accent" fxShow.lt-md="false">
-      <mat-toolbar-row>
+      <mat-toolbar-row class="app-name">
         Brâu Muntenesc
       </mat-toolbar-row>
     </mat-toolbar>
-    <mat-nav-list class="menu">
+    <mat-nav-list class="menu" fxLayout="column" fxLayoutAlign="start center" >
       <a mat-list-item routerLink="">
         <mat-icon mat-list-icon svgIcon="home"></mat-icon>
         <span >Acasă</span>
@@ -61,18 +61,26 @@
         <mat-icon mat-list-icon svgIcon="account-arrow-right-outline"></mat-icon>
         <span>Ieși de pe cont</span>
       </a>
+      <span fxFlex class="space-until-logo"></span>
+      <a mat-list-item fxLayoutAlign="center center">
+        <img class="logo" src="assets/logo.png">
+        <span>Brâu Muntenesc</span>
+      </a>
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content >
-    <mat-toolbar color="primary">
+    <mat-toolbar class="toolbar">
       <mat-toolbar-row fxLayout="row" fxLayoutAlign="start center">
-        <div fxFlex="33" >
-          <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon svgIcon="menu"></mat-icon>
-          </button>
+        <div fxFlex="33"  >
+          <div class="button-container"  fxLayoutAlign="center center" >
+            <button mat-icon-button (click)="sidenav.toggle()">
+              <mat-icon svgIcon="menu" color="primary"></mat-icon>
+            </button>
+          </div>
         </div>
         <div fxFlex="33" fxLayoutAlign="center center">
-          <h1 *ngIf="header" >
+          <h1 *ngIf="header" class="title" >
             <ng-container *ngTemplateOutlet="header"></ng-container>
           </h1>
         </div>
@@ -82,7 +90,7 @@
           </div>
           <div fxFlex="50"  fxLayout="row" fxLayoutAlign="end center">
             <div fxLayout="row" fxLayoutAlign="end center" *ngIf="isAuthenticated" class="account-image">
-              <ngx-avatar [name]="user.name" [bgColor]="'#00838f'" [matMenuTriggerFor]="menu"></ngx-avatar>
+              <ngx-avatar [name]="user.name" [bgColor]="'#00877A'" [matMenuTriggerFor]="menu" size="40" class="avatar"></ngx-avatar>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item disabled  *ngIf="isAuthenticated" >
                   <span>{{user.name}}</span>
@@ -105,11 +113,11 @@
               </mat-menu>
             </div >
             <div *ngIf="!isAuthenticated" fxHide.lt-md>
-              <button mat-raised-button routerLink="/auth/login" *ngIf="!isAuthenticated"  >
+              <button color="primary" mat-stroked-button  routerLink="/auth/login" *ngIf="!isAuthenticated"  >
                 <span>Contul meu</span>
               </button>
               <span fxFlex></span>
-              <button mat-raised-button class="inregistrare-margin" routerLink="/auth/signup" *ngIf="!isAuthenticated" >
+              <button color="primary" mat-raised-button  class="inregistrare-margin" routerLink="/auth/signup" *ngIf="!isAuthenticated" >
                 <span>Înregistrare</span>
               </button>
             </div>
@@ -122,12 +130,11 @@
       <div>
       </div>
     </mat-toolbar>
-    <div  fxLayout="row wrap" fxLayoutAlign="center center">
-      <div   fxFlex="100">
+    <div  fxLayout="row wrap" fxLayoutAlign="center center" class="under-sidenav">
+      <mat-card class="content-container" fxFlex="100" >
         <router-outlet  (activate)="componentChangeed($event)" (deactivate)="clearComponent()"></router-outlet>
-      </div>
-      <app-footer class="footer">
-        I'm the Sticky Footer.
+      </mat-card>
+      <app-footer class="footer" fxFlex="100">
       </app-footer>
     </div>
   </mat-sidenav-content>

@@ -1,5 +1,5 @@
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
-import {APP_INITIALIZER, ErrorHandler, NgModule} from '@angular/core';
+import {APP_INITIALIZER, ErrorHandler, LOCALE_ID, NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -98,7 +98,10 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     {
       provide: TOKEN,
       useClass: Token
-
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'ro-RO'
     }
   ],
   exports: [

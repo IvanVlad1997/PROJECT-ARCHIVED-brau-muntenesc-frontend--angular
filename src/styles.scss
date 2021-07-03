@@ -8,6 +8,7 @@
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 @import '~ngx-bar-rating/themes/br-stars-theme';
 @import '~@angular/material/theming';
+@import "src/app/styles/pallets.scss";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -18,8 +19,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$brau-muntenesc-primary: mat-palette($mat-teal, 800);
-$brau-muntenesc-accent: mat-palette($mat-cyan, 800);
+$brau-muntenesc-primary: mat-palette($secondary, 500);
+$brau-muntenesc-accent: mat-palette($primary, 500);
 
 // The warn palette is optional (defaults to red).
 $brau-muntenesc-warn: mat-palette($mat-red, 800);
@@ -74,4 +75,35 @@ mat-toolbar-row {
 
 .margin-top-1 {
   margin-top: 2vh ;
+}
+
+
+.mat-toolbar-row, .mat-toolbar-single-row  {
+  height: 56px;
+}
+
+.mat-toolbar-multiple-rows {
+  min-height: 56px;
+}
+
+.mat-body p, .mat-body-1 p, .mat-typography p {
+  margin: 0;
+}
+
+.menu {
+  span {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 28px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  mat-icon {
+    color: white;
+    margin-right: 5px;
+  }
+
+  hr {
+    width: 90%;
+  }
 }

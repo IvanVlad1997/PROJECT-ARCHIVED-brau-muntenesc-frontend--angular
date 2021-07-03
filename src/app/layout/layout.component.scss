@@ -1,3 +1,9 @@
+:host::ng-deep {
+  .mat-stroked-button:not(.mat-button-disabled) {
+    border: 1px solid #00877a ;
+  }
+}
+
 .padding-container {
   padding: 30px;
 }
@@ -30,3 +36,67 @@
   margin-left: 5px;
 }
 
+
+.toolbar {
+  color: white;
+}
+
+.title {
+  color: #00877A;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.content-container {
+  margin: 53px 45px 50px 45px ;
+  border-radius: 32px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media only screen and (max-width : 600px) {
+    margin: 15px 10px 15px 10px
+  }
+}
+
+.under-sidenav {
+  background: #DCDCDC;
+}
+
+
+.button-container {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #00877a;
+  border-radius: 50%;
+
+  button {
+    margin-top: -3px;
+  }
+}
+
+
+.menu {
+  background: #00877a;
+  min-height: calc(100% - 56px);
+}
+
+
+.avatar {
+  cursor: pointer;
+}
+
+.app-name {
+  font-size: 24px;
+  line-height: 42px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.space-until-logo {
+  min-height: 100px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}

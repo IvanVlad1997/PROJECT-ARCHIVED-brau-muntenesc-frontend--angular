@@ -1,11 +1,11 @@
 <div routerLink="{{item.route}}" fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-card class="product card-item" fxFlex="60" fxFlex.gt-md="40"  fxLayout="column">
+  <mat-card class="product card-item" fxFlex.md="60" fxFlex.gt-md="40" fxFlex.sm="80" fxFlex.xs="95" fxLayout="column">
     <div fxLayout="row wrap" fxLayoutAlign="center center" >
       <mat-card-header fxLayout="row wrap" fxLayoutAlign="center center">
         <mat-card-title>{{item.title}}</mat-card-title>
         <mat-icon svgIcon="{{item.svg}}" class="icons-pagina-start"></mat-icon>
       </mat-card-header>
-      <img class="image" mat-card-image [src]="item.photo" [alt]="item.title">
+      <img fxFlex="98" class="image" mat-card-image [src]="item.photo" [alt]="item.title">
     </div>
   </mat-card>
 </div>
