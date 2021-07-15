@@ -2,10 +2,14 @@
   font-size: 30px;
   font-weight: bold;
   text-shadow: 2px 2px #02c3c3;
+
 }
 
 
 .subtitle {
+  @media screen and (max-width: 500px) {
+    font-size: 40px;
+  }
   font-size: 60px;
   font-weight: bold;
   color: #00877A;
@@ -133,6 +137,9 @@
   animation:
     typing 5s steps(30, end) infinite,
     blink-caret .5s step-end infinite;
+  @media screen and (max-width: 650px) {
+    font-size: 18px;
+  }
 }
 
 /* The typing effect */

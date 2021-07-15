@@ -80,7 +80,7 @@
           </div>
         </div>
         <div fxFlex="33" fxLayoutAlign="center center">
-          <h1 *ngIf="header" class="title">
+          <h1 *ngIf="header" class="title" fxHide.lt-sm="true">
             <ng-container *ngTemplateOutlet="header"></ng-container>
           </h1>
         </div>
