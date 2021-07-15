@@ -1,6 +1,29 @@
+:host::ng-deep {
+  .mat-paginator-outer-container {
+    color: #00877A;
+  }
+
+
+  @media screen and (max-width: 1279px) {
+    .mat-chip-list-wrapper {
+      max-width: 600px;
+    }
+  }
+
+}
+
+
+
+.carousel-container {
+  .carousel {
+  }
+}
+
+
+
 .pret {
   font-size: 25px;
-  color: #00695c;
+  color: #00877A;
 }
 
 //.product{
@@ -9,8 +32,8 @@
 //  margin-bottom: 20px; /* same as fxLayoutGap for even distribution */
 //}
 
-.product img{
-  width:100%;
+.product img {
+  width: 100%;
   height: auto;
   object-fit: fill;
 }
@@ -19,31 +42,44 @@
   margin-right: 0 !important;
 }
 
-.margin-top-20{
-  margin-top:20px;
+.margin-top-20 {
+  margin-top: 20px;
 }
 
 
-
 .title-dashboard-shop {
-  background: #00695c;
-  width: 100vw;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  //background: #00877A;
+  //width: 100vw;
+  padding: 20px;
   text-align: center;
   font-size: 30px;
+  min-width: 30%;
+  border-radius: 10px;
+  color: #00877A;
+  font-weight: 700;
+
+  @media screen and (max-width: 960px) {
+  }
 }
 
 mat-chip {
   padding: 30px;
   margin: 20px !important;
-  color: white !important;
-  background: #00695c !important;
   cursor: pointer;
+  border: 2px solid #00877A;
+  background: white !important;
+  color: #00877A !important;
+
+  .chip {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  &:hover {
+    background: #00877A !important;
+    color: white !important;
+    transform: scale(1.1);
+
+  }
 }
 
-mat-chip:hover {
-  color: #5469d4 !important;
-  background: #02c3c3 !important;
-  transform: scale(1.1);
-}

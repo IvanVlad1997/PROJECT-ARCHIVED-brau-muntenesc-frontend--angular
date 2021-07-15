@@ -1,10 +1,12 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center">
   <h1 fxFlex="100" class="title">Dansuri populare la evenimentul tău</h1>
-  <div fxFlex="80" fxFlex.lt-md="100" plyr [plyrOptions]="options" class="margins"
-       plyrTitle="Video 1"
-       [plyrPlaysInline]="true"
-       [plyrPlaysInline]="true"
-       [plyrSources]="videoSources">
+  <div class="video-container margins" fxFlex="80" fxFlex.lt-md="100">
+    <div  plyr [plyrOptions]="options"
+         plyrTitle="Video 1"
+         [plyrPlaysInline]="true"
+         [plyrPlaysInline]="true"
+         [plyrSources]="videoSources">
+    </div>
   </div>
 </div>
 <div fxLayout="row wrap" fxLayoutAlign="center center" class="color-first-paragraph">

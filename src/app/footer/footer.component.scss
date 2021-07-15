@@ -1,6 +1,6 @@
 .div-footer {
   min-height: 500px;
-  background: #00695c;
+  background: #00877a;
   width: 100%;
   //margin-top: 100px;
   //animation: gradient 10s infinite;
@@ -23,7 +23,7 @@ a:hover {
 @keyframes gradient {
   0%{
     background-position:0% 50%;
-    background-color: #00695c;
+    background-color: #00877A;
     }
   50%{
     background-position:100% 50%;
@@ -31,7 +31,7 @@ a:hover {
   }
   100%{
     background-position:0% 50%;
-    background-color: #00695c;
+    background-color: #00877A;
   }
 }
 

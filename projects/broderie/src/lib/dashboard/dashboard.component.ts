@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/cor
 import {ProductService} from '../services/product';
 import {Product} from '../../../../common/product';
 import {Subscription} from 'rxjs';
-import {PageEvent} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {CarouselPhotoService} from '../services/carousel-photo';
 import {CategoryService} from '../services/category';
 import {SubCategoryService} from '../services/sub-category';
@@ -20,8 +20,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService,
               private carouselPhotoService: CarouselPhotoService,
               private categoryService: CategoryService,
-              protected subCategoryService: SubCategoryService) { }
+              protected subCategoryService: SubCategoryService) {
+  }
 
+
+  @ViewChild(MatPaginator, {static: true})
+  paginator!: MatPaginator;
 
   latestProducts: Product[] = [];
   carouselPhotos: { url: string }[] = [];
@@ -39,16 +43,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pageNewProducts: number = 1;
 
   ngOnInit(): void {
-     this.productService.countProducts().then(c => {
-       this.productsCount = c - 1;
-     });
-     this.loadingNew = true;
-     this.loadingBest = true;
-     this.loadCarouselPhotos();
-     this.loadNewProducts();
-     this.loadBestSellers();
-     this.loadCategories();
-     this.loadSubCategories();
+    this.paginator._intl.itemsPerPageLabel = 'Nr. el. pe pg.';
+    this.productService.countProducts().then(c => {
+      this.productsCount = c - 1;
+    });
+    this.loadingNew = true;
+    this.loadingBest = true;
+    this.loadCarouselPhotos();
+    this.loadNewProducts();
+    this.loadBestSellers();
+    this.loadCategories();
+    this.loadSubCategories();
   }
 
   loadSubCategories(): void {
@@ -102,7 +107,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   loadBestSellers(): void {
-     this.productsSubscription = this.productService.getProductWithPagination('sold', 'desc', this.pageBestSeller)
+    this.productsSubscription = this.productService.getProductWithPagination('sold', 'desc', this.pageBestSeller)
       .subscribe(
         (products: Product[]) => {
           this.bestSellers = [...products];
@@ -116,28 +121,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-     if (this.productsSubscription) {
-       this.productsSubscription.unsubscribe();
-     }
-     if (this.carouselPhotoSubscription) {
-       this.carouselPhotoSubscription.unsubscribe();
-     }
-     if (this.categorySubscription) {
-       this.categorySubscription.unsubscribe();
-     }
-     if (this.subcategorySubscription) {
-       this.subcategorySubscription.unsubscribe();
-     }
+    if (this.productsSubscription) {
+      this.productsSubscription.unsubscribe();
+    }
+    if (this.carouselPhotoSubscription) {
+      this.carouselPhotoSubscription.unsubscribe();
+    }
+    if (this.categorySubscription) {
+      this.categorySubscription.unsubscribe();
+    }
+    if (this.subcategorySubscription) {
+      this.subcategorySubscription.unsubscribe();
+    }
   }
 
 
   async changeBestSellerPage(pageEvent: PageEvent): Promise<void> {
-     this.pageBestSeller = pageEvent.pageIndex + 1;
-     await this.loadBestSellers();
+    this.pageBestSeller = pageEvent.pageIndex + 1;
+    await this.loadBestSellers();
   }
 
   async changeNewProductPage(pageEvent: PageEvent): Promise<void> {
-     this.pageNewProducts = pageEvent.pageIndex + 1;
-     await this.loadNewProducts();
+    this.pageNewProducts = pageEvent.pageIndex + 1;
+    await this.loadNewProducts();
   }
 }

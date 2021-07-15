@@ -5,13 +5,22 @@
 //}
 
 
-mat-card {
-  margin-top: 10px;
+.list-item-card {
   padding: 0;
   width: 300px;
-  margin-right: 5px;
-  margin-left: 5px;
-  margin-bottom: 10px;
+  margin: 10px 5px;
+  border-radius: 20px;
+  border: 2px solid #00877A;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  &:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    background:  #00877A;
+
+  }
+
+
 }
 
 img {

@@ -1,7 +1,7 @@
 .title {
   font-size: 30px;
   font-weight: bold;
-  color: #00695c;
+  color: #00877A;
   margin-top: 100px;
   text-align: center;
 }
@@ -38,7 +38,7 @@
 
 .paragraf {
   font-size: 20px;
-  color: #00695c;
+  color: #00877A;
 }
 
 //img {
@@ -75,7 +75,7 @@
 
 
 .color-first-paragraph {
-  background: #00838f;
+  background: #0D6774;
   padding-top: 50px;
   padding-bottom: 50px;
   margin-bottom: 30px;
@@ -90,3 +90,9 @@
   margin-bottom: 30px;
 }
 
+
+.video-container {
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 1;
+}

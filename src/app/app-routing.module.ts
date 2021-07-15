@@ -5,6 +5,7 @@ import {routes} from './routes';
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled',
     preloadingStrategy: PreloadAllModules,
     relativeLinkResolution: 'legacy'
 })],
