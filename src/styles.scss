@@ -43,7 +43,7 @@ $brau-muntenesc-theme: mat-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body {height: 100%;}
-body { height: 100%; font-family: Roboto, "Helvetica Neue", sans-serif;  margin: 0;}
+body { height: 100%; font-family: Roboto, "Helvetica Neue", sans-serif;  margin: 0; }
 
 button.mat-menu-item {
   line-height: 24px !important;
@@ -66,6 +66,7 @@ mat-toolbar-row {
 
 .full-height {
   min-height: 70vh;
+  margin-top: 60px;
 }
 
 .spinner {

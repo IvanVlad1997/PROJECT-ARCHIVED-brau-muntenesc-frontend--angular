@@ -12,11 +12,13 @@
   border-radius: 20px;
   border: 2px solid #00877A;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  color: #00877A;
 
   &:hover {
     transform: scale(1.02);
     cursor: pointer;
     background:  #00877A;
+    color: white;
 
   }
 

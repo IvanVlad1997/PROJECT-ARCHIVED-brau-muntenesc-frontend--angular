@@ -8,10 +8,10 @@
     </div>
     <mat-card-header fxLayoutAlign="center stretch">
       <mat-card-title>{{product.title}}</mat-card-title>
-      <mat-card-subtitle fxLayoutAlign="center center">{{product.price}} lei</mat-card-subtitle>
     </mat-card-header>
+    <div fxLayoutAlign="center center" class="price">{{product.price}} lei</div>
     <mat-card-actions fxLayout="row wrap" fxLayoutAlign="space-between end">
-      <button mat-button  (click)="navigateToProduct(product)" fxFlex="100" >
+      <button mat-button  (click)="navigateToProduct(product)" fxFlex="100" class="see-product" >
         <mat-icon svgIcon="eye"></mat-icon>
         Vezi produsul
       </button>

@@ -3,36 +3,40 @@
     <lib-carousel [images] = "product.images" fxFlex="50"></lib-carousel>
   </div>
   <div fxFlex="100" fxFlex.gt-sm="50" fxLayout="column" fxLayoutAlign="center center" class="height-more">
-    <h1 *ngIf="product" >
+    <h1 *ngIf="product" class="product-title" >
       {{product.title}}
     </h1>
     <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="center center">
       <bar-rating [(rate)]="rateAndLength.result" [max]="5" [readOnly]="true" [theme]="'stars'"></bar-rating>
-      <p>( {{rateAndLength.length}} )</p>
+      <p class="rating-number">( {{rateAndLength.length}} )</p>
     </div>
-    <div>
+    <div class="text-container">
       <p class="price">
         {{product.price}} lei
       </p>
       <p class="categorie" *ngIf="product.category">
-        Categorie: <a class="categorie color-primary" [routerLink]="['/broderie/categorie/', product.category.slug]">{{product.category.name}}</a>
+        <span class="key-value">Categorie: </span>
+        <a class="categorie color-primary" [routerLink]="['/broderie/categorie/', product.category.slug]">{{product.category.name}}</a>
       </p>
       <p class="categorie">
-        Subcategorii:  <a class="categorie color-primary" *ngFor="let subcategory of product.subCategory" [routerLink]="['/broderie/subcategorie/', subcategory.slug]" >{{subcategory.name}}</a>
+        <span class="key-value">Subcategorii: </span>
+           <a class="categorie color-primary" *ngFor="let subcategory of product.subCategory" [routerLink]="['/broderie/subcategorie/', subcategory.slug]" >{{subcategory.name}}</a>
       </p>
 
       <p *ngIf="product.color" class="align-center">
-        Culoare: {{product.color}}
+        <span class="key-value">Culoare: </span>
+        {{product.color}}
       </p>
       <p *ngIf="product.brand" class="align-center">
-        Brand: {{product.brand.name}}
+        <span class="key-value">Brand: </span>
+        {{product.brand.name}}
       </p>
     </div>
     <div class="margin-top-1" fxLayout="column" >
-      <button mat-raised-button color="primary"  *ngIf="user && user.email" (click)="addToWishlist(product._id)">Adaugă la favorite</button>
-      <button mat-raised-button color="accent" *ngIf="user && user.email" (click)="leaveARating()" i>Lasă un rating</button>
-      <button mat-raised-button color="warn" *ngIf="!user " routerLink="/auth/login">Loghează-te pentru a lăsa un rating</button>
-      <button mat-raised-button color='warn' (click)="handleCartAdd(product)" >Adaugă in coșul de cumpărături</button>
+      <button mat-raised-button color="accent"  *ngIf="user && user.email" (click)="addToWishlist(product._id)">Adaugă la favorite</button>
+      <button mat-raised-button color="primary" *ngIf="user && user.email" (click)="leaveARating()" i>Lasă un rating</button>
+      <button mat-stroked-button color="primary" *ngIf="!user " routerLink="/auth/login">Loghează-te pentru a lăsa un rating</button>
+      <button mat-stroked-button color='primary' (click)="handleCartAdd(product)" >Adaugă in coșul de cumpărături</button>
     </div>
   </div>
 
