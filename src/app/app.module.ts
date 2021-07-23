@@ -34,6 +34,9 @@ import {GoogleAnalyticsService} from './services/google-analytics';
 import {TOKEN, USER_STORAGE} from './app.token';
 import {Token} from '../../projects/auth/src/lib/services/token';
 import {AvatarModule} from "ngx-avatar";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { ContactFromComponent } from './contact-from/contact-from.component';
+import {MatInputModule} from "@angular/material/input";
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -51,37 +54,40 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     ContactComponent,
     PrivacyComponent,
     StartingPageComponent,
+    ContactFromComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatListModule,
-        FlexModule,
-        FlexLayoutModule,
-        ReactiveFormsModule,
-        FormsModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireAuthModule,
-        AngularToastifyModule,
-        MatCardModule,
-        MatMenuModule,
-        MatProgressSpinnerModule,
-        MatNativeDateModule,
-        FrontendSentryModule.forRoot({
-            appVersion: undefined,
-            dsn: environment.sentry.dsn,
-            tracingOrigins: environment.sentry.tracingOrigins,
-            enabled: environment.production,
-        }),
-        AvatarModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    FlexModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularToastifyModule,
+    MatCardModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatNativeDateModule,
+    FrontendSentryModule.forRoot({
+      appVersion: undefined,
+      dsn: environment.sentry.dsn,
+      tracingOrigins: environment.sentry.tracingOrigins,
+      enabled: environment.production,
+    }),
+    AvatarModule,
+    MatTooltipModule,
+    MatInputModule
+  ],
   providers: [ToastService,
     NgxImageCompressService,
     GoogleAnalyticsService,

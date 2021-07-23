@@ -1,48 +1,49 @@
-<div class="div-footer" fxLayout="row wrap " fxLayoutAlign="space-around center">
-  <div fxLayout="column" fxLayoutAlign="center center" fxFlex.gt-sm="50" fxFlex="100">
+<div class="div-footer" fxLayout="column" fxLayoutAlign="space-around center">
+  <div fxLayout="row" fxLayoutAlign="space-around start" class="buttons">
     <a class="mat-h2" [routerLink]="['/broderie']" fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="store"></mat-icon>
       <span>Magazin</span>
     </a>
+    <mat-divider vertical></mat-divider>
     <a class="mat-h2" [routerLink]="['/user']" fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="account"></mat-icon>
       <span>Cont</span>
     </a>
+    <mat-divider vertical></mat-divider>
     <a class="mat-h2" [routerLink]="['/contact']" fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="card-account-phone"></mat-icon>
       <span>Contact</span>
     </a>
-    <a class="mat-h2" [routerLink]="['/politica-de-confidentialitate']" fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="account-tie-outline"></mat-icon>
-      <span>Politică de confidențialitate</span>
+    <mat-divider vertical fxHide.lt-md="true"></mat-divider>
+    <a fxHide.lt-md="true" class="mat-h2" [routerLink]="['/platforma-cursuri']"
+       fxLayoutAlign="center center">
+      <span>Cursuri</span>
     </a>
   </div>
-  <div fxLayout="column" fxLayoutAlign="center center" fxFlex.gt-md="50" fxFlex="100">
-    <a class="mat-h2" href="mailto:braumuntenesc@gmail.com" fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="email"></mat-icon>
-      <span>Email</span>
+
+  <mat-divider class="divider"></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="social-icons">
+    <a class="mat-h2" href="mailto:braumuntenesc@gmail.com" fxLayoutAlign="center center" matTooltip="Lasă-ne un mail">
+      <mat-icon mat-list-icon svgIcon="email" class="icon"></mat-icon>
     </a>
-    <a class="mat-h2" href="https://www.facebook.com/BrauMuntenesc" fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="facebook"></mat-icon>
-      <span>Facebook</span>
+    <a class="mat-h2" href="https://www.facebook.com/BrauMuntenesc" fxLayoutAlign="center center"
+       matTooltip="Intră pe pagina de FaceBook">
+      <mat-icon mat-list-icon svgIcon="facebook" class="icon"></mat-icon>
     </a>
-    <a class="mat-h2" href="https://www.instagram.com/brau.muntenesc/?hl=ro" fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="instagram"></mat-icon>
-      <span>Instagram</span>
+    <a class="mat-h2" href="https://www.instagram.com/brau.muntenesc/?hl=ro" fxLayoutAlign="center center"
+       matTooltip="Vizitează-ne Instagramul">
+      <mat-icon mat-list-icon svgIcon="instagram" class="icon"></mat-icon>
     </a>
     <a class="mat-h2" href="https://www.youtube.com/channel/UCO5KJ1114BUb99cub0mqWqQ/videos"
+       matTooltip="Hai pe YouTube la noi"
        fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="youtube"></mat-icon>
-      <span>Youtube</span>
+      <mat-icon mat-list-icon svgIcon="youtube" class="icon"></mat-icon>
     </a>
   </div>
-  <div fxLayoutAlign="center center" fxFlex="100">
+  <div fxLayoutAlign="center center" class="footer-text">
     <h2 class="mat-h2" [routerLink]="['/']" fxLayoutAlign="center center">
-      <mat-icon mat-list-icon svgIcon="copyright"></mat-icon>
+      <mat-icon class="copy-right-icon" mat-list-icon svgIcon="copyright"></mat-icon>
       <span> Brâu Muntenesc, 2021</span>
     </h2>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
+  <div fxLayout="row" fxLayoutAlign="center center" class="footer-text">
     <h2 class="mat-h2 align" [routerLink]="['/']" fxLayoutAlign="center center" fxLayout="row">
       <span fxLayoutAlign="center center"> Brau Muntenesc este marcă înregistrată &#174; nr. 166609</span>
     </h2>

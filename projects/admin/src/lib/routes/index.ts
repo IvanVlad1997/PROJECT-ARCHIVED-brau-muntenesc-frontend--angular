@@ -6,6 +6,7 @@ import {ProductListComponent} from '../product/product-list/product-list.compone
 import {CarouselPhotoListComponent} from '../carousel-photo/carousel-photo-list/carousel-photo-list.component';
 import {CuponListComponent} from '../cupon/cupon-list/cupon-list.component';
 import {BrandListComponent} from '../brand/brand-list/brand-list.component';
+import {ContacFormListComponent} from "../contac-form-list/contac-form-list.component";
 
 export const routes = [
   {
@@ -40,6 +41,10 @@ export const routes = [
         path: 'cupon',
         component: CuponListComponent
       },
+      {
+        path: 'contact-form',
+        component: ContacFormListComponent
+      }
     ]
   },
   ];
