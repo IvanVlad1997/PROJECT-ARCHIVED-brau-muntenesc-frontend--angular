@@ -17,4 +17,10 @@
 button {
   margin: 25px;
   min-width: 320px;
+  @media screen and (max-width: 500px) {
+    min-width: 200px;
+    margin: 25px 0;
+    width: 290px;
+    font-size: 13px;
+  }
 }

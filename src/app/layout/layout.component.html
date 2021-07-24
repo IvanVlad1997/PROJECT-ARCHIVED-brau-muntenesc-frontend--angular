@@ -90,8 +90,9 @@
           </div>
           <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
             <div fxLayout="row" fxLayoutAlign="end center" *ngIf="isAuthenticated" class="account-image">
-              <ngx-avatar [name]="user.name" [bgColor]="'#00877A'" [matMenuTriggerFor]="menu" size="40"
-                          class="avatar"></ngx-avatar>
+              <ng-container *ngIf="user">
+                <ngx-avatar [name]="user.name" [bgColor]="'#00877A'" [matMenuTriggerFor]="menu" size="40"
+                            class="avatar"></ngx-avatar>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item disabled *ngIf="isAuthenticated">
                   <span>{{user.name}}</span>
@@ -117,6 +118,8 @@
                   <span>Schimbă parola</span>
                 </button>
               </mat-menu>
+              </ng-container>
+
             </div>
             <div *ngIf="!isAuthenticated" fxHide.lt-md>
               <button color="primary" mat-stroked-button routerLink="/auth/login" *ngIf="!isAuthenticated">
