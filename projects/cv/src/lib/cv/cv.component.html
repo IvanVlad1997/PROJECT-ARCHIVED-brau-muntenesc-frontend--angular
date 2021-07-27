@@ -1,112 +1,116 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center" class="full-height" >
-  <div fxFlex="33" fxFlex.lt-md="100" class="first" fxLayoutAlign="center center">
+  <div fxFlex="33" fxFlex.lt-lg="100" class="first" fxLayoutAlign="center center">
     <div fxLayout="row wrap" fxLayoutAlign="center center">
       <img src="https://i.imgur.com/j6AJwIk.jpg" class="img1" >
       <h1 fxFlex="100" fxLayoutAlign="center center"> <a href="https://github.com/IvanVlad1997">Git: IvanVlad1997</a></h1>
       <h1 fxFlex="100" fxLayoutAlign="center center"> <a href="https://www.linkedin.com/in/ivanvlad1997/">Linkedin: ivanvlad1997</a></h1>
     </div>
   </div>
-  <div fxFlex fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
-    <h1 fxFlex="100">Locul de muncă vizat: Junior Software Developer</h1>
-    <h1 fxFlex="100">Preferințe: MEAN Stack</h1>
-    <button mat-raised-button color="accent" (click)="openCV()" >Vizualizare CV</button>
+  <div fxFlex fxFlex.lt-lg="100" class="second primary-color" fxLayout="row wrap" fxLayoutAlign="center center">
+    <h1 fxFlex="100">Locul de muncă vizat: </h1>
+    <h1 fxFlex="100"> Junior Software</h1>
+    <h1 fxFlex="100">Developer</h1>
+<!--    <h1 fxFlex="100">Preferințe: MEAN Stack</h1>-->
+    <button mat-button class="primary-button" color="primary" (click)="openCV()" >Vizualizare CV</button>
   </div>
-  <div fxFlex="33" fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex="33" fxFlex.lt-lg="100" class="first white-color" fxLayout="row wrap" fxLayoutAlign="center center">
     <h3 fxFlex="100">Adresă: 122 Malu Roșu, bl. 11B, ap. 10, 100489, Ploiești, Prahova</h3>
     <h3 fxFlex="100">Telefon: 0761/532.885 </h3>
     <h3 fxFlex="100">E-mail: ivanvlad1997@gmail.com </h3>
     <h3 fxFlex="100">Naţionalitate: română</h3>
     <h3 fxFlex="100">Data naşterii: 12.11.1997 </h3>
-    <a class="button" mat-raised-button color="primary" href="https://www.facebook.com/vlad.ivan.33" target="_blank">Profil Facebook</a>
+    <a class="button white-button" mat-button  href="https://www.facebook.com/vlad.ivan.33" target="_blank">Profil Facebook</a>
   </div>
   <div class="third" fxFlex="100" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h1>Activități preferate</h1>
   </div>
-  <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex="33" fxFlex.lt-lg="100" class="second primary-color" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h1 fxFlex="100">Programare</h1>
     <h3 fxFlex="100">În anul 4, semestrul 2, am început să investesc foarte mult timp în a învăța programare.</h3>
     <h3 fxFlex="100">Din aprilie 2020 până în prezent, au trecut foarte puține zile în care să nu am tangențe cu un IDE plin cu linii de cod.</h3>
     <h3 fxFlex="100">Vreau să învăț, vreau să mă dezvolt frumos în domeniul acesta.</h3>
-    <button mat-raised-button color="accent" (click)="openProiecte()" >Proiecte</button>
+    <button mat-button class="primary-button" color="primary"  (click)="openProiecte()" >Proiecte</button>
   </div>
-  <div fxFlex fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex fxFlex.lt-lg="100" class="first  white-color" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h1 fxFlex="100">Dans</h1>
     <h3 fxFlex="100">Dansul, în special cel românesc, alături de prieteni, reprezintă o experiență care merită trăită de cât de multe ori se poate.</h3>
     <h3 fxFlex="100">Îmi place să îî învăț pe oamenii din jurul meu să danseze.</h3>
-    <button mat-raised-button color="primary" [routerLink]="['/platforma-cursuri']">Proiect predare dansuri</button>
+    <button   class="button white-button" mat-button  [routerLink]="['/platforma-cursuri']">Proiect predare dansuri</button>
   </div>
-  <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex="33" fxFlex.lt-lg="100" class="second primary-color" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h1 fxFlex="100">Schi</h1>
     <h3 fxFlex="100">Peisaje, adrenalină, amintiri superbe: asta înseamnă a schia pentru mine.</h3>
     <h3 fxFlex="100">Am învățat să schiez în clasele 5-8. Diriginta mea de sport organiza tabere de schi. Am încercat să nu ratez niciuna.</h3>
     <h3 fxFlex="100">Am învățat-o pe prietena mea să schieze. Acum încercăm să le arătăm și celor din grupul nostru de prieteni.</h3>
-    <button mat-raised-button color="accent" (click)="openVideoSchi()" >Videoclip</button>
+    <button   mat-button class="primary-button" color="primary"  (click)="openVideoSchi()" >Videoclip</button>
   </div>
 
   <div class="third" fxFlex="100" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h1>Experiență profesională</h1>
   </div>
-  <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
-    <h3 fxFlex="100">Perioada: 12.10.2020 – 08.12.2020</h3>
+  <div fxFlex="33" fxFlex.lt-lg="100" class="first white-color" fxLayout="row wrap"  fxLayoutAlign="center center">
+    <h3 fxFlex="100">Perioada: 02.2020 – prezent (part-time)</h3>
+    <h3 fxFlex="100">Perioada: 12.10.2020 – 08.12.2020 </h3>
+    <h3 fxFlex="100">(full-time) </h3>
     <h3 fxFlex="100">Funcţia: Ajutor programator </h3>
     <h3 fxFlex="100">Activităţi şi responsabilităţi principale: Efectuarea task-urilor în Angular</h3>
     <h3 fxFlex="100">Numele şi adresa angajatorulu: SC FROZENLOGIC SRL, Ploiești, str. 1907, nr. 22, et. 2</h3>
     <h3 fxFlex="100">Tipul activităţii sau sectorul de activitate: IT </h3>
-    <button mat-raised-button color="accent" (click)="openFrozen()" >Activități</button>
+    <button class="button white-button" mat-button (click)="openFrozen()" >Activități</button>
   </div>
-  <div fxFlex fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex fxFlex.lt-lg="100"class="second primary-color" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h3 fxFlex="100">Perioada: 01.07.2019 – 10.10.2020</h3>
     <h3 fxFlex="100">Funcţia: Director general/Instructor dansuri </h3>
     <h3 fxFlex="100">Activităţi şi responsabilităţi principale: Realizarea structurii cursurilor, predarea dansurilor</h3>
     <h3 fxFlex="100">Numele şi adresa angajatorulu: SC BRÂU MUNTENESC SRL, Ploiești, str. Malu Roșu, nr. 98, bl. 35B. P, ap. 2</h3>
     <h3 fxFlex="100">Tipul activităţii sau sectorul de activitate: Învățământ în domeniul cultural</h3>
-    <a class="button" mat-raised-button color="primary" href="https://www.facebook.com/BrauMuntenesc" target="_blank">Facebook Brâu Muntenesc</a>
+    <a  mat-button class="primary-button" color="primary" href="https://www.facebook.com/BrauMuntenesc" target="_blank">Facebook Brâu Muntenesc</a>
   </div>
-  <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex="33" fxFlex.lt-lg="100" class="first white-color" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h3 fxFlex="100">Perioada: 07.2018 – 08.2018</h3>
     <h3 fxFlex="100">Funcţia: Student - Practică </h3>
     <h3 fxFlex="100">Activităţi şi responsabilităţi principale: Învățarea bazelor PLC-urilor</h3>
     <h3 fxFlex="100">Numele şi adresa angajatorulu: Adient Trim Ploiesti, Strada Conului 3, Ploiești 100213</h3>
-    <button mat-raised-button color="accent" (click)="openVideoLicenta()" >Videoclip</button>
+    <button class="button white-button" mat-button (click)="openVideoLicenta()" >Videoclip</button>
   </div>
   <div class="third" fxFlex="100" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h1>Educație</h1>
   </div>
-  <div fxFlex="33" fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex="33" fxFlex.lt-lg="100"class="second primary-color" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h3 fxFlex="100">Perioada: 2016-2020</h3>
     <h3 fxFlex="100">Calificarea / diploma obţinută: Diplomă licență</h3>
     <h3 fxFlex="100">Disciplinele principale studiate: Automatizare</h3>
     <h3 fxFlex="100">Numele şi tipul instituţiei de învăţământ: FACULTATEA DE AUTOMATICĂ, UNIVERSITATEA PETROL ȘI GAZE PLOIEȘTI</h3>
-    <button mat-raised-button color="primary" (click)="openLicentaImage()" >Adeverință licență </button>
+    <button  mat-button class="primary-button" color="primary" (click)="openLicentaImage()" >Adeverință licență </button>
   </div>
-  <div fxFlex fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex fxFlex.lt-lg="100" class="first white-color" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h3 fxFlex="100">Iulie-august 2018</h3>
     <h3 fxFlex="100">Calificarea / diploma obţinută: COMPETENȚE ANTREPRENORIALE, ATESTAT NR. 265938/03.08.2018</h3>
     <h3 fxFlex="100">Numele şi tipul instituţiei de învăţământ: A.D.E.S. CURTEA DE ARGEȘ</h3>
-    <button mat-raised-button color="accent" (click)="openAntreprenoriatImage()" >Certificat antreprenoriat</button>
+    <button  class="button white-button" mat-button (click)="openAntreprenoriatImage()" >Certificat antreprenoriat</button>
   </div>
-  <div fxFlex="33" fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
+  <div fxFlex="33" fxFlex.lt-lg="100" class="second primary-color" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h3 fxFlex="100">Octombrie 2017</h3>
     <h3 fxFlex="100">Calificarea / diploma obţinută: ATESTAT INSTRUCTOR DE DANS NR. 107465/27.10.2017</h3>
     <h3 fxFlex="100">Numele şi tipul instituţiei de învăţământ: SC ABILITY DEVELOPMENT SRL</h3>
-    <button mat-raised-button color="primary" (click)="openDansuriImage()" >Certificat instructor dans</button>
+    <button  mat-button class="primary-button" (click)="openDansuriImage()" >Certificat instructor dans</button>
   </div>
   <div class="third" fxFlex="100" fxLayout="row wrap"  fxLayoutAlign="center center">
     <h1>Aptitudini și competențe personale</h1>
   </div>
-    <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
+    <div fxFlex="33" fxFlex.lt-lg="100"  class="first white-color" fxLayout="row wrap"  fxLayoutAlign="center center">
       <h1 fxFlex="100">Soft skills</h1>
       <h3 fxFlex="100">Comunicare</h3>
       <h3 fxFlex="100">Organizare</h3>
       <h3 fxFlex="100">Deschidere spre a învăța lucruri noi</h3>
       <h3 fxFlex="100">Lucru în echipă</h3>
     </div>
-    <div fxFlex fxFlex.lt-md="100" class="first" fxLayout="row wrap"  fxLayoutAlign="center center">
+    <div fxFlex fxFlex.lt-lg="100" class="second primary-color" fxLayout="row wrap"  fxLayoutAlign="center center">
       <h3 fxFlex="100">Nivel engleză: Mediu</h3>
       <h3 fxFlex="100">În anul 2020 am început să învăț web development urmărind cursurile în limba engleză de pe Udemy și Coursera.</h3>
-      <button mat-raised-button color="primary" (click)="openUdemyImage()" >Cursurile urmărite pe Udemy</button>
+      <button mat-button class="primary-button" (click)="openUdemyImage()" >Cursurile urmărite pe Udemy</button>
     </div>
-    <div fxFlex="33" fxFlex.lt-md="100" class="second" fxLayout="row wrap"  fxLayoutAlign="center center">
+    <div fxFlex="33" fxFlex.lt-lg="100" class="first white-color" fxLayout="row wrap"  fxLayoutAlign="center center">
       <h3 fxFlex="100">Permis de conducere: Categoria B</h3>
     </div>
   </div>

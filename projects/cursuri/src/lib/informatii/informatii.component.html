@@ -1,17 +1,25 @@
+<div class="container">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" class="preturi" >
+    <h1 fxFlex="100" fxLayoutAlign="center center">Prețuri</h1>
+    <div fxFlex="100" *ngFor="let price of prices" fxLayoutAlign="center center">
+      <span class="key-value"> {{price.category}}: </span>  	&nbsp;
+      <span > {{price.price}} lei</span>
+    </div>
+  </div>
 
-<div fxLayout="row wrap" fxLayoutAlign="center center" class="preturi" >
-  <h1 fxFlex="100" fxLayoutAlign="center center">Prețuri</h1>
-  <div fxFlex="100" *ngFor="let price of prices" fxLayoutAlign="center center">
-      {{price.category}} - {{price.price}} lei
+  <div fxLayout="column" fxLayoutAlign="space-around center" class="program">
+    <h1>Program</h1>
+    <div *ngFor="let prog of program" fxLayoutAlign="space-between center" class="grupa">
+      <div>
+        <span class="key-value">{{prog.category}}</span> - {{prog.interval}}
+      </div>
+      <span fxFlex=""></span>
+      <div fxFlex="50" fxLayoutAlign="start center" >
+        <span *ngIf="prog.status" fxLayout="row"  fxLayoutAlign="center center"><mat-icon mat-list-icon  svgIcon="play-circle" color="primary" ></mat-icon><p>Grupă activă</p></span>
+        <span *ngIf="!prog.status" fxLayout="row" fxLayoutAlign="center center"><mat-icon mat-list-icon  svgIcon="pause-octagon" color="warn" ></mat-icon><p class="inactive-group">Grupă inactivă</p></span>
+      </div>
+    </div>
   </div>
 </div>
 
-<div fxLayout="column" fxLayoutAlign="space-around center" class="program">
-  <h1>Program</h1>
-  <div *ngFor="let prog of program" fxLayoutAlign="space-between center" class="grupa">
-    {{prog.category}} - {{prog.interval}}
-    <span *ngIf="prog.status" fxLayout="row"  fxLayoutAlign="center center"><mat-icon mat-list-icon  svgIcon="play-circle" color="primary"></mat-icon><p>Grupă activă</p></span>
-    <span *ngIf="!prog.status" fxLayout="row" fxLayoutAlign="center center"><mat-icon mat-list-icon  svgIcon="pause-octagon" color="warn"></mat-icon><p>Grupă inactivă</p></span>
-  </div>
-</div>
 

@@ -1,8 +1,8 @@
 <div *ngIf="user" class="full-height" fxLayout="row wrap" fxLayoutAlign="start start" >
-  <div fxFlex.gt-sm="50" fxFlex="100"  fxLayout="column" fxLayoutAlign="center center"  class="first-row-left first-row">
+  <div fxFlex="100"  fxLayout="column" fxLayoutAlign="center center"  class="first-row-left first-row">
     <p>Email: {{user.email}}</p>
     <p>Nume cont: {{user.name}}</p>
-    <p *ngIf="user.group">Grupă: {{user.group.category}} - {{user.group.interval}}</p>
+    <p *ngIf="user.group.category">Grupă: {{user.group.category}} - {{user.group.interval}}</p>
 
     <!--    <p>Rol: <span *ngIf="user.role==='subscriber'">Abonat</span> <span *ngIf="user.role==='admin'">Admin</span></p>-->
     <p>Cont creat în {{user.createdAt | date}}</p>
@@ -13,10 +13,10 @@
     </p>
     <!--    <button mat-raised-button color="accent" (click)="changeEmail()" *ngIf="user.email">Schimba email-ul </button>-->
   </div>
-  <div fxFlex="50" class="first-row-right first-row mat-headline"  fxLayout="row wrap" fxLayoutAlign="center center" fxHide.lt-md="true">
-    <div fxFlex="100" fxLayoutAlign="center center">Informații despre</div>
-    <div fxFlex="100" fxLayoutAlign="center center">contul tău</div>
-  </div>
+<!--  <div fxFlex="50" class="first-row-right first-row mat-headline"  fxLayout="row wrap" fxLayoutAlign="center center" fxHide.lt-md="true">-->
+<!--    <div fxFlex="100" fxLayoutAlign="center center">Informații despre</div>-->
+<!--    <div fxFlex="100" fxLayoutAlign="center center">contul tău</div>-->
+<!--  </div>-->
   <div fxFlex="100" fxLayoutAlign="center">
     <qrcode [qrdata]="user._id" [width]="360" [errorCorrectionLevel]="'M'" [elementType]="'svg'"></qrcode>
   </div>
