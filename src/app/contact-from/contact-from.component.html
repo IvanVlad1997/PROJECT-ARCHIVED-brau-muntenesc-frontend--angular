@@ -1,0 +1,27 @@
+<form [formGroup]="contactForm" (ngSubmit)="submitForm()"  fxLayout="column" fxLayoutAlign="center start" fxFlex="100">
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label for="name">Nume: </mat-label>
+    <input matInput id="name" type="text" formControlName="name">
+    <mat-error *ngIf="contactForm.hasError('required', 'name')" >Vă rugăm să introduceți numele</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label for="email">Email: </mat-label>
+    <input matInput id="email" type="email" formControlName="email">
+    <mat-error *ngIf="contactForm.hasError('required', 'email')" >Vă rugăm să introduceți emailul</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label for="telephoneNumber">Număr de telefon: </mat-label>
+    <input matInput id="telephoneNumber" type="text" formControlName="telephoneNumber">
+    <mat-error *ngIf="contactForm.hasError('required', 'telephoneNumber')" >Vă rugăm să introduceți numărul de telefon</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label for="message">Mesaj</mat-label>
+    <textarea matInput id="message" type="text" formControlName="message"></textarea>
+    <mat-error *ngIf="contactForm.hasError('required', 'message')" >Vă rugăm să introduceți mesajul</mat-error>
+  </mat-form-field>
+
+  <div fxLayoutAlign="center center">
+    <button class="button"  type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid">Trimite
+    </button>
+  </div>
+</form>

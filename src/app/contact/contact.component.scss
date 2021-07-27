@@ -1,14 +1,58 @@
 .button {
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   margin: 10px;
 }
 
 .adresa {
-  background: #00877A;
-  font-size: 20px;
   padding-bottom: 150px;
   padding-top: 150px;
   margin-top: 50px;
   margin-bottom: 50px;
   text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #00877A;
+
+  @media screen and (max-width: 500px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.contact-form {
+  width: 100%;
+
+}
+
+.form-container {
+  background: #FFFFFF;
+  box-shadow: 12px 6px 33px -8px rgba(0, 135, 122, 0.7);
+  border-radius: 39px;
+  padding: 30px;
+
+  @media screen and (max-width: 960px) {
+    margin-top: 50px;
+  }
+}
+
+
+.title-dashboard-shop {
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  font-size: 30px;
+  min-width: 30%;
+  border-radius: 10px;
+  color: #00877A;
+  font-weight: 700;
+
+  @media screen and (max-width: 960px) {
+  }
+}
+
+a {
+  color: #00877A;
 }

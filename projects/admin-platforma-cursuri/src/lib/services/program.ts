@@ -1,13 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {VideoPlatform} from '../../../../common/video-platform';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../../auth/src/lib/services/auth';
 import {ToastService} from 'angular-toastify';
 import {environment} from '../../../../../src/environments/environment';
-import {Product} from '../../../../common/product';
-import {GalerieVideoCursuri} from '../../../../common/galerie-video-cursuri';
-import {Price} from '../../../../common/price';
 import {Program} from '../../../../common/program';
 import {TOKEN} from '../../../../../src/app/app.token';
 import {Token} from '../../../../auth/src/lib/services/token';

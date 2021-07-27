@@ -1,37 +1,63 @@
-
-  <div fxLayout="column" fxLayoutAlign="center center" class="margin-top-1">
-    <a mat-raised-button color="primary" class="mat-h2 button" href="tel:0751105873" fxLayoutAlign="center center" >
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="margin-top-1">
+  <div class="contact-buttons" fxFlex="40" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="center center">
+    <a mat-raised-button color="primary" class="mat-h2 button" href="tel:0751105873" fxLayoutAlign="center center">
       <mat-icon mat-list-icon svgIcon="phone"></mat-icon>
       <span>0751105873</span>
     </a>
-    <a mat-raised-button color="primary" class="mat-h2 button" href="mailto:braumuntenesc@gmail.com" fxLayoutAlign="center center">
+    <a mat-raised-button color="primary" class="mat-h2 button" href="mailto:braumuntenesc@gmail.com"
+       fxLayoutAlign="center center">
       <mat-icon mat-list-icon svgIcon="email"></mat-icon>
       <span>Email</span>
     </a>
-    <a mat-raised-button color="primary" class="mat-h2 button" href="https://www.facebook.com/BrauMuntenesc" fxLayoutAlign="center center" >
+    <a mat-raised-button color="primary" class="mat-h2 button" href="https://www.facebook.com/BrauMuntenesc"
+       fxLayoutAlign="center center">
       <mat-icon mat-list-icon svgIcon="facebook"></mat-icon>
       <span>Facebook</span>
     </a>
-    <a mat-raised-button color="primary" class="mat-h2 button" href="https://www.instagram.com/brau.muntenesc/?hl=ro" fxLayoutAlign="center center" >
+    <a mat-raised-button color="primary" class="mat-h2 button" href="https://www.instagram.com/brau.muntenesc/?hl=ro"
+       fxLayoutAlign="center center">
       <mat-icon mat-list-icon svgIcon="instagram"></mat-icon>
       <span>Instagram</span>
     </a>
-    <a mat-raised-button color="primary" class="mat-h2 button" href="https://www.youtube.com/channel/UCO5KJ1114BUb99cub0mqWqQ/videos" fxLayoutAlign="center center" >
+    <a mat-raised-button color="primary" class="mat-h2 button"
+       href="https://www.youtube.com/channel/UCO5KJ1114BUb99cub0mqWqQ/videos" fxLayoutAlign="center center">
       <mat-icon mat-list-icon svgIcon="youtube"></mat-icon>
       <span>Youtube</span>
     </a>
   </div>
 
-  <div class="adresa">
+  <mat-card fxFlex="50" class="form-container" fxFlex.lt-md="100">
+    <app-contact-from class="contact-form"></app-contact-from>
+  </mat-card>
+
+
+  <div class="adresa" fxFlex="100">
     <p>Adresa: Sudarc - fostul Consproiect, str. Maramureș, nr. 12, et. 2, cam. 97 vizavi de Liceul Mihai Viteazul</p>
     <p>SC BRÂU MUNTENESC SRL</p>
     <p>CUI 41123710, J 29/1810/2019,</p>
     <p>RO73INGB0000999909056584, deschis la ING Bank</p>
     <p>RO27TREZ5215069XXX016500 deschis la Trezoreria Ploiești</p>
+
   </div>
-
-  <div >
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2824.3156707488397!2d26.022944415807064!3d44.93725037646947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b24985cf7f1dd7%3A0xb3c899e76a172085!2sBr%C3%A2u%20Muntenesc!5e0!3m2!1sro!2sro!4v1611245973609!5m2!1sro!2sro" fxFlex="100"height="700" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-  </div>
+</div>
 
 
+<div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2824.3156707488397!2d26.022944415807064!3d44.93725037646947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b24985cf7f1dd7%3A0xb3c899e76a172085!2sBr%C3%A2u%20Muntenesc!5e0!3m2!1sro!2sro!4v1611245973609!5m2!1sro!2sro"
+    fxFlex="100" height="700" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+    tabindex="0"></iframe>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center">
+  <h1 class="title-dashboard-shop">Link-uri utile:</h1>
+</div>
+
+<a class="mat-h2" [routerLink]="['/politica-de-confidentialitate']"
+   fxLayoutAlign="center center">
+  <span>Politică de confidențialitate</span>
+</a>
+
+<ng-template #header>
+  <p>Contact</p>
+</ng-template>

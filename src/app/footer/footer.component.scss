@@ -1,18 +1,22 @@
 .div-footer {
-  min-height: 500px;
+  min-height: 300px;
   background: #00877a;
   width: 100%;
+  color: white;
+
   //margin-top: 100px;
   //animation: gradient 10s infinite;
 }
 
 a {
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.87);;
+  color: white;
+  font-size: 18px;
+  line-height: 21px;
 }
 
 a:hover {
-  color: darkblue;
+  //color: #0D6774;
   transform: scale(1.1);
 }
 
@@ -20,19 +24,63 @@ a:hover {
   text-align: center;
 }
 
-@keyframes gradient {
-  0%{
-    background-position:0% 50%;
-    background-color: #00877A;
-    }
-  50%{
-    background-position:100% 50%;
-    background-color: #02c3c3;
+.divider {
+  border-top-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+}
+
+.footer-text {
+  span {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 400;
   }
-  100%{
-    background-position:0% 50%;
-    background-color: #00877A;
+
+  .copy-right-icon {
+    transform: scale(0.5);
   }
 }
+.social-icons {
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  .icon {
+    transform: scale(1.5);
+  }
+
+  @media screen and (min-width: 960px) {
+    width: 50%;
+  }
+}
+
+
+.buttons {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  mat-divider {
+    height: 25px;
+    border-right: 2px solid #FFFFFF;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+}
+
+//@keyframes gradient {
+//  0%{
+//    background-position:0% 50%;
+//    background-color: #00877A;
+//    }
+//  50%{
+//    background-position:100% 50%;
+//    background-color: #02c3c3;
+//  }
+//  100%{
+//    background-position:0% 50%;
+//    background-color: #00877A;
+//  }
+//}
 
 

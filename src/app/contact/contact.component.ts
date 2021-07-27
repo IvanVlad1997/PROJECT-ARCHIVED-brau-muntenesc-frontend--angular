@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('header', {static: true})
+  public header: TemplateRef<any>;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {NodemailerService} from './nodemailer-manager';
 import {Order} from '../../../projects/common/order';
 import {Eveniment} from '../../../projects/common/events';
+import {ContactForm} from "../../../projects/common/contact-form";
 
 @Injectable({providedIn: 'root'})
 export class NodemailerHelper {
@@ -27,6 +28,10 @@ export class NodemailerHelper {
 
   infoPaymaentCourse(data): void {
     this.nodemailer.infoMail('Plată abonament adăugată în calendar', `<h1>${JSON.stringify(data)}</h1>`);
+  }
+
+  infoContactForm(contactForm: ContactForm): void {
+    this.nodemailer.infoMail('Un formular a fost trimis de pe Brâu Muntenesc', `<h1>${JSON.stringify(contactForm)}</h1>`);
   }
 
 
