@@ -2,7 +2,7 @@
   <div fxFlex="100"  fxLayout="column" fxLayoutAlign="center center"  class="first-row-left first-row">
     <p>Email: {{user.email}}</p>
     <p>Nume cont: {{user.name}}</p>
-    <p *ngIf="user.group.category">Grupă: {{user.group.category}} - {{user.group.interval}}</p>
+    <p *ngIf="user.group && user.group.category">Grupă: {{user.group.category}} - {{user.group.interval}}</p>
 
     <!--    <p>Rol: <span *ngIf="user.role==='subscriber'">Abonat</span> <span *ngIf="user.role==='admin'">Admin</span></p>-->
     <p>Cont creat în {{user.createdAt | date}}</p>
