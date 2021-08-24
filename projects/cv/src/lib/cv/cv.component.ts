@@ -93,7 +93,7 @@ export class CvComponent implements OnInit {
     this.dialog.open(CursuriUdemyComponent,
       {
         data: {
-          src: 'https://i.imgur.com/fsVOBnk.jpg',
+          src: 'https://i.imgur.com/qMRwfQU.jpg',
           title: ''
         }
       });

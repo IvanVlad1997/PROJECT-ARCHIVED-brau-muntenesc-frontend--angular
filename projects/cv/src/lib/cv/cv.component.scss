@@ -1,15 +1,33 @@
+:host {
+  .third {
+    color: #00877A;
+    font-size: 40px;
+    font-weight: bold;
+
+  }
+}
+
+
 .first {
-  background: #0D6774;
+  background: #00877A;
   min-height: 450px;
+  border-radius: 25px;
+  padding: 4px;
+
 }
 
 .second {
   min-height: 450px;
+  padding: 4px;
+  border-radius: 25px;
+
 }
 
 .third {
-  background: #00877A;
+  //background: #0D6774;
   padding: 50px;
+  border-radius: 25px;
+
 }
 
 .img1 {
@@ -35,7 +53,7 @@ a {
 }
 
 a:hover {
-  color: #02c3c3;
+  //color: #02c3c3;
 }
 
 button {
@@ -47,16 +65,38 @@ button {
 
 .button {
   margin: 10px;
-  min-width: 300px;
+  min-width: 250px;
   position: absolute;
   bottom: 5px;
 }
 
 button:hover, .button:hover {
-  background: #5469d4;
-  color: #02c3c3;
+  //color: #02c3c3;
 }
 
 div {
   position: relative;
+}
+
+
+.primary-color {
+  color: #00877A;
+}
+
+
+.white-color {
+  color: white;
+}
+
+
+.white-button {
+  background:  #00877A;
+  border: 1px solid white;
+  color: white;
+}
+
+.primary-button {
+  background:  white;
+  border: 1px solid #00877A;
+  color: #00877A;
 }

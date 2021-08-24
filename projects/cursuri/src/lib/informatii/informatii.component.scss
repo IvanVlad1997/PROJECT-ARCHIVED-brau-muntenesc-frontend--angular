@@ -1,6 +1,10 @@
+.container {
+  color: #00877A ;
+}
+
 .preturi {
-  background: #0D6774;
-  padding: 50px;
+  //background: #0D6774;
+
 }
 
 .program {
@@ -14,4 +18,14 @@
 p {
   margin: 0;
   font-size: 17px;
+}
+
+.inactive-group {
+ color: #c62828;
+}
+
+
+.key-value {
+  margin-left: 4px;
+  font-weight: bold;
 }
