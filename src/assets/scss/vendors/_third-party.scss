@@ -1,0 +1,24 @@
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import '~ngx-bar-rating/themes/br-stars-theme';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$brau-muntenesc-primary: mat-palette($secondary, 500);
+$brau-muntenesc-accent: mat-palette($primary, 500);
+
+$brau-muntenesc-warn: mat-palette($mat-red, 800);
+
+$brau-muntenesc-theme: mat-light-theme((
+  color: (
+    primary: $brau-muntenesc-primary,
+    accent: $brau-muntenesc-accent,
+    warn: $brau-muntenesc-warn,
+  )
+));
+
+@include angular-material-theme($brau-muntenesc-theme);

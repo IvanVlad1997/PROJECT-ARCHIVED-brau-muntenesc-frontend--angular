@@ -40,6 +40,10 @@
         "dist/admin-users/admin-users",
         "dist/admin-users"
       ],
+      "components": [
+        "dist/components/components",
+        "dist/components"
+      ],
       "platforma-cursuri": [
         "dist/platforma-cursuri/platforma-cursuri",
         "dist/platforma-cursuri"

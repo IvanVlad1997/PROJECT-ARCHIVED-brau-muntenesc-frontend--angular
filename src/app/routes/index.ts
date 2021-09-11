@@ -22,6 +22,10 @@ export const routes: Routes = [
         loadChildren: () => import('../../../projects/broderie/src/lib/broderie.module').then(module => module.BroderieModule),
       },
       {
+        path: 'test',
+        loadChildren: () => import('../../../projects/components/src/lib/components.module').then(module => module.ComponentsModule),
+      },
+      {
         path: 'auth',
         loadChildren: () => import('../../../projects/auth/src/lib/auth.module').then(module => module.AuthModule)
       },
