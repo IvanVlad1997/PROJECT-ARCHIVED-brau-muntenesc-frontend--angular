@@ -1,3 +1,6 @@
+//@import 'src/assets/scss/abstract/variables';
+@import 'src/assets/scss/abstract/mixins';
+
 .image {
   width: 100%;
   display: flex;
@@ -50,3 +53,18 @@
   }
 }
 
+
+
+.header {
+  font-family: var(--font-family-base), serif;
+  color: var(--color-primary);
+
+}
+
+.h2 {
+  color: red;
+
+  @include responsive-breakpoint(medium) {
+    color: black;
+  }
+}

@@ -1,0 +1,35 @@
+/*****************************************************************************
+ * Colors
+ *
+ * May include opiniated colors as color_blue, color_yellow etc. Use base,
+ * primary, secondary etc. as much as possible to ensure consistency
+ ***************************************************************************** */
+
+
+// Project UI colors
+$color-black: var(--color-black);
+$color-white: var(--color-white);
+
+$color-grey: var(--color-grey);
+$color-light-grey: var(--color-light-grey);
+$color-dark-grey: var(--color-dark-grey);
+
+// Generic colors
+$color-base: var(--color-base);
+$color-base-light: var(--color-base-light);
+$color-base-dark: var(--color-base-dark);
+
+$color-primary: var(--color-primary);
+$color-primary-light: var(--color-primary-light);
+$color-primary-dark: var(--color-primary-dark);
+
+$color-secondary: var(--color-secondary);
+$color-secondary-light: var(--color-secondary-light);
+$color-secondary-dark: var(--color-secondary-dark);
+
+$color-action: var(--color-action);
+$color-action-light: var(--color-action-light);
+$color-action-dark: var(--color-action-dark);
+
+//$color-error: var(--color-error);
+//$color-form: var(--color-base);

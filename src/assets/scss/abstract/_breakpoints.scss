@@ -1,0 +1,14 @@
+/*****************************************************************************
+ * Responsive breakpoints are used bottom-up; extra small means a screen size
+ * between 576px and 787px (just before the small breakpoint);
+ *
+ * @media only screen and (min-width: xxx) { }
+ ***************************************************************************** */
+
+$breakpoints: (
+  extra-small: 576,
+  small: 768,
+  medium: 992,
+  large: 1175,
+  extra-large: 1440
+);

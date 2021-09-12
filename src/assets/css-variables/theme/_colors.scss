@@ -1,0 +1,44 @@
+:root {
+  --color-green: #00877A;
+  --color-green-dark: #0D6774;
+  --color-green-light: #0D6774;
+
+  --color-blue: #127D88;
+  --color-blue-dark: #083e44;
+  --color-blue-light: #083e44;
+
+  --color-violet: #9600e6;
+  --color-violet-dark: #4b0073;
+  --color-violet-light: #ce73ff;
+
+
+  /* -- Project UI colors  -- */
+  --color-black: #000;
+  --color-white: #fff;
+
+  --color-grey: #a8a39f;
+  --color-light-grey: #f6f5f4;
+  --color-dark-grey: #181a23;
+
+  /* -- Generic colors  -- */
+  --color-base: var(--color-grey);
+  --color-base-light: var(--color-light-grey);
+  --color-base-dark:  var(--color-dark-grey);
+
+  --color-primary: var(--color-green);
+  --color-primary-light: var(--color-green-light);
+  --color-primary-dark: var(--color-green-dark);
+
+  --color-secondary: var(--color-blue);
+  --color-secondary-light: var(--color-blue-light);
+  --color-secondary-dark: var(--color-blue-dark);
+
+
+  --color-action: var(--color-violet);
+  --color-action-light: var(--color-violet-light);
+  --color-action-dark: var(--color-violet-dark);
+
+  //--color-error: var(--color-pink);
+  //--color-form: var(--color-base);
+
+}
