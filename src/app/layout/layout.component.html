@@ -1,21 +1,21 @@
-<mat-sidenav-container fxFlexFill class="side-class">
-  <mat-sidenav mode="side" fixedInViewport class="side" #sidenav [(opened)]="openedSide">
+<mat-sidenav-container fxFlexFill class="layout__sidenav-container">
+  <mat-sidenav mode="side" fixedInViewport class="layout__sidenav" #sidenav [(opened)]="openedSide">
    <lib-side-nav [sidenav]="sidenav" [isAuthenticated]="isAuthenticated"
    [isAdmin]="isAdmin" [options]="options">
    </lib-side-nav>
   </mat-sidenav>
-  <mat-sidenav-content class="sidenav-content">
-    <mat-toolbar class="toolbar">
+  <mat-sidenav-content class="layout__sidenav-content">
+    <mat-toolbar class="layout__toolbar">
       <mat-toolbar-row fxLayout="row" fxLayoutAlign="start center">
-        <div fxFlex="33">
-          <div class="button-container" fxLayoutAlign="center center">
+        <div fxFlex="33" class="layout__toolbar-toggle">
+          <div class="layout__toolbar-toggle--button" fxLayoutAlign="center center">
             <button mat-icon-button (click)="sidenav.toggle()">
               <mat-icon svgIcon="menu" color="primary"></mat-icon>
             </button>
           </div>
         </div>
-        <div fxFlex="33" fxLayoutAlign="center center">
-          <h1 *ngIf="header" class="title" fxHide.lt-sm="true">
+        <div fxFlex="33" fxLayoutAlign="center center" class="layout__toolbar-title">
+          <h1 *ngIf="header" class="layout__toolbar-title--text" fxHide.lt-sm="true">
             <ng-container *ngTemplateOutlet="header"></ng-container>
           </h1>
         </div>
@@ -23,11 +23,11 @@
           <div fxFlex="100">
             <ng-container *ngTemplateOutlet="search" fxFlex="50"></ng-container>
           </div>
-          <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
-            <div fxLayout="row" fxLayoutAlign="end center" *ngIf="isAuthenticated" class="account-image">
+          <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center" class="layout__toolbar-user">
+            <div fxLayout="row" fxLayoutAlign="end center" *ngIf="isAuthenticated" class="layout__toolbar-user--account-image">
               <ng-container *ngIf="user">
                 <ngx-avatar [name]="user.name" [bgColor]="'#00877A'" [matMenuTriggerFor]="menu" size="40"
-                            class="avatar"></ngx-avatar>
+                            class="layout__toolbar-user--avatar"></ngx-avatar>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item disabled *ngIf="isAuthenticated">
                   <span>{{user.name}}</span>
@@ -56,12 +56,12 @@
               </ng-container>
 
             </div>
-            <div *ngIf="!isAuthenticated" fxHide.lt-md>
+            <div *ngIf="!isAuthenticated" fxHide.lt-md class="layout__toolbar-buttons">
               <button color="primary" mat-stroked-button routerLink="/auth/login" *ngIf="!isAuthenticated">
                 <span>Contul meu</span>
               </button>
               <span fxFlex></span>
-              <button color="primary" mat-raised-button class="inregistrare-margin" routerLink="/auth/signup"
+              <button color="primary" mat-raised-button class="layout__toolbar-buttons--sign-up" routerLink="/auth/signup"
                       *ngIf="!isAuthenticated">
                 <span>Înregistrare</span>
               </button>
@@ -76,7 +76,7 @@
       </div>
     </mat-toolbar>
 <!--    <div fxLayout="row wrap" fxLayoutAlign="start center" class="under-sidenav">-->
-        <div [@routeAnimations]="prepareRoute(outlet)" class="layout-animation-container">
+        <div [@routeAnimations]="prepareRoute(outlet)" class="layout__animation">
           <router-outlet (activate)="componentChangeed($event)" (deactivate)="clearComponent()" #outlet="outlet"></router-outlet>
 
         </div>

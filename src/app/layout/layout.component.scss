@@ -1,86 +1,66 @@
-:host::ng-deep {
-  .mat-stroked-button:not(.mat-button-disabled) {
-    border: 1px solid #00877a ;
+.layout {
+  &__sidenav {
+    @media screen and (max-width: 960px) {
+      width:100vw;
+    }
+  }
+
+  &__sidenav-content {
+    display: block !important;
+  }
+
+  &__toolbar {
+    background-color: white;
+  }
+
+  &__toolbar-title {
+
+    &--text {
+      color: #00877A;
+      font-weight: bold;
+      font-size: 36px;
+      line-height: 42px;
+    }
+  }
+
+  &__toolbar-user {
+
+    &--account-image {
+      padding: 10px;
+      cursor: pointer;
+      transition: all .2s;
+
+      &:hover {
+        box-shadow: 0 5rem 5rem rgba(var(--color-black), .1);
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__toolbar-buttons {
+
+    &--sign-up {
+      margin-left: 5px;
+    }
+  }
+
+  &__toolbar-toggle {
+
+    &--button {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #00877a;
+      border-radius: 50%;
+
+      button {
+        margin-top: -3px;
+      }
+    }
+  }
+
+  &__animation {
+    min-height: 100vh;
+    background-color: var(--color-light-grey);
   }
 }
 
-.padding-container {
-  padding: 30px;
-}
-
-
-.side-class {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.side {
-  @media screen and (max-width: 960px) {
-    width:100vw;
-  }
-}
-
-
-.min-height {
-  height: 65vh;
-}
-
-.account-image {
-  padding: 10px;
-}
-
-.inregistrare-margin {
-  margin-left: 5px;
-}
-
-
-.toolbar {
-  color: white;
-}
-
-.title {
-  color: #00877A;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 42px;
-}
-
-
-
-.under-sidenav {
-  min-height: 90vh;
-  background: #DCDCDC;
-  padding: 53px 45px 50px 45px ;
-
-  @media only screen and (max-width : 600px) {
-    padding: 15px 10px 15px 10px
-  }
-
-}
-.sidenav-content {
-  display: block !important;
-}
-
-
-.button-container {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #00877a;
-  border-radius: 50%;
-
-  button {
-    margin-top: -3px;
-  }
-}
-
-
-.footer {
-}
-
-
-.layout-animation-container {
-  min-height: 100vh;
-}

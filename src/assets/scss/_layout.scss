@@ -2,4 +2,9 @@
   border-radius: 32px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: white;
+  margin: 10px 15px;
+
+  @include responsive-breakpoint(small) {
+    margin: 200px;
+  }
 }
