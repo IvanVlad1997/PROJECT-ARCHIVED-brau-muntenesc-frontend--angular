@@ -22,7 +22,6 @@ import {NgxImageCompressService} from 'ngx-image-compress';
 import { PaginaStartCardItemComponent } from './pagina-start-card-item/pagina-start-card-item.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
-import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContactComponent } from './contact/contact.component';
 import { PrivacyComponent } from './privacy/privacy.component';
@@ -33,10 +32,11 @@ import {FrontendSentryModule} from '../../projects/sentry/src/lib/sentry.module'
 import {GoogleAnalyticsService} from './services/google-analytics';
 import {TOKEN, USER_STORAGE} from './app.token';
 import {Token} from '../../projects/auth/src/lib/services/token';
-import {AvatarModule} from "ngx-avatar";
-import {MatTooltipModule} from "@angular/material/tooltip";
+import {AvatarModule} from 'ngx-avatar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { ContactFromComponent } from './contact-from/contact-from.component';
-import {MatInputModule} from "@angular/material/input";
+import {MatInputModule} from '@angular/material/input';
+import { LayoutModule } from 'projects/layout/src/lib/layout.module';
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -49,7 +49,6 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     LayoutComponent,
     PaginaStartComponent,
     PaginaStartCardItemComponent,
-    FooterComponent,
     PageNotFoundComponent,
     ContactComponent,
     PrivacyComponent,
@@ -60,6 +59,7 @@ function createInitializer(initializer: InitService): () => Promise<void> {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    LayoutModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,

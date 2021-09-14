@@ -1,0 +1,68 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" color="primary" fxShow.gt-sm="false">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon svgIcon="arrow-left"></mat-icon>
+  </button>
+</mat-toolbar>
+<mat-toolbar color="accent" fxShow.lt-md="false">
+  <mat-toolbar-row class="app-name">
+    Brâu Muntenesc
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-nav-list class="menu" fxLayout="column" fxLayoutAlign="start center">
+  <a mat-list-item routerLink="">
+    <mat-icon mat-list-icon svgIcon="home"></mat-icon>
+    <span>Acasă</span>
+  </a>
+  <a mat-list-item routerLink="/broderie">
+    <mat-icon mat-list-icon svgIcon="store"></mat-icon>
+    <span>Magazin</span>
+  </a>
+  <a mat-list-item routerLink="/cursuri">
+    <mat-icon mat-list-icon svgIcon="school"></mat-icon>
+    <span>Cursuri</span>
+  </a>
+  <a mat-list-item routerLink="/evenimente">
+    <mat-icon mat-list-icon svgIcon="dance-ballroom"></mat-icon>
+    <span>Evenimente</span>
+  </a>
+  <a mat-list-item routerLink="/contact">
+    <mat-icon mat-list-icon svgIcon="card-account-phone"></mat-icon>
+    <span>Contact</span>
+  </a>
+  <a mat-list-item routerLink="/user" *ngIf="isAuthenticated">
+    <mat-icon mat-list-icon svgIcon="account"></mat-icon>
+    <span>Cont</span>
+  </a>
+  <a mat-list-item routerLink="/admin" *ngIf="isAdmin">
+    <mat-icon mat-list-icon svgIcon="camera-control"></mat-icon>
+    <span>Admin</span>
+  </a>
+  <a mat-list-item routerLink="/admin-platforma-cursuri/dashboard" *ngIf="isAdmin">
+    <mat-icon mat-list-icon svgIcon="head-minus"></mat-icon>
+    <span>Admin Cursuri</span>
+  </a>
+  <a mat-list-item routerLink="/admin-evenimente" *ngIf="isAdmin">
+    <mat-icon mat-list-icon svgIcon="gamepad-square"></mat-icon>
+    <span>Admin Evenimente</span>
+  </a>
+  <ng-container *ngTemplateOutlet="options"></ng-container>
+  <hr fxHide.gt-sm/>
+  <a mat-list-item routerLink="/auth/login" *ngIf="!isAuthenticated" fxHide.gt-sm>
+    <mat-icon mat-list-icon svgIcon="account-box"></mat-icon>
+    <span>Contul meu</span>
+  </a>
+  <a mat-list-item routerLink="/auth/signup" *ngIf="!isAuthenticated" fxHide.gt-sm>
+    <mat-icon mat-list-icon svgIcon="account-plus-outline"></mat-icon>
+    <span>Înregistrare</span>
+  </a>
+  <a mat-list-item (click)="logout()" *ngIf="isAuthenticated" fxHide.gt-sm>
+    <mat-icon mat-list-icon svgIcon="account-arrow-right-outline"></mat-icon>
+    <span>Ieși de pe cont</span>
+  </a>
+  <span fxFlex class="space-until-logo"></span>
+  <a mat-list-item fxLayoutAlign="center center">
+    <img class="logo" src="assets/logo.png">
+    <span>Brâu Muntenesc</span>
+  </a>
+
+</mat-nav-list>

@@ -1,5 +1,5 @@
 import {Component, Inject, OnDestroy, OnInit, TemplateRef} from '@angular/core';
-import {NavigationStart, Router} from '@angular/router';
+import {NavigationStart, Router, RouterOutlet} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
 import {Subject, Subscription} from 'rxjs';
 import {AuthService} from '../../../projects/auth/src/lib/services/auth';
@@ -8,11 +8,15 @@ import {TOKEN, USER_STORAGE} from '../app.token';
 import {Token} from '../../../projects/auth/src/lib/services/token';
 import {User} from '../../../projects/common/user';
 import {GoogleAnalyticEventsService} from '../services/google-analytic-events.service';
+import {slideInAnimation} from '../animations/animations';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
+  animations: [
+    slideInAnimation
+  ]
 })
 export class LayoutComponent implements OnInit, OnDestroy {
   private onDestroy$: Subject<void> = new Subject();
@@ -98,5 +102,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  prepareRoute(outlet: RouterOutlet): any {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }
