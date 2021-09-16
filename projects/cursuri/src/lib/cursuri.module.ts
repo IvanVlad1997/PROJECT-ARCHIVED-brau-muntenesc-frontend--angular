@@ -19,9 +19,11 @@ import { GalerieVideoComponent } from './galerie-video/galerie-video.component';
 import { InformatiiComponent } from './informatii/informatii.component';
 import { ParteneriMediaComponent } from './parteneri-media/parteneri-media.component';
 import {CarouselGalerieComponent} from './carousel/carousel-galerie.component';
+import { HeaderCoursesVideoComponent } from './components/header-courses-video/header-courses-video.component';
+import { InfoCardsFlipComponent } from './components/info-cards-flip/info-cards-flip.component';
 
 @NgModule({
-  declarations: [CarouselGalerieComponent, CursuriComponent, PrimaPaginaComponent, CarouselPhotoGalerieComponent, GalerieFotoComponent, GalerieVideoComponent, InformatiiComponent, ParteneriMediaComponent],
+  declarations: [CarouselGalerieComponent, CursuriComponent, PrimaPaginaComponent, CarouselPhotoGalerieComponent, GalerieFotoComponent, GalerieVideoComponent, InformatiiComponent, ParteneriMediaComponent, HeaderCoursesVideoComponent, InfoCardsFlipComponent],
   imports: [
     RouterModule.forChild(routes),
     FlexModule,

@@ -1,7 +1,41 @@
+
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
+  box-sizing: inherit;
+}
+
+html {
   box-sizing: border-box;
+  font-size: 40%; //10px/16px = 62.5% -> 1rem=10px
+
+
+  //@include responsive-breakpoint(extra-small) {
+  //  font-size: 50%;
+  //}
+
+  @include responsive-breakpoint(small) {
+    font-size: 50%;
+  }
+
+  @include responsive-breakpoint(medium) {
+    font-size: 56.25%;
+  }
+
+  @include responsive-breakpoint(large) {
+    font-size: 62.5%;
+  }
+
+  //@include responsive-breakpoint(extra-large) {
+  //  font-size: 75%;
+  //}
+}
+
+body {
+  font-family: var(--font-family-1), serif;
+  color: var(--color-dark-grey);
+  font-weight: var(--font-weight-base);
+  line-height: 1.6;
 }

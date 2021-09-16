@@ -6,6 +6,8 @@
 @import '~ngx-bar-rating/themes/br-stars-theme';
 @import '~@angular/material/theming';
 
+@import 'src/assets/scss/base/colors-angular';
+
 @include mat-core();
 
 $brau-muntenesc-primary: mat-palette($secondary, 500);
@@ -22,3 +24,4 @@ $brau-muntenesc-theme: mat-light-theme((
 ));
 
 @include angular-material-theme($brau-muntenesc-theme);
+

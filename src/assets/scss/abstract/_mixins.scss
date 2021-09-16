@@ -3,12 +3,12 @@
 // RESPONSIVE
 @mixin responsive-breakpoint($breakpoint) {
   @if type-of($breakpoint)=='number' {
-    @media only screen and (min-width: #{$breakpoint}px) {
+    @media only screen and (min-width: #{$breakpoint}em) {
       @content;
     }
   }
   @else if map-has-key($breakpoints, $breakpoint) {
-    @media only screen and (min-width: #{map-get($breakpoints, $breakpoint)}px) {
+    @media only screen and (min-width: #{map-get($breakpoints, $breakpoint)}em) {
       @content;
     }
   }

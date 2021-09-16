@@ -6,9 +6,9 @@
  ***************************************************************************** */
 
 $breakpoints: (
-  extra-small: 576,
-  small: 768,
-  medium: 992,
-  large: 1175,
-  extra-large: 1440
+  small: 37.5, //600px
+  small-medium: 45, //720px
+  medium: 60, //960px
+  large: 80, //1280px
+  extra-large: 120 //1920px
 );

@@ -1,105 +1,96 @@
-<div fxLayout="row wrap" fxLayoutAlign="center center">
+<div class="courses">
 
-<!--  VIDEOCLIP-->
-  <div class="video-intro" fxFlex="100">
-    <div  plyr [plyrOptions]="options"
-         plyrTitle="Video 1"
-         [plyrPlaysInline]="true"
-         [plyrPlaysInline]="true"
-         [plyrSources]="videoSources" >
-    </div>
-  </div>
+  <lib-header-courses-video></lib-header-courses-video>
+  <lib-info-cards-flip></lib-info-cards-flip>
+  <!--      <h1 fxFlex="100"  class="subtitle" >Hai la Brâu!</h1>-->
+  <!--  TITLU -->
+  <!--    <div class="typewriter " fxHide.lt-md="true" >-->
+  <!--      <h1  class="title" >Cursuri de dansuri populare în Ploiești!</h1>-->
+  <!--    </div>-->
+  <!--    <div class="typewriter " fxHide.gt-sm >-->
+  <!--      <h1  class="title" >Cursuri de dansuri populare.</h1>-->
+  <!--    </div>-->
 
+  <!--  <div class="sub-title-container"  fxLayoutAlign="center center">-->
+  <!--    <h1 fxFlex="100" class="sub-title">Dansul este...</h1>-->
+  <!--  </div>-->
 
-      <h1 fxFlex="100"  class="subtitle" >Hai la Brâu!</h1>
-<!--  TITLU -->
-    <div class="typewriter " fxHide.lt-md="true" >
-      <h1  class="title" >Cursuri de dansuri populare în Ploiești!</h1>
-    </div>
-    <div class="typewriter " fxHide.gt-sm >
-      <h1  class="title" >Cursuri de dansuri populare.</h1>
-    </div>
+  <!--  <div fxFlex="100" fxLayout="row wrap" >-->
+  <!--    <div  *ngFor="let text of texts; let i = index" fxLayoutAlign="center center">-->
+  <!--      <div fxFlex="40" *ngIf="i%2==0" fxHide.lt-md></div>-->
+  <!--      <mat-card fxFlex fxFlex.lt-md="90" class="mat-card-text">-->
+  <!--        <mat-card-title>{{text.title}}</mat-card-title>-->
+  <!--        <mat-card-content>{{text.text}}</mat-card-content>-->
+  <!--      </mat-card>-->
+  <!--      <div fxFlex="40" *ngIf="i%2==1" fxHide.lt-md></div>-->
+  <!--    </div>-->
+  <!--  </div>-->
 
-  <div class="sub-title-container"  fxLayoutAlign="center center">
-    <h1 fxFlex="100" class="sub-title">Dansul este...</h1>
-  </div>
+  <!--  <div class="sub-title-container"  fxLayoutAlign="center center">-->
+  <!--     <h1 fxFlex="100" class="sub-title">Galerie</h1>-->
+  <!--  </div>-->
 
-  <div fxFlex="100" fxLayout="row wrap" >
-    <div  *ngFor="let text of texts; let i = index" fxLayoutAlign="center center">
-      <div fxFlex="40" *ngIf="i%2==0" fxHide.lt-md></div>
-      <mat-card fxFlex fxFlex.lt-md="90" class="mat-card-text">
-        <mat-card-title>{{text.title}}</mat-card-title>
-        <mat-card-content>{{text.text}}</mat-card-content>
-      </mat-card>
-      <div fxFlex="40" *ngIf="i%2==1" fxHide.lt-md></div>
-    </div>
-  </div>
+  <!--  <div fxFlex="100" class="galery-container" fxLayout="row wrap">-->
+  <!--    <div class="buton" fxFlex.lt-md="100" routerLink="galerie-foto">-->
+  <!--      <button mat-raised-button color="primary" fxFlex.lt-md="100">-->
+  <!--        <mat-icon mat-list-icon svgIcon="camera"></mat-icon>-->
+  <!--        Galerie foto-->
+  <!--      </button>-->
+  <!--    </div>-->
+  <!--    <lib-carousel-photo-galerie [images] = "images" *ngIf="images[0]" fxFlex="100"></lib-carousel-photo-galerie>-->
+  <!--  </div>-->
 
-<!--  <div class="sub-title-container"  fxLayoutAlign="center center">-->
-<!--     <h1 fxFlex="100" class="sub-title">Galerie</h1>-->
-<!--  </div>-->
+  <!--  <div class="sub-title-container"  fxLayoutAlign="center center">-->
+  <!--    <h1 fxFlex="100" class="sub-title">Întâlnește instructorii</h1>-->
+  <!--  </div>-->
 
-  <div fxFlex="100" class="galery-container" fxLayout="row wrap">
-    <div class="buton" fxFlex.lt-md="100" routerLink="galerie-foto">
-      <button mat-raised-button color="primary" fxFlex.lt-md="100">
-        <mat-icon mat-list-icon svgIcon="camera"></mat-icon>
-        Galerie foto
-      </button>
-    </div>
-    <lib-carousel-photo-galerie [images] = "images" *ngIf="images[0]" fxFlex="100"></lib-carousel-photo-galerie>
-  </div>
+  <!--  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around center">-->
+  <!--    <mat-card fxFlex="40" fxFlex.lt-md="90" class="margin-top-1 shadow">-->
+  <!--      <mat-card-title class="text-card">Vlad</mat-card-title>-->
+  <!--      <img mat-card-image src="https://i.imgur.com/o5CucA9.jpg" alt="Vlad">-->
+  <!--      <mat-card-actions fxLayoutAlign="center center">-->
+  <!--        <a mat-raised-button color="primary"  [routerLink]="['/cv-vlad-ivan']" target="_blank">Cunoaște-l mai bine</a>-->
+  <!--&lt;!&ndash;        <a mat-raised-button color="primary" href="https://www.facebook.com/vlad.ivan.33/" target="_blank">Cunoaște-l mai bine</a>&ndash;&gt;-->
+  <!--      </mat-card-actions>-->
+  <!--    </mat-card>-->
+  <!--    <mat-card fxFlex="40" fxFlex.lt-md="90" class="margin-top-1  shadow">-->
+  <!--      <mat-card-title class="text-card">Andreea</mat-card-title>-->
+  <!--      <img mat-card-image src="https://i.imgur.com/NPTKj5Q.jpg" alt="Andreea">-->
+  <!--      <mat-card-actions fxLayoutAlign="center center">-->
+  <!--        <a mat-raised-button color="primary" href="https://www.facebook.com/andreeavulpe.i" target="_blank">Cunoaște-o mai bine</a>-->
+  <!--      </mat-card-actions>-->
+  <!--    </mat-card>-->
+  <!--  </div>-->
+  <!--</div>-->
 
-  <div class="sub-title-container"  fxLayoutAlign="center center">
-    <h1 fxFlex="100" class="sub-title">Întâlnește instructorii</h1>
-  </div>
-
-  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around center">
-    <mat-card fxFlex="40" fxFlex.lt-md="90" class="margin-top-1 shadow">
-      <mat-card-title class="text-card">Vlad</mat-card-title>
-      <img mat-card-image src="https://i.imgur.com/o5CucA9.jpg" alt="Vlad">
-      <mat-card-actions fxLayoutAlign="center center">
-        <a mat-raised-button color="primary"  [routerLink]="['/cv-vlad-ivan']" target="_blank">Cunoaște-l mai bine</a>
-<!--        <a mat-raised-button color="primary" href="https://www.facebook.com/vlad.ivan.33/" target="_blank">Cunoaște-l mai bine</a>-->
-      </mat-card-actions>
-    </mat-card>
-    <mat-card fxFlex="40" fxFlex.lt-md="90" class="margin-top-1  shadow">
-      <mat-card-title class="text-card">Andreea</mat-card-title>
-      <img mat-card-image src="https://i.imgur.com/NPTKj5Q.jpg" alt="Andreea">
-      <mat-card-actions fxLayoutAlign="center center">
-        <a mat-raised-button color="primary" href="https://www.facebook.com/andreeavulpe.i" target="_blank">Cunoaște-o mai bine</a>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</div>
-
-<div class="informatii" fxLayout="row wrap" fxLayoutAlign="center center">
-    <button fxFlex="70" class="informatii-button" color="accent" mat-raised-button [routerLink]="['/cursuri/informatii']">
-        <mat-icon mat-list-icon svgIcon="information-outline"></mat-icon>
-         Informații
-    </button>
-</div>
+  <!--<div class="informatii" fxLayout="row wrap" fxLayoutAlign="center center">-->
+  <!--    <button fxFlex="70" class="informatii-button" color="accent" mat-raised-button [routerLink]="['/cursuri/informatii']">-->
+  <!--        <mat-icon mat-list-icon svgIcon="information-outline"></mat-icon>-->
+  <!--         Informații-->
+  <!--    </button>-->
+  <!--</div>-->
 
 
-<div fxLayout="row wrap" fxLayoutAlign="center center">
-  <div fxLayoutAlign="center center" fxFlex="90" fxLayout="row wrap">
-    <div fxHide.gt-sm="true" fxFlex.lt-md="100">
-      <div fxFlex="100" fxLayoutAlign="center center">
-        <button mat-raised-button color="primary"   [routerLink]="['/platforma-cursuri']">Urmărește videoclipurile cu dansuri</button>
-      </div>    </div>
-    <div fxFlex="50" fxFlex.lt-md="100" fxLayoutAlign="center">
-      <div fxFlex="90"  plyr [plyrOptions]="options1" class="margins"
-             plyrTitle="Video1"
-             [plyrPlaysInline]="true"
-             [plyrPlaysInline]="true"
-             [plyrSources]="videoSources1" >
+  <!--<div fxLayout="row wrap" fxLayoutAlign="center center">-->
+  <!--  <div fxLayoutAlign="center center" fxFlex="90" fxLayout="row wrap">-->
+  <!--    <div fxHide.gt-sm="true" fxFlex.lt-md="100">-->
+  <!--      <div fxFlex="100" fxLayoutAlign="center center">-->
+  <!--        <button mat-raised-button color="primary"   [routerLink]="['/platforma-cursuri']">Urmărește videoclipurile cu dansuri</button>-->
+  <!--      </div>    </div>-->
+  <!--    <div fxFlex="50" fxFlex.lt-md="100" fxLayoutAlign="center">-->
+  <!--      <div fxFlex="90"  plyr [plyrOptions]="options1" class="margins"-->
+  <!--             plyrTitle="Video1"-->
+  <!--             [plyrPlaysInline]="true"-->
+  <!--             [plyrPlaysInline]="true"-->
+  <!--             [plyrSources]="videoSources1" >-->
 
-      </div>
-    </div>
-    <div fxFlex="50" fxHide.lt-md="true">
-      <div fxFlex="100" fxLayoutAlign="center center">
-        <button mat-raised-button color="primary"   [routerLink]="['/platforma-cursuri']">Urmărește videoclipurile cu dansuri</button>
-      </div>
-    </div>
-  </div>
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div fxFlex="50" fxHide.lt-md="true">-->
+  <!--      <div fxFlex="100" fxLayoutAlign="center center">-->
+  <!--        <button mat-raised-button color="primary"   [routerLink]="['/platforma-cursuri']">Urmărește videoclipurile cu dansuri</button>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
 </div>
 

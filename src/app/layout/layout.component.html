@@ -1,5 +1,5 @@
 <mat-sidenav-container fxFlexFill class="layout__sidenav-container">
-  <mat-sidenav mode="side" fixedInViewport class="layout__sidenav" #sidenav [(opened)]="openedSide">
+  <mat-sidenav mode="over" fixedInViewport class="layout__sidenav" #sidenav [(opened)]="openedSide">
    <lib-side-nav [sidenav]="sidenav" [isAuthenticated]="isAuthenticated"
    [isAdmin]="isAdmin" [options]="options">
    </lib-side-nav>

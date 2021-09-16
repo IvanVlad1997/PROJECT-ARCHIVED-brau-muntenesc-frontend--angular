@@ -1,0 +1,84 @@
+@import '~src/assets/scss/abstract/mixins';
+
+:host {
+  width: 100%;
+}
+
+:host::ng-deep {
+  .plyr--video {
+    border-radius: 2rem;
+    box-shadow: var(--shadow-1);
+  }
+}
+
+
+.header-courses {
+  display: grid;
+  grid-template-rows: [start-intro] min-content [end-intro start-intro-text] minmax(min-content, 30vh) [end-intro-text];
+  grid-template-columns:[center-start] repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end];
+  column-gap: 1rem;
+  grid-row-gap: 5rem;
+
+  @include responsive-breakpoint(small-medium) {
+    grid-template-rows:  [start-intro] minmax(min-content, 60vh) [end-intro start-intro-text] min-content [end-intro-text];
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end]  minmax(6rem, 1fr) [full-end]  ;
+
+  }
+
+  @include responsive-breakpoint(medium) {
+    grid-template-rows: [start-intro] 80vh [end-intro start-intro-text] min-content [end-intro-text];
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start]
+  repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+  }
+
+
+
+  &__video-intro {
+    grid-row: start-intro / end-intro;
+    grid-column: col-start 1 / col-end 16 ;
+    align-self: stretch;
+
+    @include responsive-breakpoint(small-medium) {
+      grid-row: start-intro / end-intro;
+      grid-column: col-start 9 / col-end 16 ;
+      align-self: center;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-row: start-intro / end-intro;
+      grid-column: col-start 9 / col-end 16 ;
+    }
+  }
+
+  &__content-intro {
+    grid-row: start-intro-text / end-intro-text;
+    grid-column: col-start 1 / col-end 16 ;
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+
+    padding: 1rem;
+
+    @include responsive-breakpoint(small) {
+      padding: 2rem;
+    }
+
+    @include responsive-breakpoint(small-medium) {
+      grid-row: start-intro / end-intro;
+      grid-column: col-start 1 / col-end 8 ;
+      align-self: center;
+
+      padding: 0;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-column: col-start 1 / col-end 7 ;
+    }
+
+  }
+
+
+}
