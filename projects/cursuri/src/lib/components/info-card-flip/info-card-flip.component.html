@@ -1,0 +1,29 @@
+<div class="info-card-flip">
+  <div class="info-card-flip__side info-card-flip__side--front" #frontSide>
+    <h3 class="info-card-flip__side--title-front">
+      Hello there
+    </h3>
+    <p class="info-card-flip__side--price--front"></p>
+    <p class="paragraph-1 info-card-flip__side--text-front">
+      We recognize everyone’s time and effort and treat each other with courtesy. We give the other person the
+      opportunity to excel at their work by providing the support that they need and trusting them to make informed
+      decisions. By acting with respect, we’re able to learn from one another and uncover the unique value that each of
+      us brings to cleverbridge.
+    </p>
+    <button #readMoreButton class="btn info-card-flip__side--button-front" fxHide.gt-sm="true" (click)="addFlippedClass(frontSide, backSide)">Read more
+    </button>
+
+  </div>
+  <div class="info-card-flip__side info-card-flip__side--back" #backSide>
+    <h3 class="info-card-flip__side__title-back">
+      Hello there 2
+    </h3>
+    <p class="info-card-flip__side__text-back">We recognize everyone’s time and effort and treat each other with courtesy. We give the other person the
+      opportunity to excel at their work by providing the support that they need and trusting them to make informed
+      decisions. By acting with respect, we’re able to learn from one another and uncover the unique value that each of
+      us brings to cleverbridge.</p>
+    <button #readLessButton class="btn info-card-flip__side--button-back" fxHide.gt-sm="true" (click)="removeFlippedClass(frontSide, backSide)"> Read
+      less
+    </button>
+  </div>
+</div>

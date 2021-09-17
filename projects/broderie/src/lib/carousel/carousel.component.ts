@@ -14,7 +14,7 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnChanges {
 
   @ViewChild('myCarousel') myCarousel: NguCarousel<any>;
   carouselConfig: NguCarouselConfig = {
-    grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
+    grid: {xs: 1, sm: 1, md: 2.2, lg: 3, all: 0},
     load: 3,
     interval: {timing: 4000, initialDelay: 1000},
     loop: true,

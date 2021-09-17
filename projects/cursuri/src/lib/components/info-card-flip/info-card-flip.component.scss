@@ -1,0 +1,77 @@
+@import '~src/assets/scss/abstract/mixins';
+
+.info-card-flip {
+  display: block;
+  height: 100%;
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  cursor: pointer;
+
+  &__side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    transition: all 1s ease;
+    width: 100%;
+    backface-visibility: hidden;
+    text-align: center;
+    //color: var(--color-primary);
+    padding: 4rem;
+
+    &--front {
+      overflow: hidden;
+      background: var(--color-secondary);
+      border-radius: 16px;
+
+      &.flipped {
+        transform: rotateY(-180deg);
+
+        @include responsive-breakpoint(medium) {
+          transform: rotateY(0);
+        }
+      }
+
+
+    }
+
+    &--back {
+      overflow: hidden;
+      padding: 2rem 1.2rem 1.6rem 1.2rem;
+      background: linear-gradient(
+          216.4deg,
+          var(--color-primary) 22.12%,
+          var(--color-primary-dark) 110.96%);
+      color: white;
+      border-radius: 16px;
+      transform: rotateY(180deg);
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      &.flipped {
+        transform: rotateY(0);
+
+        @include responsive-breakpoint(medium) {
+          transform: rotateY(180deg)
+        }
+      }
+
+    }
+  }
+
+
+  @include responsive-breakpoint(medium) {
+    &:hover &__side--front {
+      transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back {
+      transform: rotateY(0);
+    }
+  }
+
+
+}
+

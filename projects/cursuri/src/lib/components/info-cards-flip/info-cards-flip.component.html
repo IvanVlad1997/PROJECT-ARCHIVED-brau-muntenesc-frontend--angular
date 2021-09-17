@@ -1,0 +1,18 @@
+<div class="info-cards-flip">
+  <div class="info-cards-flip__cards" fxHide.lt-md="true">
+    <lib-info-card-flip></lib-info-card-flip>
+    <lib-info-card-flip></lib-info-card-flip>
+    <lib-info-card-flip></lib-info-card-flip>
+  </div>
+
+  <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems" class="info-cards-flip__cards-swiper" fxHide.gt-sm="true">
+
+    <lib-info-card-flip  *nguCarouselDef="let item;" class="item info-cards-flip__cards-swiper--item"></lib-info-card-flip>
+    <button fxHide.lt-md NguCarouselNext class="rightRs">></button>
+    <button fxHide.lt-md NguCarouselPrev class="leftRs"><</button>
+<!--    <ul class="myPoint" NguCarouselPoint>-->
+<!--      <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="j==myCarousel.activePoint" (click)="myCarousel.moveTo(i)"></li>-->
+<!--    </ul>-->
+  </ngu-carousel>
+</div>
+
