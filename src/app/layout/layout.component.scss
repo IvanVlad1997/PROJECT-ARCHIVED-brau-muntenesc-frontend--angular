@@ -61,6 +61,7 @@
   &__animation {
     min-height: 100vh;
     background-color: var(--color-light-grey);
+    overflow: hidden;
   }
 }
 

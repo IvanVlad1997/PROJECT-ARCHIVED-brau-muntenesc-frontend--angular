@@ -1,0 +1,60 @@
+<section class="accordion-swiper">
+  <h3 class="accordion-swiper__title">
+    Suport video pentru cursuri
+  </h3>
+  <cdk-accordion class="accordion" fxHide.lt-md="true">
+    <cdk-accordion-item
+      *ngFor="let item of items; let index = index;"
+      #accordionItem="cdkAccordionItem"
+      class="accordion__item"
+      role="button"
+      tabindex="0"
+      [attr.id]="'accordion-header-' + index"
+      [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-' + index">
+      <div class="accordion__item--wrapper">
+        <div class="accordion__item--header"  (click)="toggleAccordion(accordionItem, item.src)">
+          {{ item.title }}
+        </div>
+        <div
+          class="accordion__item--body"
+          role="region"
+          [style.display]="accordionItem.expanded ? '' : 'none'"
+          [attr.id]="'accordion-body-' + index"
+          [attr.aria-labelledby]="'accordion-header-' + index">
+          {{ item.description }}
+        </div>
+      </div>
+
+    </cdk-accordion-item>
+  </cdk-accordion>
+
+  <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="items" class="info-cards-flip__cards-swiper accordion" fxHide.gt-sm="true">
+    <div *nguCarouselDef="let item;" class="item" (click)="toggleAccordion(null, item.src)">
+      <div class="accordion__item--wrapper">
+        <div class="accordion__item--header" >
+          {{ item.title }}
+        </div>
+        <p class="accordion__item--description">
+          {{ item.description }}
+        </p>
+     </div>
+    </div>
+  </ngu-carousel>
+
+  <div class="accordion-swiper__visual">
+      <div plyr [plyrOptions]="options"
+           plyrTitle="Video 1"
+           [plyrPlaysInline]="true"
+           [plyrSources]="videoSources">
+      </div>
+  </div>
+  <div class="accordion-swiper__button">
+    <h3 class="accordion-swiper__button--title heading-2"> Urmărește mai multe videoclipuri</h3>
+    <button class="btn btn--primary ">
+      Vezi
+    </button>
+  </div>
+
+
+</section>

@@ -7,22 +7,7 @@ import {PlyrComponent} from 'ngx-plyr';
   styleUrls: ['./prima-pagina.component.scss']
 })
 export class PrimaPaginaComponent implements OnInit {
-  @ViewChild(PlyrComponent)
-  plyr: PlyrComponent;
 
-
-
-  videoSources1: Plyr.Source[] = [
-    {
-      src: '8snx63yPpBs',
-      provider: 'youtube',
-    },
-  ];
-
-
-  options1 = {
-    quality: 720
-  };
 
   images = [
     // {url: 'https://i.imgur.com/pcLAVGx.jpg'},

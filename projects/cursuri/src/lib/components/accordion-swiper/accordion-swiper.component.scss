@@ -1,0 +1,157 @@
+@import '~src/assets/scss/abstract/mixins';
+
+
+:host::ng-deep {
+  .plyr--video {
+    border-radius: 2rem;
+    box-shadow: var(--shadow-1);
+  }
+}
+
+.accordion-swiper {
+  display: grid;
+  grid-template-rows: min-content  min-content min-content;
+  grid-template-columns:[center-start]
+  repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end] ;
+  column-gap: 0;
+  grid-row-gap: 1rem;
+
+  @include responsive-breakpoint(small-medium) {
+    column-gap: 1rem;
+    grid-row-gap: 1rem;
+  }
+
+
+    @include responsive-breakpoint(medium) {
+    grid-template-rows: min-content  min-content min-content;
+    grid-template-columns:[full-start] minmax(6rem, 1fr) [center-start]
+  repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+    column-gap: 3rem;
+    grid-row-gap: 1rem;
+  }
+
+
+
+    &__title {
+      grid-column: col-start 2 / center-end;
+      grid-row: 1 / 2;
+      font-size: 3rem;
+      line-height: 1.2;
+      color: var(--color-primary);
+      font-weight: var(--font-weight-strong);
+
+      @include responsive-breakpoint(medium) {
+        grid-column: center-start / center-end;
+
+        font-size: 4rem;
+
+      }
+
+  }
+
+  &__visual {
+    grid-column: col-start 2 / col-end 5;
+    grid-row: 3 / 4;
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 2 / col-end 10;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-column: col-start 1 / col-end 10;
+      grid-row: 2 / 3;
+    }
+
+    @include responsive-breakpoint(large) {
+      grid-column: col-start 1 / col-end 8;
+
+    }
+
+  }
+
+
+  &__button {
+    grid-column: col-start 11 / col-end 15;
+    grid-row: 3 / 4;
+    align-self: center;
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 12 / col-end 14;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-column: col-start 1 / col-end 8 ;
+    }
+  }
+}
+
+.accordion {
+  grid-column: col-start 1 / col-end 16 ;
+  grid-row: 2 / 3;
+
+  @include responsive-breakpoint(medium) {
+    grid-column: col-start 11 / col-end 16 ;
+    grid-row: 2 / 3
+  }
+
+  &__item {
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+
+    &--wrapper {
+      border: 2rem solid transparent;
+
+
+      @include responsive-breakpoint(medium) {
+        border: 0;
+        margin-top: 2rem;
+        padding-left: 3rem;
+        border-radius: 1.6rem;
+      }
+    }
+
+    &--header {
+      font-size: 1.8rem;
+      line-height: 1.3;
+      color: var(--color-primary);
+      font-weight: var(--font-weight-strong);
+      @include responsive-breakpoint(medium) {
+        font-size: 2.4rem;
+
+      }
+
+    }
+
+    &--description {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      color: var(--color-primary);
+
+      @include responsive-breakpoint(medium) {
+        font-size: 1.8rem;
+        line-height: 1.5;
+        color: var(--color-dark-grey);
+      }
+
+    }
+  }
+
+}
+
+@include responsive-breakpoint(medium) {
+  cdk-accordion-item[aria-expanded="true"] .accordion__item--wrapper {
+    background-color: var(--color-primary-light);
+    padding: 3rem;
+    color: var(--color-white);
+  }
+
+  cdk-accordion-item[aria-expanded="true"] .accordion__item--header {
+    color: var(--color-white);
+
+  }
+
+}
