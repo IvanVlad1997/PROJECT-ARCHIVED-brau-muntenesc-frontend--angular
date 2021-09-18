@@ -1,0 +1,39 @@
+//@import "~src/assets/scss/abstract/variables";
+@import '~src/assets/scss/abstract/mixins';
+
+.gallery {
+  display: grid;
+  grid-template-rows: [start-intro] max-content [end-intro];
+  grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start]
+  repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+  column-gap: 1rem;
+
+  &__pictures {
+    //background-color: var(--color-primary);
+    grid-row: 1 / 2;
+    grid-column: full-start / col-end 8;
+    //TODO: Find a solution to work here
+    //background-image: linear-gradient(rgba($color-primary, .5), rgba($color-primary,  .5)),  url("https://i.imgur.com/6wIoSeN.png");
+    background-image: linear-gradient(rgba(0, 135, 122, .8), rgba(0, 135, 122, .8)),  url("https://i.imgur.com/6wIoSeN.png");;
+    background-size: cover;
+
+  }
+
+  &__text {
+    align-self: stretch;
+    grid-row: 1 / 2;
+    grid-column: col-start 10 / full-end;
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 10 / col-end 16 ;
+    }
+
+
+    @include responsive-breakpoint(small) {
+      grid-column: col-start 11 / col-end 16 ;
+      align-self: center;
+
+    }
+
+    }
+}

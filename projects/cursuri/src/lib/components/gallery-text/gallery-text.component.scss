@@ -1,0 +1,28 @@
+@import '~src/assets/scss/abstract/mixins';
+
+.gallery-text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+
+
+
+  @include responsive-breakpoint(small) {
+    padding: 2rem;
+  }
+
+  @include responsive-breakpoint(small-medium) {
+    grid-row: start-intro / end-intro;
+    grid-column: col-start 1 / col-end 8 ;
+    align-self: center;
+
+    padding: 0;
+  }
+
+  @include responsive-breakpoint(medium) {
+    grid-column: col-start 1 / col-end 7 ;
+  }
+
+}

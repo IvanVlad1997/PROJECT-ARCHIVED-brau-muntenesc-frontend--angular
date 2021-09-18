@@ -25,6 +25,9 @@ import {InfoCardFlipComponent} from './components/info-card-flip/info-card-flip.
 import {CtaBigComponent} from './components/cta-big/cta-big.component';
 import {AccordionSwiperComponent} from './components/accordion-swiper/accordion-swiper.component';
 import {CdkAccordionModule} from "@angular/cdk/accordion";
+import { GalleryPicturesComponent } from './components/gallery-pictures/gallery-pictures.component';
+import { GalleryTextComponent } from './components/gallery-text/gallery-text.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 @NgModule({
   declarations: [CarouselGalerieComponent,
@@ -34,7 +37,10 @@ import {CdkAccordionModule} from "@angular/cdk/accordion";
     InfoCardsFlipComponent,
     InfoCardFlipComponent,
     CtaBigComponent,
-    AccordionSwiperComponent],
+    AccordionSwiperComponent,
+    GalleryPicturesComponent,
+    GalleryTextComponent,
+    GalleryComponent],
   imports: [
     RouterModule.forChild(routes),
     FlexModule,

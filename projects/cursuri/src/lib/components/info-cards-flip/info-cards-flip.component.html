@@ -1,4 +1,4 @@
-<div class="info-cards-flip">
+<section class="info-cards-flip"  ngClass="mb-m" ngClass.gt-sm="mb-xl">
   <div class="info-cards-flip__cards" fxHide.lt-md="true">
     <lib-info-card-flip></lib-info-card-flip>
     <lib-info-card-flip></lib-info-card-flip>
@@ -8,5 +8,5 @@
   <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems" class="info-cards-flip__cards-swiper" fxHide.gt-sm="true">
     <lib-info-card-flip  *nguCarouselDef="let item;" class="item info-cards-flip__cards-swiper--item"></lib-info-card-flip>
   </ngu-carousel>
-</div>
+</section>
 
