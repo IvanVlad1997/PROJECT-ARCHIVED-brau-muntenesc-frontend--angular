@@ -1,29 +1,32 @@
 <div class="info-card-flip">
   <div class="info-card-flip__side info-card-flip__side--front" #frontSide>
+    <div class="background-image"
+         [ngStyle]="{'background': 'linear-gradient(36.4deg, rgba(0, 220, 255, .4) 22.12%, rgba(0, 255, 170, .4) 110.96%), url(' + imageBackground + ') no-repeat 0 0 / cover'}"
+    ></div>
     <h3 class="info-card-flip__side--title-front">
-      Hello there
+      {{item.title}}
     </h3>
     <p class="info-card-flip__side--price--front"></p>
     <p class="paragraph-1 info-card-flip__side--text-front">
-      We recognize everyone’s time and effort and treat each other with courtesy. We give the other person the
-      opportunity to excel at their work by providing the support that they need and trusting them to make informed
-      decisions. By acting with respect, we’re able to learn from one another and uncover the unique value that each of
-      us brings to cleverbridge.
+      {{item.description}}
     </p>
-    <button #readMoreButton class="btn info-card-flip__side--button-front" fxHide.gt-sm="true" (click)="addFlippedClass(frontSide, backSide)">Read more
+    <button #readMoreButton class="btn info-card-flip__side--button-front" fxHide.gt-sm="true" (click)="addFlippedClass(frontSide, backSide)">
+      Program
     </button>
 
   </div>
   <div class="info-card-flip__side info-card-flip__side--back" #backSide>
-    <h3 class="info-card-flip__side__title-back">
-      Hello there 2
+    <h3 class="info-card-flip__side--title-back">
+      Program
     </h3>
-    <p class="info-card-flip__side__text-back">We recognize everyone’s time and effort and treat each other with courtesy. We give the other person the
-      opportunity to excel at their work by providing the support that they need and trusting them to make informed
-      decisions. By acting with respect, we’re able to learn from one another and uncover the unique value that each of
-      us brings to cleverbridge.</p>
-    <button #readLessButton class="btn info-card-flip__side--button-back" fxHide.gt-sm="true" (click)="removeFlippedClass(frontSide, backSide)"> Read
-      less
+    <div class="info-card-flip__side--text-back">
+      <p class="info-card-flip__side--text" *ngFor="let group of item.descriptionBack">
+        {{group.category}}: {{group.interval}}
+      </p>
+    </div>
+    <span fxHide.lt-md="true"></span>
+    <button #readLessButton class="btn info-card-flip__side--button-back" fxHide.gt-sm="true" (click)="removeFlippedClass(frontSide, backSide)">
+      Întoarce
     </button>
   </div>
 </div>

@@ -23,7 +23,6 @@ import { PaginaStartCardItemComponent } from './pagina-start-card-item/pagina-st
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ContactComponent } from './contact/contact.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -34,9 +33,9 @@ import {TOKEN, USER_STORAGE} from './app.token';
 import {Token} from '../../projects/auth/src/lib/services/token';
 import {AvatarModule} from 'ngx-avatar';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { ContactFromComponent } from './contact-from/contact-from.component';
 import {MatInputModule} from '@angular/material/input';
 import { LayoutModule } from 'projects/layout/src/lib/layout.module';
+import {ContactModule} from "../../projects/contact/src/lib/contact.module";
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();
@@ -50,10 +49,8 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     PaginaStartComponent,
     PaginaStartCardItemComponent,
     PageNotFoundComponent,
-    ContactComponent,
     PrivacyComponent,
     StartingPageComponent,
-    ContactFromComponent,
 
   ],
   imports: [
@@ -86,7 +83,8 @@ function createInitializer(initializer: InitService): () => Promise<void> {
     }),
     AvatarModule,
     MatTooltipModule,
-    MatInputModule
+    MatInputModule,
+    ContactModule
   ],
   providers: [ToastService,
     NgxImageCompressService,

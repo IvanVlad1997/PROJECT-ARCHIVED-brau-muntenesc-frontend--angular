@@ -22,11 +22,11 @@
       grid-column: center-start / center-end;
 
       display: grid;
-      grid-auto-rows: minmax(15rem, max-content);
-      //grid-auto-columns: (10rem, 20rem);
-      grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-      grid-column-gap: 2rem;
-      grid-row-gap: 2rem;
+      grid-auto-rows: minmax(min-content, 35rem);
+      //grid-auto-columns: min-content  min-content;
+      grid-template-columns: repeat(2, minmax(35rem, 1fr));
+      grid-column-gap: 3rem;
+      grid-row-gap: 3rem;
     }
   }
 

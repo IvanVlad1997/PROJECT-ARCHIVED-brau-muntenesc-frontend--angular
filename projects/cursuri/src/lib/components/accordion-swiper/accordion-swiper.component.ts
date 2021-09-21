@@ -14,7 +14,7 @@ export class AccordionSwiperComponent implements AfterViewInit {
 
   @ViewChild('myCarousel') myCarousel: NguCarousel<any>;
   carouselConfig: NguCarouselConfig = {
-    grid: {xs: 2.1, sm: 3.7, md: 1, lg: 1, all: 0},
+    grid: {xs: 2.1, sm: 2.7, md: 1, lg: 1, all: 0},
     load: 3,
     interval: {timing: 4000, initialDelay: 1000},
     slide: 1,

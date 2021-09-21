@@ -10,9 +10,9 @@
 
 .accordion-swiper {
   display: grid;
-  grid-template-rows: min-content  min-content min-content;
+  grid-template-rows: min-content  min-content min-content min-content min-content;
   grid-template-columns:[center-start]
-  repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end] ;
+  repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end];
   column-gap: 0;
   grid-row-gap: 1rem;
 
@@ -22,7 +22,7 @@
   }
 
 
-    @include responsive-breakpoint(medium) {
+  @include responsive-breakpoint(medium) {
     grid-template-rows: min-content  min-content min-content;
     grid-template-columns:[full-start] minmax(6rem, 1fr) [center-start]
   repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
@@ -31,30 +31,36 @@
   }
 
 
+  &__title {
+    grid-column: col-start 2 / center-end;
+    grid-row: 1 / 2;
+    font-size: 3rem;
+    line-height: 1.2;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-strong);
 
-    &__title {
-      grid-column: col-start 2 / center-end;
-      grid-row: 1 / 2;
-      font-size: 3rem;
-      line-height: 1.2;
-      color: var(--color-primary);
-      font-weight: var(--font-weight-strong);
 
-      @include responsive-breakpoint(medium) {
-        grid-column: center-start / center-end;
+    @include responsive-breakpoint(medium) {
+      grid-column: center-start / center-end;
 
-        font-size: 4rem;
+      font-size: 4rem;
 
-      }
+    }
 
   }
 
   &__visual {
-    grid-column: col-start 2 / col-end 5;
+    grid-column: col-start 2 / col-end 15;
     grid-row: 3 / 4;
+
+    @include responsive-breakpoint(small) {
+      grid-column: col-start 2 / col-end 8;
+
+    }
 
     @include responsive-breakpoint(small-medium) {
       grid-column: col-start 2 / col-end 10;
+
     }
 
     @include responsive-breakpoint(medium) {
@@ -71,26 +77,70 @@
 
 
   &__button {
-    grid-column: col-start 11 / col-end 15;
-    grid-row: 3 / 4;
+    grid-column: col-start 2 / col-end 15;
+    grid-row: 4 / 5;
     align-self: center;
 
     @include responsive-breakpoint(small-medium) {
       grid-column: col-start 12 / col-end 14;
+      grid-row: 3 / 4;
+
     }
 
     @include responsive-breakpoint(medium) {
-      grid-column: col-start 1 / col-end 8 ;
+      grid-column: col-start 1 / col-end 13;
+    }
+
+    &--title {
+      margin-top: 4rem;
+      transition: all .3s;
+
+      &:hover {
+        cursor: pointer;
+        box-sizing: border-box;
+        //backdrop-filter: blur(250px);
+        border-radius: 20px;
+      }
+    }
+
+    &--icon {
+      transition: all .3s;
+      margin-left: 0rem;
+      height: 1.1rem;
+
+      @include responsive-breakpoint(small-medium) {
+        height: 1.3rem;
+
+
+      }
+
+      @include responsive-breakpoint(medium) {
+        height: 1.7rem;
+        margin-left: .5rem;
+      }
+
+      @include responsive-breakpoint(large) {
+        height: 2.4rem;
+
+      }
+
+
+    }
+
+
+    &--title:hover &--icon {
+      margin-left: 1.7rem;
     }
   }
 }
 
+
 .accordion {
-  grid-column: col-start 1 / col-end 16 ;
+  grid-column: col-start 1 / col-end 16;
   grid-row: 2 / 3;
 
   @include responsive-breakpoint(medium) {
-    grid-column: col-start 11 / col-end 16 ;
+    grid-column: col-start 11 / col-end 16;
     grid-row: 2 / 3
   }
 

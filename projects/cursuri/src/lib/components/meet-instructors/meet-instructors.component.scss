@@ -1,0 +1,25 @@
+.team-cards {
+
+  display: grid;
+  grid-auto-rows: minmax(min-content, 35rem);
+  grid-template-columns: repeat(2, minmax(35rem, 1fr));
+  grid-column-gap: 3rem;
+  grid-row-gap: 3rem;
+
+
+}
+
+.team-card {
+  box-shadow: var(--shadow-3);
+
+  &__name {
+    font-size: 2.7rem;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__image {
+    width: 70%;
+    border-radius: 1rem;
+  }
+}

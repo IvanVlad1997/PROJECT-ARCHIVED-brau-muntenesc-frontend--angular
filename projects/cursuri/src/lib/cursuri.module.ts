@@ -28,6 +28,9 @@ import {CdkAccordionModule} from "@angular/cdk/accordion";
 import { GalleryPicturesComponent } from './components/gallery-pictures/gallery-pictures.component';
 import { GalleryTextComponent } from './components/gallery-text/gallery-text.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { FormSectionComponent } from './components/form-section/form-section.component';
+import {ContactModule} from "../../../contact/src/lib/contact.module";
+import { MeetInstructorsComponent } from './components/meet-instructors/meet-instructors.component';
 
 @NgModule({
   declarations: [CarouselGalerieComponent,
@@ -40,7 +43,9 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     AccordionSwiperComponent,
     GalleryPicturesComponent,
     GalleryTextComponent,
-    GalleryComponent],
+    GalleryComponent,
+    FormSectionComponent,
+    MeetInstructorsComponent],
   imports: [
     RouterModule.forChild(routes),
     FlexModule,
@@ -54,6 +59,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     MatListModule,
     MatProgressSpinnerModule,
     CdkAccordionModule,
+    ContactModule
 
   ],
   exports: []

@@ -44,6 +44,10 @@
         "dist/components/components",
         "dist/components"
       ],
+      "contact": [
+        "dist/contact/contact",
+        "dist/contact"
+      ],
       "platforma-cursuri": [
         "dist/platforma-cursuri/platforma-cursuri",
         "dist/platforma-cursuri"

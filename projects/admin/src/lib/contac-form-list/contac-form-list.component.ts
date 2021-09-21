@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ContactFormService} from "../../../../../src/app/services/contact-form";
 import {Subscription} from "rxjs";
 import {ColDef} from "ag-grid-community";
 import {ContactForm} from "../../../../common/contact-form";
+import {ContactFormService} from "../../../../contact/src/lib/services/contact-form";
 
 @Component({
   selector: 'lib-contac-form-list',

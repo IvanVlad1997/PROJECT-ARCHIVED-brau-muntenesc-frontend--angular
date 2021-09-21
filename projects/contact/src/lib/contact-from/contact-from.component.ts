@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ContactForm} from "../../../projects/common/contact-form";
 import {ContactFormService} from "../services/contact-form";
-import {NodemailerHelper} from "../services/nodemailer-helper";
+import {NodemailerHelper} from "../../../../../src/app/services/nodemailer-helper";
+import {ContactForm} from "../../../../common/contact-form";
 
 @Component({
   selector: 'app-contact-from',

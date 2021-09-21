@@ -1,9 +1,9 @@
 import {Inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {TOKEN} from "../app.token";
-import {Token} from "../../../projects/auth/src/lib/services/token";
-import {environment} from "../../environments/environment";
-import {ContactForm} from "../../../projects/common/contact-form";
+import {Token} from "@angular/compiler";
+import {ContactForm} from "../../../../common/contact-form";
+import {environment} from "../../../../../src/environments/environment";
+import {TOKEN} from "../../../../../src/app/app.token";
 
 @Injectable({providedIn: 'root'})
 export class ContactFormManager {

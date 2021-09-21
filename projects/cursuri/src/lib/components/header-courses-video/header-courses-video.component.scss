@@ -13,6 +13,8 @@
 
 
 .header-courses {
+  margin-top: 0;
+
   display: grid;
   grid-template-rows: [start-intro] min-content [end-intro start-intro-text] minmax(min-content, 30vh) [end-intro-text];
   grid-template-columns:[center-start] repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end];
@@ -20,6 +22,9 @@
   grid-row-gap: 5rem;
 
   @include responsive-breakpoint(small-medium) {
+    margin-top: 7rem;
+
+
     grid-template-rows:  [start-intro] minmax(min-content, 60vh) [end-intro start-intro-text] min-content [end-intro-text];
     grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end]  minmax(6rem, 1fr) [full-end]  ;
 

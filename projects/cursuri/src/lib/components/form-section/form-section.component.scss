@@ -1,0 +1,54 @@
+@import '~src/assets/scss/abstract/mixins';
+@import '~src/assets/scss/abstract/variables';
+
+.form-section {
+  padding: 3rem;
+  background-image: linear-gradient(to right bottom, var(--color-primary), var(--color-action-light));
+
+  @include responsive-breakpoint(small) {
+    padding: 10rem;
+  }
+
+    @include responsive-breakpoint(large) {
+    padding: 15rem;
+  }
+
+  .contact {
+    background-image: linear-gradient(105deg,
+      rgba(255, 255, 255, .8) 0%,
+      rgba(255, 255, 255, .8) 100%),
+    url("https://i.imgur.com/i5GxjIY.jpg");
+
+    background-size: 100%;
+    background-position: center;
+    padding: 3rem;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .2);
+
+    @include responsive-breakpoint(small) {
+      padding: 7rem;
+
+    }
+
+    @include responsive-breakpoint(medium) {
+      padding: 10rem;
+
+      background-image: linear-gradient(105deg,
+        rgba(255, 255, 255, .8) 0%,
+        rgba(255, 255, 255, .8) 50%,
+        transparent 50%),
+      url("https://i.imgur.com/i5GxjIY.jpg");
+    }
+
+    &__form {
+      width: 100%;
+
+      @include responsive-breakpoint(medium) {
+        width: 40%;
+      }
+
+    }
+
+
+  }
+
+}

@@ -4,7 +4,6 @@ import {PaginaStartComponent} from '../pagina-start/pagina-start.component';
 import {AuthGuard} from '../guards/auth-guard';
 import {AdminGuard} from '../guards/admin-guard';
 import {PageNotFoundComponent} from '../page-not-found/page-not-found.component';
-import {ContactComponent} from '../contact/contact.component';
 import {PrivacyComponent} from '../privacy/privacy.component';
 
 
@@ -108,7 +107,7 @@ export const routes: Routes = [
       },
       {
         path: 'contact',
-        component: ContactComponent,
+        loadChildren: () => import('../../../projects/contact/src/lib/contact.module').then(module => module.ContactModule),
         data: {
           animation: 'ContactPage'
         }

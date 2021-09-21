@@ -2,10 +2,10 @@ import {Inject, Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ToastService} from "angular-toastify";
-import {TOKEN} from "../app.token";
-import {Token} from "../../../projects/auth/src/lib/services/token";
 import {ContactFormManager} from "./contact-form-manager";
-import {ContactForm} from "../../../projects/common/contact-form";
+import {Token} from "@angular/compiler";
+import {ContactForm} from "../../../../common/contact-form";
+import {TOKEN} from "../../../../../src/app/app.token";
 
 @Injectable({providedIn: 'root'})
 export class ContactFormService {
