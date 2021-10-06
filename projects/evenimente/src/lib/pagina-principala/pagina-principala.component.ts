@@ -15,12 +15,6 @@ export class PaginaPrincipalaComponent implements OnInit {
   @ViewChild(PlyrComponent)
   plyr: PlyrComponent;
 
-  videoSources: Plyr.Source[] = [
-    {
-      src: 'ncA6-WTK1v8',
-      provider: 'youtube',
-    },
-  ];
 
   videoSources1: Plyr.Source[] = [
     {
@@ -29,11 +23,7 @@ export class PaginaPrincipalaComponent implements OnInit {
     },
   ];
 
-  options = {
-    autoplay: true,
-    volume: 0.5,
-    quality: 720
-  };
+
 
   options1 = {
     volume: 0.5,

@@ -1,0 +1,21 @@
+<section class="video-gallery grid-container" ngClass="mb-m" ngClass.gt-sm="mb-xl">
+  <div class="video-gallery__content">
+    <h2 class="heading-1 video-gallery__content--title mb-m">Energie pozitivă!</h2>
+    <p class="paragraph-1 video-gallery__content--description mb-m">
+      Urmărește videoclipuri de la alte evenimente la care am participat
+    </p>
+
+    <button class=" btn btn--primary video-gallery__cta--text" [routerLink]="['galerie-video']">Videoclipuri</button>
+
+
+  </div>
+  <div class="video-gallery__video">
+    <div plyr [plyrOptions]="options"
+         plyrTitle="Video 1"
+         [plyrPlaysInline]="true"
+         [plyrSources]="videoSources">
+    </div>
+  </div>
+
+
+</section>

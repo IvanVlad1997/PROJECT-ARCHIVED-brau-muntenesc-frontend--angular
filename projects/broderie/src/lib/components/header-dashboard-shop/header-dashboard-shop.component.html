@@ -1,0 +1,19 @@
+<header class="header-dashboard-shop grid-container" ngClass="mb-m" ngClass.gt-sm="mb-xl">
+  <!--  VIDEOCLIP-->
+  <div class="header-dashboard-shop__visual">
+    <lib-carousel [images]="carouselPhotos" *ngIf="carouselPhotos[0]"
+                  class="header-dashboard-shop__carousel"></lib-carousel>
+  </div>
+
+  <div class="header-dashboard-shop__content-intro">
+    <h1 class="heading-1" ngClass="mb-xs" ngClass.gt-sm="mb-s">Fii diferit, alege altfel!</h1>
+    <p class="paragraph-1" ngClass="mb-s" ngClass.gt-sm="mb-m">
+      Personalizăm orice obiect vestimentar așa cum îți dorești.
+      <br />
+      Tricoul tău preferat va purta mesajul care te reprezintă!
+      <br />
+      Trimite-ne ideea ta și noi o transpunem în broderie personalizată!
+    </p>
+    <button class="btn btn--primary" routerLink="shop">Vezi toate produsele</button>
+  </div>
+</header>

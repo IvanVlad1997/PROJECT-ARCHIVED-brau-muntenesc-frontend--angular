@@ -1,9 +1,97 @@
+@import '~src/assets/scss/abstract/mixins';
+@import '~src/assets/scss/base/animations';
 
+.starting-page {
+  display: grid;
+  grid-template-rows: 50vh 50vh;
+  grid-template-columns:[center-start] repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end];
+  column-gap: 1rem;
+  grid-row-gap: 5rem;
+  background-image: linear-gradient(rgba(0, 135, 122, .8), rgba(0, 135, 122, .9)), url("https://i.imgur.com/1bJnRRS.png");
+  background-size: cover;
+  justify-items: center;
+
+  @include responsive-breakpoint(small-medium) {
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end]  minmax(6rem, 1fr) [full-end];
+  }
+
+  @include responsive-breakpoint(medium) {
+    grid-template-rows: 100vh;
+
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start]
+  repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+  }
+
+  //shop
+  &__card--0 {
+    animation: moveBottom  1s linear;
+    align-self: start;
+    grid-row:  2/3;
+    grid-column: col-start 1/ col-end 8;
+
+
+    @include responsive-breakpoint(small) {
+      grid-column: col-start 2/ col-end 6;
+    }
+
+
+    @include responsive-breakpoint(medium) {
+      grid-row: 1/2;
+      grid-column: 6/14;
+      align-self: end;
+      margin-bottom: 10vh;
+    }
+  }
+
+  //courses
+  &__card--1 {
+    animation: moveLeft 1s linear;
+    grid-row: 1/2;
+    grid-column: col-start 1 / col-end 16;
+
+    align-self: center;
+
+    @include responsive-breakpoint(small) {
+      grid-column: col-start 7 / col-end 10;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-row: 1/2;
+      grid-column: center-start/ col-end 5;
+      align-self: start;
+      margin-bottom: 10vh;
+      margin-top: 10vh;
+
+    }
+
+  }
+
+  //events
+  &__card--2 {
+    animation: moveRight 1s linear;
+    align-self: start;
+    grid-row:  2/3;
+    grid-column: col-start 9/ col-end 16;
+
+    @include responsive-breakpoint(small) {
+      grid-column: col-start 11/ col-end 15;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-row: 1/2;
+      grid-column: col-start 12/ col-end 16;
+      align-self: start;
+      margin-top: 10vh;
+
+    }
+
+  }
+}
 
 .card-item {
   margin-top: 20px;
   padding-bottom: 10px;
-  padding-top: 10px ;
+  padding-top: 10px;
 
 }
 
@@ -17,26 +105,27 @@
     margin-bottom: 30px;
   }
 }
-.gr-noi {
-  color: white;
-}
 
-
-@media only screen and (min-width: 1000px) {
-  .anunt {
-    padding: 100px;
-    margin: 40px;
-    border-radius: 100px;
-  }
-}
-
-.anunt {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background: #02c3c3;
-  font-weight: bold;
-  font-size: 30px;
-  color: #00877A;
-  text-align: center;
-  line-height: 30px;
-}
+//.gr-noi {
+//  color: white;
+//}
+//
+//
+//@media only screen and (min-width: 1000px) {
+//  .anunt {
+//    padding: 100px;
+//    margin: 40px;
+//    border-radius: 100px;
+//  }
+//}
+//
+//.anunt {
+//  padding-top: 40px;
+//  padding-bottom: 40px;
+//  background: #02c3c3;
+//  font-weight: bold;
+//  font-size: 30px;
+//  color: #00877A;
+//  text-align: center;
+//  line-height: 30px;
+//}

@@ -1,0 +1,74 @@
+@import '~src/assets/scss/abstract/mixins';
+
+:host {
+  width: 100%;
+}
+
+:host::ng-deep {
+  .plyr--video {
+    border-radius: 2rem;
+    box-shadow: var(--shadow-1);
+  }
+}
+
+
+.header-events {
+  margin-top: 0;
+
+  @include responsive-breakpoint(small-medium) {
+    margin-top: 5vw;
+    margin-bottom: 9vw;
+
+  }
+
+
+
+
+  &__video-intro {
+    grid-row: 1 / 2;
+    grid-column: col-start 1 / col-end 16 ;
+    align-self: stretch;
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 1 / col-end 8 ;
+      align-self: center;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-column: col-start 1 / col-end 8 ;
+    }
+  }
+
+  &__content-intro {
+    grid-row: 2 / 3;
+    grid-column: col-start 1 / col-end 16 ;
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+
+    padding: 1rem;
+
+    @include responsive-breakpoint(small) {
+      padding: 2rem;
+    }
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 10 / col-end 16 ;
+      align-self: center;
+      grid-row: 1 / 2;
+
+
+      padding: 0;
+    }
+
+    @include responsive-breakpoint(medium) {
+      //grid-column: col-start 10 / col-end 16 ;
+    }
+
+  }
+
+
+}

@@ -1,4 +1,4 @@
-<section class="accordion-swiper "  ngClass="mb-m" ngClass.gt-sm="mb-xl">
+<section class="accordion-swiper grid-container"  ngClass="mb-m" ngClass.gt-sm="mb-xl">
   <h3 class="accordion-swiper__title" ngClass="mb-s" ngClass.gt-sm="mb-m">
     Suport video pentru cursuri
   </h3>
@@ -32,8 +32,9 @@
   <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="items" class="info-cards-flip__cards-swiper accordion" fxHide.gt-sm="true">
     <div *nguCarouselDef="let item;" class="item" (click)="toggleAccordion(null, item.src)">
       <div class="accordion__item--wrapper">
-        <div class="accordion__item--header" >
+        <div class="accordion__item--header mb-s" >
           {{ item.title }}
+          <mat-icon svgIcon="cursor-pointer"></mat-icon>
         </div>
         <p class="accordion__item--description">
           {{ item.description }}
@@ -50,7 +51,7 @@
       </div>
   </div>
   <div class="accordion-swiper__button">
-    <h3 class="accordion-swiper__button--title heading-2"> Urmărește mai multe videoclipuri
+    <h3 class="accordion-swiper__button--title heading-2" [routerLink]="['/platforma-cursuri']"> Urmărește mai multe videoclipuri
       <mat-icon class="accordion-swiper__button--icon" svgIcon="send" ></mat-icon>
     </h3>
   </div>

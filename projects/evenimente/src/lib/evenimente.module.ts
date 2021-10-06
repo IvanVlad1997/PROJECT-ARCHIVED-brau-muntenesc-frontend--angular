@@ -20,7 +20,13 @@ import { CalendarComponent } from './calendar/calendar.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction';
-import { BasicDirectiveDirective } from './directives/basic-directive.directive'; // a plugin
+import { BasicDirectiveDirective } from './directives/basic-directive.directive';
+import { HeaderEventsComponent } from './components/header-events/header-events.component';
+import { SectionEventInfoComponent } from './components/section-event-info/section-event-info.component';
+import { CtaBigEventsComponent } from './components/cta-big-events/cta-big-events.component';
+import { CardPriceComponent } from './components/card-price/card-price.component';
+import {PricesComponent} from './components/prices/prices.component';
+import { VideoGalleryComponent } from './components/video-gallery/video-gallery.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -28,7 +34,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 ]);
 
 @NgModule({
-  declarations: [EvenimenteComponent, PaginaPrincipalaComponent, GalerieVideoComponent, FormularEvenimenteComponent, InformatiiComponent, CalendarComponent, BasicDirectiveDirective],
+    declarations: [CardPriceComponent, EvenimenteComponent, PaginaPrincipalaComponent, GalerieVideoComponent, FormularEvenimenteComponent, InformatiiComponent, CalendarComponent, BasicDirectiveDirective, HeaderEventsComponent, SectionEventInfoComponent, CtaBigEventsComponent, CardPriceComponent, PricesComponent, VideoGalleryComponent],
   imports: [
     RouterModule.forChild(routes),
     MatListModule,

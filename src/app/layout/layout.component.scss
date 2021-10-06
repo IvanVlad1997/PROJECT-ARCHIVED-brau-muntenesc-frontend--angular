@@ -1,3 +1,5 @@
+
+
 .layout {
   &__sidenav {
     @media screen and (max-width: 960px) {
@@ -10,7 +12,12 @@
   }
 
   &__toolbar {
-    background-color: white;
+    background-color: var(--color-light-grey);
+
+    &--row {
+      box-shadow: var(--shadow-3);
+
+    }
   }
 
   &__toolbar-title {
@@ -60,7 +67,8 @@
 
   &__animation {
     min-height: 100vh;
-    background-color: var(--color-light-grey);
+    //background-color: var(--color-light-grey);
+    background-color: var(--color-white);
     overflow: hidden;
   }
 }

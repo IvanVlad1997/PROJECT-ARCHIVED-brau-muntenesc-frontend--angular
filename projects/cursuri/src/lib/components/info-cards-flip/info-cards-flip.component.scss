@@ -8,14 +8,7 @@
 
 
   @include responsive-breakpoint(medium) {
-    display: grid;
     grid-auto-rows: minmax(15rem, auto);
-    grid-template-columns:  [full-start] minmax(6rem, 1fr) [center-start]  minmax(min-content, 127rem) [center-end]  minmax(6rem, 1fr) [full-end] ;
-    column-gap: 1rem;
-    grid-row-gap: 2rem;
-
-    margin-bottom: 5rem;
-    margin-top: 5rem;
 
 
     &__cards {

@@ -18,8 +18,8 @@
       rgba(255, 255, 255, .8) 0%,
       rgba(255, 255, 255, .8) 100%),
     url("https://i.imgur.com/i5GxjIY.jpg");
+    background-size: cover;
 
-    background-size: 100%;
     background-position: center;
     padding: 3rem;
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .2);
@@ -36,7 +36,8 @@
         rgba(255, 255, 255, .8) 0%,
         rgba(255, 255, 255, .8) 50%,
         transparent 50%),
-      url("https://i.imgur.com/i5GxjIY.jpg");
+      url("https://i.imgur.com/abZnXxU.jpg");
+      background-size: cover;
     }
 
     &__form {

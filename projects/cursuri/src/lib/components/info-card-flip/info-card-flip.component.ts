@@ -19,7 +19,6 @@ export class InfoCardFlipComponent implements OnInit {
     // this.imageBackground = `linear-gradient(36.4deg, rgba(0, 220, 255, .4) 22.12%, rgba(0, 255, 170, .4) 110.96%),
     //   url({{item.image}}) center;}`;
     this.imageBackground = this.item.image;
-    console.log(this.imageBackground);
   }
 
   removeFlippedClass(frontSide: HTMLDivElement, backSide: HTMLDivElement): void {

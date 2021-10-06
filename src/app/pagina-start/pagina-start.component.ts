@@ -10,21 +10,22 @@ export class PaginaStartComponent implements OnInit {
 
   items = [
     {
-      title: 'Cursuri',
-      svg: 'school',
-      photo: 'https://i.imgur.com/sYCWMHd.jpg',
-      route: '/cursuri'
-    },
-    {
       title: 'Magazin',
       svg: 'store',
-      photo: 'https://i.imgur.com/cah3F6t.jpg',
+      photo: 'assets/img/start-page-picture-shop.jpeg',
       route: '/broderie'
     },
     {
+      title: 'Cursuri',
+      svg: 'school',
+      photo: 'assets/img/start-page-picture-courses.jpeg',
+      route: '/cursuri'
+    },
+
+    {
       title: 'Evenimente',
       svg: 'dance-ballroom',
-      photo: 'https://i.imgur.com/B1HA1qs.jpg',
+      photo: 'assets/img/start-page-picture-events.jpeg',
       route: '/evenimente'
     }
   ];
@@ -32,7 +33,8 @@ export class PaginaStartComponent implements OnInit {
   @ViewChild('header', {static: true})
   public header: TemplateRef<any>;
 
-  constructor(@Inject(USER_STORAGE) private userStorage: Storage) { }
+  constructor(@Inject(USER_STORAGE) private userStorage: Storage) {
+  }
 
   ngOnInit(): void {
   }

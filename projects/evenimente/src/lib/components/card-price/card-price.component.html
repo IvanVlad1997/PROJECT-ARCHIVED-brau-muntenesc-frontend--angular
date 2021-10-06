@@ -1,0 +1,19 @@
+<section class="card-price">
+  <div class="card-price__title mb-m" >
+    <mat-icon class="card-price__title--icon" mat-list-icon [svgIcon]="cardPrice.titleIcon"></mat-icon>
+    <h4 class="card-price__title--text">{{cardPrice.titleText}}</h4>
+  </div>
+  <div class="card-price__price mb-m" >
+    <p class="card-price__price--text">{{cardPrice.price}}</p>
+  </div>
+  <ul class="card-price__list mb-m" >
+    <li *ngFor="let item of cardPrice.list" class="card-price__list-item mb-s">
+      <mat-icon class="card-price__list-item--icon" mat-list-icon svgIcon="check"></mat-icon>
+      <p class="card-price__list-item--text">{{item}}</p>
+    </li>
+  </ul>
+  <div class="card-price__button">
+    <button class="btn btn--white ">{{cardPrice.buttonText}}</button>
+  </div>
+
+</section>

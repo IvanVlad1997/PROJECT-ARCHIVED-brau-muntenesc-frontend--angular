@@ -31,6 +31,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { FormSectionComponent } from './components/form-section/form-section.component';
 import {ContactModule} from "../../../contact/src/lib/contact.module";
 import { MeetInstructorsComponent } from './components/meet-instructors/meet-instructors.component';
+import { AboutDanceComponent } from './components/about-dance/about-dance.component';
 
 @NgModule({
   declarations: [CarouselGalerieComponent,
@@ -45,7 +46,8 @@ import { MeetInstructorsComponent } from './components/meet-instructors/meet-ins
     GalleryTextComponent,
     GalleryComponent,
     FormSectionComponent,
-    MeetInstructorsComponent],
+    MeetInstructorsComponent,
+    AboutDanceComponent],
   imports: [
     RouterModule.forChild(routes),
     FlexModule,

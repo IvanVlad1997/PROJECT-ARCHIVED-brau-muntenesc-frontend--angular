@@ -1,22 +1,70 @@
-.icons-pagina-start {
-  margin-bottom: 10px;
-}
+.pagina-start-card-item {
 
-.image {
-  border-radius: 10px;
-}
+  cursor: pointer;
 
-.card-item {
-  border: 1px solid #00877A;
-  color: #00877A ;
-  border-radius: 10px;
 
-  &:hover {
-    transform: scale(1.02);
-    background:   #00877A;
-    color: white;
+  &__visual {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+
+    box-shadow: var(--shadow-1);
+    transition: all .2s;
+
+    &:hover {
+      box-shadow: var(--shadow-3);
+      transform: scale(1.05);
+
+    }
+
+    &--image {
+      border-radius: 50%;
+      max-height: 25rem;
+      max-width: 40rem;
+    }
+
   }
+
+  &__content {
+
+    &--icon {
+      position: absolute;
+      top: 0;
+      right: 61px;
+    }
+
+    &--title {
+      position: absolute;
+      bottom: 0;
+      color: var(--color-primary);
+      background-color: var(--color-light-grey);
+      font-weight: var(--font-weight-strong);
+      padding: 2.4rem;
+      opacity: 0.6;
+      font-size: 2rem;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+
+
 }
+
+//.card-item {
+//  border: 1px solid #00877A;
+//  color: #00877A ;
+//  border-radius: 10px;
+//  max-width: 100% !important;
+//
+//  &:hover {
+//    transform: scale(1.02);
+//    background:   #00877A;
+//    color: white;
+//  }
+//}
 
 *[ng-reflect-router-link]:focus {
   outline: none;

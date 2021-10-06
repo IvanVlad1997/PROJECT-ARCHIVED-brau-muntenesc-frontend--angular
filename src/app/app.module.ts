@@ -35,7 +35,7 @@ import {AvatarModule} from 'ngx-avatar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatInputModule} from '@angular/material/input';
 import { LayoutModule } from 'projects/layout/src/lib/layout.module';
-import {ContactModule} from "../../projects/contact/src/lib/contact.module";
+import {ContactModule} from '../../projects/contact/src/lib/contact.module';
 
 function createInitializer(initializer: InitService): () => Promise<void> {
   return () => initializer.start();

@@ -28,12 +28,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   paginator!: MatPaginator;
 
   latestProducts: Product[] = [];
-  carouselPhotos: { url: string }[] = [];
   bestSellers: Product[] = [];
   categories: Category[] = [];
   subCategories: SubCategory[] = [];
   productsSubscription: Subscription;
-  carouselPhotoSubscription: Subscription;
+
   categorySubscription: Subscription;
   subcategorySubscription: Subscription;
   loadingNew: boolean = false;
@@ -49,7 +48,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     this.loadingNew = true;
     this.loadingBest = true;
-    this.loadCarouselPhotos();
     this.loadNewProducts();
     this.loadBestSellers();
     this.loadCategories();
@@ -82,15 +80,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       );
   }
 
-  loadCarouselPhotos(): void {
-    this.carouselPhotoService.getCarouselPhotos();
-    this.carouselPhotoSubscription = this.carouselPhotoService.getCarouselPhotoListener()
-      .subscribe(carouselPhotos => {
-        this.carouselPhotos = carouselPhotos.map((photo) => ({
-          url: photo.imageUrl
-        }));
-      });
-  }
+
 
   loadNewProducts(): void {
     this.productsSubscription = this.productService.getProductWithPagination('createdAt', 'desc', this.pageNewProducts)
@@ -124,9 +114,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.productsSubscription) {
       this.productsSubscription.unsubscribe();
     }
-    if (this.carouselPhotoSubscription) {
-      this.carouselPhotoSubscription.unsubscribe();
-    }
+
     if (this.categorySubscription) {
       this.categorySubscription.unsubscribe();
     }

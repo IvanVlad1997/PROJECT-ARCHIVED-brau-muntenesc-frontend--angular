@@ -1,0 +1,68 @@
+@import '~src/assets/scss/abstract/mixins';
+
+
+.header-dashboard-shop {
+  margin-top: 0;
+
+  @include responsive-breakpoint(small-medium) {
+    margin-top: 5vw;
+    margin-bottom: 9vw;
+
+  }
+
+  &__visual {
+    grid-row: 1 / 2;
+    grid-column: col-start 1 / col-end 16 ;
+    align-self: stretch;
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 1 / col-end 9 ;
+      align-self: center;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-column: col-start 1 / col-end 9 ;
+    }
+  }
+
+
+  &__carousel {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__content-intro {
+    grid-row: 2 / 3;
+    grid-column: col-start 2 / col-end 15 ;
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+
+    padding: 1rem;
+
+    @include responsive-breakpoint(small) {
+      padding: 2rem;
+    }
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 11 / col-end 16 ;
+      align-self: start;
+      grid-row: 1 / 2;
+
+
+      padding: 0;
+    }
+
+    @include responsive-breakpoint(medium) {
+      //grid-column: col-start 10 / col-end 16 ;
+      align-self: center;
+    }
+
+  }
+
+
+}
+

@@ -1,0 +1,39 @@
+@import '~src/assets/scss/abstract/mixins';
+
+.card {
+
+  &--0 {
+    grid-column: col-start 2 / col-start 8;
+    grid-row: 2 / 3;
+
+  }
+
+  &--1 {
+    grid-column: col-start 5 / col-end 12;
+    grid-row: 1 / 2;
+  }
+
+  &--2 {
+    grid-column:  col-start 10 / col-end 15;
+    grid-row: 2 / 3;
+  }
+
+
+  @include responsive-breakpoint(small-medium) {
+    &--0 {
+      grid-column: center-start / col-start 5;
+      grid-row: 1 / 2;
+    }
+
+    &--1 {
+      grid-column: col-start 7 / col-start 11;
+      grid-row: 1 / 2;
+    }
+
+    &--2 {
+      grid-column:  col-start 13 / center-end;
+      grid-row: 1 / 2;
+    }
+  }
+
+}

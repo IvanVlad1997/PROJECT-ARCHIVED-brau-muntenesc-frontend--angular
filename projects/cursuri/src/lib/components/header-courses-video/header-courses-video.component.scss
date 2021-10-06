@@ -15,48 +15,32 @@
 .header-courses {
   margin-top: 0;
 
-  display: grid;
-  grid-template-rows: [start-intro] min-content [end-intro start-intro-text] minmax(min-content, 30vh) [end-intro-text];
-  grid-template-columns:[center-start] repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end];
-  column-gap: 1rem;
-  grid-row-gap: 5rem;
-
   @include responsive-breakpoint(small-medium) {
-    margin-top: 7rem;
-
-
-    grid-template-rows:  [start-intro] minmax(min-content, 60vh) [end-intro start-intro-text] min-content [end-intro-text];
-    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end]  minmax(6rem, 1fr) [full-end]  ;
+    margin-top: 5vw;
+    margin-bottom: 9vw;
 
   }
 
-  @include responsive-breakpoint(medium) {
-    grid-template-rows: [start-intro] 80vh [end-intro start-intro-text] min-content [end-intro-text];
-    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start]
-  repeat(16, [col-start] minmax(min-content, 7rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
-  }
 
 
 
   &__video-intro {
-    grid-row: start-intro / end-intro;
+    grid-row: 1 / 2;
     grid-column: col-start 1 / col-end 16 ;
     align-self: stretch;
 
     @include responsive-breakpoint(small-medium) {
-      grid-row: start-intro / end-intro;
       grid-column: col-start 9 / col-end 16 ;
       align-self: center;
     }
 
     @include responsive-breakpoint(medium) {
-      grid-row: start-intro / end-intro;
       grid-column: col-start 9 / col-end 16 ;
     }
   }
 
   &__content-intro {
-    grid-row: start-intro-text / end-intro-text;
+    grid-row: 2 / 3;
     grid-column: col-start 1 / col-end 16 ;
     align-self: stretch;
 
@@ -72,9 +56,10 @@
     }
 
     @include responsive-breakpoint(small-medium) {
-      grid-row: start-intro / end-intro;
       grid-column: col-start 1 / col-end 8 ;
       align-self: center;
+      grid-row: 1 / 2;
+
 
       padding: 0;
     }

@@ -49,6 +49,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import { CumCumparComponent } from './cum-cumpar/cum-cumpar.component';
 import { registerLocaleData } from '@angular/common';
 import localesRO from '@angular/common/locales/ro';
+import { HeaderDashboardShopComponent } from './components/header-dashboard-shop/header-dashboard-shop.component';
+import { LatestProductsComponent } from './components/latest-products/latest-products.component';
 registerLocaleData(localesRO, 'ro');
 
 @NgModule({
@@ -73,7 +75,9 @@ registerLocaleData(localesRO, 'ro');
     OverlayCartComponent,
     CheckoutComponent,
     PaymentComponent,
-    CumCumparComponent
+    CumCumparComponent,
+    HeaderDashboardShopComponent,
+    LatestProductsComponent
   ],
   imports: [
     RouterModule.forChild(routes),

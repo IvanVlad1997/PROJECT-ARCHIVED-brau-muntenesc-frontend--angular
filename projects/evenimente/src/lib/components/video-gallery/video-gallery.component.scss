@@ -1,0 +1,100 @@
+@import '~src/assets/scss/abstract/mixins';
+
+
+:host::ng-deep {
+  .plyr--video {
+    border-radius: 2rem;
+    box-shadow: var(--shadow-1);
+  }
+}
+
+.video-gallery {
+
+  &__content {
+    grid-row: 2 / 3;
+    grid-column: col-start 1 / col-end 16 ;
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+
+    padding: 1rem;
+
+    @include responsive-breakpoint(small) {
+      padding: 2rem;
+    }
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 10 / col-end 16 ;
+      align-self: center;
+      grid-row: 1 / 2;
+
+
+      padding: 0;
+    }
+
+    @include responsive-breakpoint(medium) {
+      //grid-column: col-start 10 / col-end 16 ;
+    }
+  }
+
+  &__video {
+    grid-row: 1 / 2;
+    grid-column: col-start 1 / col-end 16 ;
+    align-self: stretch;
+
+    @include responsive-breakpoint(small-medium) {
+      grid-column: col-start 1 / col-end 8 ;
+      align-self: center;
+    }
+
+    @include responsive-breakpoint(medium) {
+      grid-column: col-start 1 / col-end 8 ;
+    }
+  }
+
+  //&__cta {
+  //  font-size: 1.8rem;
+  //  cursor: pointer;
+  //  color: var(--color-white);
+  //  background: linear-gradient(
+  //      216.4deg,
+  //      var(--color-primary) 22.12%,
+  //      var(--color-primary-light) 110.96%);
+  //  border-radius: 50%;
+  //  padding: 2rem;
+  //  margin-top: 2rem;
+  //  transition: all 1s;
+  //  box-shadow: var(--shadow-2);
+  //
+  //  align-self: center;
+  //
+  //  display: flex;
+  //  flex-direction: column;
+  //  justify-content: center;
+  //  align-items: center;
+  //
+  //  &:hover {
+  //    background: linear-gradient(134.17deg, #FF00FF -30.72%, #00DCFF 96.47%);
+  //    transform: scale(1.01);
+  //    box-shadow: var(--shadow-3);
+  //  }
+  //
+  //  @include responsive-breakpoint(small) {
+  //    margin-top: 0;
+  //  }
+  //
+  //
+  //  &--text {
+  //    text-decoration: none;
+  //    color: inherit;
+  //  }
+  //
+  //  &--icon {
+  //
+  //  }
+  //}
+
+}

@@ -1,7 +1,5 @@
-<div  fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
+<div class="product-list"  fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
   <ng-container  *ngFor="let product of products; let i = index">
-    <mat-card class="list-item-card">
-      <lib-product-item [product]="product" ></lib-product-item>
-    </mat-card>
+      <lib-product-item class="product-list__product-item" [product]="product" ></lib-product-item>
   </ng-container>
 </div>

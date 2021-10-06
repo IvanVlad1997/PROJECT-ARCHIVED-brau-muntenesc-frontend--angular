@@ -1,11 +1,20 @@
-<div routerLink="{{item.route}}" fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-card class="product card-item" fxFlex.md="60" fxFlex.gt-md="40" fxFlex.sm="80" fxFlex.xs="95" fxLayout="column">
-    <div fxLayout="row wrap" fxLayoutAlign="center center" >
-      <mat-card-header fxLayout="row wrap" fxLayoutAlign="center center">
-        <mat-card-title>{{item.title}}</mat-card-title>
-        <mat-icon svgIcon="{{item.svg}}" class="icons-pagina-start"></mat-icon>
-      </mat-card-header>
-      <img fxFlex="98" class="image" mat-card-image [src]="item.photo" [alt]="item.title">
-    </div>
-  </mat-card>
+<!--<div  fxLayout="row wrap" fxLayoutAlign="center center">-->
+<!--  <mat-card class="product card-item" fxFlex.md="60" fxFlex.gt-md="40" fxFlex.sm="80" fxFlex.xs="95" fxLayout="column">-->
+<!--    <div fxLayout="row wrap" fxLayoutAlign="center center" >-->
+<!--      <mat-card-header fxLayout="row wrap" fxLayoutAlign="center center">-->
+<!--        <mat-card-title>{{item.title}}</mat-card-title>-->
+<!--      </mat-card-header>-->
+<!--    </div>-->
+<!--  </mat-card>-->
+<!--</div>-->
+
+<div class="pagina-start-card-item" routerLink="{{item.route}}">
+  <figure class="pagina-start-card-item__visual">
+    <img  class="pagina-start-card-item__visual--image" mat-card-image [src]="item.photo" [alt]="item.title">
+    <h5 class="pagina-start-card-item__content--title">
+      {{item.title}}
+<!--      <mat-icon svgIcon="{{item.svg}}" class="icons-pagina-start__content&#45;&#45;icon"></mat-icon>-->
+    </h5>
+  </figure>
+
 </div>

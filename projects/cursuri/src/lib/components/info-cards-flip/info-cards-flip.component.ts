@@ -34,12 +34,8 @@ export class InfoCardsFlipComponent implements OnInit {
       image: 'https://i.imgur.com/zQdNPhR.jpg',
       descriptionBack: [
         {
-        category: 'Grupă luni',
-        interval: '18:00 - 19:15'
-      },
-        {
-          category: 'Grupă joi',
-          interval: '18:00 - 19:15'
+          category: 'Grupă miercuri',
+          interval: '18:00 - 19:15 (inactivă)'
         }
       ] as Program[],
     },
@@ -49,12 +45,16 @@ export class InfoCardsFlipComponent implements OnInit {
       image: 'https://i.imgur.com/i5GxjIY.jpg',
       descriptionBack: [
         {
-          category: 'Grupă marți',
-          interval: '19:30 - 20:45'
+          category: 'Grupă luni',
+          interval: '18:00 - 19:15'
         },
         {
-          category: 'Grupă miercuri',
+          category: 'Grupă joi',
           interval: '18:00 - 19:15'
+        },
+        {
+          category: 'Grupă marți',
+          interval: '19:30 - 20:45'
         }
       ] as Program[],
     },
@@ -85,7 +85,7 @@ export class InfoCardsFlipComponent implements OnInit {
         },
       ] as Program[],
     }
-    ];
+  ];
 
   // @Input() images: any[] = [];
   // carouselItems: any[] = [];
@@ -110,8 +110,6 @@ export class InfoCardsFlipComponent implements OnInit {
   // ngAfterViewInit(): void {
   //   this.cdr.detectChanges();
   // }
-
-
 
 
 }

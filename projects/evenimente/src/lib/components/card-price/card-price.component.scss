@@ -1,0 +1,85 @@
+.card-price {
+  background-image: linear-gradient(
+      216.4deg,
+      var(--color-primary) 22.12%,
+      var(--color-primary-light) 110.96%);
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+
+
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    font-size: 2.2rem;
+    display: flex;
+    margin-left: 3rem;
+    margin-top: 2rem;
+    color: var(--color-white);
+
+
+    &--icon {
+      margin-right: 1rem;
+    }
+
+    &--text {
+      text-transform: uppercase;
+      line-height: 1.2;
+      font-weight: var(--font-weight-semibold);
+      font-family: var(--font-family-2), serif;
+
+    }
+  }
+
+  &__price {
+    width: 80%;
+    background: var(--color-light-grey);
+    padding: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    color: var(--color-primary);
+
+    &--text {
+      font-size: 2.3rem;
+      line-height: 1.5;
+      font-weight: var(--font-weight-strong);
+      font-family: var(--font-family-3), serif;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    align-self: center;
+    border-bottom: 1px white solid;
+
+  }
+
+  &__list-item {
+    color: var(--color-white);
+
+    font-size: 1.6rem;
+    line-height: 1.2;
+    font-weight: var(--font-weight-base);
+    font-family: var(--font-family-1), serif;
+
+    display: flex;
+    align-items: center;
+
+
+    &--text {
+
+    }
+
+    &--icon {
+      margin-right: 1rem;
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+}

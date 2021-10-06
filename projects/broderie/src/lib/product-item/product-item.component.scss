@@ -1,35 +1,82 @@
-//:host::ng-deep {
-//  .mat-paginator-outer-container {
-//    color: #00877A;
-//    background: red;
-//  }
-//
-//}
 
-//@media only screen and (min-width : 1279px) {
-//  .product-image {
-//    max-height: 320px;
-//  }
-//}
+@import '~src/assets/scss/abstract/mixins';
 
 
 
-.product-item-container {
-  height: 100%;
-  border-radius: 20px;
+.product-item {
+  padding: 0;
+  color: var(--color-white);
+  position: relative;
+  transition: all .3s;
+  width: 25rem;
 
-  img {
+  @include responsive-breakpoint(medium) {
+    width: 30rem;
+  }
+
+
+    &:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+
+  }
+  &__visual {
     width: 100%;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-1);
+    transition: all .3s;
+
+    &:hover {
+      box-shadow: var(--shadow-2);
+
+    }
+
   }
 
-  .mat-card-image {
-    margin: 0;
+  &__content {
+
+    position: absolute;
+    bottom: .45rem;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    color: var(--color-primary);
+    background-color: var(--color-white);
+    opacity: .7;
+    width: 100%;
+    align-items: center;
+    border-radius: 1rem;
+
+
+
+    &--title {
+
+
+      font-size: 2rem;
+
+    }
+
+    &--price {
+      position: absolute;
+      top: 2.5rem;
+      left: 0rem;
+      font-size: 2rem;
+      padding: 1rem;
+      color: var(--color-primary);
+      background-color: var(--color-white);
+      opacity: .7;
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+
+
+    }
+
+    &--cta {
+
+    }
   }
 
-  button {
-    margin: 0;
-    padding: 0;
-  }
 
 
 }

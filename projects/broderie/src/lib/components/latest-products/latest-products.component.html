@@ -1,0 +1,7 @@
+<div class="spinner">
+  <mat-spinner *ngIf="loadingNew "></mat-spinner>
+</div>
+
+<h2 class="heading-1 latest-products__title mb-l">Cele mai noi produse</h2>
+<lib-product-list *ngIf="latestProducts.length > 0" [products]="latestProducts" ></lib-product-list>
+
