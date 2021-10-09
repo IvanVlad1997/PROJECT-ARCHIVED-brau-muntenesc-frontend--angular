@@ -81,7 +81,8 @@ export class CursantiListComponent implements OnInit, OnDestroy {
     {
       headerName: 'Număr',
       field: 'telNum',
-      flex: 1
+      flex: 1,
+      filter: true,
     },
     {
       headerName: 'Ultima Plată',
