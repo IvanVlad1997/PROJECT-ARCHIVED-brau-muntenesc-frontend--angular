@@ -1,12 +1,50 @@
-.formular {
-  margin: auto;
+@import '~src/assets/scss/abstract/mixins';
+
+.login {
+
+  display: flex;
+  justify-content: center;
+
+  &__title {
+
+  }
+
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: var(--shadow-1);
+    padding: 5rem;
+  }
+
+  &__input {
+    font-size: 1.2rem;
+    @include responsive-breakpoint(small-medium) {
+      font-size: 2.8rem;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    @include responsive-breakpoint(small-medium) {
+      flex-direction: row;
+
+    }
+  }
+
+  &__button {
+
+    button {
+      min-width: 200px;
+      margin: 5px;
+    }
+
+  }
+
 }
 
-button {
-  min-width: 200px;
-  margin: 5px;
-}
 
-.form-filed {
-  width: 35vw;
-}

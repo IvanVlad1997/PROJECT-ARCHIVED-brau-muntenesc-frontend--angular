@@ -1,15 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="space-around center" class="full-height"  *ngIf="loading">
   <mat-spinner></mat-spinner>
 </div>
-<div fxLayout="row" fxLayoutAlign="space-around center" class="full-height" *ngIf="!loading">
-<!--  <div *ngIf="isLoading">-->
-<!--    <app-loading-spinner></app-loading-spinner>-->
-<!--  </div>-->
-<!--  <div *ngIf = "error">-->
-<!--    <p>{{error}}</p>-->
-<!--  </div>-->
-  <form class="margin-top-1" (submit)="register(form)" #form="ngForm" fxLayout="row wrap" fxLayoutAlign="space-around center" *ngIf="!isLoading">
-    <mat-form-field fxFlex="70%" color="accent">
+<div class="full-height signup" *ngIf="!loading">
+  <form class="margin-top-1 signup__form" (submit)="register(form)" #form="ngForm"  *ngIf="!isLoading">
+    <mat-form-field  color="accent" class="signup__input signup__input-email">
       <mat-label>Email</mat-label>
       <input name="email" type="email" minlength="2" matInput autocomplete="off" required [(ngModel)]="email" #EmailModel="ngModel"/>
       <mat-error *ngIf="EmailModel.errors">
@@ -19,7 +13,7 @@
         </ng-container>
       </mat-error>
     </mat-form-field>
-    <mat-form-field fxFlex="70%" color="accent">
+    <mat-form-field color="accent" class="signup__input signup__input--name">
       <mat-label>Nume</mat-label>
       <input name="name" type="text"  matInput autocomplete="off" minlength="3" required [(ngModel)]="name" #NameModel="ngModel"/>
       <mat-error *ngIf="NameModel.errors">
@@ -29,7 +23,7 @@
         </ng-container>
       </mat-error>
     </mat-form-field>
-    <mat-form-field fxFlex="70%" color="accent">
+    <mat-form-field color="accent" class="signup__input signup__input--password">
       <mat-label>Parolă</mat-label>
       <input name="password" type="password" matInput required minlength="7" [(ngModel)]="password" #PasswordModel="ngModel"/>
       <mat-error *ngIf="PasswordModel.errors">
@@ -39,7 +33,7 @@
         </ng-container>
       </mat-error>
     </mat-form-field>
-    <mat-form-field fxFlex="70%" color="accent">
+    <mat-form-field  color="accent" class="signup__input signup__input--tel">
       <mat-label>Număr de telefon</mat-label>
       <input name="telNum" type="text" matInput required minlength="10" maxlength="10"  [(ngModel)]="telNum" #TelNumModel="ngModel"/>
       <mat-error *ngIf="TelNumModel.errors">
@@ -49,14 +43,14 @@
         </ng-container>
       </mat-error>
     </mat-form-field>
-    <mat-form-field fxFlex="70%" color="accent">
+    <mat-form-field  color="accent" class="signup__input signup__input--address">
       <mat-label>Adresă</mat-label>
       <input name="address" type="text" matInput  [(ngModel)]="address" #AddressModel="ngModel"/>
     </mat-form-field>
-    <mat-checkbox fxFlex="70"  (change)="changeDanceStatus()">Sunt dansator/cursant la Brâu Muntenesc</mat-checkbox>
-    <mat-checkbox fxFlex="70" (change)="changePrivacyAgree()">Sunt de acord cu <a [routerLink]="['/politica-de-confidentialitate']">politica de confidențialitate</a></mat-checkbox>
-    <div fxFlex="100" fxLayout="row" fxLayoutAlign="end center">
-      <button type="submit" matSuffix mat-button color="primary" [disabled]="!form.valid || !isOkPrivacy">Înregistrează-mă</button>
+    <mat-checkbox class="signup__input signup__input--dancer"   (change)="changeDanceStatus()">Sunt dansator/cursant la Brâu Muntenesc</mat-checkbox>
+    <mat-checkbox class="signup__input signup__input--approve"   (change)="changePrivacyAgree()">Sunt de acord cu <a [routerLink]="['/politica-de-confidentialitate']">politica de confidențialitate</a></mat-checkbox>
+    <div class=" signup__button">
+      <button type="submit" matSuffix mat-raised-button color="primary" [disabled]="!form.valid || !isOkPrivacy">Înregistrează-mă</button>
     </div>
   </form>
 </div>

@@ -1,11 +1,11 @@
 <div fxLayout="column" fxLayoutAlign="center center" class="full-height" *ngIf="loading">
   <mat-spinner></mat-spinner>
 </div>
-<div fxLayout="column" fxLayoutAlign="center center" class="full-height" *ngIf="!loading">
-  <h1>Intră în cont</h1>
+<div class="full-height login" *ngIf="!loading">
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form (submit)="login(form)" #form="ngForm" fxLayout="row wrap" fxLayoutAlign="space-around center" *ngIf="!isLoading" >
-    <mat-form-field fxFlex="70%" color="accent" appearance="fill">
+  <form (submit)="login(form)" #form="ngForm" class="login__form" *ngIf="!isLoading" >
+    <h1 class="login__title heading-1 mb-m">Intră în cont</h1>
+    <mat-form-field class="login__input login__iput--email" color="accent" appearance="fill">
       <mat-label>Email</mat-label>
       <input name="email" type="email" minlength="2" matInput  required [(ngModel)]="email" #EmailModel="ngModel" />
       <mat-error *ngIf="EmailModel.errors">
@@ -15,7 +15,7 @@
         </ng-container>
       </mat-error>
     </mat-form-field>
-    <mat-form-field fxFlex="70%" color="accent" appearance="fill">
+    <mat-form-field  class="login__input login__iput--email" color="accent" appearance="fill">
       <mat-label>Password</mat-label>
       <input name="password" type="password" matInput required [(ngModel)]="password" #PasswordModel="ngModel"/>
       <mat-error *ngIf="PasswordModel.errors">
@@ -24,17 +24,17 @@
         </ng-container>
       </mat-error>
     </mat-form-field>
-     <div fxLayout="row wrap" fxLayoutAlign="center center" >
-       <div fxFlex="100" fxFlex.gt-sm="33" fxLayoutAlign="center center">
+     <div  class="login__buttons">
+       <div class="login__button login__button--login">
          <button mat-raised-button color="accent" type="submit">Login</button>
        </div>
-       <div fxFlex="100" fxFlex.gt-sm="33" fxLayoutAlign="center center">
+       <div class="login__button login__button--account">
          <button mat-raised-button color="warn" type="button" routerLink="/auth/signup">Nu am cont</button>
        </div>
 <!--       <div fxFlex="50"fxFlex.gt-sm="25" fxLayoutAlign="center center">-->
 <!--         <button mat-raised-button color="accent" type="button" (click)="loginWithGoogle()">Google Login</button>-->
 <!--       </div>-->
-       <div fxFlex="100" fxFlex.gt-sm="33" fxLayoutAlign="center center">
+       <div class="login__button login__button--forgot">
          <button mat-raised-button color="warn" type="button" routerLink="/auth/forgot-password">Mi-am uitat parola</button>
        </div>
     </div>

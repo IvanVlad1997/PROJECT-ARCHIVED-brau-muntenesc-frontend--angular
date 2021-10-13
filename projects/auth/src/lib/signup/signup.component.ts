@@ -43,7 +43,16 @@ export class SignupComponent implements OnInit, HeaderAwareComponent {
   async register(form: any): Promise<void> {
     this.loading = true;
     this.properAddress = [this.address, this.address];
-    await this.authService.signUp(this.email, this.password, this.telNum, this.properAddress, this.isDancer, this.name);
+    try {
+      await this.authService.signUp(this.email, this.password, this.telNum, this.properAddress, this.isDancer, this.name);
+    } catch (e) {
+      console.log(e);
+      form.resetForm();
+      this.loading = false;
+      this.toastService.error(`Vă rugăm să încercați din nou. Eroare ${e}`);
+      this.loading = false;
+      return;
+    }
     this.toastService.success(`Înregistrarea cu emailul: ${this.email} s-a realizat cu succes!`);
     form.resetForm();
     this.loading = false;
