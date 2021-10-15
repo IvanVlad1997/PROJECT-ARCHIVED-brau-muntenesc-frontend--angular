@@ -28,6 +28,7 @@ export class OverlayComponent implements OnInit, OnDestroy {
 
   loadVideos(): void {
     this.loading = true;
+    // this.videoSubscription = this.videoPlatformService.getVideosPlatformWithLimit(window.innerHeight)
     this.videoSubscription = this.videoPlatformService.getVideosPlatformWithLimit(window.innerHeight)
       .subscribe(
         (videos) => {

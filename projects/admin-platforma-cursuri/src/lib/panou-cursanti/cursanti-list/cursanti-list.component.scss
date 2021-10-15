@@ -1,3 +1,16 @@
+.cursanti-list {
+
+  &__input {
+    font-size: 2rem;
+
+    &--group {
+      padding-top: 2rem;
+      width: 80%;
+    }
+  }
+
+}
+
 .ag-theme-alpine {
   min-height: 300px;
 }

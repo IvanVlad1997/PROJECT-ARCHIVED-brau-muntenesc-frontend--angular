@@ -6,7 +6,7 @@
 <!--      <mat-option *ngFor="let grupa of programs" [value]="grupa">{{grupa.category}}-{{grupa.interval}}</mat-option>-->
 <!--    </mat-select>-->
 <!--  </mat-form-field>-->
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill" class="cursanti-list__input cursanti-list__input--group">
     <mat-label>Grupă</mat-label>
     <mat-select  multiple (valueChange)="valueChange($event)" >
       <mat-option *ngFor="let grupa of programs" [value]="grupa">{{grupa.category}}-{{grupa.interval}}</mat-option>

@@ -23,10 +23,10 @@ import {LastIconsComponent} from "../last-icons/last-icons.component";
     trigger('openClose', [
       state('open', style({
         opacity: 1,
-        backgroundColor: '#0D6774'
+        backgroundColor: '#00877a'
       })),
       state('closed', style({
-        height: '70vh',
+        height: '100vh',
         backgroundColor: '#00ffff',
       })),
       transition('open => closed', [

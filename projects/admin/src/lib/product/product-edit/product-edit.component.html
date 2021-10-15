@@ -2,9 +2,9 @@
   <ng-container *ngIf="product && product.title">{{ product.title }}</ng-container>
   <ng-container *ngIf="!product || !product.title" >Produs nou</ng-container>
 </h1>
-<form #form (submit)="edit()">
+<form #form (submit)="edit()" class="product-edit__form">
   <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch">
-    <mat-form-field>
+    <mat-form-field class="product-edit__input product-edit__input--title">
       <mat-label >Titlu</mat-label>
       <input name="title" type="text" matInput  required [(ngModel)]="product.title" #TitleModel="ngModel" />
     </mat-form-field>
@@ -14,7 +14,7 @@
       </ng-container>
     </mat-error>
 
-    <mat-form-field>
+    <mat-form-field class="product-edit__input product-edit__input--description">
       <mat-label >Descriere</mat-label>
       <textarea name="descriere" type="text" minlength="2" matInput  required [(ngModel)]="product.description" #DescriptionModel="ngModel" ></textarea>
     </mat-form-field>
@@ -25,7 +25,7 @@
       </ng-container>
     </mat-error>
 
-    <mat-form-field>
+    <mat-form-field class="product-edit__input product-edit__input--price">
       <mat-label >Pret</mat-label>
       <input name="price" type="number" minlength="2" matInput  required [(ngModel)]="product.price" #PriceModel="ngModel" />
     </mat-form-field>
@@ -36,7 +36,7 @@
       </ng-container>
     </mat-error>
 
-    <mat-form-field>
+    <mat-form-field class="product-edit__input product-edit__input--quantity">
       <mat-label >Cantitate</mat-label>
       <input name="quantity" type="number" matInput  required [(ngModel)]="product.quantity" #QuantityModel="ngModel" />
     </mat-form-field>
@@ -46,10 +46,10 @@
       </ng-container>
     </mat-error>
 
-    <mat-form-field>
+    <mat-form-field class="product-edit__input product-edit__input--color">
       <mat-label >Culoare</mat-label>
       <input name="color" type="text" minlength="2" matInput  required [(ngModel)]="product.color" #ColorModel="ngModel" />
-    </mat-form-field>
+    </mat-form-field >
     <mat-error *ngIf="ColorModel.errors && ColorModel.touched">
       <ng-container *ngFor="let item of ColorModel.errors | keyvalue">
         <p *ngIf="item.key === 'required'">Câmpul trebuie completat</p>
@@ -57,7 +57,7 @@
       </ng-container>
     </mat-error>
 
-    <mat-form-field>
+    <mat-form-field class="product-edit__input product-edit__input--brand">
       <mat-label *ngIf="product.brand && product.brand.name">{{product.brand.name}}</mat-label>
       <mat-label *ngIf="!product.category">Brand</mat-label>
       <mat-select [(value)]="product.brand" >
@@ -65,7 +65,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="product-edit__input product-edit__input--transport">
       <mat-label >Transport</mat-label>
       <input name="shipping" type="text" minlength="2" matInput  required [(ngModel)]="product.shipping" #ShippingModel="ngModel" />
     </mat-form-field>
@@ -76,7 +76,7 @@
       </ng-container>
     </mat-error>
 
-    <mat-form-field>
+    <mat-form-field class="product-edit__input product-edit__input--category">
       <mat-label *ngIf="product.category && product.category.name">{{product.category.name}}</mat-label>
       <mat-label *ngIf="!product.category">Categoria</mat-label>
       <mat-select [(value)]="product.category" (valueChange)="changeSubCategories()">
@@ -84,7 +84,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field >
+    <mat-form-field class="product-edit__input product-edit__input--subcategory">
       <mat-label *ngIf="product.subCategory && subCategories[0] && !product.subCategory[0]">Subcategoria</mat-label>
       <mat-label *ngIf="product.subCategory && !subCategories[0]">Nu există nicio subcategorie pentru categoria aleasă.</mat-label>
       <mat-label *ngIf="product.subCategory && subCategories[0] && product.subCategory[0] && product.subCategory.length === 1">Subcategoria</mat-label>

@@ -1,22 +1,24 @@
-<div fxLayoutAlign="center center" class="margin-top-1" fxLayout="row wrap" >
-  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center">
-    <span></span>
-    <h1 *ngIf="video && video.name" fxLayoutAlign="center center" >{{video.name}}</h1>
-    <button mat-icon-button (click)="openOverlay()"><mat-icon class="icon-arrow" svgIcon="menu-open"></mat-icon></button>
-  </div>
+<div class="video-item">
+  <h1 *ngIf="video && video.name" class="video-item__video-title heading-1">{{video.name}}</h1>
 
-  <div fxFlex="80" plyr [plyrOptions]="options" class="margins"
-       plyrTitle="Video 1"
-       [plyrPlaysInline]="true"
-       [plyrPlaysInline]="true"
-       [plyrSources]="videoSources" ></div>
-  <div fxFlex="100" *ngIf="relatedVideos && relatedVideos.length>0" class="title-related-videos" fxLayoutAlign="center center">
-    Variante pentru aceeași melodie
-  </div>
-  <div fxFlex="100" *ngIf="relatedVideos && relatedVideos.length>0"  fxLayout="column" class="related-videos" fxLayoutAlign="center center">
-    <mat-chip-list *ngFor="let video of relatedVideos"  class="chip-related-video">
-      <mat-chip fxLayoutAlign="center center" [routerLink]="['/platforma-cursuri/video/', video.slug]">{{video.name}}</mat-chip>
-    </mat-chip-list>
-  </div>
+  <div
+    class="video-item__video"
+    plyr [plyrOptions]="options"
+    plyrTitle="Video 1"
+    [plyrPlaysInline]="true"
+    [plyrSources]="videoSources"></div>
+
+  <button mat-icon-button (click)="openOverlay()" class="video-item__toggle-overlay">
+    <mat-icon class="video-item__toggle-overlay--icon" svgIcon="menu-open"></mat-icon>
+  </button>
+
+    <div *ngIf="relatedVideos && relatedVideos.length>0" class="heading-2 video-item__related-videos-title">
+      Variante pentru aceeași melodie
+    </div>
+    <div *ngIf="relatedVideos && relatedVideos.length>0" class="mb-m video-item__related-videos-wrapper">
+      <mat-chip-list *ngFor="let video of relatedVideos"  >
+        <mat-chip class="video-item__related-video" [routerLink]="['/platforma-cursuri/video/', video.slug]">{{video.name}}</mat-chip>
+      </mat-chip-list>
+    </div>
 </div>
 
