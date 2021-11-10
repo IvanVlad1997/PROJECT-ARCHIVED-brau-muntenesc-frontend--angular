@@ -1,8 +1,8 @@
-<div fxLayout="column" fxLayoutAlign="center center" class="full-height margin-top-1">
-  <h1 *ngIf="subCategory" class="title" >Produse din subcategoria {{subCategory.name}}</h1>
+<div fxLayout="column" fxLayoutAlign="center center" class="full-height margin-top-1 product-list-by-sub-category">
+  <h1 *ngIf="subCategory" class="heading-1 product-list-by-sub-category__title" >Produse din subcategoria {{subCategory.name}}</h1>
   <div fxLayout="row wrap" fxLayoutAlign="center center" >
     <lib-product-list fxFlex="100" *ngIf="products && products.length > 0" [products]="products" ></lib-product-list>
   </div>
   <div *ngIf="products && products.length ===0">Nu există produse în această categorie.</div>
-  <button color="primary" mat-raised-button [routerLink]="['/broderie/shop']">Toate produsele</button>
+  <button color="primary" class="product-list-by-sub-category__button" mat-raised-button [routerLink]="['/broderie/shop']">Toate produsele</button>
 </div>

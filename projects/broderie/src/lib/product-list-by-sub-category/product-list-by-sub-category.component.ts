@@ -20,6 +20,7 @@ export class ProductListBySubCategoryComponent implements OnInit {
   products: Product[];
 
   ngOnInit(): void {
+    console.log('here')
     const slug = this.activatedRoute.snapshot.params.slug;
     this.subCategoryService.getSubCategory(slug)
       .subscribe(

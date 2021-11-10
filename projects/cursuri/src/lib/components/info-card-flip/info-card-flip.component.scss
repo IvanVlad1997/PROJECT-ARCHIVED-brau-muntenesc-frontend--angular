@@ -71,6 +71,9 @@
     &--text-front {
       font-weight: var(--font-weight-base);
       font-size: 2.2rem;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     &--button-front {

@@ -3,3 +3,13 @@
   font-weight: bold;
 }
 
+.product-list-by-sub-category {
+
+  &__button {
+    margin-bottom: 3rem;
+  }
+
+  &__title {
+    margin-top: 2rem;
+  }
+}

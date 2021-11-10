@@ -29,8 +29,7 @@ export class InfoCardsFlipComponent implements OnInit {
   carouselItems: CardFlip[] = [
     {
       title: 'Grupe de nou veniți',
-      description: 'Îi așteptăm pe cei care vor să învețe dansuri simple, care se găsesc la petreceri. ' +
-        'Aici sunt predați pașii de bază. ',
+      description: 'Predăm mișcările de bază și dansuri ușoare. În fiecare lună începem de la 0.',
       image: 'https://i.imgur.com/zQdNPhR.jpg',
       descriptionBack: [
         {
@@ -41,7 +40,7 @@ export class InfoCardsFlipComponent implements OnInit {
     },
     {
       title: 'Grupe de începători',
-      description: 'Predăm foarte multe dansuri la rece (fără muzică), după care dansăm pe muzică',
+      description: 'Îi așteptăm pe cei care vor să învețe dansuri simple, de petrecere.',
       image: 'https://i.imgur.com/i5GxjIY.jpg',
       descriptionBack: [
         {
@@ -60,8 +59,7 @@ export class InfoCardsFlipComponent implements OnInit {
     },
     {
       title: 'Grupe de intermediari',
-      description: 'Dansurile predate la grupa de începători (cel puțin 40 din Muntenia) sunt știute. Dansăm mult,' +
-        'învățăm și mai multe dansuri din toate zonele țării.',
+      description: 'Dansurile învățate la începători sunt grupate în colaje. Energia și distracția sunt nelipsite.',
       image: 'https://i.imgur.com/cc6Ysyh.jpg',
       descriptionBack: [
         {
@@ -76,7 +74,7 @@ export class InfoCardsFlipComponent implements OnInit {
     },
     {
       title: 'Grupă de avansați',
-      description: 'Lucrăm la suite, stucturi complexe de pași care nu se repetă. Suitele pot fi prezentate la spectacole.',
+      description: 'Se lucrează la stucturi complexe de pași.',
       image: 'https://i.imgur.com/B1HA1qs.jpg',
       descriptionBack: [
         {

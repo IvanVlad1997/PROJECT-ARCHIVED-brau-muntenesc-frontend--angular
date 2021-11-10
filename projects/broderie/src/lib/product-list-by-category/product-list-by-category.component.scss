@@ -1,5 +1,10 @@
-.title {
-  text-align: center;
-  font-weight: bold;
-}
 
+.product-list-by-category {
+  &__button {
+    margin-bottom: 3rem;
+  }
+
+  &__title {
+    margin-top: 2rem;
+  }
+}
