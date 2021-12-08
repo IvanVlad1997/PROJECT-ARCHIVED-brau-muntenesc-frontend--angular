@@ -27,7 +27,7 @@ export class PricesComponent implements OnInit {
       buttonText: "Sună acum",
       list: [
         '2 perechi',
-        '2 suită',
+        '2 suite',
         'Colaj cu invitații',
         'Ploiești',
       ],
@@ -39,7 +39,7 @@ export class PricesComponent implements OnInit {
       buttonText: "Sună acum",
       list: [
         '3 perechi',
-        '2 suită',
+        '2 suite',
         'Colaj cu invitații',
         'Ploiești',
       ],

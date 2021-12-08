@@ -29,34 +29,34 @@ export class InfoCardsFlipComponent implements OnInit {
   carouselItems: CardFlip[] = [
     {
       title: 'Grupe de nou veniți',
-      description: 'Predăm mișcările de bază și dansuri ușoare. În fiecare lună începem de la 0.',
+      description: 'Predăm mișcările de bază și dansuri ușoare care se găsesc și la petreceri.',
       image: 'https://i.imgur.com/zQdNPhR.jpg',
       titleBack: 'Program',
       descriptionBack: [
         {
+          category: 'Grupă luni',
+          interval: '18:00 - 19:00 (din ianuarie)'
+        },
+        {
           category: 'Grupă miercuri',
-          interval: '18:00 - 19:15 (inactivă)'
+          interval: '18:00 - 19:00 (din ianuarie)'
         }
       ] as Program[],
     },
     {
       title: 'Grupe de începători',
-      description: 'Îi așteptăm pe cei care vor să învețe dansuri simple, de petrecere.',
+      description: 'Pe lângă dansurile învățate la primul nivel, predăm zeci de dansuri din Muntenia și din alte zone ale țării.',
       image: 'https://i.imgur.com/i5GxjIY.jpg',
       titleBack: 'Program',
       descriptionBack: [
         {
-          category: 'Grupă luni',
-          interval: '18:00 - 19:15'
+          category: 'Grupă marți',
+          interval: '19:30 - 20:45 (din ianuarie)',
         },
         {
           category: 'Grupă joi',
-          interval: '18:00 - 19:15'
+          interval: '18:00 - 19:15 (din ianuarie)'
         },
-        {
-          category: 'Grupă marți',
-          interval: '19:30 - 20:45'
-        }
       ] as Program[],
     },
     {
@@ -66,24 +66,24 @@ export class InfoCardsFlipComponent implements OnInit {
       titleBack: 'Program',
       descriptionBack: [
         {
-          category: 'Grupă marți',
-          interval: '18:00 - 19:15'
+          category: 'Grupă luni',
+          interval: '19:15 - 20:30 (din ianuarie)'
         },
         {
-          category: 'Grupă luni',
-          interval: '19:30 - 20:45'
+          category: 'Grupă marți',
+          interval: '18:00 - 19:15 (din ianuarie)'
         }
       ] as Program[],
     },
     {
       title: 'Grupă de avansați',
       titleBack: 'Program',
-      description: 'Se lucrează la stucturi complexe de pași.',
+      description: 'Sunt predate coregrafii care conțin stucturi complexe de pași.',
       image: 'https://i.imgur.com/B1HA1qs.jpg',
       descriptionBack: [
         {
           category: 'Grupă miercuri',
-          interval: '19:30 - 20:45'
+          interval: '19:15 - 20:30 (din ianuarie)'
         },
       ] as Program[],
     }
