@@ -1,0 +1,32 @@
+<div class="flip-card">
+  <div class="flip-card__side flip-card__side--front" #frontSide>
+    <div class="background-image"
+         [ngStyle]="{'background': 'linear-gradient(36.4deg, rgba(0, 220, 255, .4) 22.12%, rgba(0, 255, 170, .4) 110.96%), url(' + imageBackground + ') no-repeat 0 0 / cover'}"
+    ></div>
+    <h3 class="flip-card__side--title-front">
+      {{item.title}}
+    </h3>
+    <p class="flip-card__side--price--front"></p>
+    <p class="paragraph-1 flip-card__side--text-front">
+      {{item.description}}
+    </p>
+    <button #readMoreButton class="btn flip-card__side--button-front" fxHide.gt-sm="true" (click)="addFlippedClass(frontSide, backSide)">
+      Întoarce
+    </button>
+
+  </div>
+  <div class="flip-card__side flip-card__side--back" #backSide>
+    <h3 *ngIf="item.titleBack" class="flip-card__side--title-back">
+      {{item.titleBack}}
+    </h3>
+    <div class="flip-card__side--text-back">
+      <p class="flip-card__side--text" *ngFor="let group of item.descriptionBack">
+        <span *ngIf="group.category">{{group.category}}</span> <span *ngIf="group.interval">: {{group.interval}}</span>
+      </p>
+    </div>
+    <span fxHide.lt-md="true"></span>
+    <button #readLessButton class="btn flip-card__side--button-back" fxHide.gt-sm="true" (click)="removeFlippedClass(frontSide, backSide)">
+      Întoarce
+    </button>
+  </div>
+</div>

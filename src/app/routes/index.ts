@@ -98,13 +98,13 @@ export const routes: Routes = [
           animation: 'EventsPage'
         }
       },
-      // {
-      //   path: 'cv-vlad-ivan',
-      //   loadChildren: () => import('../../../projects/cv/src/lib/cv.module').then(module => module.CvModule),
-      //   data: {
-      //     animation: 'CVPage'
-      //   }
-      // },
+      {
+        path: 'cv-vlad-ivan',
+        loadChildren: () => import('../../../projects/cv/src/lib/cv.module').then(module => module.CvModule),
+        data: {
+          animation: 'CVPage'
+        }
+      },
       {
         path: 'contact',
         loadChildren: () => import('../../../projects/contact/src/lib/contact.module').then(module => module.ContactModule),

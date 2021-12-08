@@ -31,6 +31,7 @@ export class InfoCardsFlipComponent implements OnInit {
       title: 'Grupe de nou veniți',
       description: 'Predăm mișcările de bază și dansuri ușoare. În fiecare lună începem de la 0.',
       image: 'https://i.imgur.com/zQdNPhR.jpg',
+      titleBack: 'Program',
       descriptionBack: [
         {
           category: 'Grupă miercuri',
@@ -42,6 +43,7 @@ export class InfoCardsFlipComponent implements OnInit {
       title: 'Grupe de începători',
       description: 'Îi așteptăm pe cei care vor să învețe dansuri simple, de petrecere.',
       image: 'https://i.imgur.com/i5GxjIY.jpg',
+      titleBack: 'Program',
       descriptionBack: [
         {
           category: 'Grupă luni',
@@ -61,6 +63,7 @@ export class InfoCardsFlipComponent implements OnInit {
       title: 'Grupe de intermediari',
       description: 'Dansurile învățate la începători sunt grupate în colaje. Energia și distracția sunt nelipsite.',
       image: 'https://i.imgur.com/cc6Ysyh.jpg',
+      titleBack: 'Program',
       descriptionBack: [
         {
           category: 'Grupă marți',
@@ -74,6 +77,7 @@ export class InfoCardsFlipComponent implements OnInit {
     },
     {
       title: 'Grupă de avansați',
+      titleBack: 'Program',
       description: 'Se lucrează la stucturi complexe de pași.',
       image: 'https://i.imgur.com/B1HA1qs.jpg',
       descriptionBack: [

@@ -5,4 +5,5 @@ export interface CardFlip {
   description: string;
   image: string;
   descriptionBack: Program[];
+  titleBack: string;
 }

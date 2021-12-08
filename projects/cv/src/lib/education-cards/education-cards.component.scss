@@ -1,0 +1,41 @@
+@import '~src/assets/scss/abstract/mixins';
+
+:host {
+  width: 100%;
+}
+
+.education-cards {
+
+
+  @include responsive-breakpoint(medium) {
+    grid-auto-rows: minmax(15rem, auto);
+
+
+    &__cards {
+      grid-column: center-start / center-end;
+
+      display: grid;
+      grid-auto-rows: minmax(min-content, 35rem);
+      //grid-auto-columns: min-content  min-content;
+      grid-template-columns: repeat(2, minmax(35rem, 1fr));
+      grid-column-gap: 3rem;
+      grid-row-gap: 3rem;
+    }
+  }
+
+  &__cards-swiper {
+    display: block;
+
+    &--item {
+      border: 1rem solid transparent;
+
+      @include responsive-breakpoint(small-medium) {
+        border: 1.6rem solid transparent;
+
+      }
+    }
+  }
+
+
+
+}

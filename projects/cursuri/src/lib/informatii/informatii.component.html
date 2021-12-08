@@ -19,7 +19,17 @@
         <span *ngIf="!prog.status" fxLayout="row" fxLayoutAlign="center center"><mat-icon mat-list-icon  svgIcon="pause-octagon" color="warn" ></mat-icon><p class="inactive-group">Grupă inactivă</p></span>
       </div>
     </div>
+
   </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <h3 class="title-dashboard-shop">Link-uri utile:</h3>
+  </div>
+
+  <a class="mat-h6" [routerLink]="['/politica-de-confidentialitate']"
+     fxLayoutAlign="center center">
+    <span>Politică de confidențialitate</span>
+  </a>
 </div>
 
 

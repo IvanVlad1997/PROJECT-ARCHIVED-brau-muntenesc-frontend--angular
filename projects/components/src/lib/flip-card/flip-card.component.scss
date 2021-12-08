@@ -1,0 +1,146 @@
+@import '~src/assets/scss/abstract/mixins';
+
+.flip-card {
+  display: block;
+  height: 100%;
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  cursor: pointer;
+
+  &__side {
+    min-height: 40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    transition: all 1s ease;
+    width: 100%;
+    backface-visibility: hidden;
+    text-align: center;
+
+
+    &--front {
+      overflow: hidden;
+      height: 100%;
+      border-radius: 16px;
+      color: var(--color-white);
+      display: flex;
+      flex-direction: column;
+
+      position: relative;
+
+      .background-image {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: .8;
+        z-index: -1;
+      }
+
+      &.flipped {
+        transform: rotateY(-180deg);
+
+        @include responsive-breakpoint(medium) {
+          transform: rotateY(0);
+        }
+      }
+    }
+
+    &--title-front {
+      align-self: flex-end;
+      font-size: 3rem;
+      padding: .7rem;
+      font-weight: var(--font-weight-strong);
+      background: white;
+      border-radius: 7% 0 0 7%;
+      color: var(--color-primary);
+      margin-top: 0rem;
+
+      @include responsive-breakpoint(medium) {
+        margin-top: -3rem;
+        font-size: 4rem;
+
+      }
+    }
+
+    &--text-front {
+      font-weight: var(--font-weight-base);
+      font-size: 2.2rem;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &--button-front {
+      align-self: center;
+    }
+
+    &--back {
+      overflow: hidden;
+      padding: 2rem 1.2rem 1.6rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      background: linear-gradient(
+          216.4deg,
+          var(--color-primary) 22.12%,
+          var(--color-primary-dark) 110.96%);
+      color: white;
+      border-radius: 16px;
+      transform: rotateY(180deg);
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      &.flipped {
+        transform: rotateY(0);
+
+        @include responsive-breakpoint(medium) {
+          transform: rotateY(180deg)
+        }
+      }
+
+    }
+
+    &--title-back {
+      font-size: 3rem;
+    }
+
+    &--text-back {
+    }
+
+    &--text {
+      font-size: 1.8rem;
+
+      &:last-of-type {
+        margin-top: 2rem;
+        font-size: 1.7rem;
+
+      }
+
+      @include responsive-breakpoint(medium) {
+        font-size: 2.8rem;
+      }
+    }
+
+    &--button-back {
+      align-self: center;
+    }
+  }
+
+
+  @include responsive-breakpoint(medium) {
+    &:hover &__side--front {
+      transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back {
+      transform: rotateY(0);
+    }
+  }
+
+
+}
+

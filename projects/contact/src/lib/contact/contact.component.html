@@ -1,4 +1,10 @@
-<div fxLayout="row wrap" fxLayoutAlign="center center" class="margin-top-1">
+
+<div fxLayout="row wrap contact" fxLayoutAlign="center center" class="margin-top-1 contact">
+
+  <mat-card fxFlex="50" class="form-container contact__form" fxFlex.lt-md="100">
+    <app-contact-from class="contact-form"></app-contact-from>
+  </mat-card>
+
   <div class="contact-buttons" fxFlex="40" fxFlex.lt-md="100" fxLayout="column" fxLayoutAlign="center center">
     <a mat-raised-button color="primary" class="mat-h2 button" href="tel:0751105873" fxLayoutAlign="center center">
       <mat-icon mat-list-icon svgIcon="phone"></mat-icon>
@@ -26,10 +32,6 @@
     </a>
   </div>
 
-  <mat-card fxFlex="50" class="form-container" fxFlex.lt-md="100">
-    <app-contact-from class="contact-form"></app-contact-from>
-  </mat-card>
-
 
   <div class="adresa" fxFlex="100">
     <p>Adresa: Sudarc - fostul Consproiect, str. Maramureș, nr. 12, et. 2, cam. 97 vizavi de Liceul Mihai Viteazul</p>
@@ -49,14 +51,7 @@
     tabindex="0"></iframe>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center center">
-  <h1 class="title-dashboard-shop">Link-uri utile:</h1>
-</div>
 
-<a class="mat-h2" [routerLink]="['/politica-de-confidentialitate']"
-   fxLayoutAlign="center center">
-  <span>Politică de confidențialitate</span>
-</a>
 
 <ng-template #header>
   <p>Contact</p>
