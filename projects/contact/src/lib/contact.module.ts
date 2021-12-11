@@ -6,7 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {FlexModule} from '@angular/flex-layout';
+import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {RouterModule} from '@angular/router';
@@ -30,7 +30,8 @@ import {routes} from "./routes";
         RouterModule,
         MatCardModule,
         CommonModule,
-       RouterModule.forChild(routes),
+        RouterModule.forChild(routes),
+        ExtendedModule,
 
     ],
   exports: [ContactComponent, ContactFromComponent]

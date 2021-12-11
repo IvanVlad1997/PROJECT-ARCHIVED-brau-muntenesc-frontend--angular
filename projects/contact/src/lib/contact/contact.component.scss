@@ -1,15 +1,116 @@
+@import '~src/assets/scss/abstract/mixins';
 
 .contact {
 
-  &__form {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+  &__picture {
+    grid-row: 1 / 2;
+    padding-bottom: 54%;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-1);
+    grid-column: center-start / center-end;
+
+
+    @include responsive-breakpoint(medium) {
+      grid-column: center-start / col-end 11;
+
+    }
+
+    @include responsive-breakpoint(large) {
+      grid-column: center-start / col-end 10;
+    }
   }
 
-  .title {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+  &__form-wrapper {
+    grid-column: center-start / center-end;
+    grid-row: 2 / 3;
+
+
+    @include responsive-breakpoint(medium) {
+      grid-column: col-start 13 / center-end;
+
+      grid-row: 1 / 2;
+
+    }
+
+    @include responsive-breakpoint(large) {
+      grid-column: col-start 12 / center-end;
+    }
+
+    .form {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .title {
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
   }
+
+  &__buttons {
+    grid-column: center-start / center-end;
+    grid-row: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    @include responsive-breakpoint(medium) {
+      display: block;
+      grid-column: center-start / col-end 5;
+      grid-row: 2 / 3;
+
+    }
+
+    .button {
+      max-width: 300px;
+      width: 100%;
+      margin: 10px;
+
+    }
+
+  }
+
+  &__extra-info {
+
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #00877A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: center-start / center-end;
+    grid-row: 4 / 5;
+    @include responsive-breakpoint(medium) {
+      grid-column: col-start 6 / center-end;
+      grid-row: 2 / 3;
+
+    }
+
+    @media screen and (max-width: 500px) {
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+  }
+
+  &__map {
+    grid-column: center-start / center-end;
+
+    grid-row: 5 / 6;
+    @include responsive-breakpoint(medium) {
+      grid-row: 3 / 4;
+
+    }
+
+    iframe {
+      width: 100%;
+    }
+  }
+
 
   @media screen and (max-width: 960px) {
     .title {
@@ -18,34 +119,6 @@
   }
 }
 
-.button {
-  max-width: 300px;
-  width: 100%;
-  margin: 10px;
-}
-
-.adresa {
-  padding-bottom: 150px;
-  padding-top: 150px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  text-align: center;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  color: #00877A;
-
-  @media screen and (max-width: 500px) {
-    font-size: 18px;
-    line-height: 22px;
-  }
-}
-
-.contact-form {
-  width: 100%;
-
-}
 
 .form-container {
   background: #FFFFFF;
@@ -76,3 +149,5 @@
 a {
   color: #00877A;
 }
+
+

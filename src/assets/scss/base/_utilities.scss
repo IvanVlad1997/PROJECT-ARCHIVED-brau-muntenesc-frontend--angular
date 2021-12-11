@@ -1,0 +1,35 @@
+
+.media_image {
+  &-responsive {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  &-cover, &-contain {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56%;
+    position: relative;
+
+    img {
+      display: block;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  &-cover {
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &-contain {
+    img {
+      object-fit: contain;
+    }
+  }
+}
