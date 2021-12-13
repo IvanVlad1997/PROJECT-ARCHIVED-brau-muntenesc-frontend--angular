@@ -22,10 +22,10 @@ export const routes = [
         path: 'galerie-video',
         component: GalerieVideoComponent
       },
-      {
-        path: 'informatii',
-        component: InformatiiComponent
-      },
+      // {
+      //   path: 'informatii',
+      //   component: InformatiiComponent
+      // },
       {
         path: 'parteneri-media',
         component: ParteneriMediaComponent

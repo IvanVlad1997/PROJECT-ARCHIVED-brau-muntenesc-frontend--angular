@@ -1,10 +1,24 @@
+@import '~src/assets/scss/abstract/mixins';
+
 .gallery-pictures {
 
+  padding: 8rem 0;
 
   display: grid;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(6, 1fr);
   align-items: center;
+
+  @include responsive-breakpoint(small) {
+    padding: 5rem 0;
+  }
+  @include responsive-breakpoint(small-medium) {
+    padding: 3rem 0;
+  }
+
+
+
+
 
   &__img--1 {
     width: 100%;
